@@ -1,0 +1,35 @@
+.hero-slider-content h2 span {
+  font-weight: 600;
+  font-size: 1.5em;
+}
+.wpcf7-form-control.has-spinner.wpcf7-submit {
+  margin-top: 25.5px;
+  /* margin-left: 15px; */
+}
+.navbar-brand {
+  width: 150px;
+  height: 75px;
+}
+.footer-nav-wrap img {
+  width: 150px;
+  height: 75px;
+}
+thead {
+  background-color: #833782 !important;
+}
+table.table-bordered.dataTable thead tr:first-child th {
+  color: #fff;
+  font-weight: 700 !important;
+}
+.page-item.active .page-link {
+  z-index: 1;
+  color: #fff;
+  background-color: #833782 !important;
+  border-color: #833782 !important;
+}
+.sbsi7l-0.eARkMz {
+  display: none !important;
+}
+.gpitmlr-50 {
+  padding: 0 50px;
+}

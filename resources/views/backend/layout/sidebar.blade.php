@@ -80,7 +80,7 @@
                                      <span class="path4"></span>
                                  </i>
                              </span>
-                             <span class="menu-title">Users</span>
+                             <span class="menu-title">User Management</span>
                              <span class="menu-arrow"></span>
                          </span>
                          <!--end:Menu link-->
@@ -94,7 +94,7 @@
                                      <span class="menu-bullet">
                                          <span class="bullet bullet-dot"></span>
                                      </span>
-                                     <span class="menu-title">All Uesr</span>
+                                     <span class="menu-title">Users List</span>
                                  </a>
                                  <!--end:Menu link-->
                              </div>

@@ -9,4 +9,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('dashboard/user')->group(function () {
   Route::get('/index', [UserController::class, 'index'])->name('user.index');
+  Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');
 });

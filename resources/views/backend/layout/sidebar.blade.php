@@ -68,7 +68,8 @@
                      <!--end:Dashboard Menu-->
 
                      <!--begin: Users Menu -->
-                     <div data-kt-menu-trigger="click" class="menu-item here show menu-accordion">
+                     <div data-kt-menu-trigger="click"
+                         class="menu-item here {{ strpos(Route::getCurrentRoute()->uri(), 'dashboard/user') === 0 ? 'show' : '' }} menu-accordion">
                          <!--begin:Menu link-->
                          <span class="menu-link">
                              <span class="menu-icon">
@@ -88,7 +89,8 @@
                              <!--begin:Menu item-->
                              <div class="menu-item">
                                  <!--begin:Menu link-->
-                                 <a class="menu-link active" href="#">
+                                 <a class="menu-link {{ Route::getCurrentRoute()->uri() == 'dashboard/user/index' ? 'active' : '' }}"
+                                     href="{{ route('user.index') }}">
                                      <span class="menu-bullet">
                                          <span class="bullet bullet-dot"></span>
                                      </span>

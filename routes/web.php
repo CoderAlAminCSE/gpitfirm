@@ -77,3 +77,7 @@ Route::get('/terms-condition', function () {
 Route::get('/privacy-policy', function () {
     return view('frontend/privacy_policy');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'dashboard/user', 'middleware' => ['auth']], function () {
   Route::get('/index', [UserController::class, 'index'])->name('user.index');
+  Route::get('/delete/{id}', [UserController::class, 'delete'])->name('user.delete');
   Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');
   Route::post('/profile/update', [UserController::class, 'profileUpdate'])->name('user.profile.update');
 });

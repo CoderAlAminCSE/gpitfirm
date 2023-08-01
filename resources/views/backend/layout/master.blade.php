@@ -95,6 +95,7 @@
     <script src="{{ asset('assets/backend') }}/plugins/custom/datatables/datatables.bundle.js"></script>
     <!--end::Vendors Javascript-->
     <!--begin::Custom Javascript(used for this page only)-->
+    <script src="{{ asset('assets/backend') }}/js/gpitfirm.js"></script>
     <script src="{{ asset('assets/backend') }}/js/widgets.bundle.js"></script>
     <script src="{{ asset('assets/backend') }}/js/custom/widgets.js"></script>
     <script src="{{ asset('assets/backend') }}/js/custom/apps/chat/chat.js"></script>

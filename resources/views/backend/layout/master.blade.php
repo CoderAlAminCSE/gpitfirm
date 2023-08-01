@@ -43,6 +43,11 @@
                 <!--begin::Main-->
                 <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
                     <!--begin::Content wrapper-->
+                    @if (Session::has('error'))
+                        <div class="alert alert-danger m-3">
+                            {{ Session::get('error') }}
+                        </div>
+                    @endif
                     @yield('content')
                     <!--end::Content wrapper-->
                     <!--begin::Footer-->

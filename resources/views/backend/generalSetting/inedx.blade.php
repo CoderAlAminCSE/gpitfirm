@@ -59,7 +59,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link text-active-primary d-flex align-items-center pb-5 active"
                                         data-bs-toggle="tab" href="#kt_ecommerce_settings_general">
-                                        <i class="ki-duotone ki-home fs-2 me-2"></i>General</a>
+                                        <i class="ki-duotone ki-home fs-2 me-2"></i>General Settings</a>
                                 </li>
                                 <!--end:::Tab item-->
                             </ul>
@@ -83,7 +83,7 @@
                                                     style="background-image: url('assets/media/svg/avatars/blank.svg')">
                                                     <!--begin::Preview existing avatar-->
                                                     <div class="image-input-wrapper w-125px h-125px"
-                                                        style="background-image: url('{{ asset('storage/' . siteSetting('header_logo')) }}')">
+                                                        style="background-image: url('{{ !empty(siteSetting('header_logo')) ? asset('storage/' . siteSetting('header_logo')) : url('assets/backend/upload/no_image.jpg') }}')">
                                                     </div>
                                                     <!--end::Preview existing avatar-->
                                                     <!--begin::Label-->
@@ -144,7 +144,7 @@
                                                     style="background-image: url('assets/media/svg/avatars/blank.svg')">
                                                     <!--begin::Preview existing avatar-->
                                                     <div class="image-input-wrapper w-125px h-125px"
-                                                        style="background-image: url('{{ !empty($auth_user->image) ? asset($auth_user->image) : url('assets/backend/upload/no_image.jpg') }}')">
+                                                        style="background-image: url('{{ !empty(siteSetting('footer_logo')) ? asset('storage/' . siteSetting('footer_logo')) : url('assets/backend/upload/no_image.jpg') }}')">
                                                     </div>
                                                     <!--end::Preview existing avatar-->
                                                     <!--begin::Label-->
@@ -157,7 +157,8 @@
                                                             <span class="path2"></span>
                                                         </i>
                                                         <!--begin::Inputs-->
-                                                        <input type="file" name="image" accept=".png, .jpg, .jpeg" />
+                                                        <input type="file" name="footer_logo"
+                                                            accept=".png, .jpg, .jpeg" />
                                                         <input type="hidden" name="footer_logo" />
                                                         <!--end::Inputs-->
                                                     </label>
@@ -204,7 +205,7 @@
                                                     style="background-image: url('assets/media/svg/avatars/blank.svg')">
                                                     <!--begin::Preview existing avatar-->
                                                     <div class="image-input-wrapper w-125px h-125px"
-                                                        style="background-image: url('{{ !empty($auth_user->image) ? asset($auth_user->image) : url('assets/backend/upload/no_image.jpg') }}')">
+                                                        style="background-image: url('{{ !empty(siteSetting('favicon')) ? asset('storage/' . siteSetting('favicon')) : url('assets/backend/upload/no_image.jpg') }}')">
                                                     </div>
                                                     <!--end::Preview existing avatar-->
                                                     <!--begin::Label-->
@@ -217,7 +218,7 @@
                                                             <span class="path2"></span>
                                                         </i>
                                                         <!--begin::Inputs-->
-                                                        <input type="file" name="image"
+                                                        <input type="file" name="favicon"
                                                             accept=".png, .jpg, .jpeg" />
                                                         <input type="hidden" name="favicon" />
                                                         <!--end::Inputs-->
@@ -273,7 +274,8 @@
                                             <div class="col-md-9">
                                                 <!--begin::Input-->
                                                 <input type="text" class="form-control form-control-solid"
-                                                    name="company_name" value="" />
+                                                    name="company_name"
+                                                    value="{{ siteSetting('company_name') ?? null }}" />
                                                 <!--end::Input-->
                                             </div>
                                         </div>
@@ -298,7 +300,8 @@
                                             <div class="col-md-9">
                                                 <!--begin::Input-->
                                                 <input type="email" class="form-control form-control-solid"
-                                                    name="company_email" value="" />
+                                                    name="company_email"
+                                                    value="{{ siteSetting('company_email') ?? null }}" />
                                                 <!--end::Input-->
                                             </div>
                                         </div>
@@ -323,7 +326,8 @@
                                             <div class="col-md-9">
                                                 <!--begin::Input-->
                                                 <input type="number" class="form-control form-control-solid"
-                                                    name="company_phone" value="" />
+                                                    name="company_phone"
+                                                    value="{{ siteSetting('company_phone') ?? null }}" />
                                                 <!--end::Input-->
                                             </div>
                                         </div>
@@ -348,7 +352,8 @@
                                             <div class="col-md-9">
                                                 <!--begin::Input-->
                                                 <input type="text" class="form-control form-control-solid"
-                                                    name="company_address" value="" />
+                                                    name="company_address"
+                                                    value="{{ siteSetting('company_address') ?? null }}" />
                                                 <!--end::Input-->
                                             </div>
                                         </div>
@@ -372,7 +377,7 @@
                                             </div>
                                             <div class="col-md-9">
                                                 <!--begin::Input-->
-                                                <textarea class="form-control form-control-solid" name="about_description"></textarea>
+                                                <textarea class="form-control form-control-solid" name="about_description">{{ siteSetting('about_description') ?? null }}</textarea>
                                                 <!--end::Input-->
                                             </div>
                                         </div>

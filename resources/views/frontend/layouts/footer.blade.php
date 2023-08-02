@@ -12,19 +12,19 @@
                                 <div class="social-nav mt-4">
                                     <ul class="list-unstyled social-list mb-0">
                                         <li class="list-inline-item tooltip-hover">
-                                            <a href="https://www.facebook.com/gpitfirm/" class="rounded"
+                                            <a href="{{ siteSetting('facebook') ?? null }}" class="rounded"
                                                 target="_blank"><span class="ti-facebook"></span></a>
                                             <div class="tooltip-item">Facebook</div>
                                         </li>
-                                        <li class="list-inline-item tooltip-hover"><a href class="rounded"
+                                        <li class="list-inline-item tooltip-hover"><a href="{{ siteSetting('twitter') ?? null }}" class="rounded"
                                                 target="_blank"><span class="ti-twitter"></span></a>
                                             <div class="tooltip-item">Twitter</div>
                                         </li>
-                                        <li class="list-inline-item tooltip-hover"><a href class="rounded"
+                                        <li class="list-inline-item tooltip-hover"><a href="{{ siteSetting('linkedin') ?? null }}" class="rounded"
                                                 target="_blank"><span class="ti-linkedin"></span></a>
                                             <div class="tooltip-item">Linkedin</div>
                                         </li>
-                                        <li class="list-inline-item tooltip-hover"><a href class="rounded"
+                                        <li class="list-inline-item tooltip-hover"><a href="{{ siteSetting('google') ?? null }}" class="rounded"
                                                 target="_blank"><span class="ti-google"></span></a>
                                             <div class="tooltip-item">Google+</div>
                                         </li>
@@ -117,7 +117,7 @@
                                         <p>{{ siteSetting('company_phone') ?? null }}</p>
                                     </li>
                                     <li class="d-flex align-items-center py-2"><span class="ti-skype mr-2"></span><a
-                                            href="skype:live:.cid.5c0241ef5fa9ccbc">Join with us by SKYPE</a></li>
+                                            href="{{ siteSetting('skype') ?? null }}">Join with us by SKYPE</a></li>
                                 </ul>
                             </div>
                         </div>

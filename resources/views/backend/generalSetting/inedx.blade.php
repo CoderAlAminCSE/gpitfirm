@@ -1,7 +1,6 @@
 @extends('backend.layout.master')
 @section('title', 'General Settings')
 @section('content')
-    {{-- @dd(siteSetting('header_logo')) --}}
     <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
         <!--begin::Content wrapper-->
         <div class="d-flex flex-column flex-column-fluid">
@@ -62,16 +61,30 @@
                                         <i class="ki-duotone ki-home fs-2 me-2"></i>General Settings</a>
                                 </li>
                                 <!--end:::Tab item-->
+                                <!--begin:::Tab item-->
+                                <li class="nav-item">
+                                    <a class="nav-link text-active-primary d-flex align-items-center pb-5"
+                                        data-bs-toggle="tab" href="#kt_ecommerce_settings_store">
+                                        <i class="ki-duotone ki-shop fs-2 me-2">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                            <span class="path3"></span>
+                                            <span class="path4"></span>
+                                            <span class="path5"></span>
+                                        </i>Social Setting</a>
+                                </li>
+                                <!--end:::Tab item-->
                             </ul>
                             <!--end:::Tabs-->
-                            <!--begin:::Tab content-->
-                            <div class="tab-content" id="myTabContent">
-                                <!--begin:::Tab pane-->
-                                <div class="tab-pane fade show active" id="kt_ecommerce_settings_general" role="tabpanel">
-                                    <!--begin::Form-->
-                                    <form action="{{ route('general.setting') }}" method="POST"
-                                        enctype="multipart/form-data">
-                                        @csrf
+                            <!--begin::Form-->
+                            <form action="{{ route('general.setting') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <!--begin:::Tab content-->
+                                <div class="tab-content" id="myTabContent">
+                                    <!--begin:::Tab pane-->
+                                    <div class="tab-pane fade show active" id="kt_ecommerce_settings_general"
+                                        role="tabpanel">
+
                                         <div class="row fv-row mb-7">
                                             <!--begin::Label-->
                                             <label class="col-lg-4 col-form-label fw-semibold fs-6">Header logo</label>
@@ -396,11 +409,186 @@
                                             </div>
                                         </div>
                                         <!--end::Action buttons-->
-                                    </form>
-                                    <!--end::Form-->
+                                        <!--end::Form-->
+                                    </div>
+                                    <!--end:::Tab pane-->
+
+                                    <!--begin:::Tab pane-->
+                                    <div class="tab-pane fade" id="kt_ecommerce_settings_store" role="tabpanel">
+                                        <!--begin::Input group-->
+                                        <div class="row fv-row mb-7">
+                                            <div class="col-md-3 text-md-end">
+                                                <!--begin::Label-->
+                                                <label class="fs-6 fw-semibold form-label mt-3">
+                                                    <span class="required">Facebook</span>
+                                                    <span class="ms-1" data-bs-toggle="tooltip"
+                                                        title="Set facebook link">
+                                                        <i class="ki-duotone ki-information-5 text-gray-500 fs-6">
+                                                            <span class="path1"></span>
+                                                            <span class="path2"></span>
+                                                            <span class="path3"></span>
+                                                        </i>
+                                                    </span>
+                                                </label>
+                                                <!--end::Label-->
+                                            </div>
+                                            <div class="col-md-9">
+                                                <!--begin::Input-->
+                                                <input type="text" class="form-control form-control-solid"
+                                                    name="facebook" value="{{ siteSetting('facebook') ?? null }}" />
+                                                <!--end::Input-->
+                                            </div>
+                                        </div>
+                                        <!--end::Input group-->
+
+                                        <!--begin::Input group-->
+                                        <div class="row fv-row mb-7">
+                                            <div class="col-md-3 text-md-end">
+                                                <!--begin::Label-->
+                                                <label class="fs-6 fw-semibold form-label mt-3">
+                                                    <span class="required">Instagram</span>
+                                                    <span class="ms-1" data-bs-toggle="tooltip"
+                                                        title="Set instagram link">
+                                                        <i class="ki-duotone ki-information-5 text-gray-500 fs-6">
+                                                            <span class="path1"></span>
+                                                            <span class="path2"></span>
+                                                            <span class="path3"></span>
+                                                        </i>
+                                                    </span>
+                                                </label>
+                                                <!--end::Label-->
+                                            </div>
+                                            <div class="col-md-9">
+                                                <!--begin::Input-->
+                                                <input type="text" class="form-control form-control-solid"
+                                                    name="instagram" value="{{ siteSetting('instagram') ?? null }}" />
+                                                <!--end::Input-->
+                                            </div>
+                                        </div>
+                                        <!--end::Input group-->
+
+                                        <!--begin::Input group-->
+                                        <div class="row fv-row mb-7">
+                                            <div class="col-md-3 text-md-end">
+                                                <!--begin::Label-->
+                                                <label class="fs-6 fw-semibold form-label mt-3">
+                                                    <span class="required">Linkedin</span>
+                                                    <span class="ms-1" data-bs-toggle="tooltip"
+                                                        title="Set linkedin link">
+                                                        <i class="ki-duotone ki-information-5 text-gray-500 fs-6">
+                                                            <span class="path1"></span>
+                                                            <span class="path2"></span>
+                                                            <span class="path3"></span>
+                                                        </i>
+                                                    </span>
+                                                </label>
+                                                <!--end::Label-->
+                                            </div>
+                                            <div class="col-md-9">
+                                                <!--begin::Input-->
+                                                <input type="text" class="form-control form-control-solid"
+                                                    name="linkedin" value="{{ siteSetting('linkedin') ?? null }}" />
+                                                <!--end::Input-->
+                                            </div>
+                                        </div>
+                                        <!--end::Input group-->
+
+                                        <!--begin::Input group-->
+                                        <div class="row fv-row mb-7">
+                                            <div class="col-md-3 text-md-end">
+                                                <!--begin::Label-->
+                                                <label class="fs-6 fw-semibold form-label mt-3">
+                                                    <span class="required">Twitter</span>
+                                                    <span class="ms-1" data-bs-toggle="tooltip"
+                                                        title="Set twitter link">
+                                                        <i class="ki-duotone ki-information-5 text-gray-500 fs-6">
+                                                            <span class="path1"></span>
+                                                            <span class="path2"></span>
+                                                            <span class="path3"></span>
+                                                        </i>
+                                                    </span>
+                                                </label>
+                                                <!--end::Label-->
+                                            </div>
+                                            <div class="col-md-9">
+                                                <!--begin::Input-->
+                                                <input type="text" class="form-control form-control-solid"
+                                                    name="twitter" value="{{ siteSetting('twitter') ?? null }}" />
+                                                <!--end::Input-->
+                                            </div>
+                                        </div>
+                                        <!--end::Input group-->
+
+                                        <!--begin::Input group-->
+                                        <div class="row fv-row mb-7">
+                                            <div class="col-md-3 text-md-end">
+                                                <!--begin::Label-->
+                                                <label class="fs-6 fw-semibold form-label mt-3">
+                                                    <span class="required">Google</span>
+                                                    <span class="ms-1" data-bs-toggle="tooltip"
+                                                        title="Set google link">
+                                                        <i class="ki-duotone ki-information-5 text-gray-500 fs-6">
+                                                            <span class="path1"></span>
+                                                            <span class="path2"></span>
+                                                            <span class="path3"></span>
+                                                        </i>
+                                                    </span>
+                                                </label>
+                                                <!--end::Label-->
+                                            </div>
+                                            <div class="col-md-9">
+                                                <!--begin::Input-->
+                                                <input type="text" class="form-control form-control-solid"
+                                                    name="google" value="{{ siteSetting('google') ?? null }}" />
+                                                <!--end::Input-->
+                                            </div>
+                                        </div>
+                                        <!--end::Input group-->
+
+                                        <!--begin::Input group-->
+                                        <div class="row fv-row mb-7">
+                                            <div class="col-md-3 text-md-end">
+                                                <!--begin::Label-->
+                                                <label class="fs-6 fw-semibold form-label mt-3">
+                                                    <span class="required">Skype</span>
+                                                    <span class="ms-1" data-bs-toggle="tooltip" title="Set skype link">
+                                                        <i class="ki-duotone ki-information-5 text-gray-500 fs-6">
+                                                            <span class="path1"></span>
+                                                            <span class="path2"></span>
+                                                            <span class="path3"></span>
+                                                        </i>
+                                                    </span>
+                                                </label>
+                                                <!--end::Label-->
+                                            </div>
+                                            <div class="col-md-9">
+                                                <!--begin::Input-->
+                                                <input type="text" class="form-control form-control-solid"
+                                                    name="skype" value="{{ siteSetting('skype') ?? null }}" />
+                                                <!--end::Input-->
+                                            </div>
+                                        </div>
+                                        <!--end::Input group-->
+
+                                        <!--begin::Action buttons-->
+                                        <div class="row py-5">
+                                            <div class="col-md-9 offset-md-3">
+                                                <div class="d-flex">
+                                                    <!--begin::Button-->
+                                                    <button type="submit" data-kt-ecommerce-settings-type="submit"
+                                                        class="btn btn-primary">
+                                                        <span class="indicator-label">Update</span>
+                                                    </button>
+                                                    <!--end::Button-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--end::Action buttons-->
+                                    </div>
+                                    <!--end:::Tab pane-->
                                 </div>
-                                <!--end:::Tab pane-->
-                            </div>
+                            </form>
+                            <!--end::Form-->
                             <!--end:::Tab content-->
                         </div>
                         <!--end::Card body-->

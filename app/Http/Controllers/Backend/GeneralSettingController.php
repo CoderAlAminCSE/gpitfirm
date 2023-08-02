@@ -86,6 +86,14 @@ class GeneralSettingController extends Controller
             GeneralSetting::updateOrCreate(['name' => 'company_phone'], ['value' => $request->company_phone]);
             GeneralSetting::updateOrCreate(['name' => 'company_address'], ['value' => $request->company_address]);
             GeneralSetting::updateOrCreate(['name' => 'about_description'], ['value' => $request->about_description]);
+
+            // social media
+            GeneralSetting::updateOrCreate(['name' => 'facebook'], ['value' => $request->facebook]);
+            GeneralSetting::updateOrCreate(['name' => 'instagram'], ['value' => $request->instagram]);
+            GeneralSetting::updateOrCreate(['name' => 'linkedin'], ['value' => $request->linkedin]);
+            GeneralSetting::updateOrCreate(['name' => 'twitter'], ['value' => $request->twitter]);
+            GeneralSetting::updateOrCreate(['name' => 'google'], ['value' => $request->google]);
+            GeneralSetting::updateOrCreate(['name' => 'skype'], ['value' => $request->skype]);
         } catch (\Exception $e) {
             Session::flash('error', 'Profile update failed: ' . $e->getMessage());
             return back();

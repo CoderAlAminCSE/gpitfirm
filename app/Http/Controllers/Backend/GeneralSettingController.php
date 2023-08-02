@@ -99,6 +99,7 @@ class GeneralSettingController extends Controller
             return back();
         }
 
+        Session::flash('success', 'Successfully updated');
         return back();
     }
 }

@@ -65,6 +65,7 @@ class UserController extends Controller
             return back();
         }
 
+        Session::flash('success', 'profile updated successfully');
         return back();
     }
 

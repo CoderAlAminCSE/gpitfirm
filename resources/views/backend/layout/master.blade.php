@@ -48,6 +48,11 @@
                             {{ Session::get('error') }}
                         </div>
                     @endif
+                    @if (Session::has('success'))
+                        <div class="alert alert-success m-3">
+                            {{ Session::get('success') }}
+                        </div>
+                    @endif
                     @yield('content')
                     <!--end::Content wrapper-->
                     <!--begin::Footer-->

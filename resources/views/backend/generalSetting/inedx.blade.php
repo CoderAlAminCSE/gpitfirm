@@ -377,7 +377,7 @@
                                             </div>
                                             <div class="col-md-9">
                                                 <!--begin::Input-->
-                                                <textarea class="form-control form-control-solid" name="about_description">{{ siteSetting('about_description') ?? null }}</textarea>
+                                                <textarea class="form-control form-control-solid" name="about_description" rows="5">{{ siteSetting('about_description') ?? null }}</textarea>
                                                 <!--end::Input-->
                                             </div>
                                         </div>

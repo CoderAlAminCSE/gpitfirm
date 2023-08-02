@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg fixed-top bg-transparent">
         <div class="container">
             <a class="navbar-brand" href="/">
-                <img src="assets/frontend/images/GP-IT-Firm-Final-Logo.png" alt="logo" class="img-fluid" />
+                <img src="{{ asset('storage/' . siteSetting('header_logo')) }}" alt="logo" class="img-fluid" />
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="ti-menu"></span>

@@ -6,25 +6,26 @@
                     <div class="row footer-top-wrap">
                         <div class="col-md-6 col-sm-6">
                             <div class="footer-nav-wrap text-white">
-                                <a href="/"><img src="assets/frontend/images/GP-IT-Firm-Final-Logo.png" alt="logo" class="mb-2"></a>
-                                <p>To establish the best agency climate for talented individuals from everywhere
-                                    globally. GP IT Firm is giving massages to arrive at the objective you have
-                                    valued. If you join us, you can get the correct services that you want. We
-                                    provide the best services for link insertion and Guest posting. Our team is
-                                    always ready for the clients with the best effort.</p>
+                                <a href="/"><img src="{{ asset('storage/' . siteSetting('header_logo')) }}"
+                                        alt="logo" class="mb-2"></a>
+                                <p>{{ siteSetting('about_description') ?? null }}</p>
                                 <div class="social-nav mt-4">
                                     <ul class="list-unstyled social-list mb-0">
                                         <li class="list-inline-item tooltip-hover">
-                                            <a href="https://www.facebook.com/gpitfirm/" class="rounded" target="_blank"><span class="ti-facebook"></span></a>
+                                            <a href="https://www.facebook.com/gpitfirm/" class="rounded"
+                                                target="_blank"><span class="ti-facebook"></span></a>
                                             <div class="tooltip-item">Facebook</div>
                                         </li>
-                                        <li class="list-inline-item tooltip-hover"><a href class="rounded" target="_blank"><span class="ti-twitter"></span></a>
+                                        <li class="list-inline-item tooltip-hover"><a href class="rounded"
+                                                target="_blank"><span class="ti-twitter"></span></a>
                                             <div class="tooltip-item">Twitter</div>
                                         </li>
-                                        <li class="list-inline-item tooltip-hover"><a href class="rounded" target="_blank"><span class="ti-linkedin"></span></a>
+                                        <li class="list-inline-item tooltip-hover"><a href class="rounded"
+                                                target="_blank"><span class="ti-linkedin"></span></a>
                                             <div class="tooltip-item">Linkedin</div>
                                         </li>
-                                        <li class="list-inline-item tooltip-hover"><a href class="rounded" target="_blank"><span class="ti-google"></span></a>
+                                        <li class="list-inline-item tooltip-hover"><a href class="rounded"
+                                                target="_blank"><span class="ti-google"></span></a>
                                             <div class="tooltip-item">Google+</div>
                                         </li>
                                     </ul>
@@ -36,19 +37,24 @@
                                 <h4 class="text-white">Quick Links</h4>
                                 <div class="menu-footer-menu-1-container">
                                     <ul id="menu-footer-menu-1" class="nav flex-column">
-                                        <li id="menu-item-131" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-131">
+                                        <li id="menu-item-131"
+                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-131">
                                             <a href="/services">Services</a>
                                         </li>
-                                        <li id="menu-item-107" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-107">
+                                        <li id="menu-item-107"
+                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-107">
                                             <a href="/my-account">My account</a>
                                         </li>
-                                        <li id="menu-item-124" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-124">
+                                        <li id="menu-item-124"
+                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-124">
                                             <a href="/cart">Cart</a>
                                         </li>
-                                        <li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110">
+                                        <li id="menu-item-110"
+                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110">
                                             <a href="/faq">FAQ</a>
                                         </li>
-                                        <li id="menu-item-109" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-109">
+                                        <li id="menu-item-109"
+                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-109">
                                             <a href="/contact">Contact</a>
                                         </li>
                                     </ul>
@@ -60,22 +66,28 @@
                                 <h4 class="text-white">Important Links</h4>
                                 <div class="menu-footer-menu-2-container">
                                     <ul id="menu-footer-menu-2" class="nav flex-column">
-                                        <li id="menu-item-192" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-192">
+                                        <li id="menu-item-192"
+                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-192">
                                             <a href="/refund">Refund</a>
                                         </li>
-                                        <li id="menu-item-184" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-184">
+                                        <li id="menu-item-184"
+                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-184">
                                             <a href="/privacy-policy">Privacy Policy</a>
                                         </li>
-                                        <li id="menu-item-297" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-297">
+                                        <li id="menu-item-297"
+                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-297">
                                             <a href="/reseller-rules">Reseller Rules</a>
                                         </li>
-                                        <li id="menu-item-185" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-185">
+                                        <li id="menu-item-185"
+                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-185">
                                             <a href="/terms-condition">Terms &#038; Condition</a>
                                         </li>
-                                        <li id="menu-item-132" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-132">
+                                        <li id="menu-item-132"
+                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-132">
                                             <a href="/link-building">Link Building</a>
                                         </li>
-                                        <li id="menu-item-133" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-133">
+                                        <li id="menu-item-133"
+                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-133">
                                             <a href="/guest-post">Guest Post</a>
                                         </li>
                                     </ul>
@@ -90,14 +102,22 @@
                             <div class="footer-nav-wrap text-white">
                                 <h4 class="text-white">GP IT FIRM</h4>
                                 <ul class="get-in-touch-list">
-                                    <li class="d-flex align-items-center py-2"><span class="fas fa-map-marker-alt mr-2"></span>
-                                        <p><strong>BD Office:</strong>  Radha Palbari, Ambaria Madhupur, Tangail,
-                                            1997, Dhaka</p>
+                                    <li class="d-flex align-items-center py-2"><span
+                                            class="fas fa-map-marker-alt mr-2"></span>
+                                        <p>{{ siteSetting('company_address') ?? null }}</p>
                                     </li>
-                                    <li class="d-flex align-items-center py-2"><span class="fas fa-envelope mr-2"></span>
-                                        <a href="admin%40gpitfirm.html"><span class="__cf_email__" data-cfemail="79181d141017391e09100d1f100b14571a1614">[email&#160;protected]</span></a>
+                                    <li class="d-flex align-items-center py-2"><span
+                                            class="fas fa-envelope mr-2"></span>
+                                        <a href="{{ siteSetting('company_email') ?? null }}">
+                                            <p>{{ siteSetting('company_email') ?? null }}</p>
+                                        </a>
                                     </li>
-                                    <li class="d-flex align-items-center py-2"><span class="ti-skype mr-2"></span><a href="skype:live:.cid.5c0241ef5fa9ccbc">Join with us by SKYPE</a></li>
+                                    <li class="d-flex align-items-center py-2"><span
+                                            class="fas fa-phone-alt mr-2"></span>
+                                        <p>{{ siteSetting('company_phone') ?? null }}</p>
+                                    </li>
+                                    <li class="d-flex align-items-center py-2"><span class="ti-skype mr-2"></span><a
+                                            href="skype:live:.cid.5c0241ef5fa9ccbc">Join with us by SKYPE</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -138,7 +158,8 @@
 <script type="text/javascript" src="assets/frontend/js/vendor/woocommerce/js.cookie.min.js" id="js-cookie-js"></script>
 
 <!-- woocommerce.min.js -->
-<script type="text/javascript" src="assets/frontend/js/vendor/woocommerce/woocommerce.min.js" id="woocommerce-js"></script>
+<script type="text/javascript" src="assets/frontend/js/vendor/woocommerce/woocommerce.min.js" id="woocommerce-js">
+</script>
 
 <!-- wc-cart-fragments-js -->
 <script type="text/javascript" src="assets/frontend/js/vendor/woocommerce/cart-fragments.min.js"></script>
@@ -148,6 +169,8 @@
 <script type="text/javascript" src="assets/frontend/js/wow.min.html" id="wow-js-js"></script>
 <script type="text/javascript" src="assets/frontend/js/owl.carousel.min.js" id="owl-carousel-js"></script>
 <script type="text/javascript" src="assets/frontend/js/datatables.js" id="data-table-js-js"></script>
-<script type="text/javascript" src="assets/frontend/js/dataTables.responsive.min.js" id="data-table-responsive-js-js"></script>
-<script type="text/javascript" src="assets/frontend/js/responsive.bootstrap.min.js" id="data-table-responsive-bootstrap-js-js"></script>
+<script type="text/javascript" src="assets/frontend/js/dataTables.responsive.min.js" id="data-table-responsive-js-js">
+</script>
+<script type="text/javascript" src="assets/frontend/js/responsive.bootstrap.min.js"
+    id="data-table-responsive-bootstrap-js-js"></script>
 <script type="text/javascript" src="assets/frontend/js/scripts.js" id="scripts-js"></script>

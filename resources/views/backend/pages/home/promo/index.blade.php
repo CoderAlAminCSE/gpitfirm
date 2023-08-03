@@ -236,7 +236,8 @@
                                                     data-kt-menu="true">
                                                     <!--begin::Menu item-->
                                                     <div class="menu-item px-3">
-                                                        <a class="menu-link px-3">Update</a>
+                                                        <a href="{{ route('pages.home.promo.update', $promo->id) }}"
+                                                            class="menu-link px-3">Update</a>
                                                     </div>
                                                     <!--end::Menu item-->
                                                     <!--begin::Menu item-->

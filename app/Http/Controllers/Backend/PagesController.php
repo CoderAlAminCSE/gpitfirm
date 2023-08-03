@@ -110,4 +110,38 @@ class PagesController extends Controller
         Session::flash('success', 'Promo sectoin created successfully');
         return back();
     }
+
+
+
+    public function promoUpdate($id)
+    {
+        $promo = HomePagePromoSection::findOrFail($id);
+        return view('backend.pages.home.promo.update', compact('promo'));
+    }
+
+
+    public function promoUpdateStore(Request $request, $id)
+    {
+        try {
+            // validation start
+            $validate = $request->validate([
+                'icon_name' => ['required'],
+                'title' => ['required'],
+                'description' => ['required'],
+            ]); // end of validation
+
+            $promo = HomePagePromoSection::findOrFail($id);
+            $promo->icon_name = $request->icon_name;
+            $promo->title = $request->title;
+            $promo->description = $request->description;
+            $promo->active = $request->active ? true : false;
+            $promo->save();
+        } catch (\Exception $e) {
+            Session::flash('error', 'Promo sectoin update failed: ' . $e->getMessage());
+            return back();
+        }
+
+        Session::flash('success', 'Promo sectoin updated successfully');
+        return redirect()->route('pages.home.promo.index');
+    }
 }

@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['prefix' => 'dashboard/user', 'middleware' => ['auth']], function () {
+
+  // Admin user routes
   Route::get('/index', [UserController::class, 'index'])->name('user.index');
   Route::get('/delete/{id}', [UserController::class, 'delete'])->name('user.delete');
   Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');

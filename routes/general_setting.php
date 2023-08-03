@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['prefix' => 'dashboard/general', 'middleware' => ['auth']], function () {
+
+  // General settings routes
   Route::get('/setting', [GeneralSettingController::class, 'index'])->name('general.setting.index');
   Route::post('/setting/store', [GeneralSettingController::class, 'store'])->name('general.setting');
 });

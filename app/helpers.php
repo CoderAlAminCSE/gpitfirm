@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\GeneralSetting;
+use App\Models\HomePageHeroSection;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -13,6 +14,13 @@ function loggedInUser()
 // get value from "general_settings" table
 function siteSetting($name)
 {
-    $setting = GeneralSetting::where('name', $name)->first();
-    return $setting ? $setting->value : '';
+  $setting = GeneralSetting::where('name', $name)->first();
+  return $setting ? $setting->value : '';
+}
+
+// get value from "home_page_hero_section" table
+function homePageHeroSection($name)
+{
+  $setting = HomePageHeroSection::where('name', $name)->first();
+  return $setting ? $setting->value : '';
 }

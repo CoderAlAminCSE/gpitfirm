@@ -1,13 +1,12 @@
 @extends('backend.layout.master')
-@section('title', 'Pages|Home|Hero')
+@section('title', 'Pages | Home | Hero')
 @section('content')
     <div id="kt_app_content_container" class="app-container container-xxl">
         <!--begin::Basic info-->
         <div class="card mb-5 mb-xl-10">
             <!--begin::Card header-->
             <div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse"
-                data-bs-target="#kt_account_profile_details" aria-expanded="true"
-                aria-controls="kt_account_profile_details">
+                data-bs-target="#kt_account_profile_details" aria-expanded="true" aria-controls="kt_account_profile_details">
                 <!--begin::Card title-->
                 <div class="card-title m-0">
                     <h3 class="fw-bold m-0">Hero Section Content</h3>
@@ -90,7 +89,7 @@
                             <div class="col-lg-8 fv-row">
                                 <input type="text" name="title" class="form-control form-control-lg form-control-solid"
                                     placeholder="title" value="{{ homePageHeroSection('title') ?? null }}" />
-                                    @error('title')
+                                @error('title')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -106,7 +105,7 @@
                             <div class="col-lg-8 fv-row">
                                 <input type="text" name="button" class="form-control form-control-lg form-control-solid"
                                     placeholder="button" value="{{ homePageHeroSection('button') ?? null }}" />
-                                    @error('button')
+                                @error('button')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -122,8 +121,8 @@
                             <div class="col-lg-8 fv-row">
                                 <textarea class="form-control form-control-solid" name="description" placeholder="description" rows="4">{{ homePageHeroSection('description') ?? null }}</textarea>
                                 @error('description')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <!--end::Col-->
                         </div>

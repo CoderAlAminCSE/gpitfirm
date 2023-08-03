@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\HomePageHeroSection;
 use App\Http\Controllers\Controller;
+use App\Models\HomePagePromoSection;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,10 +17,12 @@ class PagesController extends Controller
         return view('backend.pages.home.hero.index');
     }
 
+
+
     public function homeUpdate(Request $request)
     {
-         //    validation start
-         $validate = $request->validate([
+        //    validation start
+        $validate = $request->validate([
             'title' => ['required'],
             'button' => ['required'],
             'description' => ['required'],
@@ -54,6 +57,57 @@ class PagesController extends Controller
         }
 
         Session::flash('success', 'Home page hero section successfully updated');
+        return back();
+    }
+
+
+
+    public function promoIndex(Request $request)
+    {
+        try {
+            if ($request->has('search') && $request->search != null) {
+                $search =  $request->search;
+                $promos = HomePagePromoSection::where(function ($query) use ($search) {
+                    $query->where('id', 'LIKE', '%' . $search . '%')
+                        ->orWhere('icon_name', 'LIKE', '%' . $search . '%')
+                        ->orWhere('title', 'LIKE', '%' . $search . '%');
+                })->paginate(10);
+            } else {
+                $promos = HomePagePromoSection::latest()->paginate(10);
+            }
+        } catch (\Exception $e) {
+            Session::flash('error', 'Error: ' . $e->getMessage());
+            return back();
+        }
+        return view('backend.pages.home.promo.index', compact('promos'));
+    }
+
+
+
+    public function promoCreate(Request $request)
+    {
+        try {
+            // validation start
+            $validate = $request->validate([
+                'icon_name' => ['required'],
+                'title' => ['required'],
+                'description' => ['required'],
+            ]); // end of validation
+
+            $promo = new HomePagePromoSection();
+            $promo->icon_name = $request->icon_name;
+            $promo->title = $request->title;
+            $promo->description = $request->description;
+            if ($request->active) {
+                $promo->active = true;
+            }
+            $promo->save();
+        } catch (\Exception $e) {
+            Session::flash('error', 'Promo sectoin create failed: ' . $e->getMessage());
+            return back();
+        }
+
+        Session::flash('success', 'Promo sectoin created successfully');
         return back();
     }
 }

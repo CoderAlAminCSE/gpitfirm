@@ -9,13 +9,15 @@
                     <p><span style="font-weight: 400">{{ homePageHeroSection('description') ?? null }}</span></p>
                     </p>
                     <div class="action-btns mt-3">
-                        <a href="/my-account" class="btn secondary-solid-btn">{{ homePageHeroSection('button') ?? null }}</a>
+                        <a href="/my-account"
+                            class="btn secondary-solid-btn">{{ homePageHeroSection('button') ?? null }}</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-12 col-lg-6">
                 <div class="image-wrap pt-5">
-                    <img src="{{ !empty(homePageHeroSection('image')) ? asset('storage/' . homePageHeroSection('image')) : "assets/frontend/images/6.jpg" }}" class="img-fluid custom-width" alt="hero" />
+                    <img src="{{ !empty(homePageHeroSection('image')) ? asset('storage/' . homePageHeroSection('image')) : 'assets/frontend/images/6.jpg' }}"
+                        class="img-fluid custom-width" alt="hero" />
                 </div>
             </div>
         </div>

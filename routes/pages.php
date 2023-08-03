@@ -10,4 +10,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'dashboard/page/home', 'middleware' => ['auth']], function () {
   Route::get('/hero/index', [PagesController::class, 'homeIndex'])->name('pages.home.hero.index');
   Route::post('/hero/update', [PagesController::class, 'homeUpdate'])->name('pages.home.hero.update');
+
+  Route::get('/promo/index', [PagesController::class, 'promoIndex'])->name('pages.home.promo.index');
+  Route::post('/promo/create', [PagesController::class, 'promoCreate'])->name('pages.home.promo.crete');
 });

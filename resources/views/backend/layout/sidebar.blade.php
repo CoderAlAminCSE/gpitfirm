@@ -95,7 +95,8 @@
                      <!--end: Users Menu -->
 
                      <!--begin: Pages Menu-->
-                     <div data-kt-menu-trigger="click" class="menu-item {{ strpos(Route::getCurrentRoute()->uri(), 'dashboard/page') === 0 ? 'show' : '' }} menu-accordion">
+                     <div data-kt-menu-trigger="click"
+                         class="menu-item {{ strpos(Route::getCurrentRoute()->uri(), 'dashboard/page') === 0 ? 'show' : '' }} menu-accordion">
                          <!--begin:Menu link-->
                          <span class="menu-link">
                              <span class="menu-icon">
@@ -111,7 +112,8 @@
                          <!--begin:Menu sub-->
                          <div class="menu-sub menu-sub-accordion">
                              <!--begin:Menu item-->
-                             <div data-kt-menu-trigger="click" class="menu-item {{ strpos(Route::getCurrentRoute()->uri(), 'dashboard/page/home') === 0 ? 'show' : '' }} menu-accordion mb-1">
+                             <div data-kt-menu-trigger="click"
+                                 class="menu-item {{ strpos(Route::getCurrentRoute()->uri(), 'dashboard/page/home') === 0 ? 'show' : '' }} menu-accordion mb-1">
                                  <!--begin:Menu link-->
                                  <span class="menu-link">
                                      <span class="menu-bullet">
@@ -132,6 +134,23 @@
                                                  <span class="bullet bullet-dot"></span>
                                              </span>
                                              <span class="menu-title">Hero Section</span>
+                                         </a>
+                                         <!--end:Menu link-->
+                                     </div>
+                                     <!--end:Menu item-->
+                                 </div>
+                                 <!--end:Menu sub-->      
+                                 <!--begin:Menu sub-->
+                                 <div class="menu-sub menu-sub-accordion">
+                                     <!--begin:Menu item-->
+                                     <div class="menu-item">
+                                         <!--begin:Menu link-->
+                                         <a class="menu-link {{ Route::getCurrentRoute()->uri() == 'dashboard/page/home/promo/index' ? 'active' : '' }}"
+                                             href="{{ route('pages.home.promo.index') }}">
+                                             <span class="menu-bullet">
+                                                 <span class="bullet bullet-dot"></span>
+                                             </span>
+                                             <span class="menu-title">Promo Section</span>
                                          </a>
                                          <!--end:Menu link-->
                                      </div>

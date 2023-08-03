@@ -22,6 +22,21 @@
             </a>
         </div>
         <!--end::Mobile logo-->
+        <div class="d-flex align-items-center justify-content-start flex-lg-grow-1">
+            <!--begin::Menu wrapper-->
+            <div class="btn btn-icon btn-custom btn-icon-muted btn-active-light btn-active-color-primary w-35px h-35px"
+                data-kt-menu-placement="bottom-end">
+                <a href="{{ url('/') }}" target="_blank">
+                    <i class="ki-duotone ki-element-11 fs-2">
+                        <span class="path1"></span>
+                        <span class="path2"></span>
+                        <span class="path3"></span>
+                        <span class="path4"></span>
+                    </i>
+                </a>
+            </div>
+            <!--end::Menu wrapper-->
+        </div>
         <!--begin::Header wrapper-->
         <div class="d-flex align-items-stretch justify-content-end flex-lg-grow-1" id="kt_app_header_wrapper">
             <!--begin::Navbar-->
@@ -50,7 +65,8 @@
                                 <!--begin::Username-->
                                 <div class="d-flex
                                         flex-column">
-                                    <div class="fw-bold d-flex align-items-center fs-5">{{ loggedInUser()->name }}</div>
+                                    <div class="fw-bold d-flex align-items-center fs-5">{{ loggedInUser()->name }}
+                                    </div>
                                     <a href="#"
                                         class="fw-semibold text-muted text-hover-primary fs-7">{{ loggedInUser()->email }}</a>
                                 </div>

@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\HomePageHeroSection;
 use App\Http\Controllers\Controller;
+use App\Models\HomePageAboutSection;
 use App\Models\HomePagePromoSection;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -151,6 +152,60 @@ class PagesController extends Controller
         $promo = HomePagePromoSection::findOrFail($id);
         $promo->delete();
         Session::flash('success', 'Promo deleted successfully');
+        return back();
+    }
+
+
+
+    public function aboutIndex()
+    {
+        try {
+            return view('backend.pages.home.about.index');
+        } catch (\Exception $e) {
+            Session::flash('error', 'Error: ' . $e->getMessage());
+            return back();
+        }
+    }
+
+
+
+    public function aboutUpdate(Request $request)
+    {
+        //    validation start
+        $validate = $request->validate([
+            // 'image' => ['required'],
+            'heading' => ['required'],
+            'description' => ['required'],
+        ]); // end of validation
+
+        try {
+            // if ($request->file('image')) {
+            //     try {
+            //         $file = $request->file('image');
+            //         $extension = $file->getClientOriginalExtension();
+            //         $filename = Str::uuid() . '.' . $extension;
+            //         $filePath = $file->storeAs('backend/upload/pages', $filename, 'public');
+            //         $image = homePageAboutSection('image');
+
+            //         // Check if the existing image exists using the relative path and delete
+            //         if ($image && Storage::exists('public/' . $image)) {
+            //             Storage::delete('public/' . $image);
+            //         }
+            //         HomePageAboutSection::updateOrCreate(['name' => 'image'], ['value' => "backend/upload/pages/" . $filename]);
+            //     } catch (\Exception $e) {
+            //         Session::flash('error', 'Image update failed: ' . $e->getMessage());
+            //         return back();
+            //     }
+            // }
+
+            HomePageAboutSection::updateOrCreate(['name' => 'heading'], ['value' => $request->heading]);
+            HomePageAboutSection::updateOrCreate(['name' => 'description'], ['value' => $request->description]);
+        } catch (\Exception $e) {
+            Session::flash('error', 'Home page about section update failed: ' . $e->getMessage());
+            return back();
+        }
+
+        Session::flash('success', 'Home page about section successfully updated');
         return back();
     }
 }

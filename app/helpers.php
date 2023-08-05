@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\GeneralSetting;
+use App\Models\HomePageAboutSection;
 use App\Models\HomePageHeroSection;
 use App\Models\HomePagePromoSection;
 use Illuminate\Support\Facades\Auth;
@@ -31,4 +32,12 @@ function homePageHeroSection($name)
 function homePagePromoSection()
 {
   return HomePagePromoSection::all();
+}
+
+
+// get value from "home_page_hero_section" table
+function homePageAboutSection($name)
+{
+  $setting = HomePageAboutSection::where('name', $name)->first();
+  return $setting ? $setting->value : null;
 }

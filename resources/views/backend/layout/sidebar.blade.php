@@ -139,7 +139,7 @@
                                      </div>
                                      <!--end:Menu item-->
                                  </div>
-                                 <!--end:Menu sub-->      
+                                 <!--end:Menu sub-->
                                  <!--begin:Menu sub-->
                                  <div class="menu-sub menu-sub-accordion">
                                      <!--begin:Menu item-->
@@ -151,6 +151,23 @@
                                                  <span class="bullet bullet-dot"></span>
                                              </span>
                                              <span class="menu-title">Promo Section</span>
+                                         </a>
+                                         <!--end:Menu link-->
+                                     </div>
+                                     <!--end:Menu item-->
+                                 </div>
+                                 <!--end:Menu sub-->
+                                 <!--begin:Menu sub-->
+                                 <div class="menu-sub menu-sub-accordion">
+                                     <!--begin:Menu item-->
+                                     <div class="menu-item">
+                                         <!--begin:Menu link-->
+                                         <a class="menu-link {{ Route::getCurrentRoute()->uri() == 'dashboard/page/home/about/index' ? 'active' : '' }}"
+                                             href="{{ route('pages.home.about.index') }}">
+                                             <span class="menu-bullet">
+                                                 <span class="bullet bullet-dot"></span>
+                                             </span>
+                                             <span class="menu-title">About Section</span>
                                          </a>
                                          <!--end:Menu link-->
                                      </div>

@@ -146,7 +146,7 @@
                                                         <!--begin::Input-->
                                                         <input type="text" name="title"
                                                             class="form-control form-control-solid mb-3 mb-lg-0"
-                                                            placeholder="Icon Class" value="{{ old('title') }}" />
+                                                            placeholder="Title" value="{{ old('title') }}" />
                                                         @error('title')
                                                             <span class="text-danger">{{ $message }}</span>
                                                         @enderror

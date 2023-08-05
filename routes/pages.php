@@ -18,4 +18,5 @@ Route::group(['prefix' => 'dashboard/page/home', 'middleware' => ['auth']], func
   Route::post('/promo/create', [PagesController::class, 'promoCreate'])->name('pages.home.promo.crete');
   Route::get('/promo/update/{id}', [PagesController::class, 'promoUpdate'])->name('pages.home.promo.update');
   Route::post('/promo/update/store/{id}', [PagesController::class, 'promoUpdateStore'])->name('pages.home.promo.update.store');
+  Route::get('/promo/delete/{id}', [PagesController::class, 'promoDelete'])->name('pages.home.promo.delete');
 });

@@ -144,4 +144,13 @@ class PagesController extends Controller
         Session::flash('success', 'Promo sectoin updated successfully');
         return redirect()->route('pages.home.promo.index');
     }
+
+
+    public function promoDelete($id)
+    {
+        $promo = HomePagePromoSection::findOrFail($id);
+        $promo->delete();
+        Session::flash('success', 'Promo deleted successfully');
+        return back();
+    }
 }

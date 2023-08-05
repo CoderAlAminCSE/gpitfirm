@@ -242,7 +242,8 @@
                                                     <!--end::Menu item-->
                                                     <!--begin::Menu item-->
                                                     <div class="menu-item px-3">
-                                                        <a class="menu-link px-3 btn-delete" data-user-id="">Delete</a>
+                                                        <a class="menu-link px-3 btn-promo-delete"
+                                                            data-promo-id="{{ $promo->id }}">Delete</a>
                                                     </div>
                                                     <!--end::Menu item-->
                                                 </div>

@@ -173,30 +173,30 @@ class PagesController extends Controller
     {
         //    validation start
         $validate = $request->validate([
-            // 'image' => ['required'],
+            'image' => ['required'],
             'heading' => ['required'],
             'description' => ['required'],
         ]); // end of validation
 
         try {
-            // if ($request->file('image')) {
-            //     try {
-            //         $file = $request->file('image');
-            //         $extension = $file->getClientOriginalExtension();
-            //         $filename = Str::uuid() . '.' . $extension;
-            //         $filePath = $file->storeAs('backend/upload/pages', $filename, 'public');
-            //         $image = homePageAboutSection('image');
+            if ($request->file('image')) {
+                try {
+                    $file = $request->file('image');
+                    $extension = $file->getClientOriginalExtension();
+                    $filename = Str::uuid() . '.' . $extension;
+                    $filePath = $file->storeAs('backend/upload/pages', $filename, 'public');
+                    $image = homePageAboutSection('image');
 
-            //         // Check if the existing image exists using the relative path and delete
-            //         if ($image && Storage::exists('public/' . $image)) {
-            //             Storage::delete('public/' . $image);
-            //         }
-            //         HomePageAboutSection::updateOrCreate(['name' => 'image'], ['value' => "backend/upload/pages/" . $filename]);
-            //     } catch (\Exception $e) {
-            //         Session::flash('error', 'Image update failed: ' . $e->getMessage());
-            //         return back();
-            //     }
-            // }
+                    // Check if the existing image exists using the relative path and delete
+                    if ($image && Storage::exists('public/' . $image)) {
+                        Storage::delete('public/' . $image);
+                    }
+                    HomePageAboutSection::updateOrCreate(['name' => 'image'], ['value' => "backend/upload/pages/" . $filename]);
+                } catch (\Exception $e) {
+                    Session::flash('error', 'Image update failed: ' . $e->getMessage());
+                    return back();
+                }
+            }
 
             HomePageAboutSection::updateOrCreate(['name' => 'heading'], ['value' => $request->heading]);
             HomePageAboutSection::updateOrCreate(['name' => 'description'], ['value' => $request->description]);

@@ -34,7 +34,7 @@
                                     style="background-image: url('assets/media/svg/avatars/blank.svg')">
                                     <!--begin::Preview existing avatar-->
                                     <div class="image-input-wrapper w-125px h-125px"
-                                        style="background-image: url('assets/backend/upload/no_image.jpg')">
+                                        style="background-image: url('{{ !empty(homePageAboutSection('image')) ? asset('storage/' . homePageAboutSection('image')) : url('assets/backend/upload/no_image.jpg') }}')">
                                     </div>
                                     <!--end::Preview existing avatar-->
                                     <!--begin::Label-->

@@ -3,7 +3,8 @@
         <div class="row">
             <div class="col-md-6 col-lg-6">
                 <div class="about-us-img">
-                    <img src="assets/frontend/images/why-choose-us.png" alt="about us" class="img-fluid about-single-img">
+                    <img src="{{ !empty(homePageAboutSection('image')) ? asset('storage/' . homePageAboutSection('image')) : 'assets/frontend/images/why-choose-us.png' }} "
+                        alt="about us" class="img-fluid about-single-img">
                 </div>
             </div>
             <div class="col-md-6 col-lg-6">

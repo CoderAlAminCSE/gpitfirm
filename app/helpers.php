@@ -4,6 +4,7 @@ use App\Models\GeneralSetting;
 use App\Models\HomePageAboutSection;
 use App\Models\HomePageHeroSection;
 use App\Models\HomePagePromoSection;
+use App\Models\HomePageServiceSection;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -40,4 +41,11 @@ function homePageAboutSection($name)
 {
   $setting = HomePageAboutSection::where('name', $name)->first();
   return $setting ? $setting->value : null;
+}
+
+
+// get value from "home_page_service_section" table
+function homePageServiceSection()
+{
+  return HomePageServiceSection::where('active', true)->get();
 }

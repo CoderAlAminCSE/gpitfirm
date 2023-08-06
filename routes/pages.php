@@ -24,4 +24,12 @@ Route::group(['prefix' => 'dashboard/page/home', 'middleware' => ['auth']], func
   // Home page about section routes
   Route::get('/about/index', [PagesController::class, 'aboutIndex'])->name('pages.home.about.index');
   Route::post('/about/update', [PagesController::class, 'aboutUpdate'])->name('pages.home.about.update');
+
+
+  // Home page services section routes
+  Route::get('/service/index', [PagesController::class, 'servicesIndex'])->name('pages.home.service.index');
+  Route::post('/service/create', [PagesController::class, 'servicesCreate'])->name('pages.home.service.crete');
+  Route::get('/service/edit/{id}', [PagesController::class, 'servicesEdit'])->name('pages.home.service.edit');
+  Route::post('/service/update/{id}', [PagesController::class, 'servicesUpdate'])->name('pages.home.service.update');
+  Route::get('/service/delete/{id}', [PagesController::class, 'serviceDelete'])->name('pages.home.service.delete');
 });

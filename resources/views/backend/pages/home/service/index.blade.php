@@ -1,5 +1,5 @@
 @extends('backend.layout.master')
-@section('title', 'Pages | Home | promo')
+@section('title', 'Pages | Home | Service')
 @section('content')
     <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
         <!--begin::Content wrapper-->
@@ -12,7 +12,7 @@
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                         <!--begin::Title-->
                         <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Home
-                            Page Promo Section List
+                            Page Services Section List
                         </h1>
                         <!--end::Title-->
                         <!--begin::Breadcrumb-->
@@ -44,7 +44,7 @@
                             </li>
                             <!--end::Item-->
                             <!--begin::Item-->
-                            <li class="breadcrumb-item text-muted">Promo Section</li>
+                            <li class="breadcrumb-item text-muted">Services Section</li>
                             <!--end::Item-->
                         </ul>
                         <!--end::Breadcrumb-->
@@ -72,7 +72,7 @@
                                         <span class="path2"></span>
                                     </i>
                                 </div>
-                                <form id="SearchForm" action="{{ route('pages.home.promo.index') }}" method="get">
+                                <form id="SearchForm" action="{{ route('pages.home.service.index') }}" method="get">
                                     @csrf
                                     <input type="text" data-kt-subscription-table-filter="search" name="search"
                                         value="{{ request('search') }}"
@@ -89,7 +89,7 @@
                                     <!--begin::Add user-->
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#kt_modal_export_users">
-                                        <i class="ki-duotone ki-plus fs-2"></i>Add Promo</button>
+                                        <i class="ki-duotone ki-plus fs-2"></i>Add Services</button>
                                     <!--end::Add user-->
                                 </div>
                                 <!--end::Toolbar-->
@@ -102,7 +102,7 @@
                                             <!--begin::Modal header-->
                                             <div class="modal-header">
                                                 <!--begin::Modal title-->
-                                                <h2 class="fw-bold">Add Promo</h2>
+                                                <h2 class="fw-bold">Add Services</h2>
                                                 <!--end::Modal title-->
                                                 <!--begin::Close-->
                                                 <div class="btn btn-icon btn-sm btn-active-icon-primary"
@@ -118,7 +118,7 @@
                                             <!--begin::Modal body-->
                                             <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
                                                 <!--begin::Form-->
-                                                <form action="{{ route('pages.home.promo.crete') }}" method="POST"
+                                                <form action="{{ route('pages.home.service.crete') }}" method="POST"
                                                     class="form fv-plugins-bootstrap5 fv-plugins-framework">
                                                     @csrf
                                                     <!--begin::Input group-->
@@ -144,10 +144,10 @@
                                                         <label class="required fw-semibold fs-6 mb-2">Title</label>
                                                         <!--end::Label-->
                                                         <!--begin::Input-->
-                                                        <input type="text" name="title"
+                                                        <input type="text" name="heading"
                                                             class="form-control form-control-solid mb-3 mb-lg-0"
-                                                            placeholder="Title" value="{{ old('title') }}" />
-                                                        @error('title')
+                                                            placeholder="heading" value="{{ old('heading') }}" />
+                                                        @error('heading')
                                                             <span class="text-danger">{{ $message }}</span>
                                                         @enderror
                                                         <!--end::Input-->
@@ -207,23 +207,23 @@
                                     <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
                                         <th class="min-w-125px">SL</th>
                                         <th class="min-w-125px">Icon Name</th>
-                                        <th class="min-w-125px">Title</th>
+                                        <th class="min-w-125px">Heading</th>
                                         <th class="min-w-125px">Description</th>
                                         <th class="min-w-125px">Status</th>
                                         <th class="text-end min-w-100px">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody class="text-gray-600 fw-semibold">
-                                    @forelse ($promos as $promo)
+                                    @forelse ($services as $service)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $promo->icon_name }}</td>
-                                            <td>{{ $promo->title }}</td>
-                                            <td>{{ $promo->description }}</td>
+                                            <td>{{ $service->icon_name }}</td>
+                                            <td>{{ $service->heading }}</td>
+                                            <td>{{ $service->description }}</td>
                                             <td>
                                                 <div
-                                                    class="badge {{ $promo->active == 1 ? 'badge-light-success' : 'badge-light-danger' }}">
-                                                    {{ $promo->active == 1 ? 'Active' : 'Inactive' }} </div>
+                                                    class="badge {{ $service->active == 1 ? 'badge-light-success' : 'badge-light-danger' }}">
+                                                    {{ $service->active == 1 ? 'Active' : 'Inactive' }} </div>
                                             </td>
                                             <td class="text-end">
                                                 <a href="#"
@@ -236,14 +236,14 @@
                                                     data-kt-menu="true">
                                                     <!--begin::Menu item-->
                                                     <div class="menu-item px-3">
-                                                        <a href="{{ route('pages.home.promo.update', $promo->id) }}"
+                                                        <a href="{{ route('pages.home.service.edit', $service->id) }}"
                                                             class="menu-link px-3">Update</a>
                                                     </div>
                                                     <!--end::Menu item-->
                                                     <!--begin::Menu item-->
                                                     <div class="menu-item px-3">
-                                                        <a class="menu-link px-3 btn-promo-delete"
-                                                            data-promo-id="{{ $promo->id }}">Delete</a>
+                                                        <a class="menu-link px-3 btn-service-delete"
+                                                            data-service-id="{{ $service->id }}">Delete</a>
                                                     </div>
                                                     <!--end::Menu item-->
                                                 </div>
@@ -259,7 +259,7 @@
                             </table>
                             <div class="d-flex justify-content-center">
                                 <nav aria-label="Page navigation">
-                                    {{ $promos->links() }}
+                                    {{ $services->links() }}
                                 </nav>
                             </div>
                             <!--end::Table-->

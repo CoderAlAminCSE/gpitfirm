@@ -8,6 +8,7 @@ use App\Models\HomePageHeroSection;
 use App\Http\Controllers\Controller;
 use App\Models\HomePageAboutSection;
 use App\Models\HomePagePromoSection;
+use App\Models\HomePageServiceSection;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
@@ -206,6 +207,94 @@ class PagesController extends Controller
         }
 
         Session::flash('success', 'Home page about section successfully updated');
+        return back();
+    }
+
+
+    public function servicesIndex(Request $request)
+    {
+        try {
+            if ($request->has('search') && $request->search != null) {
+                $search =  $request->search;
+                $services = HomePageServiceSection::where(function ($query) use ($search) {
+                    $query->where('id', 'LIKE', '%' . $search . '%')
+                        ->orWhere('icon_name', 'LIKE', '%' . $search . '%')
+                        ->orWhere('heading', 'LIKE', '%' . $search . '%');
+                })->paginate(10);
+            } else {
+                $services = HomePageServiceSection::latest()->paginate(10);
+            }
+        } catch (\Exception $e) {
+            Session::flash('error', 'Error: ' . $e->getMessage());
+            return back();
+        }
+        return view('backend.pages.home.service.index', compact('services'));
+    }
+
+
+
+    public function servicesCreate(Request $request)
+    {
+        // validation start
+        $validate = $request->validate([
+            'heading' => ['required'],
+            'description' => ['required'],
+        ]); // end of validation
+        try {
+            $service = new HomePageServiceSection();
+            $service->icon_name = $request->icon_name;
+            $service->heading = $request->heading;
+            $service->description = $request->description;
+            if ($request->active) {
+                $service->active = true;
+            }
+            $service->save();
+        } catch (\Exception $e) {
+            Session::flash('error', 'Service sectoin create failed: ' . $e->getMessage());
+            return back();
+        }
+
+        Session::flash('success', 'Service sectoin created successfully');
+        return back();
+    }
+
+
+    public function servicesEdit($id)
+    {
+        $service = HomePageServiceSection::findOrFail($id);
+        return view('backend.pages.home.service.edit', compact('service'));
+    }
+
+
+    public function servicesUpdate(Request $request, $id)
+    {
+        // validation start
+        $validate = $request->validate([
+            'heading' => ['required'],
+            'description' => ['required'],
+        ]); // end of validation
+        try {
+            $service = HomePageServiceSection::findOrFail($id);
+            $service->icon_name = $request->icon_name;
+            $service->heading = $request->heading;
+            $service->description = $request->description;
+            $service->active = $request->active ? true : false;
+            $service->save();
+        } catch (\Exception $e) {
+            Session::flash('error', 'Service sectoin update failed: ' . $e->getMessage());
+            return back();
+        }
+
+        Session::flash('success', 'Service sectoin updated successfully');
+        return redirect()->route('pages.home.service.index');
+    }
+
+
+    public function serviceDelete($id)
+    {
+        $promo = HomePageServiceSection::findOrFail($id);
+        $promo->delete();
+        Session::flash('success', 'Service deleted successfully');
         return back();
     }
 }

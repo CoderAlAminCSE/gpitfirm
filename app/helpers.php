@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\FaqPageContent;
 use App\Models\GeneralSetting;
 use App\Models\HomePageAboutSection;
 use App\Models\HomePageContactSection;
@@ -65,4 +66,11 @@ function homePageContactSection($name)
 {
   $contact = HomePageContactSection::where('name', $name)->first();
   return $contact ? $contact->value : null;
+}
+
+
+// get value from "faq page" table
+function faqContents()
+{
+  return FaqPageContent::where('active', true)->get();
 }

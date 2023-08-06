@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\FaqPageController;
 use App\Http\Controllers\Backend\PagesController;
 use Illuminate\Support\Facades\Route;
 
@@ -7,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 | In this route we will configure the pages related routes
 */
 
+// Home page routes
 Route::group(['prefix' => 'dashboard/page/home', 'middleware' => ['auth']], function () {
   // Home page hero section routes
   Route::get('/hero/index', [PagesController::class, 'homeIndex'])->name('pages.home.hero.index');
@@ -45,4 +47,15 @@ Route::group(['prefix' => 'dashboard/page/home', 'middleware' => ['auth']], func
   // Home page contact section routes
   Route::get('/contact/index', [PagesController::class, 'contactIndex'])->name('pages.home.contact.index');
   Route::post('/contact/update', [PagesController::class, 'contactUpdate'])->name('pages.home.contact.update');
+});
+
+
+
+// FAQ page routes
+Route::group(['prefix' => 'dashboard/page/faq', 'middleware' => ['auth']], function () {
+  Route::get('/index', [FaqPageController::class, 'index'])->name('pages.faq.index');
+  Route::post('/create', [FaqPageController::class, 'create'])->name('pages.faq.crete');
+  Route::get('/edit/{id}', [FaqPageController::class, 'edit'])->name('pages.faq.edit');
+  Route::post('/update/{id}', [FaqPageController::class, 'update'])->name('pages.faq.update');
+  Route::get('/delete/{id}', [FaqPageController::class, 'delete'])->name('pages.faq.delete');
 });

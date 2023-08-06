@@ -234,11 +234,12 @@
                              <!--begin:Menu item-->
                              <div class="menu-item">
                                  <!--begin:Menu link-->
-                                 <a class="menu-link" href="#">
+                                 <a class="menu-link {{ strpos(Route::getCurrentRoute()->uri(), 'dashboard/page/faq/') === 0 ? 'active' : '' }}"
+                                     href="{{ route('pages.faq.index') }}">
                                      <span class="menu-bullet">
                                          <span class="bullet bullet-dot"></span>
                                      </span>
-                                     <span class="menu-title">For Further Use</span>
+                                     <span class="menu-title">FAQ</span>
                                  </a>
                                  <!--end:Menu link-->
                              </div>

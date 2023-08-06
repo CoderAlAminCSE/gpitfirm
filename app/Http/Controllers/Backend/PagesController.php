@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\HomePageAboutSection;
 use App\Models\HomePagePromoSection;
 use App\Models\HomePageServiceSection;
+use App\Models\HomePageTestimonialSection;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
@@ -295,6 +296,116 @@ class PagesController extends Controller
         $promo = HomePageServiceSection::findOrFail($id);
         $promo->delete();
         Session::flash('success', 'Service deleted successfully');
+        return back();
+    }
+
+
+    public function testimonialIndex(Request $request)
+    {
+        try {
+            if ($request->has('search') && $request->search != null) {
+                $search =  $request->search;
+                $testimonials = HomePageTestimonialSection::where(function ($query) use ($search) {
+                    $query->where('id', 'LIKE', '%' . $search . '%')
+                        ->orWhere('name', 'LIKE', '%' . $search . '%');
+                })->paginate(10);
+            } else {
+                $testimonials = HomePageTestimonialSection::latest()->paginate(10);
+            }
+        } catch (\Exception $e) {
+            Session::flash('error', 'Error: ' . $e->getMessage());
+            return back();
+        }
+        return view('backend.pages.home.testimonial.index', compact('testimonials'));
+    }
+
+
+    public function testimonialCreate(Request $request)
+    {
+        //    validation start
+        $validate = $request->validate([
+            'image' => ['required'],
+            'name' => ['required'],
+            'message' => ['required'],
+        ]); // end of validation
+
+        try {
+            $testimonial = new HomePageTestimonialSection();
+            $testimonial->name = $request->name;
+            $testimonial->message = $request->message;
+
+            if ($request->file('image')) {
+                $file = $request->file('image');
+                $extension = $file->getClientOriginalExtension();
+                $filename = Str::uuid() . '.' . $extension;
+                $filePath = $file->storeAs('backend/upload/pages', $filename, 'public');
+                $testimonial->image = "backend/upload/pages/" . $filename;
+            }
+            $testimonial->active = $request->active ? true : false;
+            $testimonial->save();
+        } catch (\Exception $e) {
+            Session::flash('error', 'Error: ' . $e->getMessage());
+            return back();
+        }
+
+        Session::flash('success', 'Testimonial added successfully');
+        return back();
+    }
+
+
+    public function testimonialEdit($id)
+    {
+        $testimonial = HomePageTestimonialSection::findOrFail($id);
+        return view('backend.pages.home.testimonial.edit', compact('testimonial'));
+    }
+
+
+    public function testimonialUpdate(request $request, $id)
+    {
+        //    validation start
+        $validate = $request->validate([
+            'name' => ['required'],
+            'message' => ['required'],
+        ]); // end of validation
+
+        try {
+            $testimonial = HomePageTestimonialSection::findOrFail($id);
+            $testimonial->name = $request->name;
+            $testimonial->message = $request->message;
+
+            if ($request->file('image')) {
+                $file = $request->file('image');
+                $extension = $file->getClientOriginalExtension();
+                $filename = Str::uuid() . '.' . $extension;
+                $filePath = $file->storeAs('backend/upload/pages', $filename, 'public');
+                $image = $testimonial->image;
+
+                // Check if the existing image exists using the relative path and delete
+                if ($image && Storage::exists('public/' . $image)) {
+                    Storage::delete('public/' . $image);
+                }
+                $testimonial->image = "backend/upload/pages/" . $filename;
+            }
+            $testimonial->active = $request->active ? true : false;
+            $testimonial->save();
+        } catch (\Exception $e) {
+            Session::flash('error', 'Error: ' . $e->getMessage());
+            return back();
+        }
+
+        Session::flash('success', 'Testimonial updated successfully');
+        return redirect()->route('pages.home.testimonial.index');
+    }
+
+
+    public function testimonialDelete($id)
+    {
+        $testimonial = HomePageTestimonialSection::findOrFail($id);
+        if ($testimonial->image && Storage::exists('public/' . $testimonial->image)) {
+            Storage::delete('public/' . $testimonial->image);
+        }
+        $testimonial->delete();
+        Session::flash('success', 'Testimonial deleted successfully');
         return back();
     }
 }

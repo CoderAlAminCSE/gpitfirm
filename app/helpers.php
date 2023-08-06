@@ -5,6 +5,7 @@ use App\Models\HomePageAboutSection;
 use App\Models\HomePageHeroSection;
 use App\Models\HomePagePromoSection;
 use App\Models\HomePageServiceSection;
+use App\Models\HomePageTestimonialSection;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -48,4 +49,11 @@ function homePageAboutSection($name)
 function homePageServiceSection()
 {
   return HomePageServiceSection::where('active', true)->get();
+}
+
+
+// get value from "home_page_TESTIMONIAL_section" table
+function homePageTestimonialSection()
+{
+  return HomePageTestimonialSection::where('active', true)->get();
 }

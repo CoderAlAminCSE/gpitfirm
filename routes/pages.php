@@ -32,4 +32,12 @@ Route::group(['prefix' => 'dashboard/page/home', 'middleware' => ['auth']], func
   Route::get('/service/edit/{id}', [PagesController::class, 'servicesEdit'])->name('pages.home.service.edit');
   Route::post('/service/update/{id}', [PagesController::class, 'servicesUpdate'])->name('pages.home.service.update');
   Route::get('/service/delete/{id}', [PagesController::class, 'serviceDelete'])->name('pages.home.service.delete');
+
+
+  // Home page testimonial section routes
+  Route::get('/testimonial/index', [PagesController::class, 'testimonialIndex'])->name('pages.home.testimonial.index');
+  Route::post('/testimonial/create', [PagesController::class, 'testimonialCreate'])->name('pages.home.testimonial.crete');
+  Route::get('/testimonial/edit/{id}', [PagesController::class, 'testimonialEdit'])->name('pages.home.testimonial.edit');
+  Route::post('/testimonial/update/{id}', [PagesController::class, 'testimonialUpdate'])->name('pages.home.testimonial.update');
+  Route::get('/testimonial/delete/{id}', [PagesController::class, 'testimonialDelete'])->name('pages.home.testimonial.delete');
 });

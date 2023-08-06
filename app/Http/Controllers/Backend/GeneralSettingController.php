@@ -85,6 +85,7 @@ class GeneralSettingController extends Controller
             GeneralSetting::updateOrCreate(['name' => 'company_email'], ['value' => $request->company_email]);
             GeneralSetting::updateOrCreate(['name' => 'company_phone'], ['value' => $request->company_phone]);
             GeneralSetting::updateOrCreate(['name' => 'company_address'], ['value' => $request->company_address]);
+            GeneralSetting::updateOrCreate(['name' => 'usa_location'], ['value' => $request->usa_location]);
             GeneralSetting::updateOrCreate(['name' => 'about_description'], ['value' => $request->about_description]);
 
             // social media

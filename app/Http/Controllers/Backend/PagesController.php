@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\HomePageHeroSection;
 use App\Http\Controllers\Controller;
 use App\Models\HomePageAboutSection;
+use App\Models\HomePageContactSection;
 use App\Models\HomePagePromoSection;
 use App\Models\HomePageServiceSection;
 use App\Models\HomePageTestimonialSection;
@@ -406,6 +407,39 @@ class PagesController extends Controller
         }
         $testimonial->delete();
         Session::flash('success', 'Testimonial deleted successfully');
+        return back();
+    }
+
+
+
+    public function contactIndex()
+    {
+        try {
+            return view('backend.pages.home.contact.index');
+        } catch (\Exception $e) {
+            Session::flash('error', 'Error: ' . $e->getMessage());
+            return back();
+        }
+    }
+
+
+    public function contactUpdate(Request $request)
+    {
+        //    validation start
+        $validate = $request->validate([
+            'heading' => ['required'],
+            'description' => ['required'],
+        ]); // end of validation
+
+        try {
+            HomePageContactSection::updateOrCreate(['name' => 'heading'], ['value' => $request->heading]);
+            HomePageContactSection::updateOrCreate(['name' => 'description'], ['value' => $request->description]);
+        } catch (\Exception $e) {
+            Session::flash('error', 'Home page contact section update failed: ' . $e->getMessage());
+            return back();
+        }
+
+        Session::flash('success', 'Home page contact section updated successfully');
         return back();
     }
 }

@@ -40,4 +40,9 @@ Route::group(['prefix' => 'dashboard/page/home', 'middleware' => ['auth']], func
   Route::get('/testimonial/edit/{id}', [PagesController::class, 'testimonialEdit'])->name('pages.home.testimonial.edit');
   Route::post('/testimonial/update/{id}', [PagesController::class, 'testimonialUpdate'])->name('pages.home.testimonial.update');
   Route::get('/testimonial/delete/{id}', [PagesController::class, 'testimonialDelete'])->name('pages.home.testimonial.delete');
+
+
+  // Home page contact section routes
+  Route::get('/contact/index', [PagesController::class, 'contactIndex'])->name('pages.home.contact.index');
+  Route::post('/contact/update', [PagesController::class, 'contactUpdate'])->name('pages.home.contact.update');
 });

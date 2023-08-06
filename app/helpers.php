@@ -2,6 +2,7 @@
 
 use App\Models\GeneralSetting;
 use App\Models\HomePageAboutSection;
+use App\Models\HomePageContactSection;
 use App\Models\HomePageHeroSection;
 use App\Models\HomePagePromoSection;
 use App\Models\HomePageServiceSection;
@@ -56,4 +57,12 @@ function homePageServiceSection()
 function homePageTestimonialSection()
 {
   return HomePageTestimonialSection::where('active', true)->get();
+}
+
+
+// get value from "home_page_hero_section" table
+function homePageContactSection($name)
+{
+  $contact = HomePageContactSection::where('name', $name)->first();
+  return $contact ? $contact->value : null;
 }

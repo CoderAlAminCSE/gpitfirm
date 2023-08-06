@@ -3,11 +3,9 @@
         <div class="row justify-content-around align-items-center">
             <div class="col-md-7">
                 <div class="subscribe-content">
-                    <h3 class="mb-1">Why need paid guest post to increase website SEO ranking?</h3>
+                    <h3 class="mb-1">{{ homePageContactSection('heading') }}</h3>
                     <p>
-                    <p>GP IT Firm is spread in these areas, and you can quickly distribute your substance on
-                        most visited sites. We’re utilizing capable, trustworthy guest posting and link-building
-                        service to get top-notch backlinks from solid stages and push the site to the top.</p>
+                    <p>{{ homePageContactSection('description') }}</p>
                     </p>
                 </div>
             </div>

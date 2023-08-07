@@ -309,7 +309,7 @@
                              <!--begin:Menu item-->
                              <div class="menu-item">
                                  <!--begin:Menu link-->
-                                 <a class="menu-link {{ Route::getCurrentRoute()->uri() == 'dashboard/sites' ? 'active' : '' }}"
+                                 <a class="menu-link {{ strpos(Route::getCurrentRoute()->uri(), 'dashboard/sites') === 0 ? 'active' : '' }}"
                                      href="{{ route('sites.index') }}">
                                      <span class="menu-bullet">
                                          <span class="bullet bullet-dot"></span>

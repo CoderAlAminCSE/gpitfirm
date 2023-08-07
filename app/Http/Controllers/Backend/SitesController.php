@@ -106,4 +106,12 @@ class SitesController extends Controller
         Session::flash('success', 'Site updated successfully');
         return redirect()->route('sites.index');
     }
+
+
+    public function delete($id)
+    {
+        $site = Site::findOrFail($id);
+        $site->delete();
+        return back();
+    }
 }

@@ -317,7 +317,7 @@
                         </div>
                         <!--end::Card header-->
                         <!--begin::Card body-->
-                        <div class="card-body py-4">
+                        <div class="card-body py-4 overflow-x-scroll">
                             <!--begin::Table-->
                             <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_users">
                                 <thead>
@@ -325,9 +325,9 @@
                                         <th class="min-w-50px">SL</th>
                                         <th class="min-w-125px">Website Name</th>
                                         <th class="min-w-125px">Website Url</th>
-                                        <th class="min-w-125px">DA</th>
-                                        <th class="min-w-125px">PA</th>
-                                        <th class="min-w-125px">DR</th>
+                                        <th class="min-w-70px">DA</th>
+                                        <th class="min-w-70px">PA</th>
+                                        <th class="min-w-70px">DR</th>
                                         <th class="min-w-125px">Traffic</th>
                                         <th class="min-w-125px">Category</th>
                                         <th class="min-w-125px">Google News</th>
@@ -340,7 +340,8 @@
                                         <tr class="text-center">
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $site->website_name }}</td>
-                                            <td>{{ $site->website_url }}</td>
+                                            <td><a target="_blank"
+                                                    href="{{ $site->website_url }}">{{ $site->website_url }}</a></td>
                                             <td>{{ $site->da }}</td>
                                             <td>{{ $site->pa }}</td>
                                             <td>{{ $site->dr }}</td>
@@ -385,8 +386,8 @@
                                                     <!--end::Menu item-->
                                                     <!--begin::Menu item-->
                                                     <div class="menu-item px-3">
-                                                        <a class="menu-link px-3 btn-promo-delete"
-                                                            data-promo-id="{{ $site->id }}">Delete</a>
+                                                        <a class="menu-link px-3 btn-site-delete"
+                                                            data-site-id="{{ $site->id }}">Delete</a>
                                                     </div>
                                                     <!--end::Menu item-->
                                                 </div>
@@ -420,10 +421,5 @@
 @endsection
 
 @section('script')
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var input2 = document.querySelector("#kt_tagify_2");
-            new Tagify(input2);
-        });
-    </script>
+<script src="{{ asset('assets/backend') }}/js/site.js"></script>
 @endsection

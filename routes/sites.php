@@ -13,4 +13,5 @@ Route::group(['prefix' => 'dashboard/sites', 'middleware' => ['auth']], function
   Route::post('/create', [SitesController::class, 'create'])->name('site.crete');
   Route::get('/edit/{id}', [SitesController::class, 'edit'])->name('site.edit');
   Route::post('/update/{id}', [SitesController::class, 'update'])->name('site.update');
+  Route::get('/delete/{id}', [SitesController::class, 'delete'])->name('site.delete');
 });

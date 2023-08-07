@@ -1,14 +1,15 @@
 <?php
 
+use App\Models\Site;
 use App\Models\FaqPageContent;
 use App\Models\GeneralSetting;
-use App\Models\HomePageAboutSection;
-use App\Models\HomePageContactSection;
 use App\Models\HomePageHeroSection;
+use App\Models\HomePageAboutSection;
 use App\Models\HomePagePromoSection;
+use Illuminate\Support\Facades\Auth;
+use App\Models\HomePageContactSection;
 use App\Models\HomePageServiceSection;
 use App\Models\HomePageTestimonialSection;
-use Illuminate\Support\Facades\Auth;
 
 
 //logged in user data
@@ -73,4 +74,11 @@ function homePageContactSection($name)
 function faqContents()
 {
   return FaqPageContent::where('active', true)->get();
+}
+
+
+// get value from "faq sites" table
+function activeSites()
+{
+  return Site::where('active', true)->get();
 }

@@ -348,7 +348,6 @@
                                             <td>{{ $site->traffic }}K</td>
                                             <td>
                                                 @php
-                                                    // Decode the JSON data into an array of objects
                                                     $categories = json_decode($site->category);
                                                 @endphp
                                                 @if (is_array($categories))

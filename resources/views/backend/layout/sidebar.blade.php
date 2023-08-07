@@ -228,9 +228,9 @@
                                      <!--end:Menu item-->
                                  </div>
                                  <!--end:Menu sub-->
-
                              </div>
                              <!--end:Menu item-->
+
                              <!--begin:Menu item-->
                              <div class="menu-item">
                                  <!--begin:Menu link-->
@@ -243,11 +243,63 @@
                                  </a>
                                  <!--end:Menu link-->
                              </div>
+                             <!--end:Menu item-->      
+                             
+                             <!--begin:Menu item-->
+                             <div class="menu-item">
+                                 <!--begin:Menu link-->
+                                 <a class="menu-link {{ strpos(Route::getCurrentRoute()->uri(), 'dashboard/page/refund/') === 0 ? 'active' : '' }}"
+                                     href="{{ route('pages.refund.index') }}">
+                                     <span class="menu-bullet">
+                                         <span class="bullet bullet-dot"></span>
+                                     </span>
+                                     <span class="menu-title">Refund</span>
+                                 </a>
+                                 <!--end:Menu link-->
+                             </div>
                              <!--end:Menu item-->
                          </div>
                          <!--end:Menu sub-->
                      </div>
                      <!--end:Menu item-->
+
+
+                        <!--begin: Site Menu -->
+                        <div data-kt-menu-trigger="click"
+                        class="menu-item here {{ strpos(Route::getCurrentRoute()->uri(), 'dashboard/sites') === 0 ? 'show' : '' }} menu-accordion">
+                        <!--begin:Menu link-->
+                        <span class="menu-link">
+                            <span class="menu-icon">
+                                <i class="ki-duotone ki-element-11 fs-2">
+                                    <span class="path1"></span>
+                                    <span class="path2"></span>
+                                    <span class="path3"></span>
+                                    <span class="path4"></span>
+                                </i>
+                            </span>
+                            <span class="menu-title">Sites</span>
+                            <span class="menu-arrow"></span>
+                        </span>
+                        <!--end:Menu link-->
+                        <!--begin:Menu sub-->
+                        <div class="menu-sub menu-sub-accordion">
+                            <!--begin:Menu item-->
+                            <div class="menu-item">
+                                <!--begin:Menu link-->
+                                <a class="menu-link {{ strpos(Route::getCurrentRoute()->uri(), 'dashboard/sites') === 0 ? 'active' : '' }}"
+                                    href="{{ route('sites.index') }}">
+                                    <span class="menu-bullet">
+                                        <span class="bullet bullet-dot"></span>
+                                    </span>
+                                    <span class="menu-title">All Sites</span>
+                                </a>
+                                <!--end:Menu link-->
+                            </div>
+                            <!--end:Menu item-->
+                        </div>
+                        <!--end:Menu sub-->
+                    </div>
+                    <!--end: Site Menu -->
 
                      <!--begin: Settings Menu -->
                      <div data-kt-menu-trigger="click"
@@ -286,43 +338,6 @@
                      </div>
                      <!--end: Settings Menu -->
 
-
-                     <!--begin: Settings Menu -->
-                     <div data-kt-menu-trigger="click"
-                         class="menu-item here {{ strpos(Route::getCurrentRoute()->uri(), 'dashboard/sites') === 0 ? 'show' : '' }} menu-accordion">
-                         <!--begin:Menu link-->
-                         <span class="menu-link">
-                             <span class="menu-icon">
-                                 <i class="ki-duotone ki-element-11 fs-2">
-                                     <span class="path1"></span>
-                                     <span class="path2"></span>
-                                     <span class="path3"></span>
-                                     <span class="path4"></span>
-                                 </i>
-                             </span>
-                             <span class="menu-title">Sites</span>
-                             <span class="menu-arrow"></span>
-                         </span>
-                         <!--end:Menu link-->
-                         <!--begin:Menu sub-->
-                         <div class="menu-sub menu-sub-accordion">
-                             <!--begin:Menu item-->
-                             <div class="menu-item">
-                                 <!--begin:Menu link-->
-                                 <a class="menu-link {{ strpos(Route::getCurrentRoute()->uri(), 'dashboard/sites') === 0 ? 'active' : '' }}"
-                                     href="{{ route('sites.index') }}">
-                                     <span class="menu-bullet">
-                                         <span class="bullet bullet-dot"></span>
-                                     </span>
-                                     <span class="menu-title">All Sites</span>
-                                 </a>
-                                 <!--end:Menu link-->
-                             </div>
-                             <!--end:Menu item-->
-                         </div>
-                         <!--end:Menu sub-->
-                     </div>
-                     <!--end: Settings Menu -->
 
 
                  </div>

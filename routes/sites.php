@@ -10,5 +10,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'dashboard/sites', 'middleware' => ['auth']], function () {
 
   Route::get('/index', [SitesController::class, 'index'])->name('sites.index');
-  Route::post('/index', [SitesController::class, 'create'])->name('site.crete');
+  Route::post('/create', [SitesController::class, 'create'])->name('site.crete');
+  Route::get('/edit/{id}', [SitesController::class, 'edit'])->name('site.edit');
+  Route::post('/update/{id}', [SitesController::class, 'update'])->name('site.update');
 });

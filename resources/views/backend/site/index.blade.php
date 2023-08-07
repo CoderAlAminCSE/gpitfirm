@@ -379,7 +379,7 @@
                                                     data-kt-menu="true">
                                                     <!--begin::Menu item-->
                                                     <div class="menu-item px-3">
-                                                        <a href="{{ route('pages.home.promo.update', $site->id) }}"
+                                                        <a href="{{ route('site.edit', $site->id) }}"
                                                             class="menu-link px-3">Update</a>
                                                     </div>
                                                     <!--end::Menu item-->

@@ -65,4 +65,45 @@ class SitesController extends Controller
         Session::flash('success', 'Site created successfully');
         return back();
     }
+
+
+    public function edit($id)
+    {
+        $site = Site::findOrFail($id);
+        return view('backend.site.edit', compact('site'));
+    }
+
+
+    public function update(Request $request, $id)
+    {
+        // validation start
+        $validate = $request->validate([
+            'website_name' => ['required'],
+            'website_url' => ['required'],
+            'da' => ['required'],
+            'pa' => ['required'],
+            'dr' => ['required'],
+            'traffic' => ['required'],
+            'category' => ['required'],
+        ]); // end of validation
+
+        try {
+            $site = Site::findOrFail($id);
+            $site->website_name = $request->website_name;
+            $site->website_url = $request->website_url;
+            $site->da = $request->da;
+            $site->pa = $request->pa;
+            $site->dr = $request->dr;
+            $site->traffic = $request->traffic;
+            $site->category = $request->category;
+            $site->google_news = $request->google_news ? true : false;
+            $site->active = $request->active ? true : false;
+            $site->save();
+        } catch (\Exception $e) {
+            Session::flash('error', 'Error: ' . $e->getMessage());
+            return back();
+        }
+        Session::flash('success', 'Site updated successfully');
+        return redirect()->route('sites.index');
+    }
 }

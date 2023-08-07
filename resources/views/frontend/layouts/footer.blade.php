@@ -104,11 +104,11 @@
                                 <ul class="get-in-touch-list">
                                     <li class="d-flex align-items-center py-2"><span
                                             class="fas fa-map-marker-alt mr-2"></span>
-                                        <p>USA Location: {{ siteSetting('usa_location') ?? null }}</p>
+                                        <p><b>USA Location:</b> {{ siteSetting('usa_location') ?? null }}</p>
                                     </li>    
                                     <li class="d-flex align-items-center py-2"><span
                                             class="fas fa-map-marker-alt mr-2"></span>
-                                        <p>BD office: {{ siteSetting('company_address') ?? null }}</p>
+                                        <p><b>BD office:</b> {{ siteSetting('company_address') ?? null }}</p>
                                     </li>
                                     <li class="d-flex align-items-center py-2"><span
                                             class="fas fa-envelope mr-2"></span>

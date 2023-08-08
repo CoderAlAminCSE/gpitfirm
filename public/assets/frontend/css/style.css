@@ -1471,7 +1471,7 @@ select.form-control.has-value {
   content: "";
   border-radius: 100%;
 }
-.analysis-form-wrap input[type="submit"] {
+.analysis-form-wrap .gpitfirm_button{
   font-size: 14px;
   display: inline-block;
   text-transform: uppercase;
@@ -1487,6 +1487,11 @@ select.form-control.has-value {
   z-index: 2;
   margin-left: -36px;
 }
+
+.analysis-form-wrap .gpitfirm_button:focus {
+  outline: none;
+}
+
 @media (min-width: 320px) and (max-width: 991px) {
   .analysis-form-group:after {
     display: none;

@@ -33,4 +33,15 @@ class NewsletterController extends Controller
         $newsletter->delete();
         return back();
     }
+
+
+    public function newsletterFormSubmit(Request $request, Newsletter $newsletter){
+
+        $newsletter->email = $request->email;
+        $newsletter->save();
+        return response()->json([
+            'status' => '200',
+            'value' => $request->email,
+        ]);
+    }
 }

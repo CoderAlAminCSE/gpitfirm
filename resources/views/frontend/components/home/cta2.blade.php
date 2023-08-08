@@ -1,4 +1,5 @@
-<section class="call-to-action ptb-70" style="background: url('assets/frontend/images/cta-bg.jpg')no-repeat center center / cover">
+<section class="call-to-action ptb-70"
+    style="background: url('assets/frontend/images/cta-bg.jpg')no-repeat center center / cover">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-10 col-lg-9">
@@ -16,7 +17,7 @@
                             <p role="status" aria-live="polite" aria-atomic="true"></p>
                             <ul></ul>
                         </div>
-                        <form action="https://gpitfirm.com/#wpcf7-f45-o1" method="post" class="wpcf7-form init" novalidate="novalidate" data-status="init">
+                        <form class="wpcf7-form init" novalidate="novalidate" data-status="init">
                             <div style="display: none;">
                                 <input type="hidden" name="_wpcf7" value="45" />
                                 <input type="hidden" name="_wpcf7_version" value="5.6.4" />
@@ -28,17 +29,26 @@
                             <div class="col-lg-8 col-md-12 p-0">
                                 <div class="form-group analysis-form-group analysis-form-border">
                                     <span class="analysis-form-input"><br />
-                                        <span class="wpcf7-form-control-wrap" data-name="email"><input type="email" name="email" value size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email form-control" aria-required="true" aria-invalid="false" placeholder="Your Email" /></span><br />
+                                        <span class="wpcf7-form-control-wrap" data-name="email"><input type="email"
+                                                name="email" id="email" value size="40"
+                                                class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email form-control"
+                                                aria-required="true" aria-invalid="false"
+                                                placeholder="Your Email" /></span><br />
+                                        <p class="text-white d-none" id="newsletterSuccessMessage">Thank you for
+                                            subscribe</p>
                                     </span>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-12 p-0">
-                                <div class="form-group">
-                                    <input type="submit" value="Subscribe" class="wpcf7-form-control has-spinner wpcf7-submit" />
-                                </div>
-                            </div>
+
                             <div class="wpcf7-response-output" aria-hidden="true"></div>
                         </form>
+                        <div class="col-lg-4 col-md-12 p-0">
+                            <div class="form-group">
+                                <button class="wpcf7-form-control has-spinner wpcf7-submit gpitfirm_button"
+                                    id="newsletterSubmitBtn">SUBSCRIBE</button>
+                            </div>
+                        </div>
+                        <input type="hidden" id="newsletter_form_url" value="{{ route('newsletter.form.submit') }}">
                     </div>
                 </div>
             </div>

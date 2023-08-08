@@ -83,8 +83,18 @@
 <!-- custom.css -->
 <link rel="stylesheet" href="{{ asset('assets/frontend/css/custom.css') }}" type="text/css">
 
+<script>
+    var csrfToken = "{{ csrf_token() }}";
+</script>
+
 <!-- jquery.min.js -->
 <script type="text/javascript" src="{{ asset('assets/frontend/js/vendor/jquery.min.js') }}" id="jquery-core-js">
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<!-- jquery.min.js -->
+<script type="text/javascript" src="{{ asset('assets/frontend/js/custom.js') }}" id="jquery-core-js">
 </script>
 
 <!-- jquery.migrate.js -->

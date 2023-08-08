@@ -9,12 +9,18 @@ use Illuminate\Support\Facades\Session;
 
 class PrivacyPolicyPageController extends Controller
 {
+    /**
+     * Display Privacy policy page content.
+     */
     public function index()
     {
         return view('backend.pages.privacy_policy.index');
     }
 
 
+    /**
+     * Update or create Privacy policy page content.
+     */
     public function update(Request $request)
     {
         try {

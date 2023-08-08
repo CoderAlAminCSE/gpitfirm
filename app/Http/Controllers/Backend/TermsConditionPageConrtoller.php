@@ -5,24 +5,33 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use App\Models\TermsConditionPage;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Session;
 
 class TermsConditionPageConrtoller extends Controller
 {
+    /**
+     * Display the terms and conditions page.
+     */
     public function index()
     {
         return view('backend.pages.terms_condition.index');
     }
 
-    public function update(Request $request)
+
+    /**
+     * Update or create the terms and conditions page content.
+     */
+    public function update(Request $request, TermsConditionPage $termsConditionPage)
     {
+        $request->validate([
+            'content' => 'required',
+        ]);
+
         try {
-            TermsConditionPage::updateOrCreate(['name' => 'content'], ['value' => $request->content]);
+            $termsConditionPage->updateOrCreate(['name' => 'content'], ['value' => $request->content]);
+            return back()->with('success', 'Terms and conditions page content updated successfully');
         } catch (\Exception $e) {
-            Session::flash('error', 'Error: ' . $e->getMessage());
-            return back();
+            return back()->with('error', 'Error: ' . $e->getMessage());
         }
-        Session::flash('success', 'Reseller rules page content updated successfully');
         return back();
     }
 }

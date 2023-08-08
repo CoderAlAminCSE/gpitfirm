@@ -16,13 +16,18 @@ use Illuminate\Support\Facades\Storage;
 
 class PagesController extends Controller
 {
+    /**
+     * Display the home page hero section index page content.
+     */
     public function homeIndex()
     {
         return view('backend.pages.home.hero.index');
     }
 
 
-
+    /**
+     * Update page hero section index page content.
+     */
     public function homeUpdate(Request $request)
     {
         //    validation start
@@ -65,7 +70,9 @@ class PagesController extends Controller
     }
 
 
-
+    /**
+     * Display the home page promo section index page content.
+     */
     public function promoIndex(Request $request)
     {
         try {
@@ -88,6 +95,9 @@ class PagesController extends Controller
 
 
 
+    /**
+     * Create home page promo section content.
+     */
     public function promoCreate(Request $request)
     {
         try {
@@ -117,6 +127,9 @@ class PagesController extends Controller
 
 
 
+    /**
+     * Edit home page promo section content.
+     */
     public function promoUpdate($id)
     {
         $promo = HomePagePromoSection::findOrFail($id);
@@ -124,6 +137,9 @@ class PagesController extends Controller
     }
 
 
+    /**
+     * Update home page promo section content.
+     */
     public function promoUpdateStore(Request $request, $id)
     {
         try {
@@ -150,6 +166,9 @@ class PagesController extends Controller
     }
 
 
+    /**
+     * Delete home page promo section content.
+     */
     public function promoDelete($id)
     {
         $promo = HomePagePromoSection::findOrFail($id);
@@ -159,7 +178,9 @@ class PagesController extends Controller
     }
 
 
-
+    /**
+     * Sisplay the home page about section content.
+     */
     public function aboutIndex()
     {
         try {
@@ -171,7 +192,9 @@ class PagesController extends Controller
     }
 
 
-
+    /**
+     * Update or create home page about section content.
+     */
     public function aboutUpdate(Request $request)
     {
         //    validation start
@@ -213,6 +236,9 @@ class PagesController extends Controller
     }
 
 
+    /**
+     * Display the home page service section content.
+     */
     public function servicesIndex(Request $request)
     {
         try {
@@ -234,7 +260,9 @@ class PagesController extends Controller
     }
 
 
-
+    /**
+     * Create home page service section new content.
+     */
     public function servicesCreate(Request $request)
     {
         // validation start
@@ -261,6 +289,9 @@ class PagesController extends Controller
     }
 
 
+    /**
+     * Edit home page service section content.
+     */
     public function servicesEdit($id)
     {
         $service = HomePageServiceSection::findOrFail($id);
@@ -268,6 +299,9 @@ class PagesController extends Controller
     }
 
 
+    /**
+     * Update home page service section content.
+     */
     public function servicesUpdate(Request $request, $id)
     {
         // validation start
@@ -292,6 +326,9 @@ class PagesController extends Controller
     }
 
 
+    /**
+     * Delete home page service section content.
+     */
     public function serviceDelete($id)
     {
         $promo = HomePageServiceSection::findOrFail($id);
@@ -301,6 +338,9 @@ class PagesController extends Controller
     }
 
 
+    /**
+     * Display home page testimonial section  content.
+     */
     public function testimonialIndex(Request $request)
     {
         try {
@@ -321,6 +361,9 @@ class PagesController extends Controller
     }
 
 
+    /**
+     * Create  home page testimonial new section  content.
+     */
     public function testimonialCreate(Request $request)
     {
         //    validation start
@@ -354,6 +397,9 @@ class PagesController extends Controller
     }
 
 
+    /**
+     * Edit home page testimonial section  content.
+     */
     public function testimonialEdit($id)
     {
         $testimonial = HomePageTestimonialSection::findOrFail($id);
@@ -361,6 +407,9 @@ class PagesController extends Controller
     }
 
 
+    /**
+     * Update home page testimonial section  content.
+     */
     public function testimonialUpdate(request $request, $id)
     {
         //    validation start
@@ -399,6 +448,9 @@ class PagesController extends Controller
     }
 
 
+    /**
+     * Delete home page testimonial section  content.
+     */
     public function testimonialDelete($id)
     {
         $testimonial = HomePageTestimonialSection::findOrFail($id);
@@ -411,7 +463,9 @@ class PagesController extends Controller
     }
 
 
-
+    /**
+     * Display contact page   content.
+     */
     public function contactIndex()
     {
         try {
@@ -423,6 +477,9 @@ class PagesController extends Controller
     }
 
 
+    /**
+     * Update or create contact page   content.
+     */
     public function contactUpdate(Request $request)
     {
         //    validation start

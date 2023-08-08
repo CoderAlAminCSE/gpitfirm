@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Session;
 
 class FaqPageController extends Controller
 {
+    /**
+     * Display the FAQ index page with searching functionality.
+     */
     public function index(Request $request)
     {
         try {
@@ -29,7 +32,9 @@ class FaqPageController extends Controller
     }
 
 
-
+    /**
+     * Create new faq page content.
+     */
     public function create(Request $request)
     {
         // validation start
@@ -54,7 +59,9 @@ class FaqPageController extends Controller
         return back();
     }
 
-
+    /**
+     * Edit faq page content.
+     */
     public function edit($id)
     {
         $faq = FaqPageContent::findOrFail($id);
@@ -62,6 +69,9 @@ class FaqPageController extends Controller
     }
 
 
+    /**
+     * Update faq page content.
+     */
     public function update(Request $request, $id)
     {
         // validation start

@@ -11,11 +11,17 @@ use Illuminate\Support\Facades\Storage;
 
 class GeneralSettingController extends Controller
 {
+    /**
+     * Display the general setting index page.
+     */
     public function index()
     {
         return view('backend.generalSetting.inedx');
     }
 
+    /**
+     * Create or update general setting content.
+     */
     public function store(Request $request)
     {
         try {

@@ -9,11 +9,18 @@ use Illuminate\Support\Facades\Session;
 
 class RefundPageController extends Controller
 {
+    /**
+     * Display refund page content.
+     */
     public function index()
     {
         return view('backend.pages.refund.index');
     }
 
+
+    /**
+     * Update or create refund page content.
+     */
     public function update(Request $request)
     {
         try {

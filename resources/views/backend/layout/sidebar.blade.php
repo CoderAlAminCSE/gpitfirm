@@ -346,7 +346,7 @@
 
                      <!--begin: Settings Menu -->
                      <div data-kt-menu-trigger="click"
-                         class="menu-item here {{ strpos(Route::getCurrentRoute()->uri(), 'dashboard/general') === 0 ? 'show' : '' }} menu-accordion">
+                         class="menu-item here {{ strpos(Route::getCurrentRoute()->uri(), 'dashboard/general') === 0 ? 'show' : '' }} || {{ Route::getCurrentRoute()->uri() == 'dashboard/settings/smtp/index' ? 'show' : '' }} menu-accordion">
                          <!--begin:Menu link-->
                          <span class="menu-link">
                              <span class="menu-icon">
@@ -372,6 +372,24 @@
                                          <span class="bullet bullet-dot"></span>
                                      </span>
                                      <span class="menu-title">General Settings</span>
+                                 </a>
+                                 <!--end:Menu link-->
+                             </div>
+                             <!--end:Menu item-->
+                         </div>
+                         <!--end:Menu sub-->    
+                         
+                         <!--begin:Menu sub-->
+                         <div class="menu-sub menu-sub-accordion">
+                             <!--begin:Menu item-->
+                             <div class="menu-item">
+                                 <!--begin:Menu link-->
+                                 <a class="menu-link {{ Route::getCurrentRoute()->uri() == 'dashboard/settings/smtp/index' ? 'active' : '' }}"
+                                     href="{{ route('smtp.index') }}">
+                                     <span class="menu-bullet">
+                                         <span class="bullet bullet-dot"></span>
+                                     </span>
+                                     <span class="menu-title">SMTP Settings</span>
                                  </a>
                                  <!--end:Menu link-->
                              </div>

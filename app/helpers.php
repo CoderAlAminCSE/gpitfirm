@@ -13,6 +13,7 @@ use App\Models\HomePageTestimonialSection;
 use App\Models\PrivacyPolicyPage;
 use App\Models\RefundPage;
 use App\Models\ResellerRulesPage;
+use App\Models\TermsConditionPage;
 
 //logged in user data
 function loggedInUser()
@@ -101,9 +102,18 @@ function privacyPolicyPageContent($name)
   return $contact ? $contact->value : null;
 }
 
+
 // get value from "reseller rules page" table
 function resellerRulesPageContent($name)
 {
   $contact = ResellerRulesPage::where('name', $name)->first();
+  return $contact ? $contact->value : null;
+}
+
+
+// get value from "reseller rules page" table
+function termsConditionPageContent($name)
+{
+  $contact = TermsConditionPage::where('name', $name)->first();
   return $contact ? $contact->value : null;
 }

@@ -23,5 +23,6 @@ class DatabaseSeeder extends Seeder
         $this->call(RefundPageSeeder::class);
         $this->call(PrivacyPolicyPageSeeder::class);
         $this->call(ResellerRulesPageSeeder::class);
+        $this->call(TermsConditionPageSeeder::class);
     }
 }

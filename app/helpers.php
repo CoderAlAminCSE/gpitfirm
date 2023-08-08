@@ -12,6 +12,7 @@ use App\Models\HomePageServiceSection;
 use App\Models\HomePageTestimonialSection;
 use App\Models\PrivacyPolicyPage;
 use App\Models\RefundPage;
+use App\Models\ResellerRulesPage;
 
 //logged in user data
 function loggedInUser()
@@ -97,5 +98,12 @@ function refundPageContent($name)
 function privacyPolicyPageContent($name)
 {
   $contact = PrivacyPolicyPage::where('name', $name)->first();
+  return $contact ? $contact->value : null;
+}
+
+// get value from "reseller rules page" table
+function resellerRulesPageContent($name)
+{
+  $contact = ResellerRulesPage::where('name', $name)->first();
   return $contact ? $contact->value : null;
 }

@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\FaqPageController;
 use App\Http\Controllers\Backend\PagesController;
 use App\Http\Controllers\Backend\PrivacyPolicyPageController;
 use App\Http\Controllers\Backend\RefundPageController;
+use App\Http\Controllers\Backend\ResellerRulesPageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -74,4 +75,10 @@ Route::group(['prefix' => 'dashboard/page/refund', 'middleware' => ['auth']], fu
 Route::group(['prefix' => 'dashboard/page/privacy-policy', 'middleware' => ['auth']], function () {
   Route::get('/index', [PrivacyPolicyPageController::class, 'index'])->name('pages.privacy-policy.index');
   Route::post('/update', [PrivacyPolicyPageController::class, 'update'])->name('pages.privacy-policy.update');
+});
+
+// reseller rules page routes
+Route::group(['prefix' => 'dashboard/page/reseller-rules', 'middleware' => ['auth']], function () {
+  Route::get('/index', [ResellerRulesPageController::class, 'index'])->name('pages.reseller-rules.index');
+  Route::post('/update', [ResellerRulesPageController::class, 'update'])->name('pages.reseller-rules.update');
 });

@@ -273,6 +273,20 @@
                              </div>
                              <!--end:Menu item-->
 
+                             <!--begin:Menu item-->
+                             <div class="menu-item">
+                                 <!--begin:Menu link-->
+                                 <a class="menu-link {{ strpos(Route::getCurrentRoute()->uri(), 'dashboard/page/reseller-rules/') === 0 ? 'active' : '' }}"
+                                     href="{{ route('pages.reseller-rules.index') }}">
+                                     <span class="menu-bullet">
+                                         <span class="bullet bullet-dot"></span>
+                                     </span>
+                                     <span class="menu-title">Reseller Rules</span>
+                                 </a>
+                                 <!--end:Menu link-->
+                             </div>
+                             <!--end:Menu item-->
+
                          </div>
                          <!--end:Menu sub-->
                      </div>

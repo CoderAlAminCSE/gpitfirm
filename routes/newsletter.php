@@ -8,8 +8,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['prefix' => 'dashboard/newsletter', 'middleware' => ['auth']], function () {
-
   Route::get('/index', [NewsletterController::class, 'index'])->name('newsletter.index');
   Route::get('/delete/{id}', [NewsletterController::class, 'delete'])->name('newsletter.delete');
   Route::post('/form/submit', [NewsletterController::class, 'newsletterFormSubmit'])->name('newsletter.form.submit');
+});
+
+
+
+Route::group(['prefix' => 'dashboard/contact/messages', 'middleware' => ['auth']], function () {
+  Route::get('/index', [NewsletterController::class, 'ContactMessageIndex'])->name('contact.message.index');
+  Route::post('/submit', [NewsletterController::class, 'contactFormSubmit'])->name('contact.form.submit');
+  Route::get('/delete/{id}', [NewsletterController::class, 'contactMessageDelete'])->name('contact.message.delete');
 });

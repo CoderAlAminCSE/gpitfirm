@@ -1,5 +1,5 @@
 @extends('backend.layout.master')
-@section('title', 'Newsletter')
+@section('title', 'Contact-Messages')
 @section('content')
     <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
         <!--begin::Content wrapper-->
@@ -12,7 +12,7 @@
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                         <!--begin::Title-->
                         <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                            Subscribers List
+                            Contact Message List
                         </h1>
                         <!--end::Title-->
                         <!--begin::Breadcrumb-->
@@ -28,7 +28,7 @@
                             </li>
                             <!--end::Item-->
                             <!--begin::Item-->
-                            <li class="breadcrumb-item text-muted">Newsletter</li>
+                            <li class="breadcrumb-item text-muted">Contact Messages</li>
                             <!--end::Item-->
                         </ul>
                         <!--end::Breadcrumb-->
@@ -56,7 +56,7 @@
                                         <span class="path2"></span>
                                     </i>
                                 </div>
-                                <form id="SearchForm" action="{{ route('newsletter.index') }}" method="get">
+                                <form id="SearchForm" action="{{ route('contact.message.index') }}" method="get">
                                     @csrf
                                     <input type="text" data-kt-subscription-table-filter="search" name="search"
                                         value="{{ request('search') }}"
@@ -76,15 +76,19 @@
                                 <thead>
                                     <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
                                         <th class="min-w-125px">SL</th>
+                                        <th class="min-w-125px">Name</th>
                                         <th class="min-w-125px">Email</th>
+                                        <th class="min-w-125px">Message</th>
                                         <th class="min-w-125px">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody class="text-gray-600 fw-semibold">
-                                    @forelse ($newsletters as $newsletter)
+                                    @forelse ($contactMessages as $contactMessage)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $newsletter->email }}</td>
+                                            <td>{{ $contactMessage->name }}</td>
+                                            <td>{{ $contactMessage->email }}</td>
+                                            <td>{{ $contactMessage->messages }}</td>
                                             <td>
                                                 <a href="#"
                                                     class="btn btn-light btn-active-light-primary btn-flex btn-center btn-sm"
@@ -95,8 +99,8 @@
                                                     data-kt-menu="true">
                                                     <!--begin::Menu item-->
                                                     <div class="menu-item px-3">
-                                                        <a class="menu-link px-3 btn-newsletter-delete"
-                                                            data-newsletter-id="{{ $newsletter->id }}">Delete</a>
+                                                        <a class="menu-link px-3 btn-contactMessage-delete"
+                                                            data-contact-id="{{ $contactMessage->id }}">Delete</a>
                                                     </div>
                                                     <!--end::Menu item-->
                                                 </div>
@@ -112,7 +116,7 @@
                             </table>
                             <div class="d-flex justify-content-center">
                                 <nav aria-label="Page navigation">
-                                    {{ $newsletters->links() }}
+                                    {{ $contactMessages->links() }}
                                 </nav>
                             </div>
                             <!--end::Table-->
@@ -130,5 +134,5 @@
 @endsection
 
 @section('script')
-    <script src="{{ asset('assets/backend') }}/js/newsletter.js"></script>
+    <script src="{{ asset('assets/backend') }}/js/contactMessage.js"></script>
 @endsection

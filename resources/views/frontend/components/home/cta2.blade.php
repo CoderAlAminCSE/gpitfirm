@@ -32,8 +32,8 @@
                                         <span class="wpcf7-form-control-wrap" data-name="email"><input type="email"
                                                 name="email" id="email" value size="40"
                                                 class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-required wpcf7-validates-as-email form-control"
-                                                aria-required="true" aria-invalid="false"
-                                                placeholder="Your Email" /></span><br />
+                                                aria-required="true" aria-invalid="false" placeholder="Your Email"
+                                                required /></span><br />
                                         <p class="text-white d-none" id="newsletterSuccessMessage">Thank you for
                                             subscribe</p>
                                     </span>

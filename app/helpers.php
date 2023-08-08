@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\HomePageContactSection;
 use App\Models\HomePageServiceSection;
 use App\Models\HomePageTestimonialSection;
+use App\Models\PrivacyPolicyPage;
 use App\Models\RefundPage;
 
 //logged in user data
@@ -88,5 +89,13 @@ function activeSites()
 function refundPageContent($name)
 {
   $contact = RefundPage::where('name', $name)->first();
+  return $contact ? $contact->value : null;
+}
+
+
+// get value from "refund page" table
+function privacyPolicyPageContent($name)
+{
+  $contact = PrivacyPolicyPage::where('name', $name)->first();
   return $contact ? $contact->value : null;
 }

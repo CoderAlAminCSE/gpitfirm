@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\FaqPageController;
 use App\Http\Controllers\Backend\PagesController;
+use App\Http\Controllers\Backend\PrivacyPolicyPageController;
 use App\Http\Controllers\Backend\RefundPageController;
 use Illuminate\Support\Facades\Route;
 
@@ -66,4 +67,11 @@ Route::group(['prefix' => 'dashboard/page/faq', 'middleware' => ['auth']], funct
 Route::group(['prefix' => 'dashboard/page/refund', 'middleware' => ['auth']], function () {
   Route::get('/index', [RefundPageController::class, 'index'])->name('pages.refund.index');
   Route::post('/update', [RefundPageController::class, 'update'])->name('pages.refund.update');
+});
+
+
+// privacy policy page routes
+Route::group(['prefix' => 'dashboard/page/privacy-policy', 'middleware' => ['auth']], function () {
+  Route::get('/index', [PrivacyPolicyPageController::class, 'index'])->name('pages.privacy-policy.index');
+  Route::post('/update', [PrivacyPolicyPageController::class, 'update'])->name('pages.privacy-policy.update');
 });

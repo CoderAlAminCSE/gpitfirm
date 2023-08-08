@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call(FaqSeeder::class);
         $this->call(SiteSeeder::class);
         $this->call(RefundPageSeeder::class);
+        $this->call(PrivacyPolicyPageSeeder::class);
     }
 }

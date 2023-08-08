@@ -1,5 +1,5 @@
 @extends('backend.layout.master')
-@section('title', 'Refund ')
+@section('title', 'Privacy-Policy')
 @section('content')
     <div id="kt_app_content_container" class="app-container container-xxl">
         <!--begin::Basic info-->
@@ -9,7 +9,7 @@
                 data-bs-target="#kt_account_profile_details" aria-expanded="true" aria-controls="kt_account_profile_details">
                 <!--begin::Card title-->
                 <div class="card-title m-0">
-                    <h3 class="fw-bold m-0">Refund Page Content</h3>
+                    <h3 class="fw-bold m-0">Privacy Policy Page Content</h3>
                 </div>
                 <!--end::Card title-->
             </div>
@@ -17,7 +17,7 @@
             <!--begin::Content-->
             <div id="kt_account_settings_profile_details" class="collapse show">
                 <!--begin::Form-->
-                <form action="{{ route('pages.refund.update') }}" method="POST"
+                <form action="{{ route('pages.privacy-policy.update') }}" method="POST"
                     class="form fv-plugins-bootstrap5 fv-plugins-framework" enctype="multipart/form-data">
                     @csrf
                     <!--begin::Card body-->
@@ -26,7 +26,7 @@
                         <div class="row mb-12">
                             <!--begin::Col-->
                             <div class="col-lg-12 fv-row">
-                                <textarea id="kt_docs_tinymce_basic" name="content" class="tox-target">{{ refundPageContent('content') }}
+                                <textarea id="kt_docs_tinymce_basic" name="content" class="tox-target">{{ privacyPolicyPageContent('content') }}
                             </textarea>
                             </div>
                             <!--end::Col-->
@@ -51,5 +51,5 @@
 
 @section('script')
     <script src="{{ asset('assets/backend') }}/plugins/custom/tinymce/tinymce.bundle.js"></script>
-    <script src="{{ asset('assets/backend') }}/js/refundPage.js"></script>
+    <script src="{{ asset('assets/backend') }}/js/privacyPolicyPage.js"></script>
 @endsection

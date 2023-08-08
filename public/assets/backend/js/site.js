@@ -1,9 +1,7 @@
-
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     var input2 = document.querySelector("#kt_tagify_2");
     new Tagify(input2);
 });
-
 
 const siteDeleteButtons = document.querySelectorAll(".btn-site-delete");
 siteDeleteButtons.forEach((button) => {

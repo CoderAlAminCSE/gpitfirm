@@ -21,15 +21,18 @@ class RefundPageController extends Controller
     /**
      * Update or create refund page content.
      */
-    public function update(Request $request)
+    public function update(Request $request, RefundPage $refundPage)
     {
+        $request->validate([
+            'content' => 'required',
+        ]);
+
         try {
-            RefundPage::updateOrCreate(['name' => 'content'], ['value' => $request->content]);
+            $refundPage->updateOrCreate(['name' => 'content'], ['value' => $request->content]);
+            return back()->with('success', 'Refund page content updated successfully');
         } catch (\Exception $e) {
-            Session::flash('error', 'Error: ' . $e->getMessage());
-            return back();
+            return back()->with('error', 'Error: ' . $e->getMessage());
         }
-        Session::flash('success', 'Refund page content updated successfully');
         return back();
     }
 }

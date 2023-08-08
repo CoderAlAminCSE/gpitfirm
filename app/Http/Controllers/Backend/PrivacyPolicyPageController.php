@@ -21,15 +21,18 @@ class PrivacyPolicyPageController extends Controller
     /**
      * Update or create Privacy policy page content.
      */
-    public function update(Request $request)
+    public function update(Request $request, PrivacyPolicyPage $privacyPolicyPage)
     {
+        $request->validate([
+            'content' => 'required',
+        ]);
+
         try {
-            PrivacyPolicyPage::updateOrCreate(['name' => 'content'], ['value' => $request->content]);
+            $privacyPolicyPage->updateOrCreate(['name' => 'content'], ['value' => $request->content]);
+            return back()->with('success', 'Privacy policy page content updated successfully');
         } catch (\Exception $e) {
-            Session::flash('error', 'Error: ' . $e->getMessage());
-            return back();
+            return back()->with('error', 'Error: ' . $e->getMessage());
         }
-        Session::flash('success', 'Privacy policy page content updated successfully');
         return back();
     }
 }

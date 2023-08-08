@@ -28,6 +28,9 @@
                             <div class="col-lg-12 fv-row">
                                 <textarea id="kt_docs_tinymce_basic" name="content" class="tox-target">{{ resellerRulesPageContent('content') }}
                             </textarea>
+                                @error('content')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <!--end::Col-->
                         </div>

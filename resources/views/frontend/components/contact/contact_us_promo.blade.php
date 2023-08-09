@@ -80,9 +80,11 @@
                             <div class="col-sm-12 mt-3">
                                 <button class="btn primary-solid-btn" id="contactFormSubmitBtn">
                                     Send Message
-                                    <span class="spinner-border spinner-border-sm d-none mb-1" id="send_btn_spinner">
+                                    <span class="spinner-border spinner-border-sm d-none mb-0" id="send_btn_spinner">
                                     </span>
                                 </button>
+                                <p class="text-success d-none" id="contactMessageSuccessMessage">Message sent
+                                    successfully</p>
 
                             </div>
                         </div>

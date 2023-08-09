@@ -6,6 +6,8 @@ use App\Models\Newsletter;
 use Illuminate\Http\Request;
 use App\Models\ContactMessage;
 use App\Http\Controllers\Controller;
+use App\Mail\ContactMessageMail;
+use Illuminate\Support\Facades\Mail;
 
 class NewsletterController extends Controller
 {
@@ -89,6 +91,8 @@ class NewsletterController extends Controller
         $contactMessage->messages = $request->message;
         $contactMessage->save();
 
+        Mail::to('hello@gmail.com')->send(new ContactMessageMail());
+        
         return response()->json([
             'status' => '200',
             'value' => $request->email,

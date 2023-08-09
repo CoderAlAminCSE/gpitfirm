@@ -67,6 +67,7 @@ $(document).ready(function () {
             success: function (data) {
                 $("#contactFormSubmitBtn").prop("disabled", false);
                 $("#send_btn_spinner").addClass("d-none");
+                $("#contactMessageSuccessMessage").removeClass("d-none");
 
                 if ($.isEmptyObject(data.error)) {
                     if (data.status == 200) {

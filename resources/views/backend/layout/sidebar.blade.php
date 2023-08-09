@@ -114,7 +114,7 @@
                          <div class="menu-sub menu-sub-accordion">
                              <!--begin:Menu item-->
                              <div data-kt-menu-trigger="click"
-                                 class="menu-item {{ strpos(Route::getCurrentRoute()->uri(), 'dashboard/service/') === 0 ? 'show' : '' }} menu-accordion mb-1">
+                                 class="menu-item {{ strpos(Route::getCurrentRoute()->uri(), 'dashboard/service/category') === 0 ? 'show' : '' }} menu-accordion mb-1">
                                  <!--begin:Menu link-->
                                  <span class="menu-link">
                                      <span class="menu-bullet">
@@ -141,7 +141,43 @@
                                      <!--end:Menu item-->
                                  </div>
                                  <!--end:Menu sub-->
+                             </div>
+                             <!--end:Menu item-->
 
+                         </div>
+                         <!--end:Menu sub-->
+
+                         <!--begin:Menu sub-->
+                         <div class="menu-sub menu-sub-accordion">
+                             <!--begin:Menu item-->
+                             <div data-kt-menu-trigger="click"
+                                 class="menu-item {{ strpos(Route::getCurrentRoute()->uri(), 'dashboard/service/service') === 0 ? 'show' : '' }} menu-accordion mb-1">
+                                 <!--begin:Menu link-->
+                                 <span class="menu-link">
+                                     <span class="menu-bullet">
+                                         <span class="bullet bullet-dot"></span>
+                                     </span>
+                                     <span class="menu-title">Services</span>
+                                     <span class="menu-arrow"></span>
+                                 </span>
+                                 <!--end:Menu link-->
+                                 <!--begin:Menu sub-->
+                                 <div class="menu-sub menu-sub-accordion">
+                                     <!--begin:Menu item-->
+                                     <div class="menu-item">
+                                         <!--begin:Menu link-->
+                                         <a class="menu-link {{ strpos(Route::getCurrentRoute()->uri(), 'dashboard/service/service') === 0 ? 'active' : '' }}"
+                                             href="{{ route('service.index') }}">
+                                             <span class="menu-bullet">
+                                                 <span class="bullet bullet-dot"></span>
+                                             </span>
+                                             <span class="menu-title">Services List</span>
+                                         </a>
+                                         <!--end:Menu link-->
+                                     </div>
+                                     <!--end:Menu item-->
+                                 </div>
+                                 <!--end:Menu sub-->
                              </div>
                              <!--end:Menu item-->
 

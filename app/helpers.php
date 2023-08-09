@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Category;
 use App\Models\Site;
 use App\Models\FaqPageContent;
 use App\Models\GeneralSetting;
@@ -131,4 +132,12 @@ function overWriteEnvFile($type, $val)
       file_put_contents($path, file_get_contents($path) . "\r\n" . $type . '=' . $val);
     }
   }
+}
+
+
+
+// get active value from "service category" table
+function activeCategory()
+{
+  return Category::where('active', true)->get();
 }

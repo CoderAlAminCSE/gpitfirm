@@ -24,5 +24,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PrivacyPolicyPageSeeder::class);
         $this->call(ResellerRulesPageSeeder::class);
         $this->call(TermsConditionPageSeeder::class);
+        $this->call(ServiceCategorySeeder::class);
     }
 }

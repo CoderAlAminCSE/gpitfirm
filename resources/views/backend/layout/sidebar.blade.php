@@ -94,6 +94,63 @@
                      </div>
                      <!--end: Users Menu -->
 
+
+                     <!--begin: Pages Menu-->
+                     <div data-kt-menu-trigger="click"
+                         class="menu-item {{ strpos(Route::getCurrentRoute()->uri(), 'dashboard/service/') === 0 ? 'show' : '' }} menu-accordion">
+                         <!--begin:Menu link-->
+                         <span class="menu-link">
+                             <span class="menu-icon">
+                                 <i class="ki-duotone ki-abstract-28 fs-2">
+                                     <span class="path1"></span>
+                                     <span class="path2"></span>
+                                 </i>
+                             </span>
+                             <span class="menu-title">Services Management</span>
+                             <span class="menu-arrow"></span>
+                         </span>
+                         <!--end:Menu link-->
+                         <!--begin:Menu sub-->
+                         <div class="menu-sub menu-sub-accordion">
+                             <!--begin:Menu item-->
+                             <div data-kt-menu-trigger="click"
+                                 class="menu-item {{ strpos(Route::getCurrentRoute()->uri(), 'dashboard/service/') === 0 ? 'show' : '' }} menu-accordion mb-1">
+                                 <!--begin:Menu link-->
+                                 <span class="menu-link">
+                                     <span class="menu-bullet">
+                                         <span class="bullet bullet-dot"></span>
+                                     </span>
+                                     <span class="menu-title">Category</span>
+                                     <span class="menu-arrow"></span>
+                                 </span>
+                                 <!--end:Menu link-->
+                                 <!--begin:Menu sub-->
+                                 <div class="menu-sub menu-sub-accordion">
+                                     <!--begin:Menu item-->
+                                     <div class="menu-item">
+                                         <!--begin:Menu link-->
+                                         <a class="menu-link {{ strpos(Route::getCurrentRoute()->uri(), 'dashboard/service/category/') === 0 ? 'active' : '' }}"
+                                             href="{{ route('service.category.index') }}">
+                                             <span class="menu-bullet">
+                                                 <span class="bullet bullet-dot"></span>
+                                             </span>
+                                             <span class="menu-title">Category List</span>
+                                         </a>
+                                         <!--end:Menu link-->
+                                     </div>
+                                     <!--end:Menu item-->
+                                 </div>
+                                 <!--end:Menu sub-->
+
+                             </div>
+                             <!--end:Menu item-->
+
+                         </div>
+                         <!--end:Menu sub-->
+                     </div>
+                     <!--end:Menu item-->
+
+
                      <!--begin: Pages Menu-->
                      <div data-kt-menu-trigger="click"
                          class="menu-item {{ strpos(Route::getCurrentRoute()->uri(), 'dashboard/page') === 0 ? 'show' : '' }} menu-accordion">

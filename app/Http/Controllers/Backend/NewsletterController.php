@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\ContactMessage;
 use App\Http\Controllers\Controller;
 use App\Mail\ContactMessageMail;
+use App\Mail\NewsletterEmail;
 use Illuminate\Support\Facades\Mail;
 
 class NewsletterController extends Controller
@@ -59,6 +60,39 @@ class NewsletterController extends Controller
 
 
     /**
+     * Submitting newsletter form, data comming from ajax.
+     */
+    public function newsletterSendEmaiToAllSubscribers(Request $request, Newsletter $newsletter)
+    {
+        $request->validate([
+            'subject' => 'required',
+            'message' => 'required',
+        ]);
+
+        try {
+            $from = env('MAIL_FROM_ADDRESS');
+            $details = [
+                'message' => $request->message,
+                'subject' => $request->subject,
+                'from' => $from,
+            ];
+
+            $subscribers = $newsletter->all();
+            foreach ($subscribers as  $subscriber) {
+                Mail::to($subscriber->email)->send(new NewsletterEmail($details));
+            }
+            return back()->with('success', 'Email send to all subscribed users successfully');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Error: ' . $e->getMessage());
+        }
+        return back();
+    }
+
+
+
+
+
+    /**
      * Display the contact messages page data.
      */
     public function ContactMessageIndex(Request $request, ContactMessage $contactMessage)
@@ -92,7 +126,7 @@ class NewsletterController extends Controller
         $contactMessage->save();
 
         Mail::to('hello@gmail.com')->send(new ContactMessageMail());
-        
+
         return response()->json([
             'status' => '200',
             'value' => $request->email,

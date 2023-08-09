@@ -66,15 +66,106 @@
                                 <!--end::Search-->
                             </div>
                             <!--begin::Card title-->
+                            <div class="d-flex justify-content-end align-items-center">
+                                <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                    data-bs-target="#kt_modal_newsletter_email">Send Email</button>
+                            </div>
                             <!--end::Card toolbar-->
                         </div>
                         <!--end::Card header-->
+
+                        <!--begin::Modal - Adjust Balance-->
+                        <div class="modal fade" id="kt_modal_newsletter_email" tabindex="-1" aria-hidden="true">
+                            <!--begin::Modal dialog-->
+                            <div class="modal-dialog modal-dialog-centered mw-650px">
+                                <!--begin::Modal content-->
+                                <div class="modal-content">
+                                    <!--begin::Modal header-->
+                                    <div class="modal-header">
+                                        <!--begin::Modal title-->
+                                        <h2 class="fw-bold">Send Email To All Subscribers</h2>
+                                        <!--end::Modal title-->
+                                        <!--begin::Close-->
+                                        <div class="btn btn-icon btn-sm btn-active-icon-primary"
+                                            data-kt-users-modal-action="close">
+                                            <i class="ki-duotone ki-cross fs-1">
+                                                <span class="path1"></span>
+                                                <span class="path2"></span>
+                                            </i>
+                                        </div>
+                                        <!--end::Close-->
+                                    </div>
+                                    <!--end::Modal header-->
+                                    <!--begin::Modal body-->
+                                    <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                                        <!--begin::Form-->
+                                        <form action="{{ route('newsletter.all.email.send') }}" method="POST"
+                                            class="form fv-plugins-bootstrap5 fv-plugins-framework">
+                                            @csrf
+                                            <!--begin::Input group-->
+                                            <div class="fv-row mb-10">
+                                                <!--begin::Label-->
+                                                <label class="required fw-semibold fs-6 mb-2">Subject</label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input type="text" name="subject"
+                                                    class="form-control form-control-solid mb-3 mb-lg-0"
+                                                    placeholder="Subject" value="{{ old('subject') }}" />
+                                                @error('subject')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                                <!--end::Input-->
+                                            </div>
+                                            <!--end::Input group-->
+
+                                            <!--begin::Input group-->
+                                            <div class="fv-row mb-10">
+                                                <!--begin::Label-->
+                                                <label class="required fw-semibold fs-6 mb-2">Message</label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <textarea class="form-control form-control-solid" name="message" placeholder="message" rows="4"
+                                                    value="{{ old('message') }}"></textarea>
+                                                @error('message')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                                <!--end::Input-->
+                                            </div>
+                                            <!--end::Input group-->
+
+                                            <!--begin::Actions-->
+                                            <div class="text-center">
+                                                <button type="submit" class="btn btn-primary"
+                                                    data-kt-users-modal-action="submit">
+                                                    <span class="indicator-label">Submit</span>
+                                                </button>
+                                            </div>
+                                            <!--end::Actions-->
+                                        </form>
+                                        <!--end::Form-->
+                                    </div>
+                                    <!--end::Modal body-->
+                                </div>
+                                <!--end::Modal content-->
+                            </div>
+                            <!--end::Modal dialog-->
+                        </div>
+                        <!--end::Modal - New Card-->
+
+
+
                         <!--begin::Card body-->
                         <div class="card-body py-4">
                             <!--begin::Table-->
                             <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_users">
                                 <thead>
                                     <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
+                                        <th class="w-10px pe-2">
+                                            <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
+                                                <input class="form-check-input" type="checkbox" data-kt-check="true"
+                                                    value="1" />
+                                            </div>
+                                        </th>
                                         <th class="min-w-125px">SL</th>
                                         <th class="min-w-125px">Email</th>
                                         <th class="min-w-125px">Actions</th>
@@ -83,12 +174,18 @@
                                 <tbody class="text-gray-600 fw-semibold">
                                     @forelse ($newsletters as $newsletter)
                                         <tr>
+                                            <td>
+                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                    <input class="form-check-input" type="checkbox" value="1" />
+                                                </div>
+                                            </td>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $newsletter->email }}</td>
                                             <td>
                                                 <a href="#"
                                                     class="btn btn-light btn-active-light-primary btn-flex btn-center btn-sm"
-                                                    data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
+                                                    data-kt-menu-trigger="click"
+                                                    data-kt-menu-placement="bottom-end">Actions
                                                     <i class="ki-duotone ki-down fs-5 ms-1"></i></a>
                                                 <!--begin::Menu-->
                                                 <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"

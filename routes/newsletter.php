@@ -11,6 +11,7 @@ Route::group(['prefix' => 'dashboard/newsletter', 'middleware' => ['auth']], fun
   Route::get('/index', [NewsletterController::class, 'index'])->name('newsletter.index');
   Route::get('/delete/{id}', [NewsletterController::class, 'delete'])->name('newsletter.delete');
   Route::post('/form/submit', [NewsletterController::class, 'newsletterFormSubmit'])->name('newsletter.form.submit');
+  Route::post('/send/email', [NewsletterController::class, 'newsletterSendEmaiToAllSubscribers'])->name('newsletter.all.email.send');
 });
 
 

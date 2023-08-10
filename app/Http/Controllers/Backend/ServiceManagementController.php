@@ -7,6 +7,7 @@ use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class ServiceManagementController extends Controller
 {
@@ -121,6 +122,7 @@ class ServiceManagementController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'image' => 'required',
             'title' => 'required',
             'price' => 'required',
             'category_id' => 'required',
@@ -128,6 +130,15 @@ class ServiceManagementController extends Controller
         ]);
 
         try {
+            // save if there is an image
+            if ($request->file('image')) {
+                $file = $request->file('image');
+                $extension = $file->getClientOriginalExtension();
+                $filename = Str::uuid() . '.' . $extension;
+                $filePath = $file->storeAs('frontend/service', $filename, 'public');
+                $service->image = "frontend/service/" . $filename;
+            }
+
             $service->name = $request->name;
             $service->title = $request->title;
             $service->slug = Str::slug($request->name);
@@ -167,7 +178,23 @@ class ServiceManagementController extends Controller
         ]);
 
         try {
+
             $serviceToUpdate =  $service->findOrFail($id);
+
+
+            // save if there is an image
+            if ($request->file('image')) {
+                $file = $request->file('image');
+                $extension = $file->getClientOriginalExtension();
+                $filename = Str::uuid() . '.' . $extension;
+                $filePath = $file->storeAs('frontend/service', $filename, 'public');
+
+                if ($serviceToUpdate->image &&  Storage::exists('public/' . $serviceToUpdate->image)) {
+                    Storage::delete('public/' . $serviceToUpdate->image);
+                }
+                $serviceToUpdate->image = "frontend/service/" . $filename;
+            }
+
             $serviceToUpdate->name = $request->name;
             $serviceToUpdate->title = $request->title;
             $serviceToUpdate->slug = Str::slug($request->name);

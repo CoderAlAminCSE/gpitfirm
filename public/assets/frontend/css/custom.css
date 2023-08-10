@@ -33,3 +33,10 @@ table.table-bordered.dataTable thead tr:first-child th {
 .gpitmlr-50 {
   padding: 0 50px;
 }
+
+@media only screen and (min-width: 769px){
+  .gpitfrim_product{
+    margin-right: 2.5% !important;
+  }
+}
+

@@ -16,15 +16,18 @@
                                                 target="_blank"><span class="ti-facebook"></span></a>
                                             <div class="tooltip-item">Facebook</div>
                                         </li>
-                                        <li class="list-inline-item tooltip-hover"><a href="{{ siteSetting('twitter') ?? null }}" class="rounded"
+                                        <li class="list-inline-item tooltip-hover"><a
+                                                href="{{ siteSetting('twitter') ?? null }}" class="rounded"
                                                 target="_blank"><span class="ti-twitter"></span></a>
                                             <div class="tooltip-item">Twitter</div>
                                         </li>
-                                        <li class="list-inline-item tooltip-hover"><a href="{{ siteSetting('linkedin') ?? null }}" class="rounded"
+                                        <li class="list-inline-item tooltip-hover"><a
+                                                href="{{ siteSetting('linkedin') ?? null }}" class="rounded"
                                                 target="_blank"><span class="ti-linkedin"></span></a>
                                             <div class="tooltip-item">Linkedin</div>
                                         </li>
-                                        <li class="list-inline-item tooltip-hover"><a href="{{ siteSetting('google') ?? null }}" class="rounded"
+                                        <li class="list-inline-item tooltip-hover"><a
+                                                href="{{ siteSetting('google') ?? null }}" class="rounded"
                                                 target="_blank"><span class="ti-google"></span></a>
                                             <div class="tooltip-item">Google+</div>
                                         </li>
@@ -105,7 +108,7 @@
                                     <li class="d-flex align-items-center py-2"><span
                                             class="fas fa-map-marker-alt mr-2"></span>
                                         <p><b>USA Location:</b> {{ siteSetting('usa_location') ?? null }}</p>
-                                    </li>    
+                                    </li>
                                     <li class="d-flex align-items-center py-2"><span
                                             class="fas fa-map-marker-alt mr-2"></span>
                                         <p><b>BD office:</b> {{ siteSetting('company_address') ?? null }}</p>
@@ -150,31 +153,40 @@
 </button>
 
 <!-- footer-scripts -->
-<script data-cfasync="false" src="assets/frontend/js/vendor/email-decode.min.js"></script>
+<script data-cfasync="false" src="{{ asset('assets/frontend/js/vendor/email-decode.min.js
+') }}"></script>
 
 <!-- contact-form-7 -->
-<script type="text/javascript" src="assets/frontend/js/vendor/contact-form-7.js" id="swv-js"></script>
+<script type="text/javascript" src="{{ asset('assets/frontend/js/vendor/contact-form-7.js
+') }}" id="swv-js"></script>
 
 <!-- jquery-blockui-js -->
-<script type="text/javascript" src="assets/frontend/js/vendor/jquery.blockUI.min.js" id="jquery-blockui-js"></script>
+<script type="text/javascript" src="{{ asset('assets/frontend/js/vendor/jquery.blockUI.min.js
+') }}"
+    id="jquery-blockui-js"></script>
 
 <!-- js-cookie-js -->
-<script type="text/javascript" src="assets/frontend/js/vendor/woocommerce/js.cookie.min.js" id="js-cookie-js"></script>
+<script type="text/javascript" src="{{ asset('assets/frontend/js/vendor/woocommerce/js.cookie.min.js
+') }}"
+    id="js-cookie-js"></script>
 
 <!-- woocommerce.min.js -->
-<script type="text/javascript" src="assets/frontend/js/vendor/woocommerce/woocommerce.min.js" id="woocommerce-js">
-</script>
+<script type="text/javascript" src="{{ asset('assets/frontend/js/vendor/woocommerce/woocommerce.min.js
+') }} "
+    id="woocommerce-js"></script>
 
 <!-- wc-cart-fragments-js -->
-<script type="text/javascript" src="assets/frontend/js/vendor/woocommerce/cart-fragments.min.js"></script>
-<script type="text/javascript" src="assets/frontend/js/typed.min.js" id="typed-js-js"></script>
-<script type="text/javascript" src="assets/frontend/js/popper.min.js" id="popper-js-js"></script>
-<script type="text/javascript" src="assets/frontend/js/bootstrap.min.js" id="bootstrap-js"></script>
-<script type="text/javascript" src="assets/frontend/js/wow.min.html" id="wow-js-js"></script>
-<script type="text/javascript" src="assets/frontend/js/owl.carousel.min.js" id="owl-carousel-js"></script>
-<script type="text/javascript" src="assets/frontend/js/datatables.js" id="data-table-js-js"></script>
-<script type="text/javascript" src="assets/frontend/js/dataTables.responsive.min.js" id="data-table-responsive-js-js">
+<script type="text/javascript" src="{{ asset('assets/frontend/js/vendor/woocommerce/cart-fragments.min.js') }}">
 </script>
-<script type="text/javascript" src="assets/frontend/js/responsive.bootstrap.min.js"
+<script type="text/javascript" src="{{ asset('assets/frontend/js/typed.min.js') }}" id="typed-js-js"></script>
+<script type="text/javascript" src="{{ asset('assets/frontend/js/popper.min.js') }}" id="popper-js-js"></script>
+<script type="text/javascript" src="{{ asset('assets/frontend/js/bootstrap.min.js') }}" id="bootstrap-js"></script>
+<script type="text/javascript" src="{{ asset('assets/frontend/js/wow.min.html') }}" id="wow-js-js"></script>
+<script type="text/javascript" src="{{ asset('assets/frontend/js/owl.carousel.min.js') }}" id="owl-carousel-js">
+</script>
+<script type="text/javascript" src="{{ asset('assets/frontend/js/datatables.js') }} " id="data-table-js-js"></script>
+<script type="text/javascript" src="{{ asset('assets/frontend/js/dataTables.responsive.min.js') }}"
+    id="data-table-responsive-js-js"></script>
+<script type="text/javascript" src="{{ asset('assets/frontend/js/responsive.bootstrap.min.js') }}"
     id="data-table-responsive-bootstrap-js-js"></script>
-<script type="text/javascript" src="assets/frontend/js/scripts.js" id="scripts-js"></script>
+<script type="text/javascript" src="{{ asset('assets/frontend/js/scripts.js') }}" id="scripts-js"></script>

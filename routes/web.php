@@ -66,9 +66,12 @@ Route::get('/services', function () {
 
 Route::get('/service/{category}', [ServicesController::class, 'categoryWiseServiceShow'])->name('category.service.show');
 
-Route::get('/single-product', function () {
-    return view('frontend/single_product');
-});
+
+Route::get('/service/{service}/show', [ServicesController::class, 'singleServiceShow'])->name('single.service.show');
+
+// Route::get('/single-product', function () {
+//     return view('frontend/single_product');
+// });
 
 Route::get('/contact', function () {
     return view('frontend/contact');

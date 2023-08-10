@@ -149,3 +149,10 @@ function activeServices()
 {
   return Service::where('active', true)->get();
 }
+
+
+// get active value from "service category" table
+function categoryWiseServices($id)
+{
+  return Service::where('category_id', $id)->where('active', true)->get();
+}

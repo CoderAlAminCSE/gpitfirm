@@ -3,13 +3,13 @@
 			<div class="row justify-content-center">
 				<div class="col-md-8 col-lg-7">
 					<div class="page-header-content text-white text-center pt-sm-5 pt-md-5 pt-lg-0">
-						<h1 class="text-white mb-0">Guest Posting DA 50+</h1>
+						<h1 class="text-white mb-0">{{ $service->name }}</h1>
 						<div class="custom-breadcrumb">
 							<ol class="breadcrumb d-inline-block bg-transparent list-inline py-0">
 								<li class="list-inline-item breadcrumb-item"><a href="/">Home</a>
 								</li>
 								<li class="list-inline-item breadcrumb-item"><a href="/services">Product</a></li>
-								<li class="list-inline-item breadcrumb-item active">Guest Posting DA 50+</li>
+								<li class="list-inline-item breadcrumb-item active">{{ $service->name }}</li>
 							</ol>
 						</div>
 					</div>

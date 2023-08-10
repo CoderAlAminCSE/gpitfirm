@@ -23,8 +23,8 @@
 
                         @foreach (activeServices() as $service)
                             <li
-                                class="gpitfrim_product product type-product post-130 status-publish last instock product_cat-link-building has-post-thumbnail virtual sold-individually purchasable product-type-simple" >
-                                <a href="/single-product"
+                                class="gpitfrim_product product type-product post-130 status-publish last instock product_cat-link-building has-post-thumbnail virtual sold-individually purchasable product-type-simple">
+                                <a href="{{ route('single.service.show', $service->slug) }}"
                                     class="woocommerce-LoopProduct-link woocommerce-loop-product__link"><img
                                         width="300" height="300"
                                         src="../wp-content/uploads/2022/07/Link-Building-DA-70-300x300.png"

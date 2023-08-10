@@ -14,6 +14,7 @@ use App\Models\HomePageTestimonialSection;
 use App\Models\PrivacyPolicyPage;
 use App\Models\RefundPage;
 use App\Models\ResellerRulesPage;
+use App\Models\Service;
 use App\Models\TermsConditionPage;
 
 //logged in user data
@@ -140,4 +141,11 @@ function overWriteEnvFile($type, $val)
 function activeCategory()
 {
   return Category::where('active', true)->get();
+}
+
+
+// get active value from "service category" table
+function activeServices()
+{
+  return Service::where('active', true)->get();
 }

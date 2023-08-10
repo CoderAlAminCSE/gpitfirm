@@ -17,6 +17,7 @@ class ServiceSeeder extends Seeder
             "name" => "Guest Posting DA 50+",
             "title" => "DA50+",
             "slug" => "guest-posting-da-50",
+            "image" => "frontend/service/Guest-Posting-DA-50.png",
             "category_id" => 1,
             "price" => 500.00,
             "description" => "<div class=/'price-name/' style=/'box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-variant-alternates: inherit; font-stretch: inherit; font-size: 15px; line-height: inherit; font-family: 'open sans', sans-serif; font-optical-sizing: inherit; font-kerning: inherit; font-feature-settings: inherit; font-variation-settings: inherit; vertical-align: baseline; color: #707070; text-align: center;/'>
@@ -40,6 +41,7 @@ class ServiceSeeder extends Seeder
             "name" => "Guest Posting DA 60+",
             "title" => "DA60+",
             "slug" => "guest-posting-da-60",
+            "image" => "frontend/service/Guest-Posting-DA-60.png",
             "category_id" => 1,
             "price" => 700.00,
             "description" => "<div class=/'price-name/' style=/'box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-variant-alternates: inherit; font-stretch: inherit; font-size: 15px; line-height: inherit; font-family: /'open sans/', sans-serif; font-optical-sizing: inherit; font-kerning: inherit; font-feature-settings: inherit; font-variation-settings: inherit; vertical-align: baseline; color: #707070; text-align: center;/'>
@@ -63,6 +65,7 @@ class ServiceSeeder extends Seeder
             "name" => "Guest Posting DA 70+",
             "title" => "DA70+",
             "slug" => "guest-posting-da-70",
+            "image" => "frontend/service/Guest-Posting-DA-70.png",
             "category_id" => 1,
             "price" => 900.00,
             "description" => "<div class=/'price-name/' style=/'box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-variant-alternates: inherit; font-stretch: inherit; font-size: 15px; line-height: inherit; font-family: /'open sans/', sans-serif; font-optical-sizing: inherit; font-kerning: inherit; font-feature-settings: inherit; font-variation-settings: inherit; vertical-align: baseline; color: #707070; text-align: center;/'>
@@ -86,6 +89,7 @@ class ServiceSeeder extends Seeder
             "name" => "Link Building DA 50+",
             "title" => "DA 50+",
             "slug" => "link-building-da-50",
+            "image" => "frontend/service/Link-Building-DA-50.png",
             "category_id" => 2,
             "price" => 450.00,
             "description" => "<div class=/'price-name/' style=/'box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-variant-alternates: inherit; font-stretch: inherit; font-size: 15px; line-height: inherit; font-family: /'open sans/', sans-serif; font-optical-sizing: inherit; font-kerning: inherit; font-feature-settings: inherit; font-variation-settings: inherit; vertical-align: baseline; color: #707070; text-align: center;/'>
@@ -109,6 +113,7 @@ class ServiceSeeder extends Seeder
             "name" => "Link Building DA 60+",
             "title" => "DA 60+",
             "slug" => "link-building-da-60",
+            "image" => "frontend/service/Link-Building-DA-60.png",
             "category_id" => 2,
             "price" => 650.00,
             "description" => "<div class=/'price-name/' style=/'box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-variant-alternates: inherit; font-stretch: inherit; font-size: 15px; line-height: inherit; font-family: /'open sans/', sans-serif; font-optical-sizing: inherit; font-kerning: inherit; font-feature-settings: inherit; font-variation-settings: inherit; vertical-align: baseline; color: #707070; text-align: center;/'>
@@ -133,6 +138,7 @@ class ServiceSeeder extends Seeder
             "name" => "Link Building DA 70+",
             "title" => "DA 70+",
             "slug" => "link-building-da-70",
+            "image" => "frontend/service/Link-Building-DA-70.png",
             "category_id" => 2,
             "price" => 850.00,
             "description" => "<div class=/'price-name/' style=/'box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-variant-alternates: inherit; font-stretch: inherit; font-size: 15px; line-height: inherit; font-family: /'open sans/', sans-serif; font-optical-sizing: inherit; font-kerning: inherit; font-feature-settings: inherit; font-variation-settings: inherit; vertical-align: baseline; color: #707070; text-align: center;/'>

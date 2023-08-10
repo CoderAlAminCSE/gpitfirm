@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Frontend\CategoryController;
+use App\Http\Controllers\Frontend\ServicesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +63,8 @@ Route::get('/reseller-rules', function () {
 Route::get('/services', function () {
     return view('frontend/services');
 });
+
+Route::get('/service/{category}', [ServicesController::class, 'categoryWiseServiceShow'])->name('category.service.show');
 
 Route::get('/single-product', function () {
     return view('frontend/single_product');

@@ -62,7 +62,7 @@
                         @foreach (categoryWiseServices($service->category->id) as $service)
                             <li
                                 class="product type-product post-119 status-publish instock product_cat-guest-posting has-post-thumbnail virtual sold-individually purchasable product-type-simple">
-                                <a href="../guest-posting-da-60/index.html"
+                                <a href="{{ route('single.service.show', $service->slug) }}"
                                     class="woocommerce-LoopProduct-link woocommerce-loop-product__link"><img
                                         width="300" height="300"
                                         src="../../wp-content/uploads/2022/07/Guest-Posting-DA-60-300x300.png"
@@ -71,9 +71,11 @@
                                         srcset="{{ !empty($service->image) ? asset('storage/' . $service->image) : ' ' }}"
                                         sizes="(max-width: 300px) 100vw, 300px" />
                                     <h2 class="woocommerce-loop-product__title">{{ $service->name }}</h2>
-                                    <span class="price"><span class="woocommerce-Price-amount amount"><bdi>{{ $service->price }}<span
+                                    <span class="price"><span
+                                            class="woocommerce-Price-amount amount"><bdi>{{ $service->price }}<span
                                                     class="woocommerce-Price-currencySymbol">&#36;</span></bdi></span></span>
-                                </a><a href="indexa21d.html?add-to-cart=119" data-quantity="1"
+                                </a>
+                                <a href="indexa21d.html?add-to-cart=119" data-quantity="1"
                                     class="button wp-element-button product_type_simple add_to_cart_button ajax_add_to_cart"
                                     data-product_id="119" data-product_sku
                                     aria-label="Add &ldquo;Guest Posting DA 60+&rdquo; to your cart" rel="nofollow">Buy

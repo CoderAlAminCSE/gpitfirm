@@ -38,7 +38,8 @@
                             class="single_add_to_cart_button button alt">Buy Now</button>
                     </form>
                     <div class="product_meta">
-                        <span class="posted_in">Category: <a href="/guest-posting"
+                        <span class="posted_in">Category: <a
+                                href="{{ route('category.service.show', $service->category->slug) }}"
                                 rel="tag">{{ $service->category->name }}</a></span>
                     </div>
                 </div>
@@ -46,81 +47,13 @@
                     <ul class="tabs wc-tabs" role="tablist">
                         <li class="description_tab" id="tab-title-description" role="tab"
                             aria-controls="tab-description">
-                            <a href="#tab-description">
+                            <a>
                                 Description </a>
-                        </li>
-                        <li class="reviews_tab" id="tab-title-reviews" role="tab" aria-controls="tab-reviews">
-                            <a href="#tab-reviews">
-                                Reviews (0) </a>
                         </li>
                     </ul>
                     <div class="woocommerce-Tabs-panel woocommerce-Tabs-panel--description panel entry-content wc-tab"
-                        id="tab-description" role="tabpanel" aria-labelledby="tab-title-description">
+                        role="tabpanel" aria-labelledby="tab-title-description">
                         {!! $service->description !!}
-                    </div>
-                    <div class="woocommerce-Tabs-panel woocommerce-Tabs-panel--reviews panel entry-content wc-tab"
-                        id="tab-reviews" role="tabpanel" aria-labelledby="tab-title-reviews">
-                        <div id="reviews" class="woocommerce-Reviews">
-                            <div id="comments">
-                                <h2 class="woocommerce-Reviews-title">
-                                    Reviews </h2>
-                                <p class="woocommerce-noreviews">There are no reviews yet.</p>
-                            </div>
-                            <div id="review_form_wrapper">
-                                <div id="review_form">
-                                    <div id="respond" class="comment-respond">
-                                        <span id="reply-title" class="comment-reply-title">Be the first to
-                                            review &ldquo;Guest Posting DA 50+&rdquo; <small><a rel="nofollow"
-                                                    id="cancel-comment-reply-link" href="index.html#respond"
-                                                    style="display:none;">Cancel
-                                                    reply</a></small></span>
-                                        <form action="https://gpitfirm.com/wp-comments-post.php" method="post"
-                                            id="commentform" class="comment-form">
-                                            <p class="comment-notes"><span id="email-notes">Your email
-                                                    address will not be published.</span> <span
-                                                    class="required-field-message">Required fields are
-                                                    marked <span class="required">*</span></span></p>
-                                            <div class="comment-form-rating"><label for="rating">Your
-                                                    rating&nbsp;<span class="required">*</span></label><select
-                                                    name="rating" id="rating" required>
-                                                    <option value>Rate&hellip;</option>
-                                                    <option value="5">Perfect</option>
-                                                    <option value="4">Good</option>
-                                                    <option value="3">Average</option>
-                                                    <option value="2">Not that bad</option>
-                                                    <option value="1">Very poor</option>
-                                                </select></div>
-                                            <p class="comment-form-comment"><label for="comment">Your
-                                                    review&nbsp;<span class="required">*</span></label>
-                                                <textarea class="form-control" id="comment" name="comment" cols="45" rows="8" required></textarea>
-                                            </p>
-                                            <p class="comment-form-author"><label for="author">Name&nbsp;<span
-                                                        class="required">*</span></label><input class="form-control"
-                                                    id="author" name="author" type="text" value
-                                                    size="30" required /></p>
-                                            <p class="comment-form-email"><label for="email">Email&nbsp;<span
-                                                        class="required">*</span></label><input class="form-control"
-                                                    id="email" name="email" type="email" value
-                                                    size="30" required /></p>
-                                            <p class="comment-form-cookies-consent"><input
-                                                    id="wp-comment-cookies-consent" name="wp-comment-cookies-consent"
-                                                    type="checkbox" value="yes" /> <label
-                                                    for="wp-comment-cookies-consent">Save my name, email,
-                                                    and website in this browser for the next time I
-                                                    comment.</label></p>
-                                            <p class="form-submit"><input name="submit" type="submit"
-                                                    id="submit" class="submit" value="Submit" /> <input
-                                                    type="hidden" name="comment_post_ID" value="116"
-                                                    id="comment_post_ID" />
-                                                <input type="hidden" name="comment_parent" id="comment_parent"
-                                                    value="0" />
-                                            </p>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
                     </div>
                 </div>
                 <section class="related products">
@@ -137,15 +70,14 @@
                                         decoding="async" loading="lazy"
                                         srcset="{{ !empty($service->image) ? asset('storage/' . $service->image) : ' ' }}"
                                         sizes="(max-width: 300px) 100vw, 300px" />
-                                    <h2 class="woocommerce-loop-product__title">Guest Posting DA 60+</h2>
-                                    <span class="price"><span
-                                            class="woocommerce-Price-amount amount"><bdi>700.00<span
+                                    <h2 class="woocommerce-loop-product__title">{{ $service->name }}</h2>
+                                    <span class="price"><span class="woocommerce-Price-amount amount"><bdi>{{ $service->price }}<span
                                                     class="woocommerce-Price-currencySymbol">&#36;</span></bdi></span></span>
                                 </a><a href="indexa21d.html?add-to-cart=119" data-quantity="1"
                                     class="button wp-element-button product_type_simple add_to_cart_button ajax_add_to_cart"
                                     data-product_id="119" data-product_sku
-                                    aria-label="Add &ldquo;Guest Posting DA 60+&rdquo; to your cart"
-                                    rel="nofollow">Buy Now</a>
+                                    aria-label="Add &ldquo;Guest Posting DA 60+&rdquo; to your cart" rel="nofollow">Buy
+                                    Now</a>
                             </li>
                         @endforeach
                     </ul>

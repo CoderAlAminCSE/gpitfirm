@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CategoryController;
 use App\Http\Controllers\Frontend\ServicesController;
 
@@ -35,6 +36,8 @@ Route::get('/faq', function () {
 Route::get('/cart', function () {
     return view('frontend/cart');
 });
+
+Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
 
 Route::get('/guest-post', function () {
     return view('frontend/guest_post');

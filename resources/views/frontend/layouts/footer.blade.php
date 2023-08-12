@@ -190,3 +190,31 @@
 <script type="text/javascript" src="{{ asset('assets/frontend/js/responsive.bootstrap.min.js') }}"
     id="data-table-responsive-bootstrap-js-js"></script>
 <script type="text/javascript" src="{{ asset('assets/frontend/js/scripts.js') }}" id="scripts-js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $(".add-to-cart").on("click", function() {
+            const serviceId = $(this).data("service-id");
+            const serviceName = $(this).data("service-name");
+            const servicePrice = $(this).data("service-price");
+
+            $.ajax({
+                type: "POST",
+                url: "{{ route('cart.add') }}",
+                data: {
+                    service_id: serviceId,
+                    service_name: serviceName,
+                    service_price: servicePrice,
+                    _token: "{{ csrf_token() }}"
+                },
+                success: function(response) {
+                    alert(response.message);
+                },
+                error: function(error) {
+                    alert("Error adding to cart. Please try again.");
+                }
+            });
+        });
+    });
+</script>

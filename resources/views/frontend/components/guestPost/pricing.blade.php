@@ -22,7 +22,9 @@
                         </div>
                         <div class="card-body">
                             {!! $service->description !!}
-                            <a href="/cart" class="btn outline-btn mb-3">Purchase now</a>
+                            <a class="btn outline-btn mb-3 add-to-cart mt-5" data-service-id="{{ $service->id }}"
+                                data-service-name="{{ $service->name }}"
+                                data-service-price="{{ $service->price }}">Purchase now</a>
                         </div>
                     </div>
                 </div>

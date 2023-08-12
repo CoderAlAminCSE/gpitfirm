@@ -20,7 +20,6 @@
                         <input type="hidden" name="paged" value="1" />
                     </form>
                     <ul class="products columns-3">
-
                         @foreach (activeServices() as $service)
                             <li
                                 class="gpitfrim_product product type-product post-130 status-publish last instock product_cat-link-building has-post-thumbnail virtual sold-individually purchasable product-type-simple">
@@ -36,16 +35,12 @@
                                     <span class="price"><span
                                             class="woocommerce-Price-amount amount"><bdi>{{ $service->price }}<span
                                                     class="woocommerce-Price-currencySymbol">&#36;</span></bdi></span></span>
-                                </a><a href="/cart" data-quantity="1"
-                                    class="button wp-element-button product_type_simple add_to_cart_button ajax_add_to_cart"
-                                    data-product_id="130" data-product_sku
-                                    aria-label="Add &ldquo;Link Building DA 70+&rdquo; to your cart" rel="nofollow">Buy
+                                </a><a class="button wp-element-button product_type_simple add-to-cart"
+                                    data-service-id="{{ $service->id }}" data-service-name="{{ $service->name }}"
+                                    data-service-price="{{ $service->price }}">Buy
                                     Now</a>
                             </li>
                         @endforeach
-
-
-
                     </ul>
                 </main>
             </div>

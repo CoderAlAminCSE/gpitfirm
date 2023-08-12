@@ -28,15 +28,13 @@
                     <div class="woocommerce-product-details__short-description">
                         {!! $service->description !!}
                     </div>
-                    <form class="cart" action="https://gpitfirm.com/product/guest-posting-da-50/" method="post"
-                        enctype="multipart/form-data">
-                        <div class="quantity hidden">
-                            <input type="hidden" id="quantity_64b8caa93696e" class="qty" name="quantity"
-                                value="1" />
-                        </div>
-                        <button type="submit" name="add-to-cart" value="116"
-                            class="single_add_to_cart_button button alt">Buy Now</button>
-                    </form>
+                    <div class="quantity hidden">
+                        <input type="hidden" id="quantity_64b8caa93696e" class="qty" name="quantity"
+                            value="1" />
+                    </div>
+                    <a name="add-to-cart" class="single_add_to_cart_button button alt add-to-cart"
+                        data-service-id="{{ $service->id }}" data-service-name="{{ $service->name }}"
+                        data-service-price="{{ $service->price }}">Buy Now</a>
                     <div class="product_meta">
                         <span class="posted_in">Category: <a
                                 href="{{ route('category.service.show', $service->category->slug) }}"
@@ -75,10 +73,9 @@
                                             class="woocommerce-Price-amount amount"><bdi>{{ $service->price }}<span
                                                     class="woocommerce-Price-currencySymbol">&#36;</span></bdi></span></span>
                                 </a>
-                                <a href="indexa21d.html?add-to-cart=119" data-quantity="1"
-                                    class="button wp-element-button product_type_simple add_to_cart_button ajax_add_to_cart"
-                                    data-product_id="119" data-product_sku
-                                    aria-label="Add &ldquo;Guest Posting DA 60+&rdquo; to your cart" rel="nofollow">Buy
+                                <a class="button wp-element-button product_type_simple add-to-cart"
+                                    data-service-id="{{ $service->id }}" data-service-name="{{ $service->name }}"
+                                    data-service-price="{{ $service->price }}">Buy
                                     Now</a>
                             </li>
                         @endforeach

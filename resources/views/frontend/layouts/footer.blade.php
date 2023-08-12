@@ -218,3 +218,28 @@
         });
     });
 </script>
+
+
+<script>
+    $(document).ready(function() {
+        $('.remove').click(function() {
+            const serviceId = $(this).data('service-id');
+
+            $.ajax({
+                url: '{{ route('removeFromCart') }}',
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    service_id: serviceId
+                },
+                success: function(response) {
+                    // Reload the page to update the cart content
+                    window.location.reload();
+                },
+                error: function(error) {
+                    console.error('Error removing item from cart:', error);
+                }
+            });
+        });
+    });
+</script>

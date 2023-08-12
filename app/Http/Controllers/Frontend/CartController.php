@@ -47,4 +47,20 @@ class CartController extends Controller
 
         return response()->json(['message' => 'Service added to cart']);
     }
+
+    public function removeFromCart(Request $request)
+    {
+        $serviceId = $request->input('service_id');
+        $cart = session()->get('cart', []);
+
+        foreach ($cart as $index => $item) {
+            if ($item['id'] == $serviceId) {
+                array_splice($cart, $index, 1);
+                break;
+            }
+        }
+
+        session(['cart' => $cart]);
+        return response()->json(['success' => true]);
+    }
 }

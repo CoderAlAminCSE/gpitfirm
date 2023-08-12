@@ -25,7 +25,8 @@
                                 @foreach (session('cart') as $service)
                                     <tr class="woocommerce-cart-form__cart-item cart_item">
                                         <td class="product-remove">
-                                            <a href="#" class="remove" aria-label="Remove this item">×</a>
+                                            <a href="" class="remove" data-service-id="{{ $service['id'] }}"
+                                                aria-label="Remove this item">×</a href="">
                                         </td>
                                         <td class="product-thumbnail">
                                             <a href="#"><img width="300" height="300"
@@ -50,7 +51,6 @@
                                         </td>
                                     </tr>
                                 @endforeach
-
                             </tbody>
                         </table>
 

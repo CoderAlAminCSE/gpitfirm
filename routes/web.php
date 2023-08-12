@@ -38,6 +38,8 @@ Route::get('/cart', function () {
 });
 
 Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
+Route::post('/remove-from-cart', [CartController::class, 'removeFromCart'])->name('removeFromCart');
+
 
 Route::get('/guest-post', function () {
     return view('frontend/guest_post');

@@ -45,7 +45,25 @@ class CartController extends Controller
         // Store the updated cart in the session
         session(['cart' => $cart]);
 
-        return response()->json(['message' => 'Service added to cart']);
+        // Calculate the new subtotal and total
+        $subtotal = 0;
+        foreach ($cart as $item) {
+            $subtotal += $item['price'] * $item['quantity'];
+        }
+
+        // Update the session with the new subtotal
+        session(['subtotal' => $subtotal]);
+
+        // Calculate the total (could include taxes, shipping, etc.)
+        $total = $subtotal;
+
+        // Update the session with the new total
+        session(['total' => $total]);
+
+        return response()->json([
+            'message' => 'Service added to cart',
+            'cartTotalsHtml' => view('frontend.components.cart.cart_total')->render(),
+        ]);
     }
 
     public function removeFromCart(Request $request)

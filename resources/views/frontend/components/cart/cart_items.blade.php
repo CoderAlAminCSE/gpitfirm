@@ -55,34 +55,7 @@
                         </table>
 
 
-                        <div class="cart-collaterals mt-5">
-                            <div class="cart_totals ">
-                                <h2>Cart totals</h2>
-                                <table cellspacing="0" class="shop_table shop_table_responsive">
-                                    <tbody>
-                                        <tr class="cart-subtotal">
-                                            <th>Subtotal</th>
-                                            <td data-title="Subtotal"><span
-                                                    class="woocommerce-Price-amount amount"><bdi>1,200.00<span
-                                                            class="woocommerce-Price-currencySymbol">$</span></bdi></span>
-                                            </td>
-                                        </tr>
-                                        <tr class="order-total">
-                                            <th>Total</th>
-                                            <td data-title="Total"><strong><span
-                                                        class="woocommerce-Price-amount amount"><bdi>1,200.00<span
-                                                                class="woocommerce-Price-currencySymbol">$</span></bdi></span></strong>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <div class="wc-proceed-to-checkout">
-                                    <a href="#"class="checkout-button button alt wc-forward">Proceed
-                                        to checkout
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                      @include('frontend.components.cart.cart_total')
                     </div>
                 @else
                     <div class="woocommerce">

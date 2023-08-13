@@ -209,6 +209,8 @@
                     _token: "{{ csrf_token() }}"
                 },
                 success: function(response) {
+                    // Update cart totals section
+                    $('.cart_totals').html(response.cartTotalsHtml);
                     alert(response.message);
                 },
                 error: function(error) {

@@ -235,7 +235,6 @@
                     service_id: serviceId
                 },
                 success: function(response) {
-                    // Reload the page to update the cart content
                     window.location.reload();
                 },
                 error: function(error) {

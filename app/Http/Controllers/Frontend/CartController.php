@@ -71,14 +71,28 @@ class CartController extends Controller
         $serviceId = $request->input('service_id');
         $cart = session()->get('cart', []);
 
+        $itemRemoved = false;
         foreach ($cart as $index => $item) {
             if ($item['id'] == $serviceId) {
                 array_splice($cart, $index, 1);
+                $itemRemoved = true;
                 break;
             }
         }
 
-        session(['cart' => $cart]);
-        return response()->json(['success' => true]);
+        if ($itemRemoved) {
+            $subtotal = 0;
+            foreach ($cart as $item) {
+                $subtotal += $item['price'] * $item['quantity'];
+            }
+
+            session(['subtotal' => $subtotal]);
+            $total = $subtotal;
+            session(['total' => $total]);
+            session(['cart' => $cart]);
+            return response()->json(['success' => true]);
+        }
+
+        return response()->json(['success' => false]);
     }
 }

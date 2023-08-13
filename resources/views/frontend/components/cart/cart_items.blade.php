@@ -39,15 +39,22 @@
                                             <a href="#">{{ $service['name'] }}</a>
                                         </td>
                                         <td class="product-price" data-title="Price">
-                                            <span class="woocommerce-Price-amount amount"><bdi>{{ $service['price'] }}<span
-                                                        class="woocommerce-Price-currencySymbol">$</span></bdi></span>
+                                            <span class="woocommerce-Price-amount amount">
+                                                <bdi>{{ number_format($service['price'], 2) }}
+                                                    <span class="woocommerce-Price-currencySymbol">$</span>
+                                                </bdi>
+                                            </span>
                                         </td>
                                         <td class="product-quantity" data-title="Quantity">
-                                            {{ $service['quantity'] }} <input type="hidden" value=""> </td>
+                                            {{ $service['quantity'] }}
+                                            <input type="hidden" value="">
+                                        </td>
                                         <td class="product-subtotal" data-title="Subtotal">
                                             <span class="woocommerce-Price-amount amount">
-                                                <bdi>{{ $service['price'] }}
-                                                    <span class="woocommerce-Price-currencySymbol">$</span></bdi></span>
+                                                <bdi>{{ number_format($service['price'] * $service['quantity'], 2) }}
+                                                    <span class="woocommerce-Price-currencySymbol">$</span>
+                                                </bdi>
+                                            </span>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -55,7 +62,7 @@
                         </table>
 
 
-                      @include('frontend.components.cart.cart_total')
+                        @include('frontend.components.cart.cart_total')
                     </div>
                 @else
                     <div class="woocommerce">

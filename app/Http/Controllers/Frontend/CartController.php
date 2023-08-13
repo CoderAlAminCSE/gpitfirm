@@ -12,59 +12,45 @@ class CartController extends Controller
     {
         $serviceId = $request->input('service_id');
         $serviceName = $request->input('service_name');
-        $servicePrice = $request->input('service_price');
+        $servicePrice = floatval($request->input('service_price'));
 
-        // Create an array to store the service details
-        $service = [
-            'id' => $serviceId,
-            'name' => $serviceName,
-            'price' => $servicePrice,
-            'quantity' => 1
-        ];
-
-        // Get the current cart from the session
         $cart = session()->get('cart', []);
 
-        // Check if the service is already in the cart
-        $serviceExists = false;
-        foreach ($cart as $item) {
-            if ($item['id'] == $serviceId) {
-                $serviceExists = true;
-                break;
-            }
+        $serviceIndex = array_search($serviceId, array_column($cart, 'id'));
+
+        if ($serviceIndex !== false) {
+            // Service already exists, update quantity
+            $cart[$serviceIndex]['quantity']++;
+        } else {
+            // Service doesn't exist, add it to the cart
+            $cart[] = [
+                'id' => $serviceId,
+                'name' => $serviceName,
+                'price' => $servicePrice,
+                'quantity' => 1
+            ];
         }
 
-        // If the service already exists, show an alert message
-        if ($serviceExists) {
-            return response()->json(['message' => 'Item is already in the cart']);
-        }
-
-        // If the service is not in the cart, add it
-        $cart[] = $service;
-
-        // Store the updated cart in the session
+        // Update session cart
         session(['cart' => $cart]);
 
-        // Calculate the new subtotal and total
-        $subtotal = 0;
-        foreach ($cart as $item) {
-            $subtotal += $item['price'] * $item['quantity'];
-        }
-
-        // Update the session with the new subtotal
-        session(['subtotal' => $subtotal]);
-
-        // Calculate the total (could include taxes, shipping, etc.)
+        // Calculate new totals
+        $subtotal = array_sum(array_map(function ($item) {
+            return $item['price'] * $item['quantity'];
+        }, $cart));
         $total = $subtotal;
 
-        // Update the session with the new total
-        session(['total' => $total]);
+        session(['subtotal' => $subtotal, 'total' => $total]);
 
         return response()->json([
             'message' => 'Service added to cart',
             'cartTotalsHtml' => view('frontend.components.cart.cart_total')->render(),
         ]);
     }
+
+
+
+
 
     public function removeFromCart(Request $request)
     {

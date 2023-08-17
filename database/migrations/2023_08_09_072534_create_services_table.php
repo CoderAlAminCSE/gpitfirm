@@ -23,7 +23,6 @@ return new class extends Migration
             $table->boolean('active');
             $table->timestamps();
 
-            // Define foreign key constraint
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }

@@ -16,7 +16,7 @@
             </tbody>
         </table>
         <div class="wc-proceed-to-checkout">
-            <a href="#"class="checkout-button button alt wc-forward">Proceed
+            <a href="{{ route('frontend.service.checkout') }}"class="checkout-button button alt wc-forward">Proceed
                 to checkout
             </a>
         </div>

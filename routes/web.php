@@ -43,7 +43,7 @@ Route::post('/remove-from-cart', [CartController::class, 'removeFromCart'])->nam
 
 Route::get('/checkout', function () {
     return view('frontend.checkout');
-});
+})->name('frontend.service.checkout');
 
 
 Route::get('/guest-post', function () {

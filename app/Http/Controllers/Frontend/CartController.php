@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Session;
+use App\Models\Order;
+use App\Models\Invoice;
+use App\Models\OrderItem;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -75,5 +79,77 @@ class CartController extends Controller
         }
 
         return response()->json(['success' => false]);
+    }
+
+
+
+    public function cartOrderPlace(Request $request)
+    {
+        $user = Auth::user();
+        $cart = session()->get('cart', []);
+        $total = session('total');
+
+        $latestOrder = Order::latest('id')->first();
+        if ($latestOrder) {
+            $orderNumber = intval(substr($latestOrder->order_number, 4)) + 1;
+        } else {
+            $orderNumber = 1;
+        }
+        $formattedOrderNumber = 'ord-' . str_pad($orderNumber, 6, '0', STR_PAD_LEFT);
+
+        $order = new Order;
+        $order->order_number = $formattedOrderNumber;
+        $order->user_id = $user->id;
+        $order->total_amount = $total;
+        $order->payment_status = false;
+        $order->save();
+
+        foreach ($cart as $item) {
+            $orderItem = new OrderItem([
+                'order_id' => $order->id,
+                'service_id' => $item['id'],
+                'price' => $item['price'],
+            ]);
+            $orderItem->save();
+        }
+
+        session()->forget('cart');
+        session()->forget('subtotal');
+        session()->forget('total');
+
+        return redirect()->route('frontend.service.checkout', ['order' => $order->id]);
+    }
+
+
+    public function cartCheckoutPage($orderId)
+    {
+        $order = Order::with('items')->find($orderId);
+        return view('frontend.checkout', compact('order'));
+    }
+
+    public function orderCheckoutConfirm($orderId)
+    {
+        $order = Order::with('items')->find($orderId);
+
+        $order->payment_status = true;
+        $order->save();
+
+        $latestInvoice = Invoice::latest('id')->first();
+        if ($latestInvoice) {
+            $invoiceNumber = intval(substr($latestInvoice->invoice_number, 4)) + 1;
+        } else {
+            $invoiceNumber = 1;
+        }
+        $formattedInvoiceNumber = 'inv-' . str_pad($invoiceNumber, 6, '0', STR_PAD_LEFT);
+
+        $invoice = new Invoice([
+            'invoice_number' => $formattedInvoiceNumber,
+            'user_id' => $order->user_id,
+            'order_id' => $order->id,
+            'total_amount' => $order->total_amount,
+        ]);
+        $invoice->save();
+
+        return redirect()->route('customer.account');
     }
 }

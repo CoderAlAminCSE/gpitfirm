@@ -13,10 +13,9 @@ return new class extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->integer('invoice_number');
+            $table->string('invoice_number');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('order_id');
-            $table->dateTime('invoice_date');
             $table->decimal('total_amount', 10, 2);
             $table->timestamps();
 

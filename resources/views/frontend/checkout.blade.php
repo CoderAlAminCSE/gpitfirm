@@ -18,7 +18,7 @@
     @include('frontend.components.checkout.checkout_content')
 
 
-   
+
 
     <!-- footer -->
     @include('frontend/layouts.footer')

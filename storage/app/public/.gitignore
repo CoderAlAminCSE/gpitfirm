@@ -1,2 +1,12 @@
-*
-!.gitignore
+/vendor
+/node_modules
+/public/build
+
+# Large media files
+*.mp4
+*.tiff
+*.avi
+*.flv
+*.mov
+*.wmv
+*.zip

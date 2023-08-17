@@ -197,7 +197,7 @@
         $(".add-to-cart").on("click", function() {
             const serviceId = $(this).data("service-id");
             const serviceName = $(this).data("service-name");
-            const servicePrice = parseFloat($(this).data("service-price"));
+            const servicePrice = $(this).data("service-price");
 
             $.ajax({
                 type: "POST",
@@ -205,10 +205,11 @@
                 data: {
                     service_id: serviceId,
                     service_name: serviceName,
-                    service_price: servicePrice.toFixed(2), // Convert to 2 decimal places
+                    service_price: servicePrice,
                     _token: "{{ csrf_token() }}"
                 },
                 success: function(response) {
+                    // Update cart totals section
                     $('.cart_totals').html(response.cartTotalsHtml);
                     alert(response.message);
                 },
@@ -219,7 +220,6 @@
         });
     });
 </script>
-
 
 
 <script>

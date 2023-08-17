@@ -13,7 +13,6 @@
                             <thead>
                                 <tr>
                                     <th class="product-remove">&nbsp;</th>
-                                    <th class="product-thumbnail">&nbsp;</th>
                                     <th class="product-name">Product</th>
                                     <th class="product-price">Price</th>
                                     <th class="product-quantity">Quantity</th>
@@ -28,33 +27,19 @@
                                             <a href="" class="remove" data-service-id="{{ $service['id'] }}"
                                                 aria-label="Remove this item">×</a href="">
                                         </td>
-                                        <td class="product-thumbnail">
-                                            <a href="#"><img width="300" height="300"
-                                                    class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
-                                                    alt="product image" loading="lazy" srcset=""
-                                                    sizes="(max-width: 300px) 100vw,300px">
-                                            </a>
-                                        </td>
                                         <td class="product-name" data-title="Product">
                                             <a href="#">{{ $service['name'] }}</a>
                                         </td>
                                         <td class="product-price" data-title="Price">
-                                            <span class="woocommerce-Price-amount amount">
-                                                <bdi>{{ number_format($service['price'], 2) }}
-                                                    <span class="woocommerce-Price-currencySymbol">$</span>
-                                                </bdi>
-                                            </span>
+                                            <span class="woocommerce-Price-amount amount"><bdi>{{ $service['price'] }}<span
+                                                        class="woocommerce-Price-currencySymbol">$</span></bdi></span>
                                         </td>
                                         <td class="product-quantity" data-title="Quantity">
-                                            {{ $service['quantity'] }}
-                                            <input type="hidden" value="">
-                                        </td>
+                                            {{ $service['quantity'] }} <input type="hidden" value=""> </td>
                                         <td class="product-subtotal" data-title="Subtotal">
                                             <span class="woocommerce-Price-amount amount">
-                                                <bdi>{{ number_format($service['price'] * $service['quantity'], 2) }}
-                                                    <span class="woocommerce-Price-currencySymbol">$</span>
-                                                </bdi>
-                                            </span>
+                                                <bdi>{{ $service['price'] }}
+                                                    <span class="woocommerce-Price-currencySymbol">$</span></bdi></span>
                                         </td>
                                     </tr>
                                 @endforeach

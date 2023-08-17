@@ -14,18 +14,13 @@ class CartController extends Controller
         $serviceName = $request->input('service_name');
         $servicePrice = $request->input('service_price');
 
-        // Create an array to store the service details
         $service = [
             'id' => $serviceId,
             'name' => $serviceName,
             'price' => $servicePrice,
             'quantity' => 1
         ];
-
-        // Get the current cart from the session
         $cart = session()->get('cart', []);
-
-        // Check if the service is already in the cart
         $serviceExists = false;
         foreach ($cart as $item) {
             if ($item['id'] == $serviceId) {
@@ -33,31 +28,17 @@ class CartController extends Controller
                 break;
             }
         }
-
-        // If the service already exists, show an alert message
         if ($serviceExists) {
             return response()->json(['message' => 'Item is already in the cart']);
         }
-
-        // If the service is not in the cart, add it
         $cart[] = $service;
-
-        // Store the updated cart in the session
         session(['cart' => $cart]);
-
-        // Calculate the new subtotal and total
         $subtotal = 0;
         foreach ($cart as $item) {
             $subtotal += $item['price'] * $item['quantity'];
         }
-
-        // Update the session with the new subtotal
         session(['subtotal' => $subtotal]);
-
-        // Calculate the total (could include taxes, shipping, etc.)
         $total = $subtotal;
-
-        // Update the session with the new total
         session(['total' => $total]);
 
         return response()->json([

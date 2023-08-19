@@ -117,7 +117,8 @@ class CartController extends Controller
         session()->forget('subtotal');
         session()->forget('total');
 
-        return redirect()->route('frontend.service.checkout', ['order' => $order->id]);
+        $order = Order::with('items')->find($order->id);
+        return view('frontend.checkout', compact('order'));
     }
 
 

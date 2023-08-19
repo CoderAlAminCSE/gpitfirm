@@ -41,9 +41,8 @@ Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add')
 Route::post('/remove-from-cart', [CartController::class, 'removeFromCart'])->name('removeFromCart');
 
 
-// order place route    
+// order place route
 Route::post('/cart/order/place', [CartController::class, 'cartOrderPlace'])->name('cart.order.place');
-Route::get('/checkout/{order}', [CartController::class, 'cartCheckoutPage'])->name('frontend.service.checkout');
 Route::post('/checkout/confirm/{order}', [CartController::class, 'orderCheckoutConfirm'])->name('frontend.checkout.confirm');
 
 Route::get('/guest-post', function () {

@@ -1,9 +1,15 @@
 <?php
 
-use App\Models\Category;
 use App\Models\Site;
+use App\Models\User;
+use App\Models\Service;
+use App\Models\Category;
+use App\Models\RefundPage;
 use App\Models\FaqPageContent;
 use App\Models\GeneralSetting;
+use App\Models\PrivacyPolicyPage;
+use App\Models\ResellerRulesPage;
+use App\Models\TermsConditionPage;
 use App\Models\HomePageHeroSection;
 use App\Models\HomePageAboutSection;
 use App\Models\HomePagePromoSection;
@@ -11,16 +17,18 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\HomePageContactSection;
 use App\Models\HomePageServiceSection;
 use App\Models\HomePageTestimonialSection;
-use App\Models\PrivacyPolicyPage;
-use App\Models\RefundPage;
-use App\Models\ResellerRulesPage;
-use App\Models\Service;
-use App\Models\TermsConditionPage;
 
 //logged in user data
 function loggedInUser()
 {
   return Auth::user();
+}
+
+
+//user data
+function userData($id)
+{
+  return User::findOrFail($id);
 }
 
 // get value from "general_settings" table

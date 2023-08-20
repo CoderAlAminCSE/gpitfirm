@@ -64,6 +64,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/my-account/orders', [AccountController::class, 'orderIndex'])->name('customer.account.order.list');
     Route::get('/my-account/downloads', [AccountController::class, 'downloadIndex'])->name('customer.account.download.list');
     Route::get('/my-account/details', [AccountController::class, 'accountDetails'])->name('customer.account.details');
+    Route::post('/my-account/update/{id}', [AccountController::class, 'accountUpdate'])->name('customer.account.update');
 });
 
 

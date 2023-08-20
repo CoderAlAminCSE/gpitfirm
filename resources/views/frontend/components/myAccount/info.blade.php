@@ -43,13 +43,18 @@
                             <div class="woocommerce-MyAccount-content bottom-gap">
                                 <div class="woocommerce-notices-wrapper"></div>
                                 <p>
-                                    Hello <strong>stit</strong> (not <strong>stit</strong>? <a href="#">Log
-                                        out</a>)</p>
+                                    Hello <strong>{{ loggedInUser()->name }}</strong> (not
+                                    <strong>{{ loggedInUser()->name }}</strong>? <a href="javascript:;"
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log
+                                        out</a>)
+                                </p>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
                                 <p>
-                                    From your account dashboard you can view your <a href="#">recent orders</a>,
-                                    manage your <a href="#">shipping
-                                        and
-                                        billing addresses</a>, and <a href="#">edit your password
+                                    From your account dashboard you can view your <a
+                                        href="{{ route('customer.account.order.list') }}">recent orders</a>,
+                                    manage your and <a href="{{ route('customer.account.details') }}">edit your password
                                         and account details</a>.</p>
                             </div>
 

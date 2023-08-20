@@ -22,22 +22,19 @@ class UserSeeder extends Seeder
         ]);
 
         User::create([
-            "name" => "customer",
+            "name" => "Rasel",
+            "fname" => "Md",
+            "lname" => "Rasel",
             "email" => "customer@mail.com",
             "type" => "customer",
             "password" => '$2y$10$2dXuJopzVDaHsxTTVl.CZexCjLpOG.Im5ncG8XV53ZAQoKlif69iS',
         ]);
 
         User::create([
-            "name" => "customer1",
+            "name" => "Shihab",
+            "fname" => "Md",
+            "lname" => "Shihab",
             "email" => "customer1@mail.com",
-            "type" => "customer",
-            "password" => '$2y$10$2dXuJopzVDaHsxTTVl.CZexCjLpOG.Im5ncG8XV53ZAQoKlif69iS',
-        ]);
-
-        User::create([
-            "name" => "customer2",
-            "email" => "customer2@mail.com",
             "type" => "customer",
             "password" => '$2y$10$2dXuJopzVDaHsxTTVl.CZexCjLpOG.Im5ncG8XV53ZAQoKlif69iS',
         ]);

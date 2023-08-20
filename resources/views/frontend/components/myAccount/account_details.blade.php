@@ -42,25 +42,26 @@
 
                             <div class="woocommerce-MyAccount-content bottom-gap">
                                 <div class="woocommerce-notices-wrapper"></div>
-                                <form class="woocommerce-EditAccountForm edit-account" action method="post">
+                                <form class="woocommerce-EditAccountForm edit-account"
+                                    action="{{ route('customer.account.update', Auth::user()->id) }}" method="post">
+                                    @csrf
                                     <div class="form-group">
                                         <p class="woocommerce-form-row woocommerce-form-row--first form-row form-row-first">
                                             <label for="account_first_name">First name&nbsp;<span
                                                     class="required">*</span></label>
                                             <input type="text"
                                                 class="woocommerce-Input woocommerce-Input--text input-text form-control"
-                                                name="account_first_name" id="account_first_name" autocomplete="given-name"
-                                                value="test" />
+                                                name="fname" id="account_first_name" autocomplete="given-name"
+                                                value="{{ loggedInUser()->fname }}" />
                                         </p>
                                     </div>
                                     <div class="form-group">
                                         <p class="woocommerce-form-row woocommerce-form-row--last form-row form-row-last">
-                                            <label for="account_last_name">Last name&nbsp;<span
-                                                    class="required">*</span></label>
+                                            <label for="lname">Last name&nbsp;<span class="required">*</span></label>
                                             <input type="text"
                                                 class="woocommerce-Input woocommerce-Input--text input-text form-control"
-                                                name="account_last_name" id="account_last_name" autocomplete="family-name"
-                                                value="test" />
+                                                name="lname" id="account_last_name" autocomplete="family-name"
+                                                value="{{ loggedInUser()->lname }}" />
                                         </p>
                                     </div>
                                     <div class="clear"></div>
@@ -70,7 +71,11 @@
                                                     class="required">*</span></label>
                                             <input type="text"
                                                 class="woocommerce-Input woocommerce-Input--text input-text form-control"
-                                                name="account_display_name" id="account_display_name" value="stit" />
+                                                name="name" id="account_display_name"
+                                                value="{{ loggedInUser()->name }}" />
+                                            @error('name')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                             <span><em>This will be how your name will be displayed in the account section
                                                     and in reviews</em></span>
                                         </p>
@@ -82,8 +87,11 @@
                                                     class="required">*</span></label>
                                             <input type="email"
                                                 class="woocommerce-Input woocommerce-Input--email input-text form-control"
-                                                name="account_email" id="account_email" autocomplete="email"
-                                                value="softtechitcommon@gmail.com" />
+                                                name="email" id="account_email" autocomplete="email"
+                                                value="{{ loggedInUser()->email }}" />
+                                            @error('email')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </p>
                                     </div>
                                     <fieldset>
@@ -120,12 +128,8 @@
                                     </fieldset>
                                     <div class="clear"></div>
                                     <p>
-                                        <input type="hidden" id="save-account-details-nonce"
-                                            name="save-account-details-nonce" value="67085a1977" /><input type="hidden"
-                                            name="_wp_http_referer" value="/my-account/edit-account/" /> <button
-                                            type="submit" class="woocommerce-Button button" name="save_account_details"
-                                            value="Save changes">Save changes</button>
-                                        <input type="hidden" name="action" value="save_account_details" />
+                                        <button type="submit" class="woocommerce-Button button"
+                                            name="save_account_details" value="Save changes">Save changes</button>
                                     </p>
                                 </form>
                             </div>

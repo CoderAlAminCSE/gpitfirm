@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class AccountController extends Controller
 {
@@ -16,7 +17,7 @@ class AccountController extends Controller
     }
 
 
-      /**
+    /**
      * Display the customer account orders page content.
      */
     public function orderIndex()
@@ -34,7 +35,7 @@ class AccountController extends Controller
     }
 
 
-  /**
+    /**
      * Display the customer account details content.
      */
     public function accountDetails()
@@ -42,5 +43,35 @@ class AccountController extends Controller
         return view('frontend.components.myAccount.account_details');
     }
 
-    
+
+    /**
+     * Update the customer account details
+     */
+    public function accountUpdate(Request $request, User $user, $id)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+        ]);
+
+        $updated_user = $user->findOrFail($id);
+        if ($request->fname) {
+            $updated_user->fname = $request->fname;
+        }
+
+        if ($request->lname) {
+            $updated_user->lname = $request->lname;
+        }
+
+        if ($request->name) {
+            $updated_user->name = $request->name;
+        }
+
+        if ($request->email) {
+            $updated_user->email = $request->email;
+        }
+
+        $updated_user->save();
+        return back();
+    }
 }

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 | In this route we will configure the service routes
 */
 
-Route::group(['prefix' => 'dashboard/service/', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'dashboard/service/', 'middleware' => ['auth', 'admin']], function () {
   // service category related routes
   Route::get('category/index', [ServiceManagementController::class, 'categoryIndex'])->name('service.category.index');
   Route::post('category/index', [ServiceManagementController::class, 'categoryStore'])->name('service.category.store');

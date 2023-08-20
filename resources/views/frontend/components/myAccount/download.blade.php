@@ -18,15 +18,23 @@
                                     </li>
                                     <li
                                         class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--downloads is-active nav-item">
-                                        <a href="{{ route('customer.account.download.list') }}" class="nav-link">Downloads</a>
+                                        <a href="{{ route('customer.account.download.list') }}"
+                                            class="nav-link">Downloads</a>
                                     </li>
                                     <li
                                         class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--edit-account nav-item">
-                                        <a href="{{ route('customer.account.details') }}" class="nav-link">Account details</a>
+                                        <a href="{{ route('customer.account.details') }}" class="nav-link">Account
+                                            details</a>
                                     </li>
                                     <li
                                         class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--customer-logout nav-item">
-                                        <a href="#" class="nav-link">Logout</a>
+                                        <a onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();"
+                                            class="nav-link">Logout</a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
                                     </li>
                                 </ul>
                             </nav>

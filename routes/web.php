@@ -19,7 +19,7 @@ use App\Http\Controllers\Frontend\ServicesController;
 |
 */
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
@@ -59,10 +59,13 @@ Route::get('/lost-password', function () {
 });
 
 
-Route::get('/my-account', [AccountController::class, 'myAccount'])->name('customer.account');
-Route::get('/my-account/orders', [AccountController::class, 'orderIndex'])->name('customer.account.order.list');
-Route::get('/my-account/downloads', [AccountController::class, 'downloadIndex'])->name('customer.account.download.list');
-Route::get('/my-account/details', [AccountController::class, 'accountDetails'])->name('customer.account.details');
+Route::middleware('auth')->group(function () {
+    Route::get('/my-account', [AccountController::class, 'myAccount'])->name('customer.account');
+    Route::get('/my-account/orders', [AccountController::class, 'orderIndex'])->name('customer.account.order.list');
+    Route::get('/my-account/downloads', [AccountController::class, 'downloadIndex'])->name('customer.account.download.list');
+    Route::get('/my-account/details', [AccountController::class, 'accountDetails'])->name('customer.account.details');
+});
+
 
 
 Route::get('/refund', function () {

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 | In this route we will configure the user related routes
 */
 
-Route::group(['prefix' => 'dashboard/general', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'dashboard/general', 'middleware' => ['auth', 'admin']], function () {
 
   // General settings routes
   Route::get('/setting', [GeneralSettingController::class, 'index'])->name('general.setting.index');

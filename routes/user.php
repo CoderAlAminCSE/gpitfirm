@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 | In this route we will configure the user related routes
 */
 
-Route::group(['prefix' => 'dashboard/user', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'dashboard/user', 'middleware' => ['auth', 'admin']], function () {
 
   // Admin user routes
   Route::get('/index', [UserController::class, 'index'])->name('user.index');

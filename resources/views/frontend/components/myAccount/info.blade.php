@@ -28,7 +28,13 @@
                                     </li>
                                     <li
                                         class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--customer-logout nav-item">
-                                        <a href="#" class="nav-link">Logout</a>
+                                        <a onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();"
+                                            class="nav-link">Logout</a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
                                     </li>
                                 </ul>
                             </nav>

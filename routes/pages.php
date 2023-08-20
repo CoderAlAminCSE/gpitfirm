@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Home page routes
-Route::group(['prefix' => 'dashboard/page/home', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'dashboard/page/home', 'middleware' => ['auth', 'admin']], function () {
   // Home page hero section routes
   Route::get('/hero/index', [PagesController::class, 'homeIndex'])->name('pages.home.hero.index');
   Route::post('/hero/update', [PagesController::class, 'homeUpdate'])->name('pages.home.hero.update');
@@ -56,7 +56,7 @@ Route::group(['prefix' => 'dashboard/page/home', 'middleware' => ['auth']], func
 
 
 // FAQ page routes
-Route::group(['prefix' => 'dashboard/page/faq', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'dashboard/page/faq', 'middleware' => ['auth', 'admin']], function () {
   Route::get('/index', [FaqPageController::class, 'index'])->name('pages.faq.index');
   Route::post('/create', [FaqPageController::class, 'create'])->name('pages.faq.crete');
   Route::get('/edit/{id}', [FaqPageController::class, 'edit'])->name('pages.faq.edit');
@@ -66,28 +66,28 @@ Route::group(['prefix' => 'dashboard/page/faq', 'middleware' => ['auth']], funct
 
 
 // Refund page routes
-Route::group(['prefix' => 'dashboard/page/refund', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'dashboard/page/refund', 'middleware' => ['auth', 'admin']], function () {
   Route::get('/index', [RefundPageController::class, 'index'])->name('pages.refund.index');
   Route::post('/update', [RefundPageController::class, 'update'])->name('pages.refund.update');
 });
 
 
 // privacy policy page routes
-Route::group(['prefix' => 'dashboard/page/privacy-policy', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'dashboard/page/privacy-policy', 'middleware' => ['auth', 'admin']], function () {
   Route::get('/index', [PrivacyPolicyPageController::class, 'index'])->name('pages.privacy-policy.index');
   Route::post('/update', [PrivacyPolicyPageController::class, 'update'])->name('pages.privacy-policy.update');
 });
 
 
 // reseller rules page routes
-Route::group(['prefix' => 'dashboard/page/reseller-rules', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'dashboard/page/reseller-rules', 'middleware' => ['auth', 'admin']], function () {
   Route::get('/index', [ResellerRulesPageController::class, 'index'])->name('pages.reseller-rules.index');
   Route::post('/update', [ResellerRulesPageController::class, 'update'])->name('pages.reseller-rules.update');
 });
 
 
 // turms and condition  page routes
-Route::group(['prefix' => 'dashboard/page/terms-condition', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'dashboard/page/terms-condition', 'middleware' => ['auth', 'admin']], function () {
   Route::get('/index', [TermsConditionPageConrtoller::class, 'index'])->name('pages.terms-condition.index');
   Route::post('/update', [TermsConditionPageConrtoller::class, 'update'])->name('pages.terms-condition.update');
 });

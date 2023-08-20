@@ -45,6 +45,16 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public function isAdmin()
+    {
+        return $this->type === 'admin';
+    }
+
+    public function isCustomer()
+    {
+        return $this->type === 'customer';
+    }
+
 
     public function orders()
     {

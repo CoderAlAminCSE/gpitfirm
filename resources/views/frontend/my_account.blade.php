@@ -16,8 +16,7 @@
         <!-- hero-section -->
         @include('frontend/components.myAccount.hero')
 
-        <!-- info-section -->
-        @include('frontend/components.myAccount.info')
+				@yield('account_content')
 
         <!-- footer -->
         @include('frontend/layouts.footer')

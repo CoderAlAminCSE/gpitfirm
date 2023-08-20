@@ -9,7 +9,7 @@
                             <nav class="woocommerce-MyAccount-navigation bottom-gap">
                                 <ul class="nav nav-pills flex-column mb-auto">
                                     <li
-                                        class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--dashboard is-active nav-item">
+                                        class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--dashboard nav-item">
                                         <a href="{{ route('customer.account') }}" class="nav-link">Dashboard</a>
                                     </li>
                                     <li
@@ -17,14 +17,12 @@
                                         <a href="{{ route('customer.account.order.list') }}" class="nav-link">Orders</a>
                                     </li>
                                     <li
-                                        class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--downloads nav-item">
-                                        <a href="{{ route('customer.account.download.list') }}"
-                                            class="nav-link">Downloads</a>
+                                        class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--downloads is-active nav-item">
+                                        <a href="{{ route('customer.account.download.list') }}" class="nav-link">Downloads</a>
                                     </li>
                                     <li
                                         class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--edit-account nav-item">
-                                        <a href="{{ route('customer.account.details') }}" class="nav-link">Account
-                                            details</a>
+                                        <a href="{{ route('customer.account.details') }}" class="nav-link">Account details</a>
                                     </li>
                                     <li
                                         class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--customer-logout nav-item">
@@ -33,18 +31,13 @@
                                 </ul>
                             </nav>
 
-
                             <div class="woocommerce-MyAccount-content bottom-gap">
                                 <div class="woocommerce-notices-wrapper"></div>
-                                <p>
-                                    Hello <strong>stit</strong> (not <strong>stit</strong>? <a href="#">Log
-                                        out</a>)</p>
-                                <p>
-                                    From your account dashboard you can view your <a href="#">recent orders</a>,
-                                    manage your <a href="#">shipping
-                                        and
-                                        billing addresses</a>, and <a href="#">edit your password
-                                        and account details</a>.</p>
+                                <div class="woocommerce-Message woocommerce-Message--info woocommerce-info">
+                                    <a class="woocommerce-Button button" href="/services">
+                                        Browse products </a>
+                                    No downloads available yet.
+                                </div>
                             </div>
 
                         </div>

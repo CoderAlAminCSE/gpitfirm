@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Frontend\AccountController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CategoryController;
 use App\Http\Controllers\Frontend\ServicesController;
@@ -57,9 +58,12 @@ Route::get('/lost-password', function () {
     return view('frontend/lost_password');
 });
 
-Route::get('/my-account', function () {
-    return view('frontend/my_account');
-})->name('customer.account');
+
+Route::get('/my-account', [AccountController::class, 'myAccount'])->name('customer.account');
+Route::get('/my-account/orders', [AccountController::class, 'orderIndex'])->name('customer.account.order.list');
+Route::get('/my-account/downloads', [AccountController::class, 'downloadIndex'])->name('customer.account.download.list');
+Route::get('/my-account/details', [AccountController::class, 'accountDetails'])->name('customer.account.details');
+
 
 Route::get('/refund', function () {
     return view('frontend/refund');
@@ -75,12 +79,7 @@ Route::get('/services', function () {
 
 Route::get('/service/{category}', [ServicesController::class, 'categoryWiseServiceShow'])->name('category.service.show');
 
-
 Route::get('/service/{service}/show', [ServicesController::class, 'singleServiceShow'])->name('single.service.show');
-
-// Route::get('/single-product', function () {
-//     return view('frontend/single_product');
-// });
 
 Route::get('/contact', function () {
     return view('frontend/contact');

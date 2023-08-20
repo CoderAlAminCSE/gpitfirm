@@ -47,7 +47,7 @@
                                         <tr>
                                             <th
                                                 class="woocommerce-orders-table__header woocommerce-orders-table__header-order-number">
-                                                <span class="nobr">Order</span>
+                                                <span class="nobr">Order Number</span>
                                             </th>
                                             <th
                                                 class="woocommerce-orders-table__header woocommerce-orders-table__header-order-date">
@@ -68,64 +68,46 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr
-                                            class="woocommerce-orders-table__row woocommerce-orders-table__row--status-pending order">
-                                            <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-number"
-                                                data-title="Order">
-                                                <a href="https://gpitfirm.com/my-account/view-order/356/">
-                                                    #356 </a>
-                                            </td>
-                                            <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-date"
-                                                data-title="Date">
-                                                <time datetime="2023-08-20T05:37:15+00:00">August 20, 2023</time>
-                                            </td>
-                                            <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-status"
-                                                data-title="Status">
-                                                Pending payment
-                                            </td>
-                                            <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-total"
-                                                data-title="Total">
-                                                <span class="woocommerce-Price-amount amount">1,400.00<span
-                                                        class="woocommerce-Price-currencySymbol">&#036;</span></span> for 2
-                                                items
-                                            </td>
-                                            <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-actions"
-                                                data-title="Actions">
-                                                <a href="https://gpitfirm.com/checkout/order-pay/356/?pay_for_order=true&#038;key=wc_order_DGdXwHbIjzIql"
-                                                    class="woocommerce-button button pay">Pay</a><a
-                                                    href="https://gpitfirm.com/my-account/view-order/356/"
-                                                    class="woocommerce-button button view">View</a><a
-                                                    href="https://gpitfirm.com/cart/?cancel_order=true&#038;order=wc_order_DGdXwHbIjzIql&#038;order_id=356&#038;redirect=https%3A%2F%2Fgpitfirm.com%2Fmy-account%2F&#038;_wpnonce=3b2f6a74cd"
-                                                    class="woocommerce-button button cancel">Cancel</a>
-                                            </td>
-                                        </tr>
-                                        <tr
-                                            class="woocommerce-orders-table__row woocommerce-orders-table__row--status-cancelled order">
-                                            <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-number"
-                                                data-title="Order">
-                                                <a href="https://gpitfirm.com/my-account/view-order/352/">
-                                                    #352 </a>
-                                            </td>
-                                            <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-date"
-                                                data-title="Date">
-                                                <time datetime="2023-08-13T09:04:27+00:00">August 13, 2023</time>
-                                            </td>
-                                            <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-status"
-                                                data-title="Status">
-                                                Cancelled
-                                            </td>
-                                            <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-total"
-                                                data-title="Total">
-                                                <span class="woocommerce-Price-amount amount">700.00<span
-                                                        class="woocommerce-Price-currencySymbol">&#036;</span></span> for 1
-                                                item
-                                            </td>
-                                            <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-actions"
-                                                data-title="Actions">
-                                                <a href="https://gpitfirm.com/my-account/view-order/352/"
-                                                    class="woocommerce-button button view">View</a>
-                                            </td>
-                                        </tr>
+                                        @forelse ($orders as $order)
+                                            <tr
+                                                class="woocommerce-orders-table__row woocommerce-orders-table__row--status-pending order">
+                                                <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-number"
+                                                    data-title="Order">
+                                                    <a href="#">
+                                                        {{ $order->order_number }} </a>
+                                                </td>
+                                                <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-date"
+                                                    data-title="Date">
+                                                    <time
+                                                        datetime="2023-08-20T05:37:15+00:00">{{ $order->created_at->format('F d, Y') }}</time>
+                                                </td>
+                                                <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-status"
+                                                    data-title="Status">
+                                                    Pending payment
+                                                </td>
+                                                <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-total"
+                                                    data-title="Total">
+                                                    <span
+                                                        class="woocommerce-Price-amount amount">${{ $order->total_amount }}</span>
+                                                    for {{ $order->items->count() }}
+                                                    items
+                                                </td>
+                                                <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-actions"
+                                                    data-title="Actions">
+                                                    <a href="https://gpitfirm.com/checkout/order-pay/356/?pay_for_order=true&#038;key=wc_order_DGdXwHbIjzIql"
+                                                        class="woocommerce-button button pay">Pay</a><a
+                                                        href="https://gpitfirm.com/my-account/view-order/356/"
+                                                        class="woocommerce-button button view">View</a><a
+                                                        href="https://gpitfirm.com/cart/?cancel_order=true&#038;order=wc_order_DGdXwHbIjzIql&#038;order_id=356&#038;redirect=https%3A%2F%2Fgpitfirm.com%2Fmy-account%2F&#038;_wpnonce=3b2f6a74cd"
+                                                        class="woocommerce-button button cancel">Cancel</a>
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="11" class="text-center">No data found.</td>
+                                            </tr>
+                                        @endforelse
+
                                     </tbody>
                                 </table>
                             </div>

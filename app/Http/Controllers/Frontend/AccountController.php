@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Models\User;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
 {
@@ -22,7 +24,8 @@ class AccountController extends Controller
      */
     public function orderIndex()
     {
-        return view('frontend.components.myAccount.order');
+        $orders = Order::with('items')->where('user_id', Auth::user()->id)->get();
+        return view('frontend.components.myAccount.order', compact('orders'));
     }
 
 

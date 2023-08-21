@@ -5,7 +5,7 @@
         @if (Auth::check())
             <div class="col-md-7">
                 <div class="woocommerce-billing-fields">
-                    <h3>Billing details (Logged in)</h3>
+                    <h3>Account Info</h3>
                     <div class="woocommerce-billing-fields__field-wrapper">
                         <p class="form-row form-group validate-required" id="account_username_field" data-priority><label
                                 for="account_username" class="control-label">
@@ -28,14 +28,18 @@
         @else
             <div class="col-md-7">
                 <div class="woocommerce-billing-fields">
-                    <h3>Billing details (Not logged in)</h3>
+                    <h3>Account Info</h3>
                     <div class="woocommerce-billing-fields__field-wrapper">
                         <p class="form-row form-group validate-required" id="account_username_field" data-priority>
                             <label for="account_username" class="control-label">
                                 Name&nbsp;<abbr class="required" title="required">*</abbr></label><span
                                 class="woocommerce-input-wrapper"><input type="text"
                                     class="input-text form-control input" name="name" id="account_username"
-                                    placeholder="name" /></span>
+                                    placeholder="name" value="{{ old('name') }}" required />
+                                @error('name')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </span>
                         </p>
 
                         <p class="form-row form-row-wide form-group validate-required validate-email"
@@ -43,7 +47,11 @@
                                 class="control-label">Email address&nbsp;<abbr class="required"
                                     title="required">*</abbr></label><span class="woocommerce-input-wrapper"><input
                                     type="email" class="input-text form-control input" name="email"
-                                    id="billing_email" placeholder="email" required /></span>
+                                    id="billing_email" placeholder="email" value="{{ old('email') }}" required />
+                                @error('email')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </span>
                         </p>
 
                         <p class="form-row form-group validate-required" id="account_password_field" data-priority>
@@ -51,7 +59,11 @@
                                 account password&nbsp;<abbr class="required" title="required">*</abbr></label><span
                                 class="woocommerce-input-wrapper"><input type="text"
                                     class="input-text form-control input" name="password" id="account_password"
-                                    placeholder="Password" required /></span>
+                                    placeholder="Password" required />
+                                @error('password')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </span>
                         </p>
                     </div>
                 </div>

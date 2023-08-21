@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use Session;
+use App\Models\User;
 use App\Models\Order;
 use App\Models\Invoice;
 use App\Models\OrderItem;
@@ -85,9 +86,29 @@ class CartController extends Controller
 
     public function cartOrderPlace(Request $request)
     {
-        $user = Auth::user();
+
+
         $cart = session()->get('cart', []);
         $total = session('total');
+
+        if (Auth::check()) {
+            $user = Auth::user();
+        } else {
+            $request->validate([
+                'name' => 'required',
+                'email' => 'required',
+                'password' => 'required',
+            ]);
+            // Create a new user for the guest
+            $user = new User;
+            $user->name = $request->input('name');
+            $user->email = $request->input('email');
+            $user->password = bcrypt($request->input('password'));
+            $user->save();
+
+            // Log in the newly created user
+            Auth::login($user);
+        }
 
         $latestOrder = Order::latest('id')->first();
         if ($latestOrder) {

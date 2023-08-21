@@ -113,6 +113,23 @@ class CartController extends Controller
             $orderItem->save();
         }
 
+        $latestInvoice = Invoice::latest('id')->first();
+        if ($latestInvoice) {
+            $invoiceNumber = intval(substr($latestInvoice->invoice_number, 4)) + 1;
+        } else {
+            $invoiceNumber = 1;
+        }
+        $formattedInvoiceNumber = 'inv-' . str_pad($invoiceNumber, 6, '0', STR_PAD_LEFT);
+
+        $invoice = new Invoice([
+            'invoice_number' => $formattedInvoiceNumber,
+            'user_id' => $order->user_id,
+            'order_id' => $order->id,
+            'total_amount' => $order->total_amount,
+        ]);
+        $invoice->save();
+
+
         session()->forget('cart');
         session()->forget('subtotal');
         session()->forget('total');
@@ -131,26 +148,9 @@ class CartController extends Controller
     public function orderCheckoutConfirm($orderId)
     {
         $order = Order::with('items')->find($orderId);
-
         $order->payment_status = true;
+
         $order->save();
-
-        $latestInvoice = Invoice::latest('id')->first();
-        if ($latestInvoice) {
-            $invoiceNumber = intval(substr($latestInvoice->invoice_number, 4)) + 1;
-        } else {
-            $invoiceNumber = 1;
-        }
-        $formattedInvoiceNumber = 'inv-' . str_pad($invoiceNumber, 6, '0', STR_PAD_LEFT);
-
-        $invoice = new Invoice([
-            'invoice_number' => $formattedInvoiceNumber,
-            'user_id' => $order->user_id,
-            'order_id' => $order->id,
-            'total_amount' => $order->total_amount,
-        ]);
-        $invoice->save();
-
         return redirect()->route('customer.account');
     }
 }

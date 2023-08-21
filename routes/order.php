@@ -10,3 +10,9 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'dashboard/order/', 'middleware' => ['auth', 'admin']], function () {
   Route::get('index', [OrderController::class, 'orderIndex'])->name('order.index');
 });
+
+
+// Invoice related routes
+Route::group(['prefix' => 'dashboard/invoice/', 'middleware' => ['auth', 'admin']], function () {
+  Route::get('index', [OrderController::class, 'invoiceIndex'])->name('invoice.index');
+});

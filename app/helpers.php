@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\HomePageContactSection;
 use App\Models\HomePageServiceSection;
 use App\Models\HomePageTestimonialSection;
+use App\Models\Order;
 
 //logged in user data
 function loggedInUser()
@@ -163,4 +164,11 @@ function activeServices()
 function categoryWiseServices($id)
 {
   return Service::where('category_id', $id)->where('active', true)->get();
+}
+
+
+// get value from "order" table
+function orderInfo($id)
+{
+  return Order::where('id', $id)->first();
 }

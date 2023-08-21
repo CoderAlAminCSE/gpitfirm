@@ -103,6 +103,7 @@ class CartController extends Controller
             $user = new User;
             $user->name = $request->input('name');
             $user->email = $request->input('email');
+            $user->type = 'customer';
             $user->password = bcrypt($request->input('password'));
             $user->save();
 

@@ -62,6 +62,8 @@ Route::get('/lost-password', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/my-account', [AccountController::class, 'myAccount'])->name('customer.account');
     Route::get('/my-account/orders', [AccountController::class, 'orderIndex'])->name('customer.account.order.list');
+    Route::get('/my-account/orders/details/{order_number}', [AccountController::class, 'orderDetails'])->name('customer.account.order.details');
+    Route::get('/my-account/orer/cancel/{id}', [AccountController::class, 'orderCancel'])->name('customer.account.order.cancel');
     Route::get('/my-account/downloads', [AccountController::class, 'downloadIndex'])->name('customer.account.download.list');
     Route::get('/my-account/details', [AccountController::class, 'accountDetails'])->name('customer.account.details');
     Route::post('/my-account/update/{id}', [AccountController::class, 'accountUpdate'])->name('customer.account.update');

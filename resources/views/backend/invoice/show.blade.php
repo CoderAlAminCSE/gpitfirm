@@ -61,10 +61,12 @@
                                             </a>
                                             <!--end::Logo-->
                                             <!--begin::Action-->
-                                            @if ($invoice->order->payment_status == 1)
+                                            @if ($invoice->order->canceled_at != null)
+                                                <span class="badge badge-light-danger me-2">Canceled</span>
+                                            @elseif($invoice->order->payment_status == 1)
                                                 <span class="badge badge-light-success me-2">Confirmed</span>
                                             @else
-                                                <span class="badge badge-light-warning me-2">Pending</span>
+                                                <span class="badge badge-light-warning me-2">Pending Payment</span>
                                             @endif
                                             <!--end::Action-->
                                         </div>

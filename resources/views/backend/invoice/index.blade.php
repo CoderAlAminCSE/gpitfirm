@@ -94,10 +94,21 @@
                                             <td>${{ $invoice->total_amount }}</td>
                                             <td>
                                                 <div
-                                                    class="badge {{ orderInfo($invoice->order_id)->payment_status == 1 ? 'badge-light-success' : 'badge-light-warning' }}">
-                                                    {{ orderInfo($invoice->order_id)->payment_status == 1 ? 'Confirmed' : 'Panding' }}
+                                                    class="badge @if (orderInfo($invoice->order_id)->canceled_at != null) badge-light-danger
+                                                @elseif(orderInfo($invoice->order_id)->payment_status == 1)
+                                                badge-light-success
+                                                @else
+                                                badge-light-warning @endif ">
+                                                    @if (orderInfo($invoice->order_id)->canceled_at != null)
+                                                        Canceled
+                                                    @elseif(orderInfo($invoice->order_id)->payment_status == 1)
+                                                        Confirmed
+                                                    @else
+                                                        Pending payment
+                                                    @endif
                                                 </div>
                                             </td>
+
                                             <td class="text-end">
                                                 <a href="#"
                                                     class="btn btn-light btn-active-light-primary btn-flex btn-center btn-sm"

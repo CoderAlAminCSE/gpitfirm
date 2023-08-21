@@ -92,8 +92,19 @@
                                             <td>${{ $order->total_amount }}</td>
                                             <td>
                                                 <div
-                                                    class="badge {{ $order->payment_status == 1 ? 'badge-light-success' : 'badge-light-warning' }}">
-                                                    {{ $order->payment_status == 1 ? 'Confirmed' : 'Panding' }} </div>
+                                                    class="badge @if ($order->canceled_at != null) badge-light-danger
+                                                @elseif($order->payment_status == 1)
+                                                badge-light-success
+                                                @else
+                                                badge-light-warning @endif ">
+                                                    @if ($order->canceled_at != null)
+                                                        Canceled
+                                                    @elseif($order->payment_status == 1)
+                                                        Confirmed
+                                                    @else
+                                                        Pending payment
+                                                    @endif
+                                                </div>
                                             </td>
                                             <td>{{ $order->created_at }}</td>
                                             <td class="text-end">
@@ -113,10 +124,13 @@
                                                     </div>
                                                     <!--end::Menu item-->
                                                     <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="{{ route('site.edit', $order->id) }}"
-                                                            class="menu-link px-3">Cancel</a>
-                                                    </div>
+                                                    @if ($order->canceled_at == null && $order->payment_status == 0)
+                                                        <div class="menu-item px-3">
+                                                            <a href="{{ route('order.cancel', $order->id) }}"
+                                                                class="menu-link px-3">Cancel</a>
+                                                        </div>
+                                                    @endif
+
                                                     <!--end::Menu item-->
                                                 </div>
                                                 <!--end::Menu-->

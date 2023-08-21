@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
+use Carbon\Carbon;
 use App\Models\Order;
+use App\Models\Invoice;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Invoice;
 
 class OrderController extends Controller
 {
@@ -27,8 +28,23 @@ class OrderController extends Controller
         } catch (\Exception $e) {
             return back()->with('error', 'Error: ' . $e->getMessage());
         }
-        // return $orders;
         return view('backend.order.index', compact('orders'));
+    }
+
+
+    /**
+     * Cancel order from customer account
+     */
+    public function orderCancel($id, Order $order)
+    {
+        try {
+            $order = $order->findOrFail($id);
+            $order->canceled_at = Carbon::now();
+            $order->save();
+            return back()->with('success', 'order Canceled');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Error: ' . $e->getMessage());
+        }
     }
 
 
@@ -54,13 +70,12 @@ class OrderController extends Controller
     }
 
 
-      /**
+    /**
      * Show invoice details.
      */
     public function invoiceShow($id, Invoice $invoice)
     {
-         $invoice = $invoice->with('order')->with('user')->findOrfail($id);
+        $invoice = $invoice->with('order')->with('user')->findOrfail($id);
         return view('backend.invoice.show', compact('invoice'));
     }
-
 }

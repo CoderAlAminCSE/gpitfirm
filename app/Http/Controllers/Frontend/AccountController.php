@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Order;
 use Illuminate\Http\Request;
@@ -26,6 +27,28 @@ class AccountController extends Controller
     {
         $orders = Order::with('items')->where('user_id', Auth::user()->id)->get();
         return view('frontend.components.myAccount.order', compact('orders'));
+    }
+
+
+    /**
+     * Display the customer account orders details content.
+     */
+    public function orderDetails($order_number)
+    {
+        $order = Order::with('items')->where('order_number', $order_number)->first();
+        return view('frontend.components.myAccount.order_details', compact('order'));
+    }
+
+
+    /**
+     * Cancel order from admin
+     */
+    public function orderCancel($id, Order $order)
+    {
+        $order = $order->findOrFail($id);
+        $order->canceled_at = Carbon::now();
+        $order->save();
+        return back();
     }
 
 

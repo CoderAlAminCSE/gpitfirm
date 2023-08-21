@@ -83,7 +83,13 @@
                                                 </td>
                                                 <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-status"
                                                     data-title="Status">
-                                                    Pending payment
+                                                    @if ($order->canceled_at != null)
+                                                        Canceled
+                                                    @elseif($order->payment_status == 1)
+                                                        Confirmed
+                                                    @else
+                                                        Pending payment
+                                                    @endif
                                                 </td>
                                                 <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-total"
                                                     data-title="Total">
@@ -94,12 +100,17 @@
                                                 </td>
                                                 <td class="woocommerce-orders-table__cell woocommerce-orders-table__cell-order-actions"
                                                     data-title="Actions">
-                                                    <a href="https://gpitfirm.com/checkout/order-pay/356/?pay_for_order=true&#038;key=wc_order_DGdXwHbIjzIql"
-                                                        class="woocommerce-button button pay">Pay</a><a
-                                                        href="https://gpitfirm.com/my-account/view-order/356/"
-                                                        class="woocommerce-button button view">View</a><a
-                                                        href="https://gpitfirm.com/cart/?cancel_order=true&#038;order=wc_order_DGdXwHbIjzIql&#038;order_id=356&#038;redirect=https%3A%2F%2Fgpitfirm.com%2Fmy-account%2F&#038;_wpnonce=3b2f6a74cd"
-                                                        class="woocommerce-button button cancel">Cancel</a>
+                                                    @if ($order->payment_status != 1 && $order->canceled_at == null)
+                                                        <a href="#" class="woocommerce-button button pay">Pay</a>
+                                                    @endif
+
+                                                    <a href="{{ route('customer.account.order.details', $order->order_number) }}"
+                                                        class="woocommerce-button button view">View</a>
+                                                    @if ($order->canceled_at == null && $order->payment_status != 1)
+                                                        <a href="{{ route('customer.account.order.cancel', $order->id) }}"
+                                                            class="woocommerce-button button cancel">Cancel</a>
+                                                    @endif
+
                                                 </td>
                                             </tr>
                                         @empty

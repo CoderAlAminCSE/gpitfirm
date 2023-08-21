@@ -18,6 +18,7 @@ use App\Models\HomePageContactSection;
 use App\Models\HomePageServiceSection;
 use App\Models\HomePageTestimonialSection;
 use App\Models\Order;
+use App\Models\OrderItem;
 
 //logged in user data
 function loggedInUser()
@@ -154,6 +155,13 @@ function activeCategory()
 
 
 // get active value from "service category" table
+function serviceInfo($id)
+{
+  return Service::findOrFail($id);
+}
+
+
+// get active value from "service category" table
 function activeServices()
 {
   return Service::where('active', true)->get();
@@ -171,4 +179,11 @@ function categoryWiseServices($id)
 function orderInfo($id)
 {
   return Order::where('id', $id)->first();
+}
+
+
+// get value from "order" table
+function orderIdWiseOrderItem($orderId)
+{
+  return OrderItem::where('order_id', $orderId)->get();
 }

@@ -15,4 +15,5 @@ Route::group(['prefix' => 'dashboard/order/', 'middleware' => ['auth', 'admin']]
 // Invoice related routes
 Route::group(['prefix' => 'dashboard/invoice/', 'middleware' => ['auth', 'admin']], function () {
   Route::get('index', [OrderController::class, 'invoiceIndex'])->name('invoice.index');
+  Route::get('show/{id}', [OrderController::class, 'invoiceShow'])->name('invoice.show');
 });

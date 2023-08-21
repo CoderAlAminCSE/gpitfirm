@@ -17,16 +17,17 @@ class OrderController extends Controller
         try {
             if ($request->has('search') && $request->search != null) {
                 $search =  $request->search;
-                $orders = $order->where(function ($query) use ($search) {
+                $orders = $order->with('invoice')->where(function ($query) use ($search) {
                     $query->where('id', 'LIKE', '%' . $search . '%')
                         ->orWhere('order_number', 'LIKE', '%' . $search . '%');
                 })->paginate(10);
             } else {
-                $orders = $order->latest()->paginate(10);
+                $orders = $order->with('invoice')->latest()->paginate(10);
             }
         } catch (\Exception $e) {
             return back()->with('error', 'Error: ' . $e->getMessage());
         }
+        // return $orders;
         return view('backend.order.index', compact('orders'));
     }
 
@@ -51,4 +52,15 @@ class OrderController extends Controller
         }
         return view('backend.invoice.index', compact('invoices'));
     }
+
+
+      /**
+     * Show invoice details.
+     */
+    public function invoiceShow($id, Invoice $invoice)
+    {
+         $invoice = $invoice->with('order')->with('user')->findOrfail($id);
+        return view('backend.invoice.show', compact('invoice'));
+    }
+
 }

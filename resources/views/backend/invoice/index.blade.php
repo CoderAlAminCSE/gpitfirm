@@ -108,7 +108,7 @@
                                                     data-kt-menu="true">
                                                     <!--begin::Menu item-->
                                                     <div class="menu-item px-3">
-                                                        <a href="{{ route('site.edit', $invoice->id) }}"
+                                                        <a href="{{ route('invoice.show', $invoice->id) }}"
                                                             class="menu-link px-3">View</a>
                                                     </div>
                                                     <!--end::Menu item-->

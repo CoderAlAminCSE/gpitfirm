@@ -50,12 +50,20 @@
                                         To </label>
                                     <div class="mb-5">
                                         <input type="text" name="name" class="form-control form-control-solid"
-                                            placeholder="Name" />
+                                            placeholder="Name" required />
+                                        @error('name')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
+
                                     <div class="mb-5">
-                                        <input type="text" name="email" class="form-control form-control-solid"
-                                            placeholder="Email" />
+                                        <input type="email" name="email" class="form-control form-control-solid"
+                                            placeholder="Email" required />
+                                        @error('email')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
+
                                 </div>
                             </div>
                             <br><br><br>
@@ -72,7 +80,7 @@
                                         <tr class="border-bottom border-bottom-dashed" data-kt-element="item">
                                             <td class="pe-7">
                                                 <div class="mb-10">
-                                                    <select name="product" aria-label="Select a Timezone"
+                                                    <select name="products[]" aria-label="Select a Timezone"
                                                         data-control="select2" data-placeholder="Select Product"
                                                         class="form-select form-select-solid">
                                                         <option value=""></option>
@@ -83,6 +91,9 @@
                                                             </option>
                                                         @endforeach
                                                     </select>
+                                                    @error('products[]')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
                                                 </div>
                                             </td>
                                             <td class="pt-8 text-end text-nowrap">$
@@ -146,7 +157,7 @@
 @section('script')
     <script>
         $(document).ready(function() {
-            $('body').on('change', 'select[name="product"]', function() {
+            $('body').on('change', 'select[name="products[]"]', function() {
                 updateItemPrice($(this));
             });
 
@@ -157,7 +168,7 @@
                 var $newItem = $('<tr class="border-bottom border-bottom-dashed" data-kt-element="item">' +
                     '<td class="pe-7">' +
                     '<div class="mb-10">' +
-                    '<select name="product" aria-label="Select a Timezone" data-control="select2" data-placeholder="Select Product" class="form-select form-select-solid">' +
+                    '<select name="products[]" aria-label="Select a Timezone" data-control="select2" data-placeholder="Select Product" class="form-select form-select-solid">' +
                     '<option value=""></option>' +
                     '@foreach (activeServices() as $service)' +
                     '<option value="{{ $service->id }}" data-price="{{ $service->price }}">{{ $service->name }}</option>' +

@@ -94,6 +94,11 @@ class OrderController extends Controller
      */
     public function invoiceStore(Request $request, Invoice $invoice)
     {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+        ]);
+
         return $request->all();
     }
 }

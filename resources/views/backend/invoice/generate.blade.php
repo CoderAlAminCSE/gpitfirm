@@ -193,6 +193,13 @@
                 calculateTotals();
             });
 
+            $('body').on('click', '[data-kt-element="remove-item"]', function() {
+                var $itemRow = $(this).closest('[data-kt-element="item"]');
+                $itemRow.remove();
+
+                calculateTotals();
+            });
+
             function updateItemPrice($select) {
                 var selectedOption = $select.find('option:selected');
                 var price = parseFloat(selectedOption.data('price'));

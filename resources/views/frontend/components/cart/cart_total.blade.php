@@ -27,8 +27,15 @@
             </div>
         @else
             <div class="col-md-7">
+
                 <div class="woocommerce-billing-fields">
-                    <h3>Account Info</h3>
+
+                    <div class="">
+                        <div class="woocommerce-info">
+                            Already have an account? <a href="{{ route('login') }}" class="showlogin">Click here to login</a> </div>
+                    </div>
+
+                    <h3>Don't have account? Fill up to proceed</h3>
                     <div class="woocommerce-billing-fields__field-wrapper">
                         <p class="form-row form-group validate-required" id="account_username_field" data-priority>
                             <label for="account_username" class="control-label">

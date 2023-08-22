@@ -36,7 +36,7 @@ Route::get('/faq', function () {
 
 Route::get('/cart', function () {
     return view('frontend/cart');
-});
+})->name('frontend.cart.page');
 
 Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
 Route::post('/remove-from-cart', [CartController::class, 'removeFromCart'])->name('removeFromCart');

@@ -33,7 +33,7 @@ class LoginController extends Controller
         if ($user->isAdmin()) {
             return redirect()->route('dashboard');
         } elseif ($user->isCustomer()) {
-            return redirect()->route('customer.account');
+            return redirect()->route('frontend.cart.page');
         } else {
             return "Something went wrong";
         }

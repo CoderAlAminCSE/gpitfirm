@@ -78,4 +78,22 @@ class OrderController extends Controller
         $invoice = $invoice->with('order')->with('user')->findOrfail($id);
         return view('backend.invoice.show', compact('invoice'));
     }
+
+
+    /**
+     * Show invoice generate page.
+     */
+    public function invoiceGenerate()
+    {
+        return view('backend.invoice.generate');
+    }
+
+
+    /**
+     * Store invoice.
+     */
+    public function invoiceStore(Request $request, Invoice $invoice)
+    {
+        return $request->all();
+    }
 }

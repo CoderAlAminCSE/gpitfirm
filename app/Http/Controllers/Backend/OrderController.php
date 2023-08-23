@@ -32,6 +32,18 @@ class OrderController extends Controller
     }
 
 
+
+    /**
+     * Show order details.
+     */
+    public function orderShow($id, Order $order)
+    {
+        $order = $order->with('items')->with('user')->findOrfail($id);
+        return view('backend.order.show', compact('order'));
+    }
+
+
+
     /**
      * Cancel order from customer account
      */

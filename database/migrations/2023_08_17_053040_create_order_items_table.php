@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('service_id');
-            $table->decimal('price', 10, 2);
+            $table->string('custom_service_name')->nullable();
+            $table->decimal('custom_service_price', 10, 2)->nullable();
             $table->timestamps();
 
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');

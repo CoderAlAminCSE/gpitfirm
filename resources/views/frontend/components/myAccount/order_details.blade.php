@@ -73,7 +73,7 @@
                                                     </td>
                                                     <td class="woocommerce-table__product-total product-total">
                                                         <span
-                                                            class="woocommerce-Price-amount amount"><bdi>{{ $item->price }}</bdi></span>
+                                                            class="woocommerce-Price-amount amount"><bdi>${{ serviceInfo($item->service_id)->price }}</bdi></span>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -83,13 +83,13 @@
                                             <tr>
                                                 <th scope="row">Subtotal:</th>
                                                 <td><span
-                                                        class="woocommerce-Price-amount amount">{{ $order->total_amount }}</span>
+                                                        class="woocommerce-Price-amount amount">${{ $order->total_amount }}</span>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Total:</th>
                                                 <td><span
-                                                        class="woocommerce-Price-amount amount">{{ $order->total_amount }}</span>
+                                                        class="woocommerce-Price-amount amount">${{ $order->total_amount }}</span>
                                                 </td>
                                             </tr>
                                         </tfoot>

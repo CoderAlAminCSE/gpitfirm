@@ -31,15 +31,13 @@
                                             <a href="#">{{ $service['name'] }}</a>
                                         </td>
                                         <td class="product-price" data-title="Price">
-                                            <span class="woocommerce-Price-amount amount"><bdi>{{ $service['price'] }}<span
-                                                        class="woocommerce-Price-currencySymbol">$</span></bdi></span>
+                                            <span class="woocommerce-Price-amount amount"><bdi>${{ $service['price'] }}</bdi></span>
                                         </td>
                                         <td class="product-quantity" data-title="Quantity">
                                             {{ $service['quantity'] }} <input type="hidden" value=""> </td>
                                         <td class="product-subtotal" data-title="Subtotal">
                                             <span class="woocommerce-Price-amount amount">
-                                                <bdi>{{ $service['price'] }}
-                                                    <span class="woocommerce-Price-currencySymbol">$</span></bdi></span>
+                                                <bdi>${{ $service['price'] }}</bdi></span>
                                         </td>
                                     </tr>
                                 @endforeach

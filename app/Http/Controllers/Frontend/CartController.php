@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use Session;
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Invoice;
@@ -123,6 +124,7 @@ class CartController extends Controller
         $order->order_number = $formattedOrderNumber;
         $order->user_id = $user->id;
         $order->total_amount = $total;
+        $order->order_type = 'customer';
         $order->payment_status = false;
         $order->save();
 
@@ -130,7 +132,6 @@ class CartController extends Controller
             $orderItem = new OrderItem([
                 'order_id' => $order->id,
                 'service_id' => $item['id'],
-                'price' => $item['price'],
             ]);
             $orderItem->save();
         }
@@ -154,6 +155,8 @@ class CartController extends Controller
     {
         $order = Order::with('items')->find($orderId);
         $order->payment_status = true;
+        $order->payment_method = 'paddle';
+        $order->paid_at = Carbon::now();
 
         $order->save();
         return redirect()->route('customer.account');

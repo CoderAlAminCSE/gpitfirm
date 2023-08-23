@@ -85,12 +85,12 @@
                 <tbody>
                     <tr class="cart-subtotal">
                         <th>Subtotal</th>
-                        <td data-title="Subtotal"><span>{{ number_format(session('subtotal'), 2) }}$</span>
+                        <td data-title="Subtotal"><span>${{ number_format(session('subtotal'), 2) }}</span>
                         </td>
                     </tr>
                     <tr class="order-total">
                         <th>Total</th>
-                        <td data-title="Total"><strong>{{ number_format(session('total'), 2) }}<span>$</span></strong>
+                        <td data-title="Total"><strong>${{ number_format(session('total'), 2) }}</strong>
                         </td>
                     </tr>
                 </tbody>

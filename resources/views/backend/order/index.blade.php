@@ -80,6 +80,7 @@
                                         <th class="min-w-100px">Amount</th>
                                         <th class="min-w-70px">Status</th>
                                         <th class="min-w-70px">Order Date</th>
+                                        <th class="min-w-70px">Order Type</th>
                                         <th class="text-end min-w-100px">Actions</th>
                                     </tr>
                                 </thead>
@@ -106,6 +107,7 @@
                                                     @endif
                                                 </div>
                                             </td>
+                                            <td>{{ $order->order_type }}</td>
                                             <td>{{ $order->created_at }}</td>
                                             <td class="text-end">
                                                 <a href="#"
@@ -117,10 +119,8 @@
                                                     data-kt-menu="true">
                                                     <!--begin::Menu item-->
                                                     <div class="menu-item px-3">
-                                                        @if ($order->invoice)
-                                                            <a href="{{ route('invoice.show', $order->invoice->id) }}"
-                                                                class="menu-link px-3">View</a>
-                                                        @endif
+                                                        <a href="{{ route('order.show', $order->id) }}"
+                                                            class="menu-link px-3">View</a>
                                                     </div>
                                                     <!--end::Menu item-->
                                                     <!--begin::Menu item-->

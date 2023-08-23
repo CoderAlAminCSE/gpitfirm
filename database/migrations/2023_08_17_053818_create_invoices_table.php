@@ -16,6 +16,9 @@ return new class extends Migration
             $table->string('invoice_number')->unique();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('order_id');
+            $table->boolean('paid')->default(false);
+            $table->string('payment_method')->nullable();
+            $table->dateTime('paid_at')->nullable();
             $table->decimal('total_amount', 10, 2);
             $table->timestamps();
 

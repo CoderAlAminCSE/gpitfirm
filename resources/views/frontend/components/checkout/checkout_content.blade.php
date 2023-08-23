@@ -3,8 +3,8 @@
         <div class="col-md-12">
             <div class="woocommerce">
                 <div class="woocommerce-notices-wrapper"></div>
-                <form name="checkout" method="post" class="checkout woocommerce-checkout" action="{{ route('frontend.checkout.confirm', $order->id) }}"
-                    enctype="multipart/form-data">
+                <form name="checkout" method="post" class="checkout woocommerce-checkout"
+                    action="{{ route('frontend.checkout.confirm', $order->id) }}" enctype="multipart/form-data">
                     @csrf
                     <div class="row mb-4" id="customer_details">
                         <div class="col-md-5">
@@ -22,11 +22,11 @@
                                         @foreach ($order->items as $item)
                                             <tr class="cart_item">
                                                 <td class="product-name">
-                                                    {{ $item->service_id }}
+                                                    {{ serviceInfo($item->service_id)->name }}
                                                 </td>
                                                 <td class="product-total">
-                                                    <span class="woocommerce-Price-amount amount"><bdi>{{ number_format($item->price, 2) }}<span
-                                                                class="woocommerce-Price-currencySymbol">&#36;</span></bdi></span>
+                                                    <span
+                                                        class="woocommerce-Price-amount amount"><bdi>${{ serviceInfo($item->service_id)->price }}</bdi></span>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -35,15 +35,13 @@
                                     <tfoot>
                                         <tr class="cart-subtotal">
                                             <th>Subtotal</th>
-                                            <td><span class="woocommerce-Price-amount amount"><bdi>{{ number_format($order->total_amount, 2) }}<span
-                                                            class="woocommerce-Price-currencySymbol">&#36;</span></bdi></span>
+                                            <td><span class="woocommerce-Price-amount amount"><bdi>${{ number_format($order->total_amount, 2) }}</bdi></span>
                                             </td>
                                         </tr>
                                         <tr class="order-total">
                                             <th>Total</th>
                                             <td><strong><span
-                                                        class="woocommerce-Price-amount amount"><bdi>{{ number_format($order->total_amount, 2) }}<span
-                                                                class="woocommerce-Price-currencySymbol">&#36;</span></bdi></span></strong>
+                                                        class="woocommerce-Price-amount amount"><bdi>${{ number_format($order->total_amount, 2) }}</bdi></span></strong>
                                             </td>
                                         </tr>
                                     </tfoot>

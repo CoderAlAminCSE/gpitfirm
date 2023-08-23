@@ -17,8 +17,9 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->decimal('total_amount', 10, 2);
             $table->boolean('payment_status');
+            $table->string('order_type');
             $table->string('payment_method')->nullable();
-            $table->dateTime('completed_at')->nullable();
+            $table->dateTime('paid_at')->nullable();
             $table->dateTime('canceled_at')->nullable();
             $table->timestamps();
 

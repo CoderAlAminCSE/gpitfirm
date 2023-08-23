@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'dashboard/order/', 'middleware' => ['auth', 'admin']], function () {
   Route::get('index', [OrderController::class, 'orderIndex'])->name('order.index');
+  Route::get('show/{id}', [OrderController::class, 'orderShow'])->name('order.show');
   Route::get('cancel/{id}', [OrderController::class, 'orderCancel'])->name('order.cancel');
 });
 

@@ -195,7 +195,7 @@
                                             </td>
                                             <td>
                                                 <input type="number" class="form-control form-control-solid text-end"
-                                                    name="custom_service_price[]" placeholder="0.00" value="0.00"
+                                                    name="custom_service_price[]" placeholder="0.00" value="0"
                                                     data-kt-element="price" />
                                             </td>
                                             <td class="pt-5 text-end">
@@ -218,14 +218,16 @@
                                     <tfoot>
                                         <tr class="border-top border-top-dashed align-top fs-6 fw-bold text-gray-700">
                                             <th class="text-primary">
-                                                <a href="#" class=" p-1 m-0" id="add-custom-item">Add
+                                                <a class=" p-1 m-0" id="add-custom-item"
+                                                    style="cursor: pointer;">Add
                                                     item</a>
                                             </th>
                                             </th>
-                                            <th colspan="2" class="border-bottom border-bottom-dashed ps-0">
-                                                <div class="d-flex flex-column align-items-start">
-                                                    <div class="fs-5">Subtotal</div>
-                                                </div>
+                                            <th colspan="2"
+                                                    class="border-bottom border-bottom-dashed ps-0">
+                                                    <div class="d-flex flex-column align-items-start">
+                                                        <div class="fs-5">Subtotal</div>
+                                                    </div>
                                             </th>
                                             <th colspan="2" class="border-bottom border-bottom-dashed text-end">$
                                                 <span id="customServiceSubtotal">0.00</span>
@@ -388,7 +390,7 @@
                     </td>
                     <td>
                         <input type="number" class="form-control form-control-solid text-end"
-                            name="custom_service_price[]" placeholder="0.00" value="0.00"
+                            name="custom_service_price[]" placeholder="0.00" value="0"
                             data-kt-element="price" />
                     </td>
                     <td class="pt-5 text-end">
@@ -407,6 +409,37 @@
                 </tr>
             `;
                 $("#custom-item-list").append(newRow);
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            function updateSubtotalAndTotal() {
+                var subtotal = 0;
+                $('input[name="custom_service_price[]"]').each(function() {
+                    subtotal += parseFloat($(this).val() || 0);
+                });
+                $('#customServiceSubtotal').text(subtotal.toFixed(2));
+
+                var total = subtotal;
+                $('#customServiceTotal').text(total.toFixed(2));
+            }
+            updateSubtotalAndTotal();
+            $('#add-custom-item').on('click', function() {
+                var newRow = `
+                <tr class="border-bottom border-bottom-dashed" data-kt-element="item">
+                </tr>
+                `;
+                $('#custom-item-list').append(newRow);
+                updateSubtotalAndTotal();
+            });
+            $(document).on('input', 'input[name="custom_service_price[]"]', function() {
+                updateSubtotalAndTotal();
+            });
+            $(document).on('click', '[data-kt-element="remove-custom-item"]', function() {
+                $(this).closest('tr').remove();
+                updateSubtotalAndTotal();
             });
         });
     </script>

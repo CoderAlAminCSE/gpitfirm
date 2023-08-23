@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('service_id');
             $table->string('custom_service_name')->nullable();
+            $table->string('custom_service_description')->nullable();
             $table->decimal('custom_service_price', 10, 2)->nullable();
             $table->timestamps();
 

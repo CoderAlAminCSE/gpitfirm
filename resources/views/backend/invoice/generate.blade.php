@@ -46,28 +46,64 @@
                                     <!--end::Input group-->
                                 </div>
                                 <div class="col-lg-6">
-                                    <label class="form-label required fs-6 fw-bold text-gray-700 mb-3">Bill
-                                        To </label>
-                                    <div class="mb-5">
-                                        <input type="text" name="name" class="form-control form-control-solid"
-                                            placeholder="Name" required />
-                                        @error('name')
+
+                                    <label class="form-label required fs-6 fw-bold text-gray-700 mb-3">Bill To</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="1" name="customerCheck"
+                                            id="customerCheck" checked />
+                                        <label class="form-check-label" for="flexCheckChecked">Not A Customer?</label>
+                                    </div>
+
+                                    <div id="existingCustomer" class="mb-5">
+                                        <select name="customerId" aria-label="Select a Timezone" data-control="select2"
+                                            data-placeholder="Select Customer" class="form-select form-select-solid">
+                                            <option value=""></option>
+                                            @foreach (allCustomers() as $customer)
+                                                <option value="{{ $customer->id }}">{{ $customer->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('customerId')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>
 
-                                    <div class="mb-5">
-                                        <input type="email" name="email" class="form-control form-control-solid"
-                                            placeholder="Email" required />
-                                        @error('email')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
+                                    <div id="customUser" class="d-none">
+                                        <div class="mb-5">
+                                            <input type="text" name="name" class="form-control form-control-solid"
+                                                placeholder="Name" />
+                                            @error('name')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-5">
+                                            <input type="email" name="email" class="form-control form-control-solid"
+                                                placeholder="Email" />
+                                            @error('email')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-5">
+                                            <input type="text" name="password" class="form-control form-control-solid"
+                                                placeholder="Password" />
+                                            @error('password')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
                                     </div>
+
 
                                 </div>
                             </div>
+
                             <br><br><br>
-                            <div class="table-responsive mb-10">
+
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="1" name="customService"
+                                    id="customService" checked />
+                                <label class="form-check-label" for="customService">Existing Service?</label>
+                            </div>
+
+                            <div id="existingProduct" class="table-responsive mb-10">
                                 <table class="table g-5 gs-0 mb-0 fw-bold text-gray-700" data-kt-element="items">
                                     <thead>
                                         <tr class="border-bottom fs-7 fw-bold text-gray-700 text-uppercase">
@@ -100,7 +136,8 @@
                                                 <span data-kt-element="price">0.00</span>
                                             </td>
                                             <td class="pt-5 text-end">
-                                                <button type="button" class="btn btn-sm btn-icon btn-active-color-primary"
+                                                <button type="button"
+                                                    class="btn btn-sm btn-icon btn-active-color-primary"
                                                     data-kt-element="remove-item">
                                                     <i class="ki-duotone ki-trash fs-3">
                                                         <span class="path1"></span>
@@ -116,7 +153,8 @@
                                     <tfoot>
                                         <tr class="align-top fw-bold text-gray-700">
                                             <th class="text-primary">
-                                                <a href="#" class="py-1" id="add-item">Add item</a>
+                                                <a href="#" class=" p-1 m-0" id="add-item">Add
+                                                    item</a>
                                             </th>
                                             <th colspan="2" class="fs-4 ps-0">Subtotal</th>
                                             <th colspan="2" class="text-end fs-4 text-nowrap">$
@@ -133,6 +171,80 @@
                                     </tfoot>
                                 </table>
                             </div>
+
+
+                            <div id="customProduct" class="table-responsive mb-10 d-none">
+                                <table class="table g-5 gs-0 mb-0 fw-bold text-gray-700" data-kt-element="items">
+                                    <!--begin::Table head-->
+                                    <thead>
+                                        <tr class="border-bottom fs-7 fw-bold text-gray-700 text-uppercase">
+                                            <th class="min-w-300px w-475px">Item</th>
+                                            <th class="min-w-150px w-150px">Price</th>
+                                            <th class="min-w-175px w-175px text-end">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <!--end::Table head-->
+                                    <!--begin::Table body-->
+                                    <tbody id="custom-item-list">
+                                        <tr class="border-bottom border-bottom-dashed" data-kt-element="item">
+                                            <td class="pe-7">
+                                                <input type="text" class="form-control form-control-solid mb-2"
+                                                    name="custom_service_name[]" placeholder="Item name" />
+                                                <input type="text" class="form-control form-control-solid"
+                                                    name="custom_service_description[]" placeholder="Description" />
+                                            </td>
+                                            <td>
+                                                <input type="number" class="form-control form-control-solid text-end"
+                                                    name="custom_service_price[]" placeholder="0.00" value="0.00"
+                                                    data-kt-element="price" />
+                                            </td>
+                                            <td class="pt-5 text-end">
+                                                <button type="button"
+                                                    class="btn btn-sm btn-icon btn-active-color-primary"
+                                                    data-kt-element="remove-custom-item">
+                                                    <i class="ki-duotone ki-trash fs-3">
+                                                        <span class="path1"></span>
+                                                        <span class="path2"></span>
+                                                        <span class="path3"></span>
+                                                        <span class="path4"></span>
+                                                        <span class="path5"></span>
+                                                    </i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <!--end::Table body-->
+                                    <!--begin::Table foot-->
+                                    <tfoot>
+                                        <tr class="border-top border-top-dashed align-top fs-6 fw-bold text-gray-700">
+                                            <th class="text-primary">
+                                                <a href="#" class=" p-1 m-0" id="add-custom-item">Add
+                                                    item</a>
+                                            </th>
+                                            </th>
+                                            <th colspan="2" class="border-bottom border-bottom-dashed ps-0">
+                                                <div class="d-flex flex-column align-items-start">
+                                                    <div class="fs-5">Subtotal</div>
+                                                </div>
+                                            </th>
+                                            <th colspan="2" class="border-bottom border-bottom-dashed text-end">$
+                                                <span id="customServiceSubtotal">0.00</span>
+                                            </th>
+                                        </tr>
+                                        <tr class="align-top fw-bold text-gray-700">
+                                            <th></th>
+                                            <th colspan="2" class="fs-4 ps-0">Total</th>
+                                            <th colspan="2" class="text-end fs-4 text-nowrap">$
+                                                <span id="customServiceTotal">0.00</span>
+                                            </th>
+                                        </tr>
+                                    </tfoot>
+                                    <!--end::Table foot-->
+                                </table>
+                            </div>
+
+
+
                         </div>
                         <!--end::Wrapper-->
                     </div>
@@ -233,4 +345,71 @@
             }
         });
     </script>
+
+    <script>
+        $(document).ready(function() {
+            $("#customerCheck").on("change", function() {
+                if ($(this).prop("checked")) {
+                    $("#existingCustomer").removeClass("d-none");
+                    $("#customUser").addClass("d-none");
+                } else {
+                    $("#existingCustomer").addClass("d-none");
+                    $("#customUser").removeClass("d-none");
+                }
+            });
+        });
+    </script>
+
+
+    <script>
+        $(document).ready(function() {
+            $("#customService").on("change", function() {
+                if ($(this).prop("checked")) {
+                    $("#existingProduct").removeClass("d-none");
+                    $("#customProduct").addClass("d-none");
+                } else {
+                    $("#existingProduct").addClass("d-none");
+                    $("#customProduct").removeClass("d-none");
+                }
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $("#add-custom-item").click(function() {
+                var newRow = `
+                <tr class="border-bottom border-bottom-dashed" data-kt-element="item">
+                    <td class="pe-7">
+                        <input type="text" class="form-control form-control-solid mb-2"
+                            name="custom_service_name[]" placeholder="Item name" />
+                        <input type="text" class="form-control form-control-solid"
+                            name="custom_service_description[]" placeholder="Description" />
+                    </td>
+                    <td>
+                        <input type="number" class="form-control form-control-solid text-end"
+                            name="custom_service_price[]" placeholder="0.00" value="0.00"
+                            data-kt-element="price" />
+                    </td>
+                    <td class="pt-5 text-end">
+                        <button type="button"
+                            class="btn btn-sm btn-icon btn-active-color-primary"
+                            data-kt-element="remove-custom-item">
+                            <i class="ki-duotone ki-trash fs-3">
+                                <span class="path1"></span>
+                                <span class="path2"></span>
+                                <span class="path3"></span>
+                                <span class="path4"></span>
+                                <span class="path5"></span>
+                            </i>
+                        </button>
+                    </td>
+                </tr>
+            `;
+                $("#custom-item-list").append(newRow);
+            });
+        });
+    </script>
+
+
 @endsection

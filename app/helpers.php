@@ -33,6 +33,12 @@ function userData($id)
   return User::findOrFail($id);
 }
 
+//all customers data
+function allCustomers()
+{
+  return User::latest()->get();
+}
+
 // get value from "general_settings" table
 function siteSetting($name)
 {

@@ -62,7 +62,7 @@
                                     <input type="text" data-kt-subscription-table-filter="search" name="search"
                                         value="{{ request('search') }}"
                                         class="form-control form-control-solid w-250px ps-14"
-                                        placeholder="Search Order"form="SearchForm" />
+                                        placeholder="Search Invoice"form="SearchForm" />
                                 </form>
                                 <!--end::Search-->
                             </div>

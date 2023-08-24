@@ -104,7 +104,7 @@
                                             <td>{{ $invoice->invoice_number }}</td>
                                             <td>{{ orderInfo($invoice->order_id)->order_number }}</td>
                                             <td>{{ userData($invoice->user_id)->name }}</td>
-                                            <td>${{ $invoice->total_amount }}</td>
+                                            <td>${{ $invoice->order->total_amount }}</td>
                                             <td>
                                                 <div
                                                     class="badge @if (orderInfo($invoice->order_id)->canceled_at != null) badge-light-danger

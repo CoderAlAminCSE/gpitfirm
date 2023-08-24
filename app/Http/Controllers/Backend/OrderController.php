@@ -77,7 +77,7 @@ class OrderController extends Controller
                         ->orWhere('invoice_number', 'LIKE', '%' . $search . '%');
                 })->paginate(10);
             } else {
-                $invoices = $invoice->latest()->paginate(10);
+                $invoices = $invoice->with('order')->latest()->paginate(10);
             }
         } catch (\Exception $e) {
             return back()->with('error', 'Error: ' . $e->getMessage());
@@ -91,7 +91,7 @@ class OrderController extends Controller
      */
     public function invoiceShow($id, Invoice $invoice)
     {
-        $invoice = $invoice->with('order')->with('user')->findOrfail($id);
+        $invoice = Invoice::with('order', 'order.items', 'user')->findOrFail($id);
         return view('backend.invoice.show', compact('invoice'));
     }
 

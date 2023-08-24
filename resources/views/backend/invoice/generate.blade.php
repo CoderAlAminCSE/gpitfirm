@@ -49,7 +49,7 @@
 
                                     <label class="form-label required fs-6 fw-bold text-gray-700 mb-3">Bill To</label>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="1" name="customerCheck"
+                                        <input class="form-check-input" type="checkbox" value="1" name="existingCustomr"
                                             id="customerCheck" checked />
                                         <label class="form-check-label" for="flexCheckChecked">Not A Customer?</label>
                                     </div>
@@ -98,7 +98,7 @@
                             <br><br><br>
 
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="1" name="customService"
+                                <input class="form-check-input" type="checkbox" value="1" name="existingService"
                                     id="customService" checked />
                                 <label class="form-check-label" for="customService">Existing Service?</label>
                             </div>

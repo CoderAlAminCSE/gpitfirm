@@ -75,12 +75,12 @@
                                 <thead>
                                     <tr class="text-center text-muted fw-bold fs-7 text-uppercase gs-0">
                                         <th class="min-w-50px">SL</th>
-                                        <th class="min-w-100px">Order Number</th>
+                                        <th class="min-w-100px">Ord Number</th>
                                         <th class="min-w-125px">Customer</th>
                                         <th class="min-w-100px">Amount</th>
                                         <th class="min-w-70px">Status</th>
+                                        <th class="min-w-70px">Ord Type</th>
                                         <th class="min-w-70px">Order Date</th>
-                                        <th class="min-w-70px">Order Type</th>
                                         <th class="text-end min-w-100px">Actions</th>
                                     </tr>
                                 </thead>

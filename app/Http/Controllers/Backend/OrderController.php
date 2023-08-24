@@ -114,6 +114,9 @@ class OrderController extends Controller
             DB::beginTransaction();
 
             if ($request->existingCustomr) {
+                $request->validate([
+                    'customerId' => 'required',
+                ]);
                 $user_id = $request->customerId;
             } else {
                 $request->validate([

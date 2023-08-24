@@ -199,7 +199,7 @@ class OrderController extends Controller
             $invoice->save();
 
             DB::commit();
-            return back()->with('success', 'Invoice generated successfully');
+            return redirect()->route('invoice.index')->with('success', 'Invoice generated successfully');
         } catch (\Exception $e) {
             DB::rollBack();
             return back()->with('error', 'Error: ' . $e->getMessage());

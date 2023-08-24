@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Frontend;
 
 use Session;
 use Carbon\Carbon;
+use Stripe\Charge;
+use Stripe\Stripe;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Invoice;
@@ -87,6 +89,16 @@ class CartController extends Controller
 
     public function cartOrderPlace(Request $request)
     {
+        // return $request->all();
+
+        Stripe::setApiKey(env('STRIPE_SECRET'));
+        Charge::create([
+            'amount' => 100 * 10,
+            'currency' => 'usd',
+            'source' => $request->stripeToken,
+            "description" => "This payment is tested purpose",
+        ]);
+        return "payment done";
 
 
         $cart = session()->get('cart', []);

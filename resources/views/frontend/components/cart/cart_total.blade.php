@@ -32,7 +32,8 @@
 
                     <div class="">
                         <div class="woocommerce-info">
-                            Already have an account? <a href="{{ route('login') }}" class="showlogin">Click here to login</a> </div>
+                            Already have an account? <a href="{{ route('login') }}" class="showlogin">Click here to
+                                login</a> </div>
                     </div>
 
                     <h3>Don't have account? Fill up to proceed</h3>
@@ -96,9 +97,12 @@
                 </tbody>
             </table>
             <div class="wc-proceed-to-checkout">
-                <button type="submit" class="checkout-button button alt wc-forward">Proceed
-                    to checkout
-                </button>
+                <div class="wc-proceed-to-checkout">
+                    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        data-key="{{ config('services.stripe.key') }}" data-amount={{ 50 * 100 }} data-name="Stripe"
+                        data-locale="auto" data-label="Pay With Stripe" data-zip-code="true" data-currency="{{ 'USD' }}"
+                        data-gateway="stripe"></script>
+                </div>
             </div>
         </div>
     </div>

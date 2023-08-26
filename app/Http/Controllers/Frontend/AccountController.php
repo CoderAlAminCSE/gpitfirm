@@ -8,6 +8,9 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ForgotPassVerifyCodeMail;
 
 class AccountController extends Controller
 {
@@ -99,5 +102,59 @@ class AccountController extends Controller
 
         $updated_user->save();
         return back();
+    }
+
+
+    /**
+     * forget password page redirect
+     */
+    public function forgotPassEmailVerificationPage()
+    {
+        return view('auth.forgot_pass_emailverify');
+    }
+
+
+    public function forgotPassVerificationPage(Request $request)
+    {
+        $user = User::where('email', $request->email)->first();
+        if ($user) {
+            $verifyCode = str_pad(mt_rand(1, 999999), 6, '0', STR_PAD_LEFT);
+            $user->verification_code = $verifyCode;
+            $user->save();
+
+            $details = [
+                'code' => $verifyCode,
+            ];
+
+            Mail::to($request->email)->send(new ForgotPassVerifyCodeMail($details));
+
+            return view('auth.fotgot_pass_verify_page', compact('user'));
+        } else {
+            return back();
+        }
+    }
+
+
+    public function verifiyVerificationCode(Request $request)
+    {
+        $user = User::where('id', $request->user)->first();
+        if ($user->verification_code == $request->code) {
+            return view('auth.forgot_pass_newpass', compact('user'));
+        } else {
+            return "some thing went wrong";
+        }
+    }
+
+
+    public function forgotPassNewPassStore(Request $request)
+    {
+        $user = User::where('id', $request->user)->first();
+        if ($user) {
+            $user->password = Hash::make($request->password);
+            $user->save();
+            return redirect()->route('login');
+        } else {
+            return "some thing went wrong";
+        }
     }
 }

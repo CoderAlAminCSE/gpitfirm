@@ -106,3 +106,10 @@ Route::get('/privacy-policy', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+// forget password related routes
+Route::get('/forgot/password/email/verification', [AccountController::class, 'forgotPassEmailVerificationPage'])->name('forgotpass.email.verifypage');
+Route::post('/forgot/password/verification', [AccountController::class, 'forgotPassVerificationPage'])->name('forgotpass.verifypage');
+Route::post('/verifiy/verification/code', [AccountController::class, 'verifiyVerificationCode'])->name('verifiy.verification.code');
+Route::post('/forgotpass/newpass/store', [AccountController::class, 'forgotPassNewPassStore'])->name('forgotpass.newpass.store');

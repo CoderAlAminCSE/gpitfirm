@@ -18,17 +18,18 @@
                                 <!--begin::Title-->
                                 <h1 class="text-dark fw-bolder mb-3">Sign In</h1>
                                 <!--end::Title-->
-                                 <!--begin::Subtitle-->
-                                 <div class="text-gray-500 fw-semibold fs-6">Login to your account</div>
-                                 <!--end::Subtitle=-->
+                                <!--begin::Subtitle-->
+                                <div class="text-gray-500 fw-semibold fs-6">Login to your account</div>
+                                <!--end::Subtitle=-->
                             </div>
                             <!--begin::Heading-->
                             <!--begin::Input group=-->
                             <div class="fv-row mb-8">
                                 <!--begin::Email-->
                                 <input id="email" type="email"
-                                    class=" form-control bg-transparent form-control @error('email') is-invalid @enderror" name="email"
-                                    value="{{ old('email') }}" placeholder="Email" required autocomplete="email" autofocus>
+                                    class=" form-control bg-transparent form-control @error('email') is-invalid @enderror"
+                                    name="email" value="{{ old('email') }}" placeholder="Email" required
+                                    autocomplete="email" autofocus>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -41,8 +42,8 @@
                             <div class="fv-row mb-3">
                                 <!--begin::Password-->
                                 <input id="password" type="password"
-                                    class=" form-control bg-transparent form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" required
-                                    autocomplete="current-password">
+                                    class=" form-control bg-transparent form-control @error('password') is-invalid @enderror"
+                                    name="password" placeholder="Password" required autocomplete="current-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -56,7 +57,8 @@
                             <div class="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-8">
                                 <div></div>
                                 <!--begin::Link-->
-                                <a href="#" class="link-primary">Forgot Password ?</a>
+                                <a href="{{ route('forgotpass.email.verifypage') }}" class="link-primary">Forgot Password
+                                    ?</a>
                                 <!--end::Link-->
                             </div>
                             <!--end::Wrapper-->

@@ -89,71 +89,69 @@ class CartController extends Controller
 
     public function cartOrderPlace(Request $request)
     {
-        // return $request->all();
-
         Stripe::setApiKey(env('STRIPE_SECRET'));
-        Charge::create([
-            'amount' => 100 * 10,
+        $payment =  Charge::create([
+            'amount' => 100 * $request->amount,
             'currency' => 'usd',
             'source' => $request->stripeToken,
             "description" => "This payment is tested purpose",
         ]);
-        return "payment done";
 
+        if ($payment->status === 'succeeded') {
 
-        $cart = session()->get('cart', []);
-        $total = session('total');
+            $cart = session()->get('cart', []);
+            $total = session('total');
 
-        if (Auth::check()) {
-            $user = Auth::user();
-        } else {
-            $request->validate([
-                'name' => 'required',
-                'email' => 'required',
-                'password' => 'required',
-            ]);
-            // Create a new user for the guest
-            $user = new User;
-            $user->name = $request->input('name');
-            $user->email = $request->input('email');
-            $user->type = 'customer';
-            $user->password = bcrypt($request->input('password'));
-            $user->save();
+            if (Auth::check()) {
+                $user = Auth::user();
+            } else {
+                $request->validate([
+                    'name' => 'required',
+                    'email' => 'required',
+                    'password' => 'required',
+                ]);
+                // Create a new user for the guest
+                $user = new User;
+                $user->name = $request->input('name');
+                $user->email = $request->input('email');
+                $user->type = 'customer';
+                $user->password = bcrypt($request->input('password'));
+                $user->save();
+                Auth::login($user);
+            }
 
-            // Log in the newly created user
-            Auth::login($user);
+            $latestOrder = Order::latest('id')->first();
+            if ($latestOrder) {
+                $orderNumber = intval(substr($latestOrder->order_number, 4)) + 1;
+            } else {
+                $orderNumber = 1;
+            }
+            $formattedOrderNumber = 'ord-' . str_pad($orderNumber, 6, '0', STR_PAD_LEFT);
+
+            $order = new Order;
+            $order->order_number = $formattedOrderNumber;
+            $order->user_id = $user->id;
+            $order->total_amount = $total;
+            $order->order_type = 'customer';
+            $order->payment_status = true;
+            $order->payment_method = 'stripe';
+            $order->paid_at = Carbon::now();
+            $order->save();
+
+            foreach ($cart as $item) {
+                $orderItem = new OrderItem([
+                    'order_id' => $order->id,
+                    'service_id' => $item['id'],
+                ]);
+                $orderItem->save();
+            }
+
+            session()->forget('cart');
+            session()->forget('subtotal');
+            session()->forget('total');
+
+            return redirect()->route('customer.account');
         }
-
-        $latestOrder = Order::latest('id')->first();
-        if ($latestOrder) {
-            $orderNumber = intval(substr($latestOrder->order_number, 4)) + 1;
-        } else {
-            $orderNumber = 1;
-        }
-        $formattedOrderNumber = 'ord-' . str_pad($orderNumber, 6, '0', STR_PAD_LEFT);
-
-        $order = new Order;
-        $order->order_number = $formattedOrderNumber;
-        $order->user_id = $user->id;
-        $order->total_amount = $total;
-        $order->order_type = 'customer';
-        $order->payment_status = false;
-        $order->save();
-
-        foreach ($cart as $item) {
-            $orderItem = new OrderItem([
-                'order_id' => $order->id,
-                'service_id' => $item['id'],
-            ]);
-            $orderItem->save();
-        }
-
-        session()->forget('cart');
-        session()->forget('subtotal');
-        session()->forget('total');
-
-        $order = Order::with('items')->find($order->id);
-        return view('frontend.checkout', compact('order'));
     }
 
 

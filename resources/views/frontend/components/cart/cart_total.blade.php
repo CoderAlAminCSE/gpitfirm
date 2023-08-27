@@ -94,12 +94,13 @@
                         <td data-title="Total"><strong>${{ number_format(session('total'), 2) }}</strong>
                         </td>
                     </tr>
+                    <input type="hidden" name="amount" value="{{ session('total') }}">
                 </tbody>
             </table>
             <div class="wc-proceed-to-checkout">
                 <div class="wc-proceed-to-checkout">
                     <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                        data-key="{{ config('services.stripe.key') }}" data-amount={{ 50 * 100 }} data-name="Stripe"
+                        data-key="{{ config('services.stripe.key') }}" data-amount={{ (int) session('total') * 100 }} data-name="Stripe"
                         data-locale="auto" data-label="Pay With Stripe" data-zip-code="true" data-currency="{{ 'USD' }}"
                         data-gateway="stripe"></script>
                 </div>

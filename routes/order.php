@@ -21,3 +21,8 @@ Route::group(['prefix' => 'dashboard/invoice/', 'middleware' => ['auth', 'admin'
   Route::get('generate', [OrderController::class, 'invoiceGenerate'])->name('invoice.generate');
   Route::post('store', [OrderController::class, 'invoiceStore'])->name('invoice.store');
 });
+
+
+// invoice details page for customers 
+Route::get('invoice/{encryptedInvoice}', [OrderController::class, 'invoiceShowForCustomer'])->name('customer.invoice.show');
+Route::post('invoice/payment/confirm', [OrderController::class, 'invoicePaymentConfirm'])->name('invoice.payment.confirm');

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('invoice_number')->unique();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('order_id');
+            $table->string('link')->nullable();
             $table->timestamps();
 
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');

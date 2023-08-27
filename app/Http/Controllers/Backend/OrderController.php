@@ -3,14 +3,18 @@
 namespace App\Http\Controllers\Backend;
 
 use Carbon\Carbon;
+use Stripe\Charge;
+use Stripe\Stripe;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Invoice;
+use App\Models\Service;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\Service;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 
 class OrderController extends Controller
 {
@@ -195,6 +199,7 @@ class OrderController extends Controller
                 'invoice_number' => $formattedInvoiceNumber,
                 'user_id' => $order->user_id,
                 'order_id' => $order->id,
+                'link' => Crypt::encrypt($formattedInvoiceNumber),
             ]);
             $invoice->save();
 
@@ -203,6 +208,42 @@ class OrderController extends Controller
         } catch (\Exception $e) {
             DB::rollBack();
             return back()->with('error', 'Error: ' . $e->getMessage());
+        }
+    }
+
+
+    public function invoiceShowForCustomer($encryptedInvoice, Invoice $invoice)
+    {
+
+        $decryptedInvoiceNumber = Crypt::decrypt($encryptedInvoice);
+        $invoice = Invoice::with('order', 'user', 'order.items')->where('invoice_number', $decryptedInvoiceNumber)->first();
+        if ($invoice) {
+            return view('frontend.components.invoice.invoice', compact('invoice'));
+        }
+    }
+
+
+    public function invoicePaymentConfirm(Request $request)
+    {
+        $invoice = Invoice::where('id', $request->invoice_id)->first();
+        $order = Order::where('id', $invoice->order_id)->first();
+
+        if ($invoice) {
+            Stripe::setApiKey(env('STRIPE_SECRET'));
+            $payment =  Charge::create([
+                'amount' => 100 * $request->amount,
+                'currency' => 'usd',
+                'source' => $request->stripeToken,
+                "description" => "This payment is tested purpose",
+            ]);
+
+            if ($payment->status === 'succeeded') {
+                $order->payment_status = true;
+                $order->payment_method = 'stripe';
+                $order->paid_at = Carbon::now();
+                $order->save();
+                return view('frontend.components.invoice.invoice_payment_success');
+            }
         }
     }
 }

@@ -23,6 +23,8 @@
                                     readonly /></span>
                         </p>
                     </div>
+                    <button type="submit" class="button alt" id="place_order"
+                        value="Place order" data-value="Place order">Place order</button>
                 </div>
             </div>
         @else
@@ -43,7 +45,7 @@
                                 Name&nbsp;<abbr class="required" title="required">*</abbr></label><span
                                 class="woocommerce-input-wrapper"><input type="text"
                                     class="input-text form-control input" name="name" id="account_username"
-                                    placeholder="name" value="{{ old('name') }}" required />
+                                    placeholder="name" value="{{ old('name') }}"  />
                                 @error('name')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -55,7 +57,7 @@
                                 class="control-label">Email address&nbsp;<abbr class="required"
                                     title="required">*</abbr></label><span class="woocommerce-input-wrapper"><input
                                     type="email" class="input-text form-control input" name="email"
-                                    id="billing_email" placeholder="email" value="{{ old('email') }}" required />
+                                    id="billing_email" placeholder="email" value="{{ old('email') }}"  />
                                 @error('email')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
@@ -67,19 +69,21 @@
                                 account password&nbsp;<abbr class="required" title="required">*</abbr></label><span
                                 class="woocommerce-input-wrapper"><input type="text"
                                     class="input-text form-control input" name="password" id="account_password"
-                                    placeholder="Password" required />
+                                    placeholder="Password"  />
                                 @error('password')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </span>
                         </p>
                     </div>
+                    <button type="submit" class="button alt" id="place_order"
+                        value="Place order" data-value="Place order">Place order</button>
                 </div>
             </div>
         @endif
     </div>
 
-    <div class="cart-collaterals mt-5">
+    {{-- <div class="cart-collaterals mt-5">
         <div class="cart_totals ">
             <h2>Cart totals</h2>
             <table cellspacing="0" class="shop_table shop_table_responsive">
@@ -106,5 +110,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
+
 </form>

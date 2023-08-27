@@ -89,6 +89,34 @@ class CartController extends Controller
 
     public function cartOrderPlace(Request $request)
     {
+        if (Auth::check()) {
+            $userInfo = Auth::user();
+        } else {
+            $request->validate([
+                'name' => 'required',
+                'email' => 'required',
+                'password' => 'required',
+            ]);
+
+            $userInfo = [
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'password' => $request->input('password'),
+            ];
+        }
+        return view('frontend.checkout', compact('userInfo'));
+    }
+
+
+    public function cartCheckoutPage($orderId)
+    {
+        $order = Order::with('items')->find($orderId);
+        return view('frontend.checkout', compact('order'));
+    }
+
+    public function orderCheckoutConfirm(Request $request)
+    {
+
         Stripe::setApiKey(env('STRIPE_SECRET'));
         $payment =  Charge::create([
             'amount' => 100 * $request->amount,
@@ -99,18 +127,9 @@ class CartController extends Controller
 
         if ($payment->status === 'succeeded') {
 
-            $cart = session()->get('cart', []);
-            $total = session('total');
-
             if (Auth::check()) {
                 $user = Auth::user();
             } else {
-                $request->validate([
-                    'name' => 'required',
-                    'email' => 'required',
-                    'password' => 'required',
-                ]);
-                // Create a new user for the guest
                 $user = new User;
                 $user->name = $request->input('name');
                 $user->email = $request->input('email');
@@ -119,6 +138,9 @@ class CartController extends Controller
                 $user->save();
                 Auth::login($user);
             }
+
+            $cart = session()->get('cart', []);
+            $total = session('total');
 
             $latestOrder = Order::latest('id')->first();
             if ($latestOrder) {
@@ -131,7 +153,7 @@ class CartController extends Controller
             $order = new Order;
             $order->order_number = $formattedOrderNumber;
             $order->user_id = $user->id;
-            $order->total_amount = $total;
+            $order->total_amount = $request->amount;
             $order->order_type = 'customer';
             $order->payment_status = true;
             $order->payment_method = 'stripe';
@@ -152,23 +174,6 @@ class CartController extends Controller
 
             return redirect()->route('customer.account');
         }
-    }
 
-
-    public function cartCheckoutPage($orderId)
-    {
-        $order = Order::with('items')->find($orderId);
-        return view('frontend.checkout', compact('order'));
-    }
-
-    public function orderCheckoutConfirm($orderId)
-    {
-        $order = Order::with('items')->find($orderId);
-        $order->payment_status = true;
-        $order->payment_method = 'paddle';
-        $order->paid_at = Carbon::now();
-
-        $order->save();
-        return redirect()->route('customer.account');
     }
 }

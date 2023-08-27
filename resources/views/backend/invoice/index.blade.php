@@ -132,6 +132,12 @@
                                                     data-kt-menu="true">
                                                     <!--begin::Menu item-->
                                                     <div class="menu-item px-3">
+                                                        <a class="menu-link px-3" data-link="{{ $invoice->link }}"
+                                                            onclick="copyLink(this)">Copy Link</a>
+                                                    </div>
+                                                    <!--end::Menu item-->
+                                                    <!--begin::Menu item-->
+                                                    <div class="menu-item px-3">
                                                         <a href="{{ route('invoice.show', $invoice->id) }}"
                                                             class="menu-link px-3">View</a>
                                                     </div>
@@ -168,4 +174,5 @@
 
 @section('script')
     <script src="{{ asset('assets/backend') }}/js/site.js"></script>
+    <script src="{{ asset('assets/backend') }}/js/invoice.js"></script>
 @endsection

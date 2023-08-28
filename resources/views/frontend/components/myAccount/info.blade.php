@@ -1,5 +1,11 @@
 @extends('frontend.my_account')
 @section('account_content')
+    @if (Session::has('success'))
+        <div class="alert alert-success m-3 text-center">
+            {{ Session::get('success') }}
+        </div>
+    @endif
+
     <div class="main">
         <section class="ptb-100">
             <div class="container">

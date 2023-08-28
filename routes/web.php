@@ -46,6 +46,11 @@ Route::post('/remove-from-cart', [CartController::class, 'removeFromCart'])->nam
 Route::post('/cart/order/place', [CartController::class, 'cartOrderPlace'])->name('cart.order.place');
 Route::post('/checkout/confirm/', [CartController::class, 'orderCheckoutConfirm'])->name('frontend.checkout.confirm');
 
+//paypal payment routes
+Route::get('/processPaypal', [CartController::class, 'processPaypal'])->name('processPaypal');
+Route::get('/processCancel', [CartController::class, 'processCancel'])->name('processCancel');
+Route::get('/processSuccess', [CartController::class, 'processSuccess'])->name('processSuccess');
+
 Route::get('/guest-post', function () {
     return view('frontend/guest_post');
 });

@@ -126,11 +126,13 @@ class OrderController extends Controller
                 $request->validate([
                     'name' => 'required',
                     'email' => 'required',
+                    'address' => 'required',
                     'password' => 'required',
                 ]);
                 $user = new User;
                 $user->name = $request->input('name');
                 $user->email = $request->input('email');
+                $user->address = $request->input('address');
                 $user->type = 'customer';
                 $user->password = bcrypt($request->input('password'));
                 $user->save();

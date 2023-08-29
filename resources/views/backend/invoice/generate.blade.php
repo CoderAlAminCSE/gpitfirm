@@ -49,8 +49,8 @@
 
                                     <label class="form-label required fs-6 fw-bold text-gray-700 mb-3">Bill To</label>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="1" name="existingCustomr"
-                                            id="customerCheck" checked />
+                                        <input class="form-check-input" type="checkbox" value="1"
+                                            name="existingCustomr" id="customerCheck" checked />
                                         <label class="form-check-label" for="flexCheckChecked">Not A Customer?</label>
                                     </div>
 
@@ -70,15 +70,23 @@
                                     <div id="customUser" class="d-none">
                                         <div class="mb-5">
                                             <input type="text" name="name" class="form-control form-control-solid"
-                                                placeholder="Name" />
+                                                placeholder="Name" value="{{ old('name') }}" />
                                             @error('name')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="mb-5">
                                             <input type="email" name="email" class="form-control form-control-solid"
-                                                placeholder="Email" />
+                                                placeholder="Email" value="{{ old('email') }}" />
                                             @error('email')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-5">
+                                            <input type="text" name="address" class="form-control form-control-solid"
+                                                placeholder="Address: ex- 3455 Geraldine Lane, New York 10013 United States"
+                                                value="{{ old('address') }}" />
+                                            @error('address')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
@@ -218,16 +226,14 @@
                                     <tfoot>
                                         <tr class="border-top border-top-dashed align-top fs-6 fw-bold text-gray-700">
                                             <th class="text-primary">
-                                                <a class=" p-1 m-0" id="add-custom-item"
-                                                    style="cursor: pointer;">Add
+                                                <a class=" p-1 m-0" id="add-custom-item" style="cursor: pointer;">Add
                                                     item</a>
                                             </th>
                                             </th>
-                                            <th colspan="2"
-                                                    class="border-bottom border-bottom-dashed ps-0">
-                                                    <div class="d-flex flex-column align-items-start">
-                                                        <div class="fs-5">Subtotal</div>
-                                                    </div>
+                                            <th colspan="2" class="border-bottom border-bottom-dashed ps-0">
+                                                <div class="d-flex flex-column align-items-start">
+                                                    <div class="fs-5">Subtotal</div>
+                                                </div>
                                             </th>
                                             <th colspan="2" class="border-bottom border-bottom-dashed text-end">$
                                                 <span id="customServiceSubtotal">0.00</span>

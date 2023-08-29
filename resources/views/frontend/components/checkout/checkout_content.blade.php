@@ -50,12 +50,23 @@
 
                                         <p class="form-row form-row-wide form-group validate-required validate-email"
                                             id="billing_email_field" data-priority="110"><label for="billing_email"
-                                                class="control-label">Email address&nbsp;<abbr class="required"
+                                                class="control-label">Email&nbsp;<abbr class="required"
                                                     title="required">*</abbr></label><span
                                                 class="woocommerce-input-wrapper"><input type="email"
                                                     class="input-text form-control input" name="email"
                                                     id="billing_email" placeholder="email"
                                                     value="{{ $userInfo['email'] }}" readonly />
+                                            </span>
+                                        </p>
+
+                                        <p class="form-row form-row-wide form-group validate-required validate-email"
+                                            id="billing_email_field" data-priority="110"><label for="billing_email"
+                                                class="control-label">Address&nbsp;<abbr class="required"
+                                                    title="required">*</abbr></label><span
+                                                class="woocommerce-input-wrapper"><input type="text"
+                                                    class="input-text form-control input" name="address"
+                                                    id="billing_email" placeholder="address"
+                                                    value="{{ $userInfo['address'] }}" readonly />
                                             </span>
                                         </p>
 
@@ -152,7 +163,7 @@
 
                                             <p class="form-row form-row-wide form-group validate-required validate-email"
                                                 id="billing_email_field" data-priority="110"><label
-                                                    for="billing_email" class="control-label">Email address&nbsp;<abbr
+                                                    for="billing_email" class="control-label">Email&nbsp;<abbr
                                                         class="required" title="required">*</abbr></label><span
                                                     class="woocommerce-input-wrapper"><input type="email"
                                                         class="input-text form-control input" name="email"
@@ -181,12 +192,23 @@
 
                                             <p class="form-row form-row-wide form-group validate-required validate-email"
                                                 id="billing_email_field" data-priority="110"><label
-                                                    for="billing_email" class="control-label">Email address&nbsp;<abbr
+                                                    for="billing_email" class="control-label">Email&nbsp;<abbr
                                                         class="required" title="required">*</abbr></label><span
                                                     class="woocommerce-input-wrapper"><input type="email"
                                                         class="input-text form-control input" name="email"
                                                         id="billing_email" placeholder="email"
                                                         value="{{ $userInfo['email'] }}" readonly />
+                                                </span>
+                                            </p>
+
+                                            <p class="form-row form-row-wide form-group validate-required validate-email"
+                                                id="billing_email_field" data-priority="110"><label
+                                                    for="billing_email" class="control-label">Email&nbsp;<abbr
+                                                        class="required" title="required">*</abbr></label><span
+                                                    class="woocommerce-input-wrapper"><input type="text"
+                                                        class="input-text form-control input" name="address"
+                                                        id="billing_email" placeholder="address"
+                                                        value="{{ $userInfo['address'] }}" readonly />
                                                 </span>
                                             </p>
 

@@ -1,6 +1,5 @@
 <form class="login-signup-form" action="{{ route('cart.order.place') }}" method="POST">
     @csrf
-
     <div class="mt-5">
         @if (Auth::check())
             <div class="col-md-7">
@@ -64,6 +63,18 @@
                             </span>
                         </p>
 
+                        <p class="form-row form-row-wide form-group validate-required validate-email"
+                            id="billing_email_field" data-priority="110"><label for="billing_email"
+                                class="control-label">Address&nbsp;<abbr class="required"
+                                    title="required">*</abbr></label><span class="woocommerce-input-wrapper"><input
+                                    type="text" class="input-text form-control input" name="address"
+                                    id="billing_email" placeholder="ex: 3455 Geraldine Lane, New York 10013 United States" value="{{ old('address') }}" />
+                                @error('address')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </span>
+                        </p>
+
                         <p class="form-row form-group validate-required" id="account_password_field" data-priority>
                             <label for="account_password" class="control-label">Create
                                 account password&nbsp;<abbr class="required" title="required">*</abbr></label><span
@@ -82,5 +93,4 @@
             </div>
         @endif
     </div>
-
 </form>

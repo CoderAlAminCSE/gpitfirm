@@ -97,6 +97,7 @@ class CartController extends Controller
             $request->validate([
                 'name' => 'required',
                 'email' => 'required',
+                'address' => 'required',
                 'password' => 'required',
             ]);
 
@@ -107,6 +108,7 @@ class CartController extends Controller
                 $userInfo = [
                     'name' => $request->input('name'),
                     'email' => $request->input('email'),
+                    'address' => $request->input('address'),
                     'password' => $request->input('password'),
                 ];
             }
@@ -139,6 +141,7 @@ class CartController extends Controller
                 $user = new User;
                 $user->name = $request->input('name');
                 $user->email = $request->input('email');
+                $user->address = $request->input('address');
                 $user->type = 'customer';
                 $user->password = bcrypt($request->input('password'));
                 $user->save();
@@ -195,6 +198,7 @@ class CartController extends Controller
             $request->session()->put('user_info', [
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
+                'address' => $request->input('address'),
                 'password' => $request->input('password'),
             ]);
         }
@@ -250,6 +254,7 @@ class CartController extends Controller
                 $user = new User;
                 $user->name = $userInfo['name'];
                 $user->email = $userInfo['email'];
+                $user->address = $userInfo['address'];
                 $user->type = 'customer';
                 $user->password = bcrypt($userInfo['password']);
                 $user->save();

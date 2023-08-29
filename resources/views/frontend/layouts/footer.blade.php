@@ -211,7 +211,7 @@
                 success: function(response) {
                     // Update cart totals section
                     $('.cart_totals').html(response.cartTotalsHtml);
-                    alert(response.message);
+                    window.location.href = response.redirect_url;
                 },
                 error: function(error) {
                     alert("Error adding to cart. Please try again.");

@@ -122,6 +122,9 @@
                                             data-key="{{ config('services.stripe.key') }}" data-amount={{ (int) session('total') * 100 }} data-name="Stripe"
                                             data-locale="auto" data-label="Pay With Stripe" data-zip-code="true" data-currency="{{ 'USD' }}"
                                             data-gateway="stripe"></script>
+
+                                        <a href="#" class="btn btn-primary" id="triggerButton">Pay With
+                                            Paypal</a>
                                     </div>
                                 </div>
                             </div>
@@ -129,9 +132,9 @@
                     </div>
                 </form>
                 <div>
-                    <form action="{{ route('processPaypal') }}" method="get">
+                    <form action="{{ route('processPaypal') }}" method="get" class="d-none">
                         @csrf
-                        <div class="d-none">
+                        <div>
                             @if (Auth::check())
                                 <div class="col-md-6">
                                     <div class="woocommerce-billing-fields">
@@ -207,7 +210,8 @@
                         <input type="hidden" name="amount" value="{{ session('total') }}">
                         <input type="hidden" name="gateway" value="paypal">
                         <script src="https://www.paypal.com/sdk/js? client-id={{ env('PAYPAL_SANDBOX_CLIENT_ID') }}"></script>
-                        <button class="btn btn-primary" type="submit">pay with paypal</button>
+                        <button id="hiddenSubmitButton" class="btn btn-primary" type="submit">pay with
+                            paypal</button>
                     </form>
                 </div>
             </div>

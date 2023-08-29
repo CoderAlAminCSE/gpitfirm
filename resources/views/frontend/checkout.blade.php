@@ -23,6 +23,17 @@
     <!-- footer -->
     @include('frontend/layouts.footer')
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var triggerButton = document.getElementById('triggerButton');
+            var hiddenSubmitButton = document.getElementById('hiddenSubmitButton');
+
+            triggerButton.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent the default link behavior
+                hiddenSubmitButton.click(); // Trigger the hidden submit button
+            });
+        });
+    </script>
 </body>
 
 </html>

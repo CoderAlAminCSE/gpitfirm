@@ -52,6 +52,7 @@ class CartController extends Controller
 
         return response()->json([
             'message' => 'Service added to cart',
+            'redirect_url' => route('frontend.cart.page'),
             'cartTotalsHtml' => view('frontend.components.cart.cart_total')->render(),
         ]);
     }
@@ -122,7 +123,6 @@ class CartController extends Controller
 
     public function orderCheckoutConfirm(Request $request)
     {
-        return $request->all();
         Stripe::setApiKey(env('STRIPE_SECRET'));
         $payment =  Charge::create([
             'amount' => 100 * $request->amount,
@@ -178,7 +178,7 @@ class CartController extends Controller
             session()->forget('subtotal');
             session()->forget('total');
 
-            return redirect()->route('customer.account');
+            return redirect()->route('customer.account')->with('success', 'Congratulations, Payment done!');
         }
     }
 
@@ -291,7 +291,7 @@ class CartController extends Controller
             session()->forget('user_info');
 
 
-            return redirect()->route('customer.account')->with('success', 'Congratulations, Payment done!');;
+            return redirect()->route('customer.account')->with('success', 'Congratulations, Payment done!');
         } else {
             return $response['message'];
         }

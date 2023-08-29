@@ -47,11 +47,14 @@
                                 </div>
                                 <div class="col-lg-6">
 
-                                    <label class="form-label required fs-6 fw-bold text-gray-700 mb-3">Bill To</label>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="1"
-                                            name="existingCustomr" id="customerCheck" checked />
-                                        <label class="form-check-label" for="flexCheckChecked">Not A Customer?</label>
+                                    <div class="form-check"
+                                        style="display: flex; align-items: start; margin-left:0px; padding-left:0px; ">
+                                        <label class="form-label required fs-6 fw-bold text-gray-700 mb-3">Bill To</label>
+                                        <div class="form-check" style="margin-left: 10px;">
+                                            <input class="form-check-input" type="checkbox" value="1"
+                                                name="existingCustomr" id="customerCheck" checked />
+                                            <label class="form-check-label" for="customerCheck">Not A Customer?</label>
+                                        </div>
                                     </div>
 
                                     <div id="existingCustomer" class="mb-5">

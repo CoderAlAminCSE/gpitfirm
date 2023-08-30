@@ -13,6 +13,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!-- tailwindcss -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -235,6 +237,42 @@
             flex-direction: column;
             margin-bottom: 10px;
         }
+
+        .paypal-button {
+            color: white;
+            background-color: #0369a1 !important;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            /* Adding the following line to ensure the background color is visible */
+            border: 1px solid blue;
+            width: 250px !important;
+            font-family: 'Poppins', sans-serif !important;
+            font-size: 16px !important;
+            font-weight: 500 !important;
+        }
+
+        .stripe-button-el {
+            border: none !important;
+            margin-bottom: 15px !important;
+            background-image: none !important;
+            padding: 8px 16px !important;
+            background: #38bdf8 !important;
+            width: 250px !important;
+            font-family: 'Poppins', sans-serif !important;
+            font-size: 16px !important;
+            font-weight: 500 !important;
+        }
+
+        .stripe-button-el span {
+            background: none !important;
+            text-shadow: none !important;
+            box-shadow: none !important;
+            font-size: 16px !important;
+            font-weight: 600 !important;
+        }
     </style>
 </head>
 
@@ -269,7 +307,16 @@
             </div>
         </div>
     </header>
-
+    @if (Session::has('success'))
+        <div class="alert alert-success m-3 text-center">
+            {{ Session::get('success') }}
+        </div>
+    @endif
+    @if (Session::has('error'))
+        <div class="alert alert-danger m-3 text-center">
+            {{ Session::get('error') }}
+        </div>
+    @endif
     <!-- bill-area -->
     <div class="bill_area py-[25px]">
         <div class="rs_container bill_area_wrapper flex justify-between">
@@ -371,14 +418,24 @@
                 </div>
                 @if ($invoice->order->payment_status == 0 && $invoice->order->canceled_at == null)
                     <div class="mt-4">
-                        <form action="{{ route('invoice.payment.confirm') }}" method="post">
-                            @csrf
-                            <input type="hidden" name="invoice_id" value="{{ $invoice->id }}">
-                            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                data-key="{{ config('services.stripe.key') }}" data-amount={{ $invoice->order->total_amount * 100 }}
-                                data-name="Stripe" data-locale="auto" data-label="Pay With Stripe" data-zip-code="true"
-                                data-currency="{{ 'USD' }}" data-gateway="stripe"></script>
-                        </form>
+                        <div>
+                            <form action="{{ route('invoice.payment.confirm') }}" method="post">
+                                @csrf
+                                <input type="hidden" name="invoice_id" value="{{ $invoice->id }}">
+                                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                    data-key="{{ config('services.stripe.key') }}" data-amount={{ $invoice->order->total_amount * 100 }}
+                                    data-name="Stripe" data-locale="auto" data-label="Pay With Stripe" data-zip-code="true"
+                                    data-currency="{{ 'USD' }}" data-gateway="stripe"></script>
+                            </form>
+                        </div>
+                        <div>
+                            <form action="{{ route('invoice.processPaypal') }}" method="get">
+                                @csrf
+                                <input type="hidden" name="invoice_id" value="{{ $invoice->id }}">
+                                <script src="https://www.paypal.com/sdk/js? client-id={{ env('PAYPAL_SANDBOX_CLIENT_ID') }}"></script>
+                                <button class="paypal-button capitalize" type="submit">pay with paypal</button>
+                            </form>
+                        </div>
                     </div>
                 @endif
 

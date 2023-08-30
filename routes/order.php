@@ -26,3 +26,8 @@ Route::group(['prefix' => 'dashboard/invoice/', 'middleware' => ['auth', 'admin'
 // invoice details page for customers 
 Route::get('invoice/{encryptedInvoice}', [OrderController::class, 'invoiceShowForCustomer'])->name('customer.invoice.show');
 Route::post('invoice/payment/confirm', [OrderController::class, 'invoicePaymentConfirm'])->name('invoice.payment.confirm');
+
+//paypal payment routes
+Route::get('/invoice/pay/processPaypal', [OrderController::class, 'processPaypal'])->name('invoice.processPaypal');
+Route::get('/invoice/pay/processCancel', [OrderController::class, 'processCancel'])->name('invoice.processCancel');
+Route::get('/invoice/pay/processSuccess', [OrderController::class, 'processSuccess'])->name('invoice.processSuccess');

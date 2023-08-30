@@ -28,7 +28,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
 
 Route::get('/', function () {
     return view('frontend/index');
-});
+})->name('frontenc.index');
 
 Route::get('/faq', function () {
     return view('frontend/faq');

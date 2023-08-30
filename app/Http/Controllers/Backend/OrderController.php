@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Srmklive\PayPal\Services\Paypal as PaypPalClinet;
 
 class OrderController extends Controller
 {
@@ -226,7 +227,6 @@ class OrderController extends Controller
 
     public function invoicePaymentConfirm(Request $request)
     {
-        // return $request->all();
         $invoice = Invoice::where('id', $request->invoice_id)->first();
         $order = Order::where('id', $invoice->order_id)->first();
 
@@ -247,5 +247,82 @@ class OrderController extends Controller
                 return back();
             }
         }
+    }
+
+
+    /**
+     * this function make payments 
+     */
+    public function processPaypal(Request $request)
+    {
+        $invoice = Invoice::with('order', 'order.items')->where('id', $request->invoice_id)->first();
+
+        if ($invoice) {
+            session(['invoice_for_paypal' => $invoice]);
+            $provider = new PaypPalClinet();
+            $provider->setApiCredentials(config('paypal'));
+            $paypalToken = $provider->getAccessToken();
+
+            $response = $provider->createOrder([
+                "intent" => "CAPTURE",
+                "application_context" => [
+                    "return_url" => route('invoice.processSuccess'),
+                    "cancel_url" => route('invoice.processCancel'),
+                ],
+                "purchase_units" => [
+                    0 => [
+                        "amount" => [
+                            "currency_code" => "USD",
+                            "value" => $invoice->order->total_amount
+                        ]
+                    ]
+                ]
+            ]);
+
+            if (isset($response['id']) && $response['id'] != null) {
+                foreach ($response['links'] as $links) {
+                    if ($links['rel'] == 'approve') {
+                        return redirect()->away($links['href']);
+                    }
+                }
+
+                return back()->with('error', 'Something went wrong!');
+            } else {
+                return back()->with('error', 'Something went wrong!');
+            }
+        }
+    }
+
+
+    public function processSuccess(Request $request)
+    {
+        $provider = new PaypPalClinet();
+        $provider->setApiCredentials(config('paypal'));
+        $provider->getAccessToken();
+        $response = $provider->capturePaymentOrder($request['token']);
+
+        if (isset($response['status']) && $response['status'] == 'COMPLETED') {
+
+            $retrievedInvoice = session('invoice_for_paypal');
+            $orderID = $retrievedInvoice->order_id;
+
+            $order = Order::findOrFail($orderID);
+            $order->payment_status = true;
+            $order->payment_method = 'paypal';
+            $order->paid_at = Carbon::now();
+            $order->save();
+
+            session()->forget('invoice_for_paypal');
+            return redirect()->route('frontenc.index');
+        } else {
+            return $response['message'];
+        }
+    }
+
+
+    public function ProcessCancel(Request $request)
+    {
+        session()->forget('invoice_for_paypal');
+        return back()->with('error', 'You have cancelled your transaction');
     }
 }

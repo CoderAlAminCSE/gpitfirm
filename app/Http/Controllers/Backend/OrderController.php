@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Redirect;
 use Srmklive\PayPal\Services\Paypal as PaypPalClinet;
 
 class OrderController extends Controller
@@ -220,7 +221,7 @@ class OrderController extends Controller
         $decryptedInvoiceNumber = Crypt::decrypt($encryptedInvoice);
         $invoice = Invoice::with('order', 'user', 'order.items')->where('invoice_number', $decryptedInvoiceNumber)->first();
         if ($invoice) {
-            return view('frontend.components.invoice.invoice', compact('invoice'));
+            return view('frontend.components.invoice.invoice', compact('invoice', 'encryptedInvoice'));
         }
     }
 
@@ -259,6 +260,11 @@ class OrderController extends Controller
 
         if ($invoice) {
             session(['invoice_for_paypal' => $invoice]);
+
+            $encryptedInvoice = $request->encryptedInvoice;
+            $invoiceUrl = route('customer.invoice.show', ['encryptedInvoice' => $encryptedInvoice]);
+            session(['invoiceUrl' => $invoiceUrl]);
+
             $provider = new PaypPalClinet();
             $provider->setApiCredentials(config('paypal'));
             $paypalToken = $provider->getAccessToken();
@@ -286,9 +292,9 @@ class OrderController extends Controller
                     }
                 }
 
-                return back()->with('error', 'Something went wrong!');
+                return Redirect::to($invoiceUrl)->with('error', 'Something went wrong!');
             } else {
-                return back()->with('error', 'Something went wrong!');
+                return Redirect::to($invoiceUrl)->with('error', 'Something went wrong!');
             }
         }
     }
@@ -306,14 +312,17 @@ class OrderController extends Controller
             $retrievedInvoice = session('invoice_for_paypal');
             $orderID = $retrievedInvoice->order_id;
 
+            $invoiceUrl = session('invoiceUrl');
+
             $order = Order::findOrFail($orderID);
             $order->payment_status = true;
             $order->payment_method = 'paypal';
             $order->paid_at = Carbon::now();
             $order->save();
 
+            session()->forget('invoiceUrl');
             session()->forget('invoice_for_paypal');
-            return redirect()->route('frontenc.index');
+            return Redirect::to($invoiceUrl)->with('success', 'Payment successful!');
         } else {
             return $response['message'];
         }
@@ -322,7 +331,8 @@ class OrderController extends Controller
 
     public function ProcessCancel(Request $request)
     {
+        $invoiceUrl = session('invoiceUrl');
         session()->forget('invoice_for_paypal');
-        return back()->with('error', 'You have cancelled your transaction');
+        return Redirect::to($invoiceUrl)->with('error', 'You have cancelled the payment!');
     }
 }

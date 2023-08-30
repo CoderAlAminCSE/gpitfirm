@@ -432,6 +432,7 @@
                             <form action="{{ route('invoice.processPaypal') }}" method="get">
                                 @csrf
                                 <input type="hidden" name="invoice_id" value="{{ $invoice->id }}">
+                                <input type="hidden" name="encryptedInvoice" value="{{ $encryptedInvoice }}">
                                 <script src="https://www.paypal.com/sdk/js? client-id={{ env('PAYPAL_SANDBOX_CLIENT_ID') }}"></script>
                                 <button class="paypal-button capitalize" type="submit">pay with paypal</button>
                             </form>

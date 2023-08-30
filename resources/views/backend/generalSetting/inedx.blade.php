@@ -272,6 +272,32 @@
                                             <div class="col-md-3 text-md-end">
                                                 <!--begin::Label-->
                                                 <label class="fs-6 fw-semibold form-label mt-3">
+                                                    <span class="required">Company Website</span>
+                                                    <span class="ms-1" data-bs-toggle="tooltip"
+                                                        title="Set company website.">
+                                                        <i class="ki-duotone ki-information-5 text-gray-500 fs-6">
+                                                            <span class="path1"></span>
+                                                            <span class="path2"></span>
+                                                            <span class="path3"></span>
+                                                        </i>
+                                                    </span>
+                                                </label>
+                                                <!--end::Label-->
+                                            </div>
+                                            <div class="col-md-9">
+                                                <!--begin::Input-->
+                                                <input type="text" class="form-control form-control-solid"
+                                                    name="company_website"
+                                                    value="{{ siteSetting('company_website') ?? null }}" />
+                                                <!--end::Input-->
+                                            </div>
+                                        </div>
+                                        <!--end::Input group-->  
+                                        <!--begin::Input group-->
+                                        <div class="row fv-row mb-7">
+                                            <div class="col-md-3 text-md-end">
+                                                <!--begin::Label-->
+                                                <label class="fs-6 fw-semibold form-label mt-3">
                                                     <span class="required">Company Name</span>
                                                     <span class="ms-1" data-bs-toggle="tooltip"
                                                         title="Set company name.">

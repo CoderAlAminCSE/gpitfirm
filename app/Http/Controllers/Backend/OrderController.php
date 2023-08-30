@@ -216,7 +216,6 @@ class OrderController extends Controller
 
     public function invoiceShowForCustomer($encryptedInvoice, Invoice $invoice)
     {
-
         $decryptedInvoiceNumber = Crypt::decrypt($encryptedInvoice);
         $invoice = Invoice::with('order', 'user', 'order.items')->where('invoice_number', $decryptedInvoiceNumber)->first();
         if ($invoice) {
@@ -227,13 +226,14 @@ class OrderController extends Controller
 
     public function invoicePaymentConfirm(Request $request)
     {
+        // return $request->all();
         $invoice = Invoice::where('id', $request->invoice_id)->first();
         $order = Order::where('id', $invoice->order_id)->first();
 
         if ($invoice) {
             Stripe::setApiKey(env('STRIPE_SECRET'));
             $payment =  Charge::create([
-                'amount' => 100 * $request->amount,
+                'amount' => 100 * $order->total_amount,
                 'currency' => 'usd',
                 'source' => $request->stripeToken,
                 "description" => "This payment is tested purpose",
@@ -244,7 +244,7 @@ class OrderController extends Controller
                 $order->payment_method = 'stripe';
                 $order->paid_at = Carbon::now();
                 $order->save();
-                return view('frontend.components.invoice.invoice_payment_success');
+                return back();
             }
         }
     }

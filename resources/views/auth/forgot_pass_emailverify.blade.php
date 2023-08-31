@@ -1,7 +1,7 @@
 @extends('auth.layouts.app')
 
 @section('content')
-    <div class="d-flex flex-column flex-root" id="kt_app_root">
+    <div class="d-flex flex-column flex-root justify-content-center align-items-center" id="kt_app_root">
         <div class="card rounded-3 w-md-550px">
             <!--begin::Card body-->
             <div class="card-body d-flex flex-column p-10 p-lg-20 pb-lg-10">
@@ -17,9 +17,8 @@
                             <h1 class="text-dark fw-bolder mb-3">Forgot Password ?</h1>
                             <!--end::Title-->
                             <!--begin::Link-->
-                            <div class="text-gray-500 fw-semibold fs-6">Enter the email used for your account, we will send
-                                a
-                                verification code</div>
+                            <div class="text-gray-500 fw-semibold fs-6">Enter the email linked to your account. We'll send a
+                                verification code.</div>
                             <!--end::Link-->
                         </div>
                         <!--begin::Heading-->

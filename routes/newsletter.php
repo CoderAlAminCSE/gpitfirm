@@ -20,4 +20,5 @@ Route::group(['prefix' => 'dashboard/contact/messages', 'middleware' => ['auth',
   Route::get('/index', [NewsletterController::class, 'ContactMessageIndex'])->name('contact.message.index');
   Route::post('/submit', [NewsletterController::class, 'contactFormSubmit'])->name('contact.form.submit');
   Route::get('/delete/{id}', [NewsletterController::class, 'contactMessageDelete'])->name('contact.message.delete');
+  Route::post('/reply', [NewsletterController::class, 'contactMessageReply'])->name('contact.message.reply');
 });

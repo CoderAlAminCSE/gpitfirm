@@ -4,6 +4,7 @@ use App\Models\Site;
 use App\Models\User;
 use App\Models\Service;
 use App\Models\Category;
+use App\Models\ContactMessage;
 use App\Models\RefundPage;
 use App\Models\FaqPageContent;
 use App\Models\GeneralSetting;
@@ -192,4 +193,11 @@ function orderInfo($id)
 function orderIdWiseOrderItem($orderId)
 {
   return OrderItem::where('order_id', $orderId)->get();
+}
+
+
+// get value from "ContactMessages" table
+function contactMessageInfo($id)
+{
+  return ContactMessage::where('id', $id)->first();
 }

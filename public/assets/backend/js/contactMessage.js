@@ -56,3 +56,21 @@ deleteButtons.forEach((button) => {
         });
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Get modal and input element
+    const modal = document.getElementById("kt_modal_newsletter_email");
+    const contactIdInputs = modal.querySelectorAll('[name="contactMessageId"]');
+
+    // Attach event listener to each "Reply" button
+    const replyButtons = document.querySelectorAll('[data-bs-toggle="modal"]');
+    replyButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+            const contactId = button.getAttribute("data-contact-id");
+            // Set the contactId in the input field of each modal
+            contactIdInputs.forEach((input) => {
+                input.value = contactId;
+            });
+        });
+    });
+});

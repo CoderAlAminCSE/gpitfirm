@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\ContactMessage;
 use App\Http\Controllers\Controller;
 use App\Mail\ContactMessageMail;
+use App\Mail\ContactMessageReplyMail;
 use App\Mail\NewsletterEmail;
 use Illuminate\Support\Facades\Mail;
 
@@ -144,5 +145,33 @@ class NewsletterController extends Controller
         $contactMessage = $contactMessage->findOrFail($id);
         $contactMessage->delete();
         return back();
+    }
+
+
+    public function contactMessageReply(Request $request, ContactMessage $contactMessage)
+    {
+        $request->validate([
+            'subject' => 'required',
+            'message' => 'required',
+        ]);
+
+        try {
+            $from = env('MAIL_FROM_ADDRESS');
+            $details = [
+                'message' => $request->message,
+                'subject' => $request->subject,
+                'from' => $from,
+            ];
+
+            $receiver = $contactMessage->where('id', $request->contactMessageId)->first();
+            if ($receiver) {
+                Mail::to($receiver->email)->send(new ContactMessageReplyMail($details));
+                return back()->with('success', 'Email sent successfully');
+            } else {
+                return back()->with('error', 'Receiver email not found');
+            }
+        } catch (\Exception $e) {
+            return back()->with('error', 'Error: ' . $e->getMessage());
+        }
     }
 }

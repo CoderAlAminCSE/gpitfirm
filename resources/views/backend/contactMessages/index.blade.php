@@ -38,6 +38,88 @@
                 <!--end::Toolbar container-->
             </div>
             <!--end::Toolbar-->
+
+            <!--begin::Modal - Adjust Balance-->
+            <div class="modal fade" id="kt_modal_newsletter_email" tabindex="-1" aria-hidden="true">
+                <!--begin::Modal dialog-->
+                <div class="modal-dialog modal-dialog-centered mw-650px">
+                    <!--begin::Modal content-->
+                    <div class="modal-content">
+                        <!--begin::Modal header-->
+                        <div class="modal-header">
+                            <!--begin::Modal title-->
+                            <h2 class="fw-bold">Send Contact Message Reply</h2>
+                            <!--end::Modal title-->
+                            <!--begin::Close-->
+                            <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
+                                <i class="ki-duotone ki-cross fs-1">
+                                    <span class="path1"></span>
+                                    <span class="path2"></span>
+                                </i>
+                            </div>
+                            <!--end::Close-->
+                        </div>
+                        <!--end::Modal header-->
+                        <!--begin::Modal body-->
+                        <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                            <!--begin::Form-->
+                            <form action="{{ route('contact.message.reply') }}" method="POST"
+                                class="form fv-plugins-bootstrap5 fv-plugins-framework">
+                                @csrf
+                                <!--begin::Input group-->
+                                <input type="hidden" name="contactMessageId" id="contactMessageId" value="">
+                                <!--end::Input group-->
+
+                                <!--begin::Input group-->
+                                <div class="fv-row mb-10">
+                                    <!--begin::Label-->
+                                    <label class="required fw-semibold fs-6 mb-2">Subject</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <input type="text" name="subject"
+                                        class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Subject"
+                                        value="{{ old('subject') }}" />
+                                    @error('subject')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Input group-->
+
+                                <!--begin::Input group-->
+                                <div class="fv-row mb-10">
+                                    <!--begin::Label-->
+                                    <label class="required fw-semibold fs-6 mb-2">Message</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <textarea class="form-control form-control-solid" name="message" placeholder="message" rows="4"
+                                        value="{{ old('message') }}"></textarea>
+                                    @error('message')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Input group-->
+
+                                <!--begin::Actions-->
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary" data-kt-users-modal-action="submit">
+                                        <span class="indicator-label">Submit</span>
+                                    </button>
+                                </div>
+                                <!--end::Actions-->
+                            </form>
+                            <!--end::Form-->
+                        </div>
+                        <!--end::Modal body-->
+                    </div>
+                    <!--end::Modal content-->
+                </div>
+                <!--end::Modal dialog-->
+            </div>
+            <!--end::Modal - New Card-->
+
+
             <!--begin::Content-->
             <div id="kt_app_content" class="app-content flex-column-fluid">
                 <!--begin::Content container-->
@@ -92,11 +174,20 @@
                                             <td>
                                                 <a href="#"
                                                     class="btn btn-light btn-active-light-primary btn-flex btn-center btn-sm"
-                                                    data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
+                                                    data-kt-menu-trigger="click"
+                                                    data-kt-menu-placement="bottom-end">Actions
                                                     <i class="ki-duotone ki-down fs-5 ms-1"></i></a>
                                                 <!--begin::Menu-->
                                                 <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
                                                     data-kt-menu="true">
+                                                    <!--begin::Menu item-->
+                                                    <div class="menu-item px-3">
+                                                        <a class="menu-link px-3"
+                                                            data-contact-id="{{ $contactMessage->id }}"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#kt_modal_newsletter_email">Reply</a>
+                                                    </div>
+                                                    <!--end::Menu item-->
                                                     <!--begin::Menu item-->
                                                     <div class="menu-item px-3">
                                                         <a class="menu-link px-3 btn-contactMessage-delete"

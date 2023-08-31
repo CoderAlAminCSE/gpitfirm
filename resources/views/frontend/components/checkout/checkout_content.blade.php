@@ -134,8 +134,8 @@
                                             data-locale="auto" data-label="Pay With Stripe" data-zip-code="true" data-currency="{{ 'USD' }}"
                                             data-gateway="stripe"></script>
 
-                                        <a href="#" class="btn btn-primary" id="triggerButton">Pay With
-                                            Paypal</a>
+                                        <button class="paypal-button capitalize" id="triggerButton">Pay With
+                                            Paypal</button>
                                     </div>
                                 </div>
                             </div>

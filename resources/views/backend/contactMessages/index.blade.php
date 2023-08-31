@@ -73,6 +73,19 @@
                                 <!--begin::Input group-->
                                 <div class="fv-row mb-10">
                                     <!--begin::Label-->
+                                    <label class="required fw-semibold fs-6 mb-2">Reply to: </label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <input type="text" name="email" id="email"
+                                        class="form-control form-control-solid mb-3 mb-lg-0" placeholder="email address"
+                                        value="" readonly />
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Input group-->
+
+                                <!--begin::Input group-->
+                                <div class="fv-row mb-10">
+                                    <!--begin::Label-->
                                     <label class="required fw-semibold fs-6 mb-2">Subject</label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
@@ -184,6 +197,7 @@
                                                     <div class="menu-item px-3">
                                                         <a class="menu-link px-3"
                                                             data-contact-id="{{ $contactMessage->id }}"
+                                                            data-contact-email="{{ $contactMessage->email }}"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#kt_modal_newsletter_email">Reply</a>
                                                     </div>

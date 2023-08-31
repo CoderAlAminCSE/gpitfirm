@@ -66,10 +66,13 @@
                                 <!--end::Search-->
                             </div>
                             <!--begin::Card title-->
-                            <div class="d-flex justify-content-end align-items-center">
-                                <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                    data-bs-target="#kt_modal_newsletter_email">Send Email</button>
-                            </div>
+                            @if ($newsletters->count() > 0)
+                                <div class="d-flex justify-content-end align-items-center">
+                                    <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                        data-bs-target="#kt_modal_newsletter_email">Send Email</button>
+                                </div>
+                            @endif
+
                             <!--end::Card toolbar-->
                         </div>
                         <!--end::Card header-->
@@ -161,24 +164,24 @@
                                 <thead>
                                     <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
                                         <th class="w-10px pe-2">
-                                            <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
+                                            {{-- <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
                                                 <input class="form-check-input" type="checkbox" data-kt-check="true"
                                                     value="1" />
-                                            </div>
+                                            </div> --}}
                                         </th>
-                                        <th class="min-w-125px">SL</th>
-                                        <th class="min-w-125px">Email</th>
-                                        <th class="min-w-125px">Actions</th>
+                                        <th style="width: 20%;">SL</th>
+                                        <th style="width: 60%;">Email</th>
+                                        <th style="width: 20%;">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody class="text-gray-600 fw-semibold">
                                     @forelse ($newsletters as $newsletter)
                                         <tr>
-                                            <td>
+                                            {{-- <td>
                                                 <div class="form-check form-check-sm form-check-custom form-check-solid">
                                                     <input class="form-check-input" type="checkbox" value="1" />
                                                 </div>
-                                            </td>
+                                            </td> --}}
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $newsletter->email }}</td>
                                             <td>
@@ -207,6 +210,7 @@
                                     @endforelse
                                 </tbody>
                             </table>
+
                             <div class="d-flex justify-content-center">
                                 <nav aria-label="Page navigation">
                                     {{ $newsletters->links() }}

@@ -77,11 +77,16 @@ class NewsletterController extends Controller
                 'from' => $from,
             ];
 
-            $subscribers = $newsletter->all();
-            foreach ($subscribers as  $subscriber) {
-                Mail::to($subscriber->email)->send(new NewsletterEmail($details));
+            $subscribers = Newsletter::all();
+            $count = $subscribers->count();
+            if ($count > 0) {
+                foreach ($subscribers as $subscriber) {
+                    Mail::to($subscriber->email)->send(new NewsletterEmail($details));
+                }
+                return back()->with('success', 'Email sent to all subscribed users successfully');
+            } else {
+                return back()->with('error', 'No emails found');
             }
-            return back()->with('success', 'Email send to all subscribed users successfully');
         } catch (\Exception $e) {
             return back()->with('error', 'Error: ' . $e->getMessage());
         }

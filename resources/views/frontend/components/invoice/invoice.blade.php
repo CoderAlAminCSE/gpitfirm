@@ -369,34 +369,34 @@
     <div class="item_details py-[25px]">
         <div class="rs_container">
             <div class="item_details_header bg-gray-200 grid grid-cols-6">
-                <p class="col-span-5 p-5">Item Details</p>
-                <p class="p-5">Amount</p>
+                <p class="col-span-5 p-3">Item Details</p>
+                <p class="p-3">Amount</p>
             </div>
             @foreach ($invoice->order->items as $item)
                 @if ($item->service_id == null)
                     <div class="item_details_body grid grid-cols-6">
                         <div class="border-l-[1px] border-r-[1px] border-b-[1px] border-gray-200 col-span-5">
-                            <h2 class="border-b-[1px] border-gray-200 p-5 font-[600]">{{ $item->custom_service_name }}
+                            <h2 class="border-b-[1px] border-gray-200 p-3 font-[600]">{{ $item->custom_service_name }}
                             </h2>
-                            <p class="p-5 font-[400]">
+                            <p class="p-3 font-[400]">
                                 {{ $item->custom_service_description }}
                             </p>
                         </div>
-                        <div class="item_details_price border-r-[1px] border-b-[1px] border-gray-200 p-5">
+                        <div class="item_details_price border-r-[1px] border-b-[1px] border-gray-200 p-3">
                             <span>${{ $item->custom_service_price }}</span>
                         </div>
                     </div>
                 @else
                     <div class="item_details_body grid grid-cols-6">
                         <div class="border-l-[1px] border-r-[1px] border-b-[1px] border-gray-200 col-span-5">
-                            <h2 class="border-b-[1px] border-gray-200 p-5 font-[600]">
+                            <h2 class="border-b-[1px] border-gray-200 p-3 font-[600]">
                                 {{ serviceInfo($item->service_id)->name }}
                             </h2>
-                            {{-- <p class="p-5 font-[400]">
+                            {{-- <p class="p-3 font-[400]">
                               {!! serviceInfo($item->service_id)->description !!}
                             </p> --}}
                         </div>
-                        <div class="item_details_price border-r-[1px] border-b-[1px] border-gray-200 p-5">
+                        <div class="item_details_price border-r-[1px] border-b-[1px] border-gray-200 p-3">
                             <span>${{ serviceInfo($item->service_id)->price }}</span>
                         </div>
                     </div>
@@ -411,7 +411,7 @@
         <div class="rs_container summary_wrapper flex justify-between items-center">
             <button class="bg-fuchsia-200 py-2 px-4 rounded-md"> <i class="fa-solid fa-print"></i> Print/PDF</button>
             <div>
-                <div class="py-5 px-10 bg-gray-200 rounded-md">
+                <div class="py-3 px-10 bg-gray-200 rounded-md">
                     <span class="inline-block mr-10 text-gray-700 font-[500]">Total</span>
                     <strong class="text-lg">${{ $invoice->order->total_amount }}</strong>
 

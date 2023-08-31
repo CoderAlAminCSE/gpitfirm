@@ -150,12 +150,12 @@ class NewsletterController extends Controller
 
     public function contactMessageReply(Request $request, ContactMessage $contactMessage)
     {
-        $request->validate([
-            'subject' => 'required',
-            'message' => 'required',
-        ]);
-
         try {
+            $request->validate([
+                'subject' => 'required',
+                'message' => 'required',
+            ]);
+
             $from = env('MAIL_FROM_ADDRESS');
             $details = [
                 'message' => $request->message,

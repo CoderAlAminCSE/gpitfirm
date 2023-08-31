@@ -233,10 +233,9 @@ class CartController extends Controller
                     return redirect()->away($links['href']);
                 }
             }
-
-            return "some went wrong";
+            return view('frontend.checkout');
         } else {
-            return "some went wrong";
+            return view('frontend.checkout');
         }
     }
 
@@ -311,6 +310,6 @@ class CartController extends Controller
     public function ProcessCancel(Request $request)
     {
         session()->forget('user_info');
-        return 'You have canceled the transaction.';
+        return view('frontend.checkout');
     }
 }

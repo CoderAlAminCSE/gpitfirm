@@ -38,7 +38,11 @@ class CartController extends Controller
             }
         }
         if ($serviceExists) {
-            return response()->json(['message' => 'Item is already in the cart']);
+            return response()->json([
+                'exist' => 'yes',
+                'message' => 'Item is already in the cart',
+                'redirect_url' => route('frontend.services'),
+            ]);
         }
         $cart[] = $service;
         session(['cart' => $cart]);

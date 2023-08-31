@@ -209,9 +209,14 @@
                     _token: "{{ csrf_token() }}"
                 },
                 success: function(response) {
-                    // Update cart totals section
-                    $('.cart_totals').html(response.cartTotalsHtml);
-                    window.location.href = response.redirect_url;
+                    if (response.exist == 'yes') {
+                        alert('Service already exists in the cart');
+                    } else {
+                        // console.log(response);
+                        $('.cart_totals').html(response.cartTotalsHtml);
+                        window.location.href = response.redirect_url;
+                    }
+
                 },
                 error: function(error) {
                     alert("Error adding to cart. Please try again.");

@@ -86,7 +86,7 @@ Route::get('/reseller-rules', function () {
 
 Route::get('/services', function () {
     return view('frontend/services');
-});
+})->name('frontend.services');
 
 Route::get('/service/{category}', [ServicesController::class, 'categoryWiseServiceShow'])->name('category.service.show');
 

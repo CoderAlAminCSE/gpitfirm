@@ -45,7 +45,7 @@ class PagesController extends Controller
                     $filePath = $file->storeAs('backend/upload/pages', $filename, 'public');
                     $image = homePageHeroSection('image');
 
-                    // Check if the existing image exists using the relative path and delete
+                    // Check if the existing image exists using the relative path and deleted
                     if ($image && Storage::exists('public/' . $image)) {
                         Storage::delete('public/' . $image);
                     }

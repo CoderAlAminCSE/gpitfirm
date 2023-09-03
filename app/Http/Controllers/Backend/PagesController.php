@@ -36,10 +36,8 @@ class PagesController extends Controller
             'button' => ['required'],
             'description' => ['required'],
         ]); // end of validation
-        return $request->all();
         try {
             if ($request->file('image')) {
-                return "tftgbh";
                 try {
                     $file = $request->file('image');
                     $extension = $file->getClientOriginalExtension();

@@ -86,7 +86,7 @@ class NewsletterController extends Controller
                 $subscribers = Newsletter::whereIn('id', $newsletterIds)->get();
             }
 
-            return  $count = $subscribers->count();
+            $count = $subscribers->count();
 
             if ($count > 0) {
                 foreach ($subscribers as $subscriber) {

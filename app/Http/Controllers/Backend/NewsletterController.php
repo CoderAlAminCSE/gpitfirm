@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Backend;
 
 use App\Models\Newsletter;
 use Illuminate\Http\Request;
-use App\Models\ContactMessage;
-use App\Http\Controllers\Controller;
-use App\Mail\ContactMessageMail;
-use App\Mail\ContactMessageReplyMail;
 use App\Mail\NewsletterEmail;
+use App\Models\ContactMessage;
+use App\Mail\ContactMessageMail;
+use App\Jobs\SendNewsletterEmail;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactMessageReplyMail;
 
 class NewsletterController extends Controller
 {
@@ -82,9 +83,9 @@ class NewsletterController extends Controller
             $count = $subscribers->count();
             if ($count > 0) {
                 foreach ($subscribers as $subscriber) {
-                    Mail::to($subscriber->email)->send(new NewsletterEmail($details));
+                    SendNewsletterEmail::dispatch($subscriber, $details);
                 }
-                return back()->with('success', 'Email sent to all subscribed users successfully');
+                return back()->with('success', 'Emails queued for sending to all subscribed users.');
             } else {
                 return back()->with('error', 'No emails found');
             }

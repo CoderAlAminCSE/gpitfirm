@@ -56,3 +56,26 @@ deleteButtons.forEach((button) => {
         });
     });
 });
+
+$(document).ready(function () {
+    $("#select-all-checkbox").on("click", function () {
+        var isChecked = $(this).prop("checked");
+        $(".newsletter-checkbox").prop("checked", isChecked);
+        $("#selectedAll").val(true);
+    });
+
+    var selectedNewsletterIds = [];
+    $('input[type="checkbox"]').on("click", function () {
+        var newsletterId = $(this).data("newsletter-id");
+
+        if ($(this).is(":checked")) {
+            selectedNewsletterIds.push(newsletterId);
+        } else {
+            selectedNewsletterIds = selectedNewsletterIds.filter(function (id) {
+                return id !== newsletterId;
+            });
+        }
+        $("#selectedNewsletterIds").val(selectedNewsletterIds.join(","));
+        console.log(selectedNewsletterIds);
+    });
+});

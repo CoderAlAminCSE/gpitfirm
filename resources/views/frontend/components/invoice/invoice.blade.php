@@ -9,6 +9,120 @@
     <!-- fontawesome -->
     <script src="https://kit.fontawesome.com/7cad351999.js" crossorigin="anonymous"></script>
 
+    {{-- sujan sir's given code --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.paddle.com/paddle/paddle.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#paddle-pay-button").on("click", function(e) {
+                e.preventDefault();
+
+                // Define email and post_id here
+                let email = "example@email.com";
+                let post_id = 123;
+
+                Paddle.Environment.set("sandbox");
+
+                Paddle.Setup({
+                    vendor: 13919,
+                });
+
+                Paddle.Checkout.open({
+                    product: 12345,
+                    email: email,
+                    passthrough: 1939284,
+                    successCallback: function(data) {
+                        console.log(data);
+                        alert("Thanks for the payment");
+
+                        if (data.checkout.completed) {
+                            let url = `${invoicelocal.apiurl}/sujan/v1/invoice`;
+
+                            $.ajax({
+                                url: url,
+                                dataType: "json",
+                                type: "Post",
+                                async: true,
+                                data: {
+                                    post_id: post_id,
+                                },
+                                success: function(data) {
+                                    location.reload(true);
+                                },
+                                error: function(xhr, exception) {
+                                    var msg = "";
+                                    if (xhr.status === 0) {
+                                        msg =
+                                            "could not connect.\n Verify Network." +
+                                            xhr.responseText;
+                                    } else if (xhr.status == 404) {
+                                        msg = "Requested page not found. [404]" +
+                                            xhr
+                                            .responseText;
+                                    } else if (xhr.status == 500) {
+                                        msg = "Internal Server Error [500]." + xhr
+                                            .responseText;
+                                    } else if (exception === "parsererror") {
+                                        msg = "Requested JSON parse failed.";
+                                    } else if (exception === "timeout") {
+                                        msg = "Time out error." + xhr.responseText;
+                                    } else if (exception === "abort") {
+                                        msg = "Ajax request aborted.";
+                                    } else {
+                                        msg = "Error:" + xhr.status + " " + xhr
+                                            .responseText;
+                                    }
+                                },
+                            });
+                        }
+                    },
+                    closeCallback: function(data) {
+                        console.log(data);
+                    },
+                });
+            });
+        });
+    </script>
+
+
+
+    {{-- <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+    <script type="text/javascript">
+        Paddle.Setup({
+            seller: 153717 // replace with your seller ID 
+        });
+
+        function openCheckout() {
+            Paddle.Checkout.open({
+                product: '804933', // Replace with your product ID
+                email: 'user@example.com', // Replace with the user's email
+                successCallback: function(data) {
+                    // Handle success
+                    console.log('Payment success:', data);
+                },
+                closeCallback: function() {
+                    // Handle the checkout modal being closed
+                    console.log('Checkout closed');
+                },
+                errorCallback: function(error) {
+                    // Handle errors
+                    console.log('Payment error:', error);
+                },
+                disableLogout: true, // Optional: Disable logout during checkout
+                disableNavigation: true, // Optional: Disable navigation during checkout
+                // Define the items being purchased (required)
+                items: [{
+                        product_id: '804933', // Product ID
+                        quantity: 1, // Quantity
+                        price: 9.99, // Price of the product
+                        price_id: 'pri_01h7szw0n8ttep60r82tc1qzjg', // Price ID for the product
+                    }
+                    // You can add more items here if needed
+                ],
+            });
+        }
+    </script> --}}
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -436,6 +550,9 @@
                                 <script src="https://www.paypal.com/sdk/js? client-id={{ env('PAYPAL_SANDBOX_CLIENT_ID') }}"></script>
                                 <button class="paypal-button capitalize" type="submit">pay with paypal</button>
                             </form>
+                        </div>
+                        <div>
+                            <button id="paddle-pay-button">Pay With Paddlee</button>
                         </div>
                     </div>
                 @endif

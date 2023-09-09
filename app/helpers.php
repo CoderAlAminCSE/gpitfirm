@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\HomePageContactSection;
 use App\Models\HomePageServiceSection;
 use App\Models\HomePageTestimonialSection;
+use App\Models\Invoice;
 use App\Models\Order;
 use App\Models\OrderItem;
 
@@ -179,6 +180,20 @@ function activeServices()
 function categoryWiseServices($id)
 {
   return Service::where('category_id', $id)->where('active', true)->get();
+}
+
+
+// get orders from "order" table
+function orders()
+{
+  return Order::latest()->get();
+}
+
+
+// get orders from "order" table
+function invoices()
+{
+  return Invoice::latest()->get();
 }
 
 

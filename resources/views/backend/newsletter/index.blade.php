@@ -105,6 +105,12 @@
                                         <form action="{{ route('newsletter.all.email.send') }}" method="POST"
                                             class="form fv-plugins-bootstrap5 fv-plugins-framework">
                                             @csrf
+
+                                            <input type="hidden" name="selectedAll" id="selectedAll" value="" />
+
+                                            <input type="hidden" name="selectedNewsletterIds" id="selectedNewsletterIds"
+                                                value="" />
+
                                             <!--begin::Input group-->
                                             <div class="fv-row mb-10">
                                                 <!--begin::Label-->
@@ -164,10 +170,11 @@
                                 <thead>
                                     <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
                                         <th class="w-10px pe-2">
-                                            {{-- <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
-                                                <input class="form-check-input" type="checkbox" data-kt-check="true"
-                                                    value="1" />
-                                            </div> --}}
+                                            <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
+                                                <input class="form-check-input" type="checkbox" id="select-all-checkbox" />
+                                                <label class="form-check-label" for="select-all-checkbox"> All</label>
+                                            </div>
+
                                         </th>
                                         <th style="width: 20%;">SL</th>
                                         <th style="width: 60%;">Email</th>
@@ -177,11 +184,14 @@
                                 <tbody class="text-gray-600 fw-semibold">
                                     @forelse ($newsletters as $newsletter)
                                         <tr>
-                                            {{-- <td>
+                                            <td>
                                                 <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                                    <input class="form-check-input" type="checkbox" value="1" />
+                                                    <input class="form-check-input newsletter-checkbox" type="checkbox"
+                                                        name="selectedAll" value="1"
+                                                        id="newsletter-{{ $newsletter->id }}"
+                                                        data-newsletter-id="{{ $newsletter->id }}" />
                                                 </div>
-                                            </td> --}}
+                                            </td>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $newsletter->email }}</td>
                                             <td>

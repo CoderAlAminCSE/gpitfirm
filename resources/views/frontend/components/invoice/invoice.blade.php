@@ -367,6 +367,22 @@
             font-size: 16px !important;
             font-weight: 500 !important;
         }
+        
+        .paddle-button {
+            color: white;
+            background-color: #C39E08 !important;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            /* Adding the following line to ensure the background color is visible */
+            border: 1px solid#C39E08 !important;
+            width: 250px !important;
+            font-family: 'Poppins', sans-serif !important;
+            font-size: 16px !important;
+            font-weight: 500 !important;
+        }
 
         .stripe-button-el {
             border: none !important;
@@ -552,7 +568,7 @@
                             </form>
                         </div>
                         <div>
-                            <button id="paddle-pay-button">Pay With Paddlee</button>
+                            <button class="paddle-button capitalize mt-2" id="paddle-pay-button">Pay With Paddle</button>
                         </div>
                     </div>
                 @endif

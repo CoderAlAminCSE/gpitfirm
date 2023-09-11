@@ -85,14 +85,12 @@
                                             class="menu-item menu-item-type-post_type menu-item-object-page menu-item-185">
                                             <a href="/terms-condition">Terms &#038; Condition</a>
                                         </li>
-                                        <li id="menu-item-132"
-                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-132">
-                                            <a href="/link-building">Link Building</a>
-                                        </li>
-                                        <li id="menu-item-133"
-                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-133">
-                                            <a href="/guest-post">Guest Post</a>
-                                        </li>
+                                        @foreach (activeCategory() as $category)
+                                            <li class="menu-item menu-item-type-post_type menu-item-object-page">
+                                                <a
+                                                    href="{{ route('category.service.show', $category->slug) }}">{{ $category->name }}</a>
+                                            </li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>

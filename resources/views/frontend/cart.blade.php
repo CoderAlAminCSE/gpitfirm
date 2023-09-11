@@ -4,6 +4,7 @@
 <head>
     @component('frontend/layouts.head', ['title' => 'Cart - GP IT Firm'])
     @endcomponent
+    @paddleJS
 </head>
 
 <body

@@ -64,6 +64,7 @@
             font-weight: 500 !important;
         }
     </style>
+    @paddleJS
 </head>
 
 <body
@@ -95,7 +96,7 @@
         });
     </script>
 
-    <script src="https://cdn.paddle.com/paddle/paddle.js"></script>
+    {{-- <script src="https://cdn.paddle.com/paddle/paddle.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $("#paddle-pay-button").on("click", function(e) {
@@ -166,7 +167,7 @@
                 });
             });
         });
-    </script>
+    </script> --}}
 </body>
 
 </html>

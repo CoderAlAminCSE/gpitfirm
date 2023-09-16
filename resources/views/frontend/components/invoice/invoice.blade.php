@@ -11,7 +11,7 @@
 
     {{-- sujan sir's given code --}}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.paddle.com/paddle/paddle.js"></script>
+    {{-- <script src="https://cdn.paddle.com/paddle/paddle.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $("#paddle-pay-button").on("click", function(e) {
@@ -82,46 +82,8 @@
                 });
             });
         });
-    </script>
-
-
-
-    {{-- <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
-    <script type="text/javascript">
-        Paddle.Setup({
-            seller: 153717 // replace with your seller ID 
-        });
-
-        function openCheckout() {
-            Paddle.Checkout.open({
-                product: '804933', // Replace with your product ID
-                email: 'user@example.com', // Replace with the user's email
-                successCallback: function(data) {
-                    // Handle success
-                    console.log('Payment success:', data);
-                },
-                closeCallback: function() {
-                    // Handle the checkout modal being closed
-                    console.log('Checkout closed');
-                },
-                errorCallback: function(error) {
-                    // Handle errors
-                    console.log('Payment error:', error);
-                },
-                disableLogout: true, // Optional: Disable logout during checkout
-                disableNavigation: true, // Optional: Disable navigation during checkout
-                // Define the items being purchased (required)
-                items: [{
-                        product_id: '804933', // Product ID
-                        quantity: 1, // Quantity
-                        price: 9.99, // Price of the product
-                        price_id: 'pri_01h7szw0n8ttep60r82tc1qzjg', // Price ID for the product
-                    }
-                    // You can add more items here if needed
-                ],
-            });
-        }
     </script> --}}
+
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -368,6 +330,22 @@
             font-weight: 500 !important;
         }
 
+        .paddle-button {
+            color: white;
+            background-color: #C39E08 !important;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            /* Adding the following line to ensure the background color is visible */
+            border: 1px solid#C39E08 !important;
+            width: 250px !important;
+            font-family: 'Poppins', sans-serif !important;
+            font-size: 16px !important;
+            font-weight: 500 !important;
+        }
+
         .stripe-button-el {
             border: none !important;
             margin-bottom: 15px !important;
@@ -388,6 +366,7 @@
             font-weight: 600 !important;
         }
     </style>
+    @paddleJS
 </head>
 
 <body>
@@ -552,7 +531,8 @@
                             </form>
                         </div>
                         <div>
-                            <button id="paddle-pay-button">Pay With Paddlee</button>
+                            <button class="paddle-button capitalize mt-2" id="paddle-pay-button">Pay With
+                                Paddle</button>
                         </div>
                     </div>
                 @endif

@@ -118,6 +118,8 @@ class CartController extends Controller
             }
         }
         return view('frontend.checkout', compact('userInfo'));
+        // $paylink = Auth::user()->charge(50.0, "Premium");
+        // return view('frontend.checkout', compact('paylink', 'userInfo'));
     }
 
 

@@ -19,7 +19,7 @@ class ServiceSeeder extends Seeder
             "slug" => "guest-posting-da-50",
             "image" => "frontend/service/Guest-Posting-DA-50.png",
             "category_id" => 1,
-            "price" => 500.00,
+            "price" => 5.00,
             "description" => "<div class=/'price-name/' style=/'box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-variant-alternates: inherit; font-stretch: inherit; font-size: 15px; line-height: inherit; font-family: 'open sans', sans-serif; font-optical-sizing: inherit; font-kerning: inherit; font-feature-settings: inherit; font-variation-settings: inherit; vertical-align: baseline; color: #707070; text-align: center;/'>
             <h5 class=/'mb-0/' style=/'box-sizing: border-box; line-height: 1.21; font-size: 1.25em; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-stretch: inherit; font-family: montserrat, sans-serif; font-optical-sizing: inherit; font-kerning: inherit; font-feature-settings: inherit; font-variation-settings: inherit; vertical-align: baseline; -webkit-font-smoothing: antialiased; color: #40005d; margin: 0px 0px 0px !important 0px;/'>10 GUEST POSTS INCLUDED</h5>
             </div>
@@ -43,7 +43,7 @@ class ServiceSeeder extends Seeder
             "slug" => "guest-posting-da-60",
             "image" => "frontend/service/Guest-Posting-DA-60.png",
             "category_id" => 1,
-            "price" => 700.00,
+            "price" => 7.00,
             "description" => "<div class=/'price-name/' style=/'box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-variant-alternates: inherit; font-stretch: inherit; font-size: 15px; line-height: inherit; font-family: /'open sans/', sans-serif; font-optical-sizing: inherit; font-kerning: inherit; font-feature-settings: inherit; font-variation-settings: inherit; vertical-align: baseline; color: #707070; text-align: center;/'>
             <h5 class=/'mb-0/' style=/'box-sizing: border-box; line-height: 1.21; font-size: 1.25em; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-stretch: inherit; font-family: montserrat, sans-serif; font-optical-sizing: inherit; font-kerning: inherit; font-feature-settings: inherit; font-variation-settings: inherit; vertical-align: baseline; -webkit-font-smoothing: antialiased; color: #40005d; margin: 0px 0px 0px !important 0px;/'>10 GUEST POSTS INCLUDED</h5>
             </div>
@@ -67,7 +67,7 @@ class ServiceSeeder extends Seeder
             "slug" => "guest-posting-da-70",
             "image" => "frontend/service/Guest-Posting-DA-70.png",
             "category_id" => 1,
-            "price" => 900.00,
+            "price" => 9.00,
             "description" => "<div class=/'price-name/' style=/'box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-variant-alternates: inherit; font-stretch: inherit; font-size: 15px; line-height: inherit; font-family: /'open sans/', sans-serif; font-optical-sizing: inherit; font-kerning: inherit; font-feature-settings: inherit; font-variation-settings: inherit; vertical-align: baseline; color: #707070; text-align: center;/'>
             <h5 class=/'mb-0/' style=/'box-sizing: border-box; line-height: 1.21; font-size: 1.25em; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-stretch: inherit; font-family: montserrat, sans-serif; font-optical-sizing: inherit; font-kerning: inherit; font-feature-settings: inherit; font-variation-settings: inherit; vertical-align: baseline; -webkit-font-smoothing: antialiased; color: #40005d; margin: 0px 0px 0px !important 0px;/'>10 GUEST POSTS INCLUDED</h5>
             </div>
@@ -91,7 +91,7 @@ class ServiceSeeder extends Seeder
             "slug" => "link-building-da-50",
             "image" => "frontend/service/Link-Building-DA-50.png",
             "category_id" => 2,
-            "price" => 450.00,
+            "price" => 4.00,
             "description" => "<div class=/'price-name/' style=/'box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-variant-alternates: inherit; font-stretch: inherit; font-size: 15px; line-height: inherit; font-family: /'open sans/', sans-serif; font-optical-sizing: inherit; font-kerning: inherit; font-feature-settings: inherit; font-variation-settings: inherit; vertical-align: baseline; color: #707070; text-align: center;/'>
             <h5 class=/'mb-0/' style=/'box-sizing: border-box; line-height: 1.21; font-size: 1.25em; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-stretch: inherit; font-family: montserrat, sans-serif; font-optical-sizing: inherit; font-kerning: inherit; font-feature-settings: inherit; font-variation-settings: inherit; vertical-align: baseline; -webkit-font-smoothing: antialiased; color: #40005d; margin: 0px 0px 0px !important 0px;/'>10 GUEST LINK INCLUDED</h5>
             </div>
@@ -115,7 +115,7 @@ class ServiceSeeder extends Seeder
             "slug" => "link-building-da-60",
             "image" => "frontend/service/Link-Building-DA-60.png",
             "category_id" => 2,
-            "price" => 650.00,
+            "price" => 6.00,
             "description" => "<div class=/'price-name/' style=/'box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-variant-alternates: inherit; font-stretch: inherit; font-size: 15px; line-height: inherit; font-family: /'open sans/', sans-serif; font-optical-sizing: inherit; font-kerning: inherit; font-feature-settings: inherit; font-variation-settings: inherit; vertical-align: baseline; color: #707070; text-align: center;/'>
             <h5 class=/'mb-0/' style=/'box-sizing: border-box; line-height: 1.21; font-size: 1.25em; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-stretch: inherit; font-family: montserrat, sans-serif; font-optical-sizing: inherit; font-kerning: inherit; font-feature-settings: inherit; font-variation-settings: inherit; vertical-align: baseline; -webkit-font-smoothing: antialiased; color: #40005d; margin: 0px 0px 0px !important 0px;/'>10 GUEST LINK INCLUDED</h5>
             </div>
@@ -140,7 +140,7 @@ class ServiceSeeder extends Seeder
             "slug" => "link-building-da-70",
             "image" => "frontend/service/Link-Building-DA-70.png",
             "category_id" => 2,
-            "price" => 850.00,
+            "price" => 8.00,
             "description" => "<div class=/'price-name/' style=/'box-sizing: border-box; margin: 0px; padding: 0px; border: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-variant-alternates: inherit; font-stretch: inherit; font-size: 15px; line-height: inherit; font-family: /'open sans/', sans-serif; font-optical-sizing: inherit; font-kerning: inherit; font-feature-settings: inherit; font-variation-settings: inherit; vertical-align: baseline; color: #707070; text-align: center;/'>
             <h5 class=/'mb-0/' style=/'box-sizing: border-box; line-height: 1.21; font-size: 1.25em; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-stretch: inherit; font-family: montserrat, sans-serif; font-optical-sizing: inherit; font-kerning: inherit; font-feature-settings: inherit; font-variation-settings: inherit; vertical-align: baseline; -webkit-font-smoothing: antialiased; color: #40005d; margin: 0px 0px 0px !important 0px;/'>10 GUEST LINK INCLUDED</h5>
             </div>

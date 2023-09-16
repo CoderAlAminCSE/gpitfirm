@@ -136,7 +136,14 @@
 
                                         <button class="paypal-button capitalize" id="triggerButton">Pay With
                                             Paypal</button>
+                                        <button class="paddle-button capitalize mt-2" id="paddle-pay-button">Pay With
+                                            Paddle</button>
                                     </div>
+                                    {{-- <div>
+                                        <x-paddle-button :url="$paylink" class="px-8 py-4">
+                                            Buy
+                                        </x-paddle-button>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>

@@ -75,6 +75,99 @@
                             <!--begin::Card title-->
                         </div>
                         <!--end::Card header-->
+
+                        <!--begin::Modal - Adjust Balance-->
+                        <div class="modal fade" id="kt_modal_user_update" tabindex="-1" aria-hidden="true">
+                            <!--begin::Modal dialog-->
+                            <div class="modal-dialog modal-dialog-centered mw-650px">
+                                <!--begin::Modal content-->
+                                <div class="modal-content">
+                                    <!--begin::Modal header-->
+                                    <div class="modal-header">
+                                        <!--begin::Modal title-->
+                                        <h2 class="fw-bold">Update User</h2>
+                                        <!--end::Modal title-->
+                                        <!--begin::Close-->
+                                        <div class="btn btn-icon btn-sm btn-active-icon-primary"
+                                            data-kt-users-modal-action="close">
+                                            <i class="ki-duotone ki-cross fs-1">
+                                                <span class="path1"></span>
+                                                <span class="path2"></span>
+                                            </i>
+                                        </div>
+                                        <!--end::Close-->
+                                    </div>
+                                    <!--end::Modal header-->
+                                    <!--begin::Modal body-->
+                                    <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                                        <!--begin::Form-->
+                                        <form action="{{ route('user.update') }}" method="POST"
+                                            class="form fv-plugins-bootstrap5 fv-plugins-framework">
+                                            @csrf
+                                            <!--begin::Input group-->
+                                            <input type="hidden" name="user_id" id="user_id" value="">
+                                            <div class="fv-row mb-10">
+                                                <!--begin::Label-->
+                                                <label class="required fw-semibold fs-6 mb-2">Name</label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input type="text" name="name" id="user_name"
+                                                    class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Name"
+                                                    value="" />
+                                                @error('name')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                                <!--end::Input-->
+                                            </div>
+
+                                            <div class="fv-row mb-10">
+                                                <!--begin::Label-->
+                                                <label class="required fw-semibold fs-6 mb-2">Email</label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input type="email" name="email"
+                                                    class="form-control form-control-solid mb-3 mb-lg-0" placeholder="email"
+                                                    value="{{ old('email') }}" />
+                                                @error('email')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                                <!--end::Input-->
+                                            </div>
+
+                                            <div class="fv-row mb-10">
+                                                <!--begin::Label-->
+                                                <label class="required fw-semibold fs-6 mb-2">Address</label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input type="text" name="address"
+                                                    class="form-control form-control-solid mb-3 mb-lg-0"
+                                                    placeholder="address" value="{{ old('address') }}" />
+                                                @error('address')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                                <!--end::Input-->
+                                            </div>
+                                            <!--end::Input group-->
+
+                                            <!--begin::Actions-->
+                                            <div class="text-center">
+                                                <button type="submit" class="btn btn-primary"
+                                                    data-kt-users-modal-action="submit">
+                                                    <span class="indicator-label">Update</span>
+                                                </button>
+                                            </div>
+                                            <!--end::Actions-->
+                                        </form>
+                                        <!--end::Form-->
+                                    </div>
+                                    <!--end::Modal body-->
+                                </div>
+                                <!--end::Modal content-->
+                            </div>
+                            <!--end::Modal dialog-->
+                        </div>
+                        <!--end::Modal - New Card-->
+
                         <!--begin::Card body-->
                         <div class="card-body py-4">
                             <!--begin::Table-->
@@ -83,7 +176,7 @@
                                     <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
                                         <th class="min-w-125px">User</th>
                                         <th class="min-w-125px">Role</th>
-                                        <th class="min-w-125px">Joined Date</th>
+                                        <th class="min-w-125px">Address</th>
                                         <th class="text-end min-w-100px">Actions</th>
                                     </tr>
                                 </thead>
@@ -100,22 +193,34 @@
                                                 <!--end::Avatar-->
                                                 <!--begin::User details-->
                                                 <div class="d-flex flex-column">
-                                                    <a class="text-gray-800 text-hover-primary mb-1">{{ $user->name }}</a>
+                                                    <a
+                                                        class="text-gray-800 text-hover-primary mb-1">{{ $user->name }}</a>
                                                     <span>{{ $user->email }}</span>
                                                 </div>
                                                 <!--begin::User details-->
                                             </td>
                                             <td>{{ $user->type }}</td>
-                                            <td>{{ \Carbon\Carbon::parse($user->created_at)->format('d M Y, g:i a') }}</td>
+                                            <td>{{ $user->address }}</td>
                                             <td class="text-end">
                                                 <a href="#"
                                                     class="btn btn-light btn-active-light-primary btn-flex btn-center btn-sm"
-                                                    data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
+                                                    data-kt-menu-trigger="click"
+                                                    data-kt-menu-placement="bottom-end">Action
                                                     <i class="ki-duotone ki-down fs-5 ms-1"></i></a>
                                                 <!--begin::Menu-->
                                                 <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
                                                     data-kt-menu="true">
                                                     <!--begin::Menu item-->
+                                                    <div class="menu-item px-3">
+                                                        <a class="menu-link px-3 edit-user" data-bs-toggle="modal"
+                                                            data-bs-target="#kt_modal_user_update"
+                                                            data-user-id="{{ $user->id }}"
+                                                            data-user-name="{{ $user->name }}"
+                                                            data-user-email="{{ $user->email }}"
+                                                            data-user-address="{{ $user->address }}">Edit</a>
+                                                    </div>
+
+
                                                     <div class="menu-item px-3">
                                                         <a class="menu-link px-3 btn-delete"
                                                             data-user-id="{{ $user->id }}">Delete</a>
@@ -149,4 +254,23 @@
         </div>
         <!--end::Content wrapper-->
     </div>
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('.edit-user').click(function() {
+                var userId = $(this).data('user-id');
+                var userName = $(this).data('user-name');
+                var userEmail = $(this).data('user-email');
+                var userAddress = $(this).data('user-address');
+
+                // Set the form values in the modal
+                $('#user_id').val(userId);
+                $('input[name="name"]').val(userName);
+                $('input[name="email"]').val(userEmail);
+                $('input[name="address"]').val(userAddress);
+            });
+        });
+    </script>
 @endsection

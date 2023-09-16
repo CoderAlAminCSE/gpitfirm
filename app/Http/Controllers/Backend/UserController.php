@@ -32,6 +32,32 @@ class UserController extends Controller
     }
 
 
+    public function update(Request $request, User $user)
+    {
+        try {
+            $request->validate([
+                'name' => 'required|string',
+                'email' => 'required|email',
+                'address' => 'required|string',
+            ]);
+            $updateUser =  $user->findOrFail($request->input('user_id'));
+            if ($updateUser) {
+                $updateUser->update([
+                    'name' => $request->input('name'),
+                    'email' => $request->input('email'),
+                    'address' => $request->input('address'),
+                ]);
+                return redirect()->route('user.index')->with('success', 'User updated successfully');
+            } else {
+                return redirect()->route('user.index')->with('error', 'No user found');
+            }
+        } catch (\Exception $e) {
+            return back()->with('error', 'Error: ' . $e->getMessage());
+        }
+    }
+
+
+
     public function profile()
     {
         $auth_user = User::where('id', Auth::user()->id)->first();

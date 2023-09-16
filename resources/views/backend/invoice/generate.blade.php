@@ -62,7 +62,7 @@
                                             data-placeholder="Select Customer" class="form-select form-select-solid">
                                             <option value=""></option>
                                             @foreach (allCustomers() as $customer)
-                                                <option value="{{ $customer->id }}">{{ $customer->name }}</option>
+                                                <option value="{{ $customer->id }}">{{ $customer->email }}</option>
                                             @endforeach
                                         </select>
                                         @error('customerId')

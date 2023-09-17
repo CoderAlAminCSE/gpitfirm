@@ -419,8 +419,10 @@
                 <p class="mb-1">{{ $invoice->user->address }}</p>
             </div>
             <div class="invoice_num">
-                <p class="text-gray-500 mb-4">Invoice Number</p>
-                <h2 class="text-xl font-bold mb-4">{{ $invoice->invoice_number }}</h2>
+                <p class="text-gray-500 mb-1">Invoice Number</p>
+                <h2 class="text-xl font-bold mb-1">{{ $invoice->invoice_number }}</h2> <br>
+                <p class="text-gray-500 mb-">Order Number</p>
+                <h2 class="text-xl font-bold mb-1">{{ $invoice->order->order_number }}</h2>
             </div>
             <div class="invoice_of text-end">
                 <p class="text-gray-500 mb-4">Invoice of <span>(USD)</span></p>

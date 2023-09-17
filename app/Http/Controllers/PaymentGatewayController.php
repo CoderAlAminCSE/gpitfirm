@@ -56,4 +56,29 @@ class PaymentGatewayController extends Controller
             return back()->with('error', 'Error: ' . $e->getMessage());
         }
     }
+
+
+    public function paypalIndex()
+    {
+        return view('backend.payment_gateways.paypal');
+    }
+
+
+    public function paypalUpdate(Request $request)
+    {
+        try {
+
+            $request->validate([
+                'PAYPAL_SANDBOX_CLIENT_ID' => 'required',
+                'PAYPAL_SANDBOX_CLIENT_SECRET' => 'required'
+            ]);
+
+            overWriteEnvFile('PAYPAL_SANDBOX_CLIENT_ID', $request->PAYPAL_SANDBOX_CLIENT_ID);
+            overWriteEnvFile('PAYPAL_SANDBOX_CLIENT_SECRET', $request->PAYPAL_SANDBOX_CLIENT_SECRET);
+
+            return redirect()->route('payment.paypal.index')->with('success', 'Paypal info updated');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Error: ' . $e->getMessage());
+        }
+    }
 }

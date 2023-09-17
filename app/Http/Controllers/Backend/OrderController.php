@@ -102,6 +102,25 @@ class OrderController extends Controller
     }
 
 
+    public function invoiceEdit($id, Invoice $invoice)
+    {
+        $invoice = $invoice->with('order', 'order.items', 'user')->findOrfail($id);
+        $total_price = 0;
+        $custom_service = '';
+        foreach ($invoice->order->items as $item) {
+            if ($item->service_id != null) {
+                $total_price += serviceInfo($item->service_id)->price;
+                $custom_service = 'NO';
+            } else {
+                $total_price += $item->custom_service_price;
+                $custom_service = 'YES';
+            }
+        }
+        $totalPriceFormatted = number_format($total_price, 2);
+
+        return view('backend.invoice.edit', compact('invoice', 'totalPriceFormatted', 'custom_service'));
+    }
+
     /**
      * Show invoice generate page.
      */

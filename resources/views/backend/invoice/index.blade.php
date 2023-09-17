@@ -142,6 +142,14 @@
                                                             class="menu-link px-3">View</a>
                                                     </div>
                                                     <!--end::Menu item-->
+                                                    <!--begin::Menu item-->
+                                                    @if ($invoice->order->canceled_at == null && $invoice->order->payment_status == 0)
+                                                        <div class="menu-item px-3">
+                                                            <a href="{{ route('order.cancel', $invoice->order->id) }}"
+                                                                class="menu-link px-3">Cancel</a>
+                                                        </div>
+                                                    @endif
+                                                    <!--end::Menu item-->
                                                 </div>
                                                 <!--end::Menu-->
                                             </td>

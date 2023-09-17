@@ -12,7 +12,7 @@
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                         <!--begin::Title-->
                         <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                            Paddle Settings</h1>
+                            Stripe Settings</h1>
                         <!--end::Title-->
                         <!--begin::Breadcrumb-->
                         <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -32,7 +32,7 @@
                             <li class="breadcrumb-item">
                                 <span class="bullet bg-gray-400 w-5px h-2px"></span>
                             </li>
-                            <li class="breadcrumb-item text-muted">Paddle Settings</li>
+                            <li class="breadcrumb-item text-muted">Stripe Settings</li>
                             <!--end::Item-->
                             <!--end::Item-->
                         </ul>
@@ -52,7 +52,7 @@
                         <!--begin::Card body-->
                         <div class="card-body">
                             <!--begin::Form-->
-                            <form action="{{ route('payment.paddle.update') }}" method="POST"
+                            <form action="{{ route('payment.stripe.update') }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
                                 <!--begin:::Tab content-->
@@ -66,8 +66,8 @@
                                             <div class="col-md-3 text-md-end">
                                                 <!--begin::Label-->
                                                 <label class="fs-6 fw-semibold form-label mt-3">
-                                                    <span class="required">PADDLE VENDOR ID</span>
-                                                    <span class="ms-1" data-bs-toggle="tooltip" title="Paddle Vendor ID">
+                                                    <span class="required">STRIPE KEY</span>
+                                                    <span class="ms-1" data-bs-toggle="tooltip" title="Stripe Key">
                                                         <i class="ki-duotone ki-information-5 text-gray-500 fs-6">
                                                             <span class="path1"></span>
                                                             <span class="path2"></span>
@@ -80,8 +80,8 @@
                                             <div class="col-md-9">
                                                 <!--begin::Input-->
                                                 <input type="text" class="form-control form-control-solid"
-                                                    name="PADDLE_VENDOR_ID" value="{{ env('PADDLE_VENDOR_ID') ?? '' }}" />
-                                                @error('PADDLE_VENDOR_ID')
+                                                    name="STRIPE_KEY" value="{{ env('STRIPE_KEY') ?? '' }}" />
+                                                @error('STRIPE_KEY')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                                 <!--end::Input-->
@@ -93,9 +93,8 @@
                                             <div class="col-md-3 text-md-end">
                                                 <!--begin::Label-->
                                                 <label class="fs-6 fw-semibold form-label mt-3">
-                                                    <span class="required">PADDLE VENDOR AUTH CODE</span>
-                                                    <span class="ms-1" data-bs-toggle="tooltip"
-                                                        title="Paddle Vendor Auth Code">
+                                                    <span class="required">Stripe Secret Key</span>
+                                                    <span class="ms-1" data-bs-toggle="tooltip" title="Stripe Secret Key">
                                                         <i class="ki-duotone ki-information-5 text-gray-500 fs-6">
                                                             <span class="path1"></span>
                                                             <span class="path2"></span>
@@ -108,33 +107,10 @@
                                             <div class="col-md-9">
                                                 <!--begin::Input-->
                                                 <input type="text" class="form-control form-control-solid"
-                                                    name="PADDLE_VENDOR_AUTH_CODE"
-                                                    value="{{ env('PADDLE_VENDOR_AUTH_CODE') ?? '' }}" />
-                                                <!--end::Input-->
-                                            </div>
-                                        </div>
-                                        <!--end::Input group-->
-
-                                        <!--begin::Input group-->
-                                        <div class="row fv-row mb-7">
-                                            <div class="col-md-3 text-md-end">
-                                                <!--begin::Label-->
-                                                <label class="fs-6 fw-semibold form-label mt-3">
-                                                    <span class="required">PADDLE PUBLIC KEY</span>
-                                                    <span class="ms-1" data-bs-toggle="tooltip" title="Paddle Public Key">
-                                                        <i class="ki-duotone ki-information-5 text-gray-500 fs-6">
-                                                            <span class="path1"></span>
-                                                            <span class="path2"></span>
-                                                            <span class="path3"></span>
-                                                        </i>
-                                                    </span>
-                                                </label>
-                                                <!--end::Label-->
-                                            </div>
-                                            <div class="col-md-9">
-                                                <!--begin::Input-->
-                                                <input type="text" class="form-control form-control-solid"
-                                                    name="PADDLE_PUBLIC_KEY" value="{{ env('PADDLE_PUBLIC_KEY') ?? '' }}" />
+                                                    name="STRIPE_SECRET" value="{{ env('STRIPE_SECRET') ?? '' }}" />
+                                                @error('STRIPE_SECRET')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                                 <!--end::Input-->
                                             </div>
                                         </div>

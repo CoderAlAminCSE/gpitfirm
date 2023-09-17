@@ -653,6 +653,23 @@
                                      <!--end:Menu item-->
                                  </div>
                                  <!--end:Menu sub-->
+                                 <!--begin:Menu sub-->
+                                 <div class="menu-sub menu-sub-accordion">
+                                     <!--begin:Menu item-->
+                                     <div class="menu-item">
+                                         <!--begin:Menu link-->
+                                         <a class="menu-link {{ strpos(Route::getCurrentRoute()->uri(), 'dashboard/payment/settings/stripe') === 0 ? 'active' : '' }}"
+                                             href="{{ route('payment.stripe.index') }}">
+                                             <span class="menu-bullet">
+                                                 <span class="bullet bullet-dot"></span>
+                                             </span>
+                                             <span class="menu-title">Stripe</span>
+                                         </a>
+                                         <!--end:Menu link-->
+                                     </div>
+                                     <!--end:Menu item-->
+                                 </div>
+                                 <!--end:Menu sub-->
                              </div>
                              <!--end:Menu item-->
 

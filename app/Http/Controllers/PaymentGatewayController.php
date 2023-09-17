@@ -31,4 +31,29 @@ class PaymentGatewayController extends Controller
             return back()->with('error', 'Error: ' . $e->getMessage());
         }
     }
+
+
+    public function stripeIndex()
+    {
+        return view('backend.payment_gateways.stripe');
+    }
+
+
+    public function stripeUpdate(Request $request)
+    {
+        try {
+
+            $request->validate([
+                'STRIPE_KEY' => 'required',
+                'STRIPE_SECRET' => 'required'
+            ]);
+
+            overWriteEnvFile('STRIPE_KEY', $request->STRIPE_KEY);
+            overWriteEnvFile('STRIPE_SECRET', $request->STRIPE_SECRET);
+
+            return back()->with('success', 'Stripe info updated');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Error: ' . $e->getMessage());
+        }
+    }
 }

@@ -10,5 +10,8 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'dashboard/payment/settings', 'middleware' => ['auth', 'admin']], function () {
 
     Route::get('/paddle', [PaymentGatewayController::class, 'paddleIndex'])->name('payment.paddle.index');
-    Route::post('/update', [PaymentGatewayController::class, 'paddleUpdate'])->name('payment.paddle.update');
+    Route::post('/stripe/update', [PaymentGatewayController::class, 'paddleUpdate'])->name('payment.paddle.update');
+
+    Route::get('/stripe', [PaymentGatewayController::class, 'stripeIndex'])->name('payment.stripe.index');
+    Route::post('/paddle/update', [PaymentGatewayController::class, 'stripeUpdate'])->name('payment.stripe.update');
 });

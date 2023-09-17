@@ -545,8 +545,16 @@
 
     <!-- footer -->
     <footer class="mb-[60px] pt-[50px]">
+        @if ($invoice->notes)
+            <div class="rs_container">
+                <p class="font-[500] mb-1">Notes</p>
+                <p>{{ $invoice->notes }}</p>
+            </div>
+        @endif
+
+        <br>
         <div class="rs_container">
-            <p class="font-[500] mb-3">Terms & Conditions</p>
+            <p class="font-[500] mb-">Terms & Conditions</p>
             <p>By using our e-commerce platform, you agree to our user responsibilities, product accuracy, payment,
                 shipping, privacy,
                 and liability terms. Thank you for shopping with us.

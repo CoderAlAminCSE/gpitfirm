@@ -254,6 +254,15 @@
                                 </table>
                             </div>
 
+                            <!--begin::Notes-->
+                            <div class="mb-0">
+                                <label class="form-label fs-6 fw-bold text-gray-700">Notes
+                                    <small>(optional)</small></label>
+                                <textarea name="notes" class="form-control form-control-solid" rows="3"
+                                    placeholder="Thanks for your business"></textarea>
+                            </div>
+                            <!--end::Notes-->
+
 
 
                         </div>

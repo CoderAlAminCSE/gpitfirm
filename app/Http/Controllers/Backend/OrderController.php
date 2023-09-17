@@ -205,6 +205,7 @@ class OrderController extends Controller
                 'user_id' => $order->user_id,
                 'order_id' => $order->id,
                 'link' => $encryptedInvoiceNumber,
+                'notes' => $request->input('notes'),
             ]);
             $invoice->save();
 

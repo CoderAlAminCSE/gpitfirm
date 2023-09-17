@@ -216,3 +216,18 @@ function contactMessageInfo($id)
 {
   return ContactMessage::where('id', $id)->first();
 }
+
+
+function encryptInvoiceNumber($invoiceNumber)
+{
+  $encrypted = base64_encode($invoiceNumber . '-' . 'secret');
+  return $encrypted;
+}
+
+
+function decryptInvoiceNumber($encryptedInvoiceNumber)
+{
+  $decrypted = base64_decode($encryptedInvoiceNumber);
+  $decrypted = str_replace('-' . 'secret', '', $decrypted);
+  return $decrypted;
+}

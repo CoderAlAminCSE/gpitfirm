@@ -198,12 +198,13 @@ class OrderController extends Controller
                 $invoiceNumber = 1;
             }
             $formattedInvoiceNumber = 'inv-' . str_pad($invoiceNumber, 6, '0', STR_PAD_LEFT);
+            $encryptedInvoiceNumber = encryptInvoiceNumber($formattedInvoiceNumber);
 
             $invoice = new Invoice([
                 'invoice_number' => $formattedInvoiceNumber,
                 'user_id' => $order->user_id,
                 'order_id' => $order->id,
-                'link' => Crypt::encrypt($formattedInvoiceNumber),
+                'link' => $encryptedInvoiceNumber,
             ]);
             $invoice->save();
 
@@ -218,10 +219,12 @@ class OrderController extends Controller
 
     public function invoiceShowForCustomer($encryptedInvoice, Invoice $invoice)
     {
-        $decryptedInvoiceNumber = Crypt::decrypt($encryptedInvoice);
+        $decryptedInvoiceNumber = decryptInvoiceNumber($encryptedInvoice);
         $invoice = Invoice::with('order', 'user', 'order.items')->where('invoice_number', $decryptedInvoiceNumber)->first();
         if ($invoice) {
             return view('frontend.components.invoice.invoice', compact('invoice', 'encryptedInvoice'));
+        } else {
+            return redirect()->route('frontenc.index');
         }
     }
 

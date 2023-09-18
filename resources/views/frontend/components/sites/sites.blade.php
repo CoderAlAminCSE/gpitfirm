@@ -17,7 +17,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (activeSites() as $site)
+                        @foreach (activeSitesOrderWise() as $site)
                             <tr>
                                 <td><a href="{{ $site->website_url }}" target="_blank">{{ $site->website_name }}</a></td>
                                 <td>{{ $site->da }}</td>

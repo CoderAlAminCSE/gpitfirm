@@ -114,4 +114,28 @@ class SitesController extends Controller
         $site->delete();
         return back();
     }
+
+
+    public function shortableindex()
+    {
+        $sites = Site::orderBy('order', 'ASC')->get();
+
+        return view('backend.site.shorting', compact('sites'));
+    }
+
+
+    public function shortableUpdate(Request $request)
+    {
+        $sites = Site::all();
+
+        foreach ($sites as $site) {
+            foreach ($request->order as $order) {
+                if ($order['id'] == $site->id) {
+                    $site->update(['order' => $order['position']]);
+                }
+            }
+        }
+
+        return response('Update Successfully.', 200);
+    }
 }

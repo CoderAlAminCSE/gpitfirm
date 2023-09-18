@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('category')->nullable();
             $table->boolean('google_news')->nullable();
             $table->boolean('active')->nullable();
+            $table->integer('order')->default(0);
             $table->timestamps();
         });
     }

@@ -14,4 +14,6 @@ Route::group(['prefix' => 'dashboard/sites', 'middleware' => ['auth', 'admin']],
   Route::get('/edit/{id}', [SitesController::class, 'edit'])->name('site.edit');
   Route::post('/update/{id}', [SitesController::class, 'update'])->name('site.update');
   Route::get('/delete/{id}', [SitesController::class, 'delete'])->name('site.delete');
+  Route::get('/shorting', [SitesController::class, 'shortableindex'])->name('sites.shorting');
+  Route::post('/site/sortable', [SitesController::class, 'shortableUpdate']);
 });

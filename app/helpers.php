@@ -100,10 +100,16 @@ function faqContents()
 }
 
 
-// get value from "faq sites" table
+// get value from "sites" table
 function activeSites()
 {
   return Site::where('active', true)->get();
+}
+
+// get as value order wise from "sites" table
+function activeSitesOrderWise()
+{
+  return Site::orderBy('order','ASC')->get();
 }
 
 

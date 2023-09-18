@@ -478,12 +478,25 @@
                              <!--begin:Menu item-->
                              <div class="menu-item">
                                  <!--begin:Menu link-->
-                                 <a class="menu-link {{ strpos(Route::getCurrentRoute()->uri(), 'dashboard/sites') === 0 ? 'active' : '' }}"
+                                 <a class="menu-link {{ strpos(Route::getCurrentRoute()->uri(), 'dashboard/sites/index') === 0 ? 'active' : '' }}"
                                      href="{{ route('sites.index') }}">
                                      <span class="menu-bullet">
                                          <span class="bullet bullet-dot"></span>
                                      </span>
                                      <span class="menu-title">All Sites</span>
+                                 </a>
+                                 <!--end:Menu link-->
+                             </div>
+                             <!--end:Menu item-->
+                             <!--begin:Menu item-->
+                             <div class="menu-item">
+                                 <!--begin:Menu link-->
+                                 <a class="menu-link {{ strpos(Route::getCurrentRoute()->uri(), 'dashboard/sites/shorting') === 0 ? 'active' : '' }}"
+                                     href="{{ route('sites.shorting') }}">
+                                     <span class="menu-bullet">
+                                         <span class="bullet bullet-dot"></span>
+                                     </span>
+                                     <span class="menu-title">Shorting</span>
                                  </a>
                                  <!--end:Menu link-->
                              </div>

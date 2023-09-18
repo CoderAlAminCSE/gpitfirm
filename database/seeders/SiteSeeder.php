@@ -14,7 +14,31 @@ class SiteSeeder extends Seeder
     public function run(): void
     {
         Site::create([
-            "website_name" => "naasongs.fun",
+            "website_name" => "1naasongs.fun",
+            "website_url" => "https://naasongs.fun/",
+            "da" => 65,
+            "pa" => 4,
+            "dr" => 56,
+            "traffic" => 140,
+            "category" => '[{"value":"General"}]',
+            "google_news" => true,
+            "active" => true,
+        ]);
+
+        Site::create([
+            "website_name" => "2naasongs.fun",
+            "website_url" => "https://naasongs.fun/",
+            "da" => 85,
+            "pa" => 4,
+            "dr" => 75,
+            "traffic" => 180,
+            "category" => '[{"value":"General"}]',
+            "google_news" => true,
+            "active" => true,
+        ]);
+
+        Site::create([
+            "website_name" => "3naasongs.fun",
             "website_url" => "https://naasongs.fun/",
             "da" => 53,
             "pa" => 4,
@@ -26,132 +50,108 @@ class SiteSeeder extends Seeder
         ]);
 
         Site::create([
-            "website_name" => "naasongs.fun",
+            "website_name" => "4naasongs.fun",
             "website_url" => "https://naasongs.fun/",
-            "da" => 53,
+            "da" => 36,
             "pa" => 4,
-            "dr" => 61,
-            "traffic" => 160,
+            "dr" => 63,
+            "traffic" => 190,
             "category" => '[{"value":"General"}]',
             "google_news" => true,
             "active" => true,
         ]);
 
         Site::create([
-            "website_name" => "naasongs.fun",
+            "website_name" => "5naasongs.fun",
             "website_url" => "https://naasongs.fun/",
             "da" => 53,
             "pa" => 4,
-            "dr" => 61,
-            "traffic" => 160,
+            "dr" => 44,
+            "traffic" => 140,
             "category" => '[{"value":"General"}]',
             "google_news" => true,
             "active" => true,
         ]);
 
         Site::create([
-            "website_name" => "naasongs.fun",
+            "website_name" => "6naasongs.fun",
             "website_url" => "https://naasongs.fun/",
-            "da" => 53,
-            "pa" => 4,
-            "dr" => 61,
-            "traffic" => 160,
+            "da" => 69,
+            "pa" => 7,
+            "dr" => 77,
+            "traffic" => 150,
             "category" => '[{"value":"General"}]',
             "google_news" => true,
             "active" => true,
         ]);
 
         Site::create([
-            "website_name" => "naasongs.fun",
+            "website_name" => "7naasongs.fun",
             "website_url" => "https://naasongs.fun/",
-            "da" => 53,
+            "da" => 80,
             "pa" => 4,
-            "dr" => 61,
-            "traffic" => 160,
+            "dr" => 70,
+            "traffic" => 130,
             "category" => '[{"value":"General"}]',
             "google_news" => true,
             "active" => true,
         ]);
 
         Site::create([
-            "website_name" => "naasongs.fun",
+            "website_name" => "8naasongs.fun",
             "website_url" => "https://naasongs.fun/",
-            "da" => 53,
+            "da" => 68,
             "pa" => 4,
-            "dr" => 61,
-            "traffic" => 160,
+            "dr" => 71,
+            "traffic" => 175,
             "category" => '[{"value":"General"}]',
             "google_news" => true,
             "active" => true,
         ]);
 
         Site::create([
-            "website_name" => "naasongs.fun",
+            "website_name" => "9naasongs.fun",
             "website_url" => "https://naasongs.fun/",
-            "da" => 53,
+            "da" => 69,
             "pa" => 4,
-            "dr" => 61,
-            "traffic" => 160,
+            "dr" => 25,
+            "traffic" => 110,
             "category" => '[{"value":"General"}]',
             "google_news" => true,
             "active" => true,
         ]);
 
         Site::create([
-            "website_name" => "naasongs.fun",
+            "website_name" => "10naasongs.fun",
             "website_url" => "https://naasongs.fun/",
-            "da" => 53,
-            "pa" => 4,
-            "dr" => 61,
-            "traffic" => 160,
+            "da" => 25,
+            "pa" => 6,
+            "dr" => 85,
+            "traffic" => 145,
             "category" => '[{"value":"General"}]',
             "google_news" => true,
             "active" => true,
         ]);
 
         Site::create([
-            "website_name" => "naasongs.fun",
+            "website_name" => "11naasongs.fun",
             "website_url" => "https://naasongs.fun/",
-            "da" => 53,
-            "pa" => 4,
-            "dr" => 61,
-            "traffic" => 160,
+            "da" => 20,
+            "pa" => 7,
+            "dr" => 66,
+            "traffic" => 170,
             "category" => '[{"value":"General"}]',
             "google_news" => true,
             "active" => true,
         ]);
 
         Site::create([
-            "website_name" => "naasongs.fun",
+            "website_name" => "12naasongs.fun",
             "website_url" => "https://naasongs.fun/",
-            "da" => 53,
-            "pa" => 4,
-            "dr" => 61,
-            "traffic" => 160,
-            "category" => '[{"value":"General"}]',
-            "google_news" => true,
-            "active" => true,
-        ]);
-
-        Site::create([
-            "website_name" => "naasongs.fun",
-            "website_url" => "https://naasongs.fun/",
-            "da" => 53,
-            "pa" => 4,
-            "dr" => 61,
-            "traffic" => 160,
-            "category" => '[{"value":"General"}]',
-            "google_news" => true,
-            "active" => true,
-        ]);
-        
-        Site::create([
-            "website_name" => "naasongs.fun",
-            "website_url" => "https://naasongs.fun/",
-            "da" => 53,
-            "pa" => 4,
-            "dr" => 61,
-            "traffic" => 160,
+            "da" => 50,
+            "pa" => 5,
+            "dr" => 56,
+            "traffic" => 180,
             "category" => '[{"value":"General"}]',
             "google_news" => true,
             "active" => true,

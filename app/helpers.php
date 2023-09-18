@@ -218,6 +218,7 @@ function contactMessageInfo($id)
 }
 
 
+// encrypt the invoice number
 function encryptInvoiceNumber($invoiceNumber)
 {
   $encrypted = base64_encode($invoiceNumber . '-' . 'secret');
@@ -225,9 +226,31 @@ function encryptInvoiceNumber($invoiceNumber)
 }
 
 
+// decrypt the invoice number
 function decryptInvoiceNumber($encryptedInvoiceNumber)
 {
   $decrypted = base64_decode($encryptedInvoiceNumber);
   $decrypted = str_replace('-' . 'secret', '', $decrypted);
   return $decrypted;
+}
+
+
+// count the total paid amount
+function totalPaidAmount()
+{
+  return Order::where('payment_status', 1)->sum('total_amount');
+}
+
+
+// count the total unpaid amount
+function totalUnpaidAmount()
+{
+  return Order::where('payment_status', 0)->whereNull('canceled_at')->sum('total_amount');
+}
+
+
+// count the total canceled amount
+function totalCanceledAmount()
+{
+  return Order::whereNotNull('canceled_at')->sum('total_amount');
 }

@@ -526,15 +526,18 @@
                             </div>
                         @endif
 
-                        <div>
-                            <form action="{{ route('invoice.processPaypal') }}" method="get">
-                                @csrf
-                                <input type="hidden" name="invoice_id" value="{{ $invoice->id }}">
-                                <input type="hidden" name="encryptedInvoice" value="{{ $encryptedInvoice }}">
-                                <script src="https://www.paypal.com/sdk/js? client-id={{ env('PAYPAL_SANDBOX_CLIENT_ID') }}"></script>
-                                <button class="paypal-button capitalize" type="submit">pay with paypal</button>
-                            </form>
-                        </div>
+                        @if (env('PAYPAL_PAYMENT_ACTIVE') == 'YES')
+                            <div>
+                                <form action="{{ route('invoice.processPaypal') }}" method="get">
+                                    @csrf
+                                    <input type="hidden" name="invoice_id" value="{{ $invoice->id }}">
+                                    <input type="hidden" name="encryptedInvoice" value="{{ $encryptedInvoice }}">
+                                    <script src="https://www.paypal.com/sdk/js? client-id={{ env('PAYPAL_SANDBOX_CLIENT_ID') }}"></script>
+                                    <button class="paypal-button capitalize" type="submit">pay with paypal</button>
+                                </form>
+                            </div>
+                        @endif
+
                         <div>
                             <button class="paddle-button capitalize mt-2" id="paddle-pay-button">Pay With
                                 Paddle</button>

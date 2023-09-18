@@ -78,6 +78,9 @@ class PaymentGatewayController extends Controller
             overWriteEnvFile('PAYPAL_SANDBOX_CLIENT_ID', $request->PAYPAL_SANDBOX_CLIENT_ID);
             overWriteEnvFile('PAYPAL_SANDBOX_CLIENT_SECRET', $request->PAYPAL_SANDBOX_CLIENT_SECRET);
 
+            $PAYPALPAYMENT_ACTIVE_STATUS = $request->PAYPAL_PAYMENT_ACTIVE ? 'YES' : 'NO';
+            overWriteEnvFile('PAYPAL_PAYMENT_ACTIVE', $PAYPALPAYMENT_ACTIVE_STATUS);
+
             return redirect()->route('payment.paypal.index')->with('success', 'Paypal info updated');
         } catch (\Exception $e) {
             return back()->with('error', 'Error: ' . $e->getMessage());

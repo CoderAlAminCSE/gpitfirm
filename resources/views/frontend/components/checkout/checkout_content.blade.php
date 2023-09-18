@@ -136,9 +136,11 @@
                                                 data-gateway="stripe"></script>
                                         @endif
 
+                                        @if (env('PAYPAL_PAYMENT_ACTIVE') == 'YES')
+                                            <button class="paypal-button capitalize" id="triggerButton">Pay With
+                                                Paypal</button>
+                                        @endif
 
-                                        <button class="paypal-button capitalize" id="triggerButton">Pay With
-                                            Paypal</button>
                                         <button class="paddle-button capitalize mt-2" id="paddle-pay-button">Pay With
                                             Paddle</button>
                                     </div>

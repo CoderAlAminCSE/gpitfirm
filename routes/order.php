@@ -19,6 +19,7 @@ Route::group(['prefix' => 'dashboard/invoice/', 'middleware' => ['auth', 'admin'
   Route::get('index', [OrderController::class, 'invoiceIndex'])->name('invoice.index');
   Route::get('show/{id}', [OrderController::class, 'invoiceShow'])->name('invoice.show');
   Route::get('edit/{id}', [OrderController::class, 'invoiceEdit'])->name('invoice.edit');
+  Route::post('update/{id}', [OrderController::class, 'invoiceUpdate'])->name('invoice.update');
   Route::get('generate', [OrderController::class, 'invoiceGenerate'])->name('invoice.generate');
   Route::post('store', [OrderController::class, 'invoiceStore'])->name('invoice.store');
 });

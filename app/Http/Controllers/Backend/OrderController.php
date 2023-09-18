@@ -102,6 +102,9 @@ class OrderController extends Controller
     }
 
 
+    /**
+     * Edit invoice.
+     */
     public function invoiceEdit($id, Invoice $invoice)
     {
         $invoice = $invoice->with('order', 'order.items', 'user')->findOrfail($id);
@@ -120,6 +123,87 @@ class OrderController extends Controller
 
         return view('backend.invoice.edit', compact('invoice', 'totalPriceFormatted', 'custom_service'));
     }
+
+
+    /**
+     * Update invoice.
+     */
+    public function invoiceUpdate(Request $request, $id, Invoice $invoice, Order $order)
+    {
+        // return $request->all();
+
+        try {
+            $invoice = $invoice->findOrFail($id);
+            if ($invoice) {
+
+
+                DB::beginTransaction();
+                $request->validate([
+                    'customerId' => 'required',
+                ]);
+
+                $updateOrder = $order->findOrFail($invoice->order_id);
+                $updateOrder->items()->delete();
+
+                if ($updateOrder) {
+                    $updateOrder->user_id = $request->customerId;
+                    $updateOrder->save();
+                } else {
+                    return redirect()->route('invoice.index')->with('Error', 'Order not found');
+                }
+
+                if ($request->existingService) {
+                    $totalAmount = 0;
+                    foreach ($request->products as $serviceId) {
+                        $product = Service::find($serviceId);
+
+                        if ($product) {
+                            $totalAmount += $product->price;
+                            $orderItem = new OrderItem([
+                                'order_id' => $updateOrder->id,
+                                'service_id' => $serviceId,
+                            ]);
+                            $orderItem->save();
+                        }
+                    }
+                    $updateOrder->total_amount = $totalAmount;
+                    $updateOrder->save();
+                } else {
+                    $totalAmount = 0;
+                    foreach ($request->custom_service_name as $index => $serviceName) {
+                        $serviceDescription = $request->custom_service_description[$index];
+                        $servicePrice = $request->custom_service_price[$index];
+
+                        $orderItem = new OrderItem([
+                            'order_id' => $updateOrder->id,
+                            'custom_service_name' => $serviceName,
+                            'custom_service_description' => $serviceDescription,
+                            'custom_service_price' => $servicePrice,
+                        ]);
+                        $orderItem->save();
+                        $totalAmount += $servicePrice;
+                    }
+                    $updateOrder->total_amount = $totalAmount;
+                    $updateOrder->save();
+                }
+
+                $invoice->user_id = $request->customerId;
+                $invoice->notes = $request->notes;
+                $invoice->save();
+
+                DB::commit();
+                return redirect()->route('invoice.index')->with('success', 'Invoice updated successfully');
+            } else {
+                return redirect()->route('invoice.index')->with('Error', 'Invoice not found');
+            }
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return back()->with('error', 'Error: ' . $e->getMessage());
+        }
+    }
+
+
+
 
     /**
      * Show invoice generate page.

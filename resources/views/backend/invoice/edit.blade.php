@@ -8,7 +8,7 @@
             <!--begin::Content-->
             <div id="kt_account_settings_profile_details" class="collapse show">
                 <!--begin::Form-->
-                <form action="{{ route('invoice.store') }}" method="POST">
+                <form action="{{ route('invoice.update', $invoice->id) }}" method="POST">
                     @csrf
                     <!--begin::Card body-->
                     <div class="card-body p-12">
@@ -191,6 +191,7 @@
                                         </tfoot>
                                     </table>
                                 </div>
+                                <input type="hidden" name="existingService" value="1">
                             @endif
 
 
@@ -293,7 +294,7 @@
                     <!--begin::Actions-->
                     <div class="card-footer d-flex justify-content-end py-6 px-9">
                         <button type="submit" class="btn btn-primary"
-                            id="kt_account_profile_details_submit">Generate</button>
+                            id="kt_account_profile_details_submit">Update</button>
                     </div>
                     <!--end::Actions-->
                 </form>

@@ -129,10 +129,13 @@
                                 <input type="hidden" name="amount" value="{{ session('total') }}">
                                 <div class="wc-proceed-to-checkout">
                                     <div class="wc-proceed-to-checkout">
-                                        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                            data-key="{{ config('services.stripe.key') }}" data-amount={{ (int) session('total') * 100 }} data-name="Stripe"
-                                            data-locale="auto" data-label="Pay With Stripe" data-zip-code="true" data-currency="{{ 'USD' }}"
-                                            data-gateway="stripe"></script>
+                                        @if (env('STRIPE_PAYMENT_ACTIVE') == 'YES')
+                                            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                                data-key="{{ config('services.stripe.key') }}" data-amount={{ (int) session('total') * 100 }} data-name="Stripe"
+                                                data-locale="auto" data-label="Pay With Stripe" data-zip-code="true" data-currency="{{ 'USD' }}"
+                                                data-gateway="stripe"></script>
+                                        @endif
+
 
                                         <button class="paypal-button capitalize" id="triggerButton">Pay With
                                             Paypal</button>

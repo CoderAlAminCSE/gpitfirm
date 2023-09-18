@@ -513,16 +513,19 @@
                 </div>
                 @if ($invoice->order->payment_status == 0 && $invoice->order->canceled_at == null)
                     <div class="mt-4">
-                        <div>
-                            <form action="{{ route('invoice.payment.confirm') }}" method="post">
-                                @csrf
-                                <input type="hidden" name="invoice_id" value="{{ $invoice->id }}">
-                                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                    data-key="{{ config('services.stripe.key') }}" data-amount={{ $invoice->order->total_amount * 100 }}
-                                    data-name="Stripe" data-locale="auto" data-label="Pay With Stripe" data-zip-code="true"
-                                    data-currency="{{ 'USD' }}" data-gateway="stripe"></script>
-                            </form>
-                        </div>
+                        @if (env('STRIPE_PAYMENT_ACTIVE') == 'YES')
+                            <div>
+                                <form action="{{ route('invoice.payment.confirm') }}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="invoice_id" value="{{ $invoice->id }}">
+                                    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                        data-key="{{ config('services.stripe.key') }}" data-amount={{ $invoice->order->total_amount * 100 }}
+                                        data-name="Stripe" data-locale="auto" data-label="Pay With Stripe" data-zip-code="true"
+                                        data-currency="{{ 'USD' }}" data-gateway="stripe"></script>
+                                </form>
+                            </div>
+                        @endif
+
                         <div>
                             <form action="{{ route('invoice.processPaypal') }}" method="get">
                                 @csrf

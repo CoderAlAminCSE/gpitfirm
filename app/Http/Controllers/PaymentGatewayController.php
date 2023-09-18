@@ -42,7 +42,6 @@ class PaymentGatewayController extends Controller
     public function stripeUpdate(Request $request)
     {
         try {
-
             $request->validate([
                 'STRIPE_KEY' => 'required',
                 'STRIPE_SECRET' => 'required'
@@ -50,6 +49,9 @@ class PaymentGatewayController extends Controller
 
             overWriteEnvFile('STRIPE_KEY', $request->STRIPE_KEY);
             overWriteEnvFile('STRIPE_SECRET', $request->STRIPE_SECRET);
+
+            $STRIPE_PAYMENT_ACTIVE_STATUS = $request->STRIPE_PAYMENT_ACTIVE ? 'YES' : 'NO';
+            overWriteEnvFile('STRIPE_PAYMENT_ACTIVE', $STRIPE_PAYMENT_ACTIVE_STATUS);
 
             return back()->with('success', 'Stripe info updated');
         } catch (\Exception $e) {

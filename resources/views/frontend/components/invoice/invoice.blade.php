@@ -538,10 +538,13 @@
                             </div>
                         @endif
 
-                        <div>
-                            <button class="paddle-button capitalize mt-2" id="paddle-pay-button">Pay With
-                                Paddle</button>
-                        </div>
+                        @if (env('PADDLE_PAYMENT_ACTIVE') == 'YES')
+                            <div>
+                                <button class="paddle-button capitalize mt-2" id="paddle-pay-button">Pay With
+                                    Paddle</button>
+                            </div>
+                        @endif
+
                     </div>
                 @endif
 

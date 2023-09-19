@@ -140,6 +140,14 @@
                                         </div>
                                         <!--end::Input group-->
                                         <!--end::Form-->
+                                        <div class="form-check" style="margin-left: 220px; margin-top: 30px;">
+                                            <input class="form-check-input" name="PADDLE_PAYMENT_ACTIVE" type="checkbox"
+                                                value="1" id="flexCheckChecked"
+                                                {{ env('PADDLE_PAYMENT_ACTIVE') == 'YES' ? 'checked' : '' }} />
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                Active
+                                            </label>
+                                        </div>
                                     </div>
                                     <!--end:::Tab pane-->
                                     <!--begin::Action buttons-->

@@ -6,12 +6,18 @@ use Illuminate\Http\Request;
 
 class PaymentGatewayController extends Controller
 {
+    /**
+     * Display paddle payment gateway info page
+     */
     public function paddleIndex()
     {
         return view('backend.payment_gateways.paddle');
     }
 
 
+    /**
+     * Update paddle payment data.
+     */
     public function paddleUpdate(Request $request)
     {
         try {
@@ -26,6 +32,9 @@ class PaymentGatewayController extends Controller
             overWriteEnvFile('PADDLE_VENDOR_AUTH_CODE', $request->PADDLE_VENDOR_AUTH_CODE);
             overWriteEnvFile('PADDLE_PUBLIC_KEY', $request->PADDLE_PUBLIC_KEY);
 
+            $PADDLE_PAYMENT_ACTIVE_STATUS = $request->PADDLE_PAYMENT_ACTIVE ? 'YES' : 'NO';
+            overWriteEnvFile('PADDLE_PAYMENT_ACTIVE', $PADDLE_PAYMENT_ACTIVE_STATUS);
+
             return back()->with('success', 'Paddle info updated');
         } catch (\Exception $e) {
             return back()->with('error', 'Error: ' . $e->getMessage());
@@ -33,12 +42,18 @@ class PaymentGatewayController extends Controller
     }
 
 
+    /**
+     * Display stripe payment gateway info page
+     */
     public function stripeIndex()
     {
         return view('backend.payment_gateways.stripe');
     }
 
 
+    /**
+     * Update stripe payment data.
+     */
     public function stripeUpdate(Request $request)
     {
         try {
@@ -60,12 +75,18 @@ class PaymentGatewayController extends Controller
     }
 
 
+    /**
+     *Display paypal payment gateway info page
+     */
     public function paypalIndex()
     {
         return view('backend.payment_gateways.paypal');
     }
 
 
+    /**
+     * Update stripe paypal data.
+     */
     public function paypalUpdate(Request $request)
     {
         try {

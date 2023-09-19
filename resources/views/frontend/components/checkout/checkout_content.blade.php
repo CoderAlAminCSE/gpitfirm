@@ -141,8 +141,12 @@
                                                 Paypal</button>
                                         @endif
 
-                                        <button class="paddle-button capitalize mt-2" id="paddle-pay-button">Pay With
-                                            Paddle</button>
+                                        @if (env('PADDLE_PAYMENT_ACTIVE') == 'YES')
+                                            <button class="paddle-button capitalize mt-2" id="paddle-pay-button">Pay
+                                                With
+                                                Paddle</button>
+                                        @endif
+
                                     </div>
                                     {{-- <div>
                                         <x-paddle-button :url="$paylink" class="px-8 py-4">

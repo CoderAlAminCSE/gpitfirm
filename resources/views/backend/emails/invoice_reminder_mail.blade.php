@@ -9,13 +9,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta property="og:locale" content="en_US" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
+
+    <style>
+        @media only screen and(min-width: 320px) and (max-width: 480px) {
+            .item-details p {
+                font-size: 12px !important;
+            }
+
+            .item-title {
+                width: 70%;
+            }
+
+            .item-price {
+                width: 25%;
+            }
+        }
+    </style>
 </head>
 <!--end::Head-->
 <!--begin::Body-->
 
 <body id="kt_body" class="app-blank">
     <!--begin::Root-->
-    <div class="d-flex flex-column flex-root" id="kt_app_root">
+    <div class="d-flex flex-column flex-root" id="kt_app_root" style="background-color: #F4F5FF; padding: 30px 15px;">
         <!--begin::Wrapper-->
         <div class="d-flex flex-column flex-column-fluid">
             <!--begin::Body-->
@@ -80,30 +96,38 @@
                                                         <!--begin:Item-->
                                                         @foreach ($invoice['order']['items'] as $item)
                                                             @if ($item->service_id != null)
-                                                                <div
-                                                                    style="display:flex; justify-content: space-between; color:#7E8299; font-size: 14px; font-weight:500; margin-bottom:8px">
+                                                                <div class="item-details"
+                                                                    style="border-bottom:1px solid gray; justify-content: space-between; color:#7E8299; font-size: 14px; font-weight:500; margin-bottom: 15px;
+                                                                    padding-bottom: 15px;">
                                                                     <!--begin:Description-->
-                                                                    <div style="font-family:Arial,Helvetica,sans-serif">
-                                                                        {{ serviceInfo($item->service_id)->name }}</div>
+                                                                    <div class="item-title"
+                                                                        style="width: 75%; display: inline-block; font-family:Arial,Helvetica,sans-serif">
+                                                                        <p>{{ serviceInfo($item->service_id)->name }}
+                                                                        </p>
+                                                                    </div>
                                                                     <!--end:Description-->
                                                                     <!--begin:Total-->
-                                                                    <div style="font-family:Arial,Helvetica,sans-serif">
-                                                                        ${{ serviceInfo($item->service_id)->price }}
+                                                                    <div class="item-price"
+                                                                        style="width: 20%; float: right;display: inline-block; font-family:Arial,Helvetica,sans-serif">
+                                                                        <p>${{ serviceInfo($item->service_id)->price }}
+                                                                        </p>
                                                                     </div>
                                                                     <!--end:Total-->
                                                                 </div>
                                                             @else
-                                                                <div
-                                                                    style="display:flex; justify-content: space-between; color:#7E8299; font-size: 14px; font-weight:500; margin-bottom:8px">
+                                                                <div class="item-details"
+                                                                    style="border-bottom:1px solid gray; justify-content: space-between; color:#7E8299; font-size: 14px; font-weight:500; margin-bottom: 15px;
+                                                                    padding-bottom: 15px;">
                                                                     <!--begin:Description-->
-                                                                    <div style="font-family:Arial,Helvetica,sans-serif">
-                                                                        {{ $item->custom_service_name }}</div>
-                                                                    <!--end:Description-->
-                                                                    <!--begin:Total-->
-                                                                    <div style="font-family:Arial,Helvetica,sans-serif">
-                                                                        ${{ $item->custom_service_price }}
+                                                                    <div class="item-title"
+                                                                        style="width: 75%; display: inline-block; font-family:Arial,Helvetica,sans-serif">
+                                                                        <p>{{ $item->custom_service_name }}</p>
                                                                     </div>
-                                                                    <!--end:Total-->
+                                                                    <!--end:Description-->
+                                                                    <div class="item-price"
+                                                                        style="width: 20%; float: right;display: inline-block; font-family:Arial,Helvetica,sans-serif">
+                                                                        <p>${{ $item->custom_service_price }}</p>
+                                                                    </div>
                                                                 </div>
                                                             @endif
                                                         @endforeach
@@ -114,15 +138,16 @@
                                                         </div>
                                                         <!--end::Separator-->
                                                         <!--begin:Item-->
-                                                        <div
-                                                            style="display:flex; justify-content: space-between; color:#7E8299; font-size: 14px; font-weight:500">
+                                                        <div style="color:#7E8299; font-size: 14px; font-weight:500">
                                                             <!--begin:Description-->
-                                                            <div style="font-family:Arial,Helvetica,sans-serif">Total
+                                                            <div
+                                                                style="width: 75%; display:inline-block; font-family:Arial,Helvetica,sans-serif">
+                                                                Total
                                                             </div>
                                                             <!--end:Description-->
                                                             <!--begin:Total-->
                                                             <div
-                                                                style="color:#50cd89; font-weight:700; font-family:Arial,Helvetica,sans-serif">
+                                                                style="width: 20%; float: right; display:inline-block; color:#50cd89; font-weight:700; font-family:Arial,Helvetica,sans-serif">
                                                                 ${{ $invoice['order']['total_amount'] }}</div>
                                                             <!--end:Total-->
                                                         </div>
@@ -137,8 +162,8 @@
 
 
                                             <!--begin:Action-->
-                                            <a href="{{ $invoice['link'] }}" target="_blank"
-                                                style="background-color:#50cd89; border-radius:6px; display:inline-block; margin-left:60px; padding:11px 19px; color: #FFFFFF; font-size: 14px; font-weight:500; font-family:Arial,Helvetica,sans-serif">Complete
+                                            <a href="https://gpitfirm.com/" target="_blank"
+                                                style="text-decoration:none; background-color:#50cd89; border-radius:6px; display:inline-block; margin-left:60px; padding:11px 19px; color: #FFFFFF; font-size: 14px; font-weight:500; font-family:Arial,Helvetica,sans-serif">Complete
                                                 Order</a>
                                             <!--end:Action-->
                                         </div>
@@ -154,8 +179,8 @@
                                             {{ $details['company_phone'] }}
                                         </p>
                                         <p style="margin-bottom:4px">You may reach us at
-                                            <a href="{{ $details['company_website'] }}" rel="noopener" target="_blank"
-                                                style="font-weight: 600">{{ $details['company_website'] }}</a>.
+                                            <a href="https://gpitfirm.com/" rel="noopener" target="_blank"
+                                                style="text-decoration:none; font-weight: 600">{{ $details['company_website'] }}</a>.
                                         </p>
                                     </td>
                                 </tr>

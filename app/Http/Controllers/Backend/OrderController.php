@@ -13,7 +13,9 @@ use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Mail\InvoiceReminderMail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Redirect;
 use Srmklive\PayPal\Services\Paypal as PaypPalClinet;
@@ -321,6 +323,38 @@ class OrderController extends Controller
     }
 
 
+    /**
+     * Send invoice reminder.
+     */
+    public function invoiceReminder($id, Invoice $invoice, User $user)
+    {
+        try {
+            $invoice = $invoice->with('order', 'user', 'order.items')->findOrFail($id);
+            $details = [
+                'from' => env('MAIL_FROM_ADDRESS'),
+                'subject' => siteSetting('company_name') . ' - Complete your order',
+                'company_phone' => siteSetting('company_phone'),
+                'company_website' => siteSetting('company_website'),
+                'company_name' => siteSetting('company_name'),
+            ];
+
+            $receiver = $user->where('id', $invoice->user->id)->first();
+            if ($receiver) {
+                Mail::to($receiver->email)->send(new InvoiceReminderMail($details, $invoice));
+                return back()->with('success', 'Invoice reminder sent successfully');
+            } else {
+                return back()->with('error', 'Receiver email not found');
+            }
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return back()->with('error', 'Error: ' . $e->getMessage());
+        }
+    }
+
+
+    /**
+     * Show invoice for copy link.
+     */
     public function invoiceShowForCustomer($encryptedInvoice, Invoice $invoice)
     {
         $decryptedInvoiceNumber = decryptInvoiceNumber($encryptedInvoice);

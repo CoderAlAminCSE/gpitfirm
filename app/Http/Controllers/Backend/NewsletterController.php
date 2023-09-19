@@ -150,6 +150,9 @@ class NewsletterController extends Controller
     }
 
 
+    /**
+     * Delete contact message
+     */
     public function contactMessageDelete($id, ContactMessage $contactMessage)
     {
         $contactMessage = $contactMessage->findOrFail($id);
@@ -158,6 +161,9 @@ class NewsletterController extends Controller
     }
 
 
+    /**
+     * Reply to a  contact message
+     */
     public function contactMessageReply(Request $request, ContactMessage $contactMessage)
     {
         try {

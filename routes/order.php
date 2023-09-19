@@ -3,10 +3,9 @@
 use App\Http\Controllers\Backend\OrderController;
 use Illuminate\Support\Facades\Route;
 
-/*
-| In this route we will configure the order routes
-*/
 
+
+// Order related routes
 Route::group(['prefix' => 'dashboard/order/', 'middleware' => ['auth', 'admin']], function () {
   Route::get('index', [OrderController::class, 'orderIndex'])->name('order.index');
   Route::get('show/{id}', [OrderController::class, 'orderShow'])->name('order.show');
@@ -22,6 +21,7 @@ Route::group(['prefix' => 'dashboard/invoice/', 'middleware' => ['auth', 'admin'
   Route::post('update/{id}', [OrderController::class, 'invoiceUpdate'])->name('invoice.update');
   Route::get('generate', [OrderController::class, 'invoiceGenerate'])->name('invoice.generate');
   Route::post('store', [OrderController::class, 'invoiceStore'])->name('invoice.store');
+  Route::get('reminder/{id}', [OrderController::class, 'invoiceReminder'])->name('invoice.reminder');
 });
 
 
@@ -29,7 +29,15 @@ Route::group(['prefix' => 'dashboard/invoice/', 'middleware' => ['auth', 'admin'
 Route::get('invoice/{encryptedInvoice}', [OrderController::class, 'invoiceShowForCustomer'])->name('customer.invoice.show');
 Route::post('invoice/payment/confirm', [OrderController::class, 'invoicePaymentConfirm'])->name('invoice.payment.confirm');
 
+
 //paypal payment routes
 Route::get('/invoice/pay/processPaypal', [OrderController::class, 'processPaypal'])->name('invoice.processPaypal');
 Route::get('/invoice/pay/processCancel', [OrderController::class, 'processCancel'])->name('invoice.processCancel');
 Route::get('/invoice/pay/processSuccess', [OrderController::class, 'processSuccess'])->name('invoice.processSuccess');
+
+
+
+// Delete this route
+Route::get('/invoice-email', function () {
+  return view('backend.emails.invoice_reminder_mail');
+});

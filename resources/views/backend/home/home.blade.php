@@ -255,14 +255,14 @@
                                         class="text-muted fw-semibold fs-7">${{ number_format(orders()->sum('total_amount'), 2, '.', ',') }}</span>
                                 </h3>
                                 <!--begin::Toolbar-->
-                                <div class="card-toolbar" data-kt-buttons="true">
+                                {{-- <div class="card-toolbar" data-kt-buttons="true">
                                     <a class="btn btn-sm btn-color-muted btn-active btn-active-primary active px-4 me-1"
                                         id="kt_charts_widget_2_year_btn">Year</a>
                                     <a class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4 me-1"
                                         id="kt_charts_widget_2_month_btn">Month</a>
                                     <a class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4"
                                         id="kt_charts_widget_2_week_btn">Week</a>
-                                </div>
+                                </div> --}}
                                 <!--end::Toolbar-->
                             </div>
                             <!--end::Header-->

@@ -2,15 +2,19 @@
 
 use App\Models\Site;
 use App\Models\User;
+use App\Models\Order;
+use App\Models\Invoice;
 use App\Models\Service;
 use App\Models\Category;
-use App\Models\ContactMessage;
+use App\Models\OrderItem;
 use App\Models\RefundPage;
+use App\Models\ContactMessage;
 use App\Models\FaqPageContent;
 use App\Models\GeneralSetting;
 use App\Models\PrivacyPolicyPage;
 use App\Models\ResellerRulesPage;
 use App\Models\TermsConditionPage;
+use Illuminate\Support\Facades\DB;
 use App\Models\HomePageHeroSection;
 use App\Models\HomePageAboutSection;
 use App\Models\HomePagePromoSection;
@@ -18,9 +22,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\HomePageContactSection;
 use App\Models\HomePageServiceSection;
 use App\Models\HomePageTestimonialSection;
-use App\Models\Invoice;
-use App\Models\Order;
-use App\Models\OrderItem;
 
 //logged in user data
 function loggedInUser()
@@ -109,7 +110,7 @@ function activeSites()
 // get as value order wise from "sites" table
 function activeSitesOrderWise()
 {
-  return Site::orderBy('order','ASC')->get();
+  return Site::orderBy('order', 'ASC')->get();
 }
 
 
@@ -259,4 +260,85 @@ function totalUnpaidAmount()
 function totalCanceledAmount()
 {
   return Order::whereNotNull('canceled_at')->sum('total_amount');
+}
+
+
+
+function monthWiseTotalOrderAmount()
+{
+  $monthWiseTotalAmount = Order::select(
+    DB::raw('SUM(total_amount) as total_amount'),
+    DB::raw('MONTH(created_at) as month')
+  )
+    ->groupBy(DB::raw('MONTH(created_at)'))
+    ->orderBy(DB::raw('MONTH(created_at)'))
+    ->pluck('total_amount', 'month')
+    ->all();
+
+  $formattedTotalAmount = [];
+  for ($month = 1; $month <= 12; $month++) {
+    $formattedTotalAmount[] = isset($monthWiseTotalAmount[$month]) ? $monthWiseTotalAmount[$month] : 0;
+  }
+
+  return implode(', ', $formattedTotalAmount);
+}
+
+
+function monthWiseTotalPaidAmount()
+{
+  $monthWiseTotalPaidAmount = Order::select(
+    DB::raw('SUM(CASE WHEN payment_status = 1 THEN total_amount ELSE 0 END) as total_paid_amount'),
+    DB::raw('MONTH(created_at) as month')
+  )
+    ->groupBy(DB::raw('MONTH(created_at)'))
+    ->orderBy(DB::raw('MONTH(created_at)'))
+    ->pluck('total_paid_amount', 'month')
+    ->all();
+
+  $formattedTotalPaidAmount = [];
+  for ($month = 1; $month <= 12; $month++) {
+    $formattedTotalPaidAmount[] = isset($monthWiseTotalPaidAmount[$month]) ? $monthWiseTotalPaidAmount[$month] : 0;
+  }
+
+  return implode(', ', $formattedTotalPaidAmount);
+}
+
+
+function monthWiseTotalCanceledAmount()
+{
+  $monthWiseTotalCanceledAmount = Order::select(
+    DB::raw('SUM(CASE WHEN canceled_at IS NOT NULL THEN total_amount ELSE 0 END) as total_canceled_amount'),
+    DB::raw('MONTH(created_at) as month')
+  )
+    ->groupBy(DB::raw('MONTH(created_at)'))
+    ->orderBy(DB::raw('MONTH(created_at)'))
+    ->pluck('total_canceled_amount', 'month')
+    ->all();
+
+  $formattedTotalCanceledAmount = [];
+  for ($month = 1; $month <= 12; $month++) {
+    $formattedTotalCanceledAmount[] = isset($monthWiseTotalCanceledAmount[$month]) ? $monthWiseTotalCanceledAmount[$month] : 0;
+  }
+
+  return implode(', ', $formattedTotalCanceledAmount);
+}
+
+
+function monthWiseTotalPendingAmount()
+{
+  $monthWiseTotalPendingAmount = Order::select(
+    DB::raw('SUM(CASE WHEN payment_status = 0 AND canceled_at IS NULL THEN total_amount ELSE 0 END) as total_pending_amount'),
+    DB::raw('MONTH(created_at) as month')
+  )
+    ->groupBy(DB::raw('MONTH(created_at)'))
+    ->orderBy(DB::raw('MONTH(created_at)'))
+    ->pluck('total_pending_amount', 'month')
+    ->all();
+
+  $formattedTotalPendingAmount = [];
+  for ($month = 1; $month <= 12; $month++) {
+    $formattedTotalPendingAmount[] = isset($monthWiseTotalPendingAmount[$month]) ? $monthWiseTotalPendingAmount[$month] : 0;
+  }
+
+  return implode(', ', $formattedTotalPendingAmount);
 }

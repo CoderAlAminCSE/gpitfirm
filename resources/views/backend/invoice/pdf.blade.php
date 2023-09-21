@@ -1,560 +1,140 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invoice PDF</title>
-
-    <!-- fontawesome -->
-    <script src="https://kit.fontawesome.com/7cad351999.js" crossorigin="anonymous"></script>
-
-    {{-- sujan sir's given code --}}
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    {{-- <script src="https://cdn.paddle.com/paddle/paddle.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $("#paddle-pay-button").on("click", function(e) {
-                e.preventDefault();
-
-                // Define email and post_id here
-                let email = "example@email.com";
-                let post_id = 123;
-
-                Paddle.Environment.set("sandbox");
-
-                Paddle.Setup({
-                    vendor: 13919,
-                });
-
-                Paddle.Checkout.open({
-                    product: 12345,
-                    email: email,
-                    passthrough: 1939284,
-                    successCallback: function(data) {
-                        console.log(data);
-                        alert("Thanks for the payment");
-
-                        if (data.checkout.completed) {
-                            let url = `${invoicelocal.apiurl}/sujan/v1/invoice`;
-
-                            $.ajax({
-                                url: url,
-                                dataType: "json",
-                                type: "Post",
-                                async: true,
-                                data: {
-                                    post_id: post_id,
-                                },
-                                success: function(data) {
-                                    location.reload(true);
-                                },
-                                error: function(xhr, exception) {
-                                    var msg = "";
-                                    if (xhr.status === 0) {
-                                        msg =
-                                            "could not connect.\n Verify Network." +
-                                            xhr.responseText;
-                                    } else if (xhr.status == 404) {
-                                        msg = "Requested page not found. [404]" +
-                                            xhr
-                                            .responseText;
-                                    } else if (xhr.status == 500) {
-                                        msg = "Internal Server Error [500]." + xhr
-                                            .responseText;
-                                    } else if (exception === "parsererror") {
-                                        msg = "Requested JSON parse failed.";
-                                    } else if (exception === "timeout") {
-                                        msg = "Time out error." + xhr.responseText;
-                                    } else if (exception === "abort") {
-                                        msg = "Ajax request aborted.";
-                                    } else {
-                                        msg = "Error:" + xhr.status + " " + xhr
-                                            .responseText;
-                                    }
-                                },
-                            });
-                        }
-                    },
-                    closeCallback: function(data) {
-                        console.log(data);
-                    },
-                });
-            });
-        });
-    </script> --}}
-
-
-    {{-- <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"> --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <!-- tailwindcss -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .rs_container {
-            max-width: 1024px;
-            margin-left: auto;
-            margin-right: auto;
-            padding-left: 15px;
-            padding-right: 15px;
-        }
-
-        /* responsive */
-
-        @media (min-width: 768px) {
-            .rs_container {
-                padding-left: 50px;
-                padding-right: 50px;
-            }
-        }
-
-        @media (min-width: 576px) and (max-width: 767.99px) {
-            p {
-                font-size: 14px !important;
-            }
-
-            h2 {
-                font-size: 18px !important;
-            }
-
-            .rs_container {
-                padding-left: 50px;
-                padding-right: 50px;
-            }
-
-            .bill_area_wrapper {
-                display: block !important;
-            }
-
-            .billed_to {
-                margin-bottom: 30px;
-                width: 220px;
-                float: left;
-            }
-
-            .invoice_num {
-                margin-bottom: 30px;
-                margin-top: 0;
-                width: 220px;
-                float: right;
-            }
-
-            .invoice_of {
-                text-align: start !important;
-                overflow: hidden;
-                width: 100%;
-            }
-
-            .invoice_of>p {
-                margin-bottom: 10px;
-            }
-
-            .invoice_status {
-                max-width: 182px;
-            }
-
-            .order_details_wrapper {
-                display: block !important;
-            }
-
-
-            .order_details_title {
-                margin-bottom: 30px;
-            }
-
-            .order_details_time {
-                width: 48%;
-                display: inline-block;
-            }
-
-            .order_details_time p {
-                margin-bottom: 10px;
-            }
-
-            .item_details_header {
-                display: block !important;
-            }
-
-            .item_details_header p:nth-child(1) {
-                width: 69%;
-                display: inline-block;
-            }
-
-            .item_details_header p:nth-child(2) {
-                width: 30%;
-                display: inline-block;
-            }
-
-            /* .item_details_body {
-                display: block !important;
-            } */
-
-            .item_details_body div:nth-child(1) {
-                grid-column: span 4 / span 4;
-            }
-
-            .item_details_body div:nth-child(2) {
-                grid-column: span 2 / span 2;
-            }
-        }
-
-        @media (max-width: 575.99px) {
-            p {
-                font-size: 14px !important;
-            }
-
-            h2 {
-                font-size: 18px !important;
-            }
-
-            .rs_container {
-                padding-left: 50px;
-                padding-right: 50px;
-            }
-
-            .bill_area_wrapper {
-                display: block !important;
-            }
-
-            .billed_to {
-                margin-bottom: 30px;
-            }
-
-            .invoice_num {
-                margin-bottom: 30px;
-            }
-
-            .invoice_num p {
-                margin-bottom: 10px;
-            }
-
-            .invoice_of {
-                text-align: start !important;
-                overflow: hidden;
-                width: 100%;
-            }
-
-            .invoice_of>p {
-                margin-bottom: 10px;
-            }
-
-            .invoice_status {
-                max-width: 182px;
-            }
-
-            .order_details_wrapper {
-                display: block !important;
-            }
-
-
-            .order_details_title {
-                margin-bottom: 30px;
-            }
-
-            .order_details_time {
-                width: 48%;
-                display: inline-block;
-            }
-
-            .order_details_time p {
-                margin-bottom: 10px;
-            }
-
-            .item_details_header {
-                display: block !important;
-            }
-
-            .item_details_header p:nth-child(1) {
-                width: 49%;
-                display: inline-block;
-            }
-
-            .item_details_header p:nth-child(2) {
-                width: 49%;
-                display: inline-block;
-            }
-
-            .item_details_body {
-                display: block !important;
-            }
-
-            .item_details_body p,
-            h2,
-            .item_details_price {
-                padding: 10px !important;
-            }
-
-            .item_details_body div:nth-child(2) {
-                border-left: 1px solid rgb(229 231 235 / var(--tw-border-opacity));
-            }
-
-            .summary_wrapper {
-                display: block !important;
-            }
-
-            .summary_wrapper button {
-                margin-bottom: 20px;
-            }
-
-
-        }
-
-        .address-container {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 10px;
-        }
-
-        .paypal-button {
-            color: white;
-            background-color: #0369a1 !important;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            /* Adding the following line to ensure the background color is visible */
-            border: 1px solid blue;
-            width: 250px !important;
-            font-family: 'Poppins', sans-serif !important;
-            font-size: 16px !important;
-            font-weight: 500 !important;
-        }
-
-        .paddle-button {
-            color: white;
-            background-color: #C39E08 !important;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            /* Adding the following line to ensure the background color is visible */
-            border: 1px solid#C39E08 !important;
-            width: 250px !important;
-            font-family: 'Poppins', sans-serif !important;
-            font-size: 16px !important;
-            font-weight: 500 !important;
-        }
-
-        .stripe-button-el {
-            border: none !important;
-            margin-bottom: 15px !important;
-            background-image: none !important;
-            padding: 8px 16px !important;
-            background: #38bdf8 !important;
-            width: 250px !important;
-            font-family: 'Poppins', sans-serif !important;
-            font-size: 16px !important;
-            font-weight: 500 !important;
-        }
-
-        .stripe-button-el span {
-            background: none !important;
-            text-shadow: none !important;
-            box-shadow: none !important;
-            font-size: 16px !important;
-            font-weight: 600 !important;
-        }
-    </style>
-    @paddleJS
+    <title>Invoice #{{ $invoice->invoice_number }}</title>
 </head>
 
-<body>
-
-    <!-- header-area -->
-    <header class="bg-[#EDDFF9] pb-[50px]">
-        <div class="rs_container">
-            <strong
-                class="w-[135px] block mx-auto bg-[#6600cc] text-white py-[13px] px-[40px] rounded-bl-[15px] rounded-br-[15px]">Invoice</strong>
-            <div class="logo w-[120px] mx-auto mt-[40px]">
-                <a href="">
-                    <img src="https://gpitfirm.com/wp-content/uploads/2023/09/Screenshot_8-removebg-preview-1.png"
-                        alt="logo">
-                </a>
-            </div>
-            <div class="company_info flex justify-between mt-[40px]">
-                <div>
-                    <p class="mb-[10px]">{{ $company_phone }}</p>
-                    <p class="mb-[10px]">{{ $company_email }}</p>
-                    <p>{{ $company_website }}</p>
-                </div>
-
-                <div class="address-container">
-                    @php
-                        $addressLines = explode(',', $company_address ?? '');
-                    @endphp
-                    @foreach ($addressLines as $line)
-                        <p>{{ trim($line) }}</p>
-                    @endforeach
-                </div>
-
-            </div>
-        </div>
-    </header>
-    <!-- bill-area -->
-    <div class="bill_area py-[25px]">
-        <div class="rs_container bill_area_wrapper flex justify-between">
-            <div class="billed_to">
-                <p class="bg-gray-200 text-[#6600cc] py-[4px] px-[8px] inline-block rounded-md mb-4">Billed to,</p>
-                <h2 class="text-xl font-bold mb-4">{{ $invoice->user->name }}</h2>
-                <p class="mb-1">{{ $invoice->user->address }}</p>
-            </div>
-            <div class="invoice_num">
-                <p class="text-gray-500 mb-1">Invoice Number</p>
-                <h2 class="text-xl font-bold mb-1">{{ $invoice->invoice_number }}</h2> <br>
-                <p class="text-gray-500 mb-">Order Number</p>
-                <h2 class="text-xl font-bold mb-1">{{ $invoice->order->order_number }}</h2>
-            </div>
-            <div class="invoice_of text-end">
-                <p class="text-gray-500 mb-4">Invoice of <span>(USD)</span></p>
-                <h2 class="text-[#6633cc] text-xl font-bold mb-4">${{ $invoice->order->total_amount }}</h2>
-                <div class="invoice_status border-[1px] border-gray-500 rounded-md px-4 py-2 flex items-center gap-2">
-                    <p class="text-[14px] leading-4">Invioce <br> Status</p>
-                    <div>
-                        @if (orderInfo($invoice->order_id)->canceled_at != null)
-                            <p class="unpaid  bg-red-500 py-1 px-4 text-white rounded-md">Cancaled</p>
-                        @elseif (orderInfo($invoice->order_id)->payment_status == 1)
-                            <p class="paid bg-lime-600 py-1 px-4 text-white rounded-md">Paid</p>
-                        @else
-                            <p class="unpaid  bg-orange-500 py-1 px-4 text-white rounded-md">Unpaid</p>
-                        @endif
-                    </div>
-                </div>
-            </div>
+<body style="font-family: Arial, sans-serif; padding: 20px;">
+    <div style="text-align: start; display: flex; justify-content: space-between;">
+        <div style="text-align: start;">
+            <h1 style="margin-top: 0;">GPITFIRM</h1>
         </div>
     </div>
-
-    <!-- order-details -->
-    <div class="order_details py-[25px]">
-        <div class="rs_container order_details_wrapper flex justify-between items-center">
-            <h2 class="order_details_title text-xl font-bold">Order Details</h2>
-            <div class="order_details_time">
-                <p class="text-gray-500 mb-4">Invoice Date</p>
-                <h2 class="text-xl font-bold">{{ $invoice->created_at->format('d F Y') }}</h2>
-            </div>
-            @if ($invoice->order->payment_status == 0 && $invoice->order->canceled_at == null)
-                <div class="order_details_time">
-                    <p class="text-gray-500 mb-4">Due Date</p>
-                    <h2 class="text-xl font-bold">{{ $invoice->created_at->format('d F Y') }}</h2>
-                </div>
-            @endif
+    <hr style="border: none; border-top: 2px solid #ccc; margin-top: 20px; margin-bottom: 20px;">
+    <div style="text-align: start; margin-top: 30px;">
+        <div style="width: 45%; display: inline-block; vertical-align: top;">
+            <p style="margin-top: 0; margin-bottom: 5px;"> Invoice #{{ $invoice->invoice_number }}</p>
+            <p style="margin-top: 0; margin-bottom: 5px;"> Order #{{ $invoice->order->order_number }}</p>
+            <p style="margin-top: 0; margin-bottom: 5px;"> Invoice Date:
+                {{ \Carbon\Carbon::parse($invoice->created_at)->format('d-m-Y h:i:s A') }}</p>
+        </div>
+        <div style="text-align: end; width: 45%; display: inline-block; vertical-align: top;">
+            <p style="margin-top: 0; margin-bottom: 5px;">
+                @if (orderInfo($invoice->order_id)->canceled_at != null)
+                    <strong>Canceled</strong>
+                @elseif (orderInfo($invoice->order_id)->payment_status == 1)
+                    <strong>Paid</strong>
+                @else
+                    <strong>Unpaid</strong>
+                @endif
+            </p>
         </div>
     </div>
-
-    <!-- item-details -->
-    <div class="item_details py-[25px]">
-        <div class="rs_container">
-            <div class="item_details_header bg-gray-200 grid grid-cols-6">
-                <p class="col-span-5 p-3">Item Details</p>
-                <p class="p-3">Amount</p>
-            </div>
+    <div style="text-align: start; margin-top: 40px;">
+        <div style="width: 45%; display: inline-block; vertical-align: top;">
+            <h3 style="margin-top: 0;">Invoice To</h3>
+            <p style="margin-top: 0; margin-bottom: 5px;"> {{ $invoice->user->name }}</p>
+            <p style="margin-top: 0; margin-bottom: 5px;"> {{ $invoice->user->email }} </p>
+            <p style="margin-top: 0; margin-bottom: 5px;"> {{ $invoice->user->address }}</p>
+        </div>
+        <div style="width: 45%; display: inline-block; vertical-align: top;">
+            <h3 style="margin-top: 0;">Pay To </h3>
+            <p style="margin-top: 0; margin-bottom: 5px;">GPITFIRM</p>
+            <p style="margin-top: 0; margin-bottom: 5px;">{{ $company_phone }} </p>
+            <p style="margin-top: 0; margin-bottom: 5px;">{{ $company_email }} </p>
+            <p style="margin-top: 0; margin-bottom: 5px;">{{ $company_website }} </p>
+        </div>
+    </div>
+    <table style="width: 100%; margin-top: 20px; border-collapse: collapse;">
+        <thead>
+            <tr>
+                <th style="border: 1px solid #ccc; padding: 5px; text-align: left;">Description</th>
+                <th style="border: 1px solid #ccc; padding: 5px; padding-right: 5px; text-align: right;">Amount</th>
+            </tr>
+        </thead>
+        <tbody>
             @foreach ($invoice->order->items as $item)
                 @if ($item->service_id == null)
-                    <div class="item_details_body grid grid-cols-6">
-                        <div class="border-l-[1px] border-r-[1px] border-b-[1px] border-gray-200 col-span-5">
-                            <h2 class="border-b-[1px] border-gray-200 p-3 font-[600]">{{ $item->custom_service_name }}
-                            </h2>
-                            <p class="p-3 font-[400]">
-                                {{ $item->custom_service_description }}
-                            </p>
-                        </div>
-                        <div class="item_details_price border-r-[1px] border-b-[1px] border-gray-200 p-3">
-                            <span>${{ $item->custom_service_price }}</span>
-                        </div>
-                    </div>
+                    <tr>
+                        <td style="border: 1px solid #ccc; padding: 5px;">{{ $item->custom_service_name }}</td>
+                        <td style="border: 1px solid #ccc; padding: 5px;padding-right: 5px; text-align: right;">
+                            ${{ $item->custom_service_price }}</td>
+                    </tr>
                 @else
-                    <div class="item_details_body grid grid-cols-6">
-                        <div class="border-l-[1px] border-r-[1px] border-b-[1px] border-gray-200 col-span-5">
-                            <h2 class="border-b-[1px] border-gray-200 p-3 font-[600]">
-                                {{ serviceInfo($item->service_id)->name }}
-                            </h2>
-                            {{-- <p class="p-3 font-[400]">
-                              {!! serviceInfo($item->service_id)->description !!}
-                            </p> --}}
-                        </div>
-                        <div class="item_details_price border-r-[1px] border-b-[1px] border-gray-200 p-3">
-                            <span>${{ serviceInfo($item->service_id)->price }}</span>
-                        </div>
-                    </div>
+                    <tr>
+                        <td style="border: 1px solid #ccc; padding: 5px;">{{ serviceInfo($item->service_id)->name }}
+                        </td>
+                        <td style="border: 1px solid #ccc; padding: 5px;padding-right: 5px; text-align: right;">
+                            ${{ serviceInfo($item->service_id)->price }}</td>
+                    </tr>
                 @endif
             @endforeach
 
-        </div>
+        </tbody>
+    </table>
+
+    <div style="background-color: #E5E7EB; margin-top:15px; padding: 12px 40px; border-radius: 8px; text-align: right;">
+        <span style="margin-right: 10px; color: #777777; font-weight: 500;">Total</span>
+        <strong style="font-size: 1rem;">${{ $invoice->order->total_amount }}</strong>
     </div>
-
-    <!-- summary -->
-    <div class="summary py-[25px]">
-        <div class="rs_container summary_wrapper flex justify-between items-center">
+    @php
+        $appUrl = env('APP_URL');
+        $invoiceLink = $invoice->link;
+        $fullUrl = $appUrl . '/invoice/' . $invoiceLink;
+    @endphp
+    <div class="summary" style="padding-top: 25px;">
+        <div class="rs_container" style="display: flex; justify-content: flex-end; align-items: center;">
             <div>
-                <div class="py-3 px-10 bg-gray-200 rounded-md">
-                    <span class="inline-block mr-10 text-gray-700 font-[500]">Total</span>
-                    <strong class="text-lg">${{ $invoice->order->total_amount }}</strong>
-
-                </div>
                 @if ($invoice->order->payment_status == 0 && $invoice->order->canceled_at == null)
-                    <div class="mt-4">
+                    <div style="margin-top: 16px;">
                         @if (env('STRIPE_PAYMENT_ACTIVE') == 'YES')
                             <div>
-                                <a href=""><button class="btn btn-success">
-                                        Pay With Stripe
-                                    </button></a>
-                            </div>
-                        @endif
-
-                        @if (env('PAYPAL_PAYMENT_ACTIVE') == 'YES')
-                            <div>
-                                <a href=""><button class="btn btn-success">
-                                        Pay With Paypal
-                                    </button></a>
-                            </div>
-                        @endif
-
-                        @if (env('PADDLE_PAYMENT_ACTIVE') == 'YES')
-                            <div>
-                                <a href="">
-                                    <button class="paddle-button capitalize mt-2" id="paddle-pay-button">Pay With
-                                        Paddle</button>
+                                <a style="text-decoration: none" href="{{ $fullUrl }}">
+                                    <button
+                                        style="color: white; background-color: #44c464; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; border: 1px solid #44c464; width: 250px; font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 500;">Pay
+                                        With Stripe</button>
                                 </a>
                             </div>
                         @endif
+                        @if (env('PAYPAL_PAYMENT_ACTIVE') == 'YES')
+                            <div>
+                                <a style="text-decoration: none" href="{{ $fullUrl }}">
+                                    <button
+                                        style=" color: white; background-color: #0369a1; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; border: 1px solid #0369a1; width: 250px; font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 500;">Pay
+                                        With Paypal</button>
+                                </a>
 
+                            </div>
+                        @endif
+                        @if (env('PADDLE_PAYMENT_ACTIVE') == 'YES')
+                            <div>
+                                <a style="text-decoration: none" href="{{ $fullUrl }}">
+                                    <button
+                                        style="color: white; background-color: #C39E08; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; border: 1px solid #C39E08; width: 250px; font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 500;">Pay
+                                        With Paddle</button>
+                                </a>
+
+                            </div>
+                        @endif
                     </div>
                 @endif
-
             </div>
         </div>
     </div>
 
     <!-- footer -->
-    <footer class="mb-[60px] pt-[50px]">
+    <footer style="margin-bottom: 30px; padding-top: 50px;">
         @if ($invoice->notes)
             <div class="rs_container">
-                <p class="font-[500] mb-1">Notes</p>
+                <p style="font-weight: 500; margin-bottom: 1rem;">Notes</p>
                 <p>{{ $invoice->notes }}</p>
             </div>
         @endif
-
-        <br>
-        <div class="rs_container">
-            <p class="font-[500] mb-">Terms & Conditions</p>
-            <p>By using our e-commerce platform, you agree to our user responsibilities, product accuracy, payment,
-                shipping, privacy,
-                and liability terms. Thank you for shopping with us.
-            </p>
-        </div>
     </footer>
-
-
+    <div style="margin-top: 10px;">
+        <p> PDF Generated Date: {{ \Carbon\Carbon::now()->format('d-m-Y h:i:s A') }}</p>
+    </div>
 </body>
 
-</html>
+</html

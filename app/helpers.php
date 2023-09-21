@@ -264,7 +264,7 @@ function totalCanceledAmount()
 }
 
 
-
+// get month wise total order amount
 function monthWiseTotalOrderAmount()
 {
   $monthWiseTotalAmount = Order::select(
@@ -285,6 +285,7 @@ function monthWiseTotalOrderAmount()
 }
 
 
+// get month wise total order paid amount
 function monthWiseTotalPaidAmount()
 {
   $monthWiseTotalPaidAmount = Order::select(
@@ -305,6 +306,7 @@ function monthWiseTotalPaidAmount()
 }
 
 
+// get month wise total order canceled amount
 function monthWiseTotalCanceledAmount()
 {
   $monthWiseTotalCanceledAmount = Order::select(
@@ -325,6 +327,7 @@ function monthWiseTotalCanceledAmount()
 }
 
 
+// get month wise total order pending amount
 function monthWiseTotalPendingAmount()
 {
   $monthWiseTotalPendingAmount = Order::select(
@@ -345,20 +348,23 @@ function monthWiseTotalPendingAmount()
 }
 
 
+// get order report based on time range
 function getOrdersReportBasedOnTimeRange($timeRange)
 {
-  switch ($timeRange) {
-    case 'today':
-      $today = Carbon::now()->toDateString();
-      return Order::whereDate('created_at', $today)->with('invoice')->paginate(10);
-    case 'last7days':
-      $last7Days = Carbon::now()->subDays(7);
-      return Order::where('created_at', '>=', $last7Days)->with('invoice')->paginate(10);
-    case 'last30days':
-      $last30Days = Carbon::now()->subDays(30);
-      return Order::where('created_at', '>=', $last30Days)->with('invoice')->paginate(10);
+  if ($timeRange === 'today') {
+    $today = Carbon::now()->toDateString();
+    return Order::whereDate('created_at', $today)->with('invoice')->paginate(10);
+  } elseif ($timeRange === 'last7days') {
+    $last7Days = Carbon::now()->subDays(7);
+    return Order::where('created_at', '>=', $last7Days)->with('invoice')->paginate(10);
+  } elseif (strpos($timeRange, '-') !== false) {
+    list($startDate, $endDate) = explode(' - ', $timeRange);
 
-    default:
-      return Order::with('invoice')->latest()->paginate(10);
+    $startDate = Carbon::createFromFormat('m/d/Y', $startDate)->startOfDay();
+    $endDate = Carbon::createFromFormat('m/d/Y', $endDate)->endOfDay();
+
+    return Order::whereBetween('created_at', [$startDate, $endDate])->with('invoice')->paginate(10);
+  } else {
+    return Order::with('invoice')->latest()->paginate(10);
   }
 }

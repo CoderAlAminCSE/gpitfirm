@@ -79,8 +79,6 @@ class OrderController extends Controller
     public function orderReport(Request $request, Order $order)
     {
         try {
-
-
             if ($request->has('time_range') && $request->time_range != null) {
                 $timeRange = $request->get('time_range');
                 $orders = getOrdersReportBasedOnTimeRange($timeRange);

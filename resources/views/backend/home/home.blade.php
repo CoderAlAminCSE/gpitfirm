@@ -109,6 +109,40 @@
             <!--end::Content container-->
         </div>
 
+        <!--begin::Modal-->
+        <div class="modal fade" tabindex="-1" id="kt_modal_1">
+            <div class="modal-dialog">
+                <form id="SearchForm" action="{{ route('order.report') }}" method="GET">
+                    @csrf
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Choose Custom Date</h5>
+
+                            <!--begin::Close-->
+                            <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal"
+                                aria-label="Close">
+                                <span class="svg-icon fs-2x"></span>
+                            </div>
+                            <!--end::Close-->
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="mb-0">
+                                <label class="form-label">Basic example</label>
+                                <input class="form-control form-control-solid" name="time_range"
+                                    placeholder="Pick date rage" id="kt_daterangepicker_1" />
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!--end::Modal-->
 
         <div id="kt_app_content" class="app-content flex-column-fluid" style="">
             <!--begin::Content container-->
@@ -161,30 +195,35 @@
                                                 <input type="hidden" name="time_range" value="today">
                                             </form>
                                         </div>
-                                        <!--end::Menu item-->   
+                                        <!--end::Menu item-->
                                         <!--begin::Menu item-->
                                         <div class="menu-item px-3"
                                             onclick="document.getElementById('SearchForm7days').submit()">
                                             <a href="#" class="menu-link px-3">Last 7 Days</a>
-                                            <form id="SearchForm7days" action="{{ route('order.report') }}" method="get">
+                                            <form id="SearchForm7days" action="{{ route('order.report') }}"
+                                                method="get">
                                                 @csrf
                                                 <input type="hidden" name="time_range" value="last7days">
                                             </form>
                                         </div>
-                                        <!--end::Menu item-->   
+                                        <!--end::Menu item-->
                                         <!--begin::Menu item-->
                                         <div class="menu-item px-3"
                                             onclick="document.getElementById('SearchForm30days').submit()">
                                             <a href="#" class="menu-link px-3">Last 30 Days</a>
-                                            <form id="SearchForm30days" action="{{ route('order.report') }}" method="get">
+                                            <form id="SearchForm30days" action="{{ route('order.report') }}"
+                                                method="get">
                                                 @csrf
                                                 <input type="hidden" name="time_range" value="last30days">
                                             </form>
                                         </div>
                                         <!--end::Menu item-->
+
+
                                         <!--begin::Menu item-->
                                         <div class="menu-item px-3">
-                                            <a href="#" class="menu-link px-3">Custom Range</a>
+                                            <a href="#" class="menu-link px-3" data-bs-toggle="modal"
+                                                data-bs-target="#kt_modal_1">Custom Range</a>
                                         </div>
                                         <!--end::Menu item-->
                                     </div>
@@ -304,6 +343,14 @@
     </div>
 @endsection
 
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var $test = $('#kt_daterangepicker_1');
+        $test.daterangepicker();
+    });
+</script>
 
 @section('script')
     <script>

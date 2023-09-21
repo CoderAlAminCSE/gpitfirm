@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use App\Models\Site;
 use App\Models\User;
 use App\Models\Order;
@@ -341,4 +342,25 @@ function monthWiseTotalPendingAmount()
   }
 
   return implode(', ', $formattedTotalPendingAmount);
+}
+
+
+function getOrdersReportBasedOnTimeRange($timeRange)
+{
+  switch ($timeRange) {
+    case 'today':
+      $today = Carbon::now()->toDateString();
+      return Order::whereDate('created_at', $today)->with('invoice')->paginate(10);
+    case 'last7days':
+      $last7Days = Carbon::now()->subDays(7);
+      return Order::where('created_at', '>=', $last7Days)->with('invoice')->paginate(10);
+    case 'last30days':
+      $last30Days = Carbon::now()->subDays(30);
+      return Order::where('created_at', '>=', $last30Days)->with('invoice')->paginate(10);
+
+    default:
+      $firstDayOfMonth = Carbon::now()->startOfMonth()->toDateString();
+      $lastDayOfMonth = Carbon::now()->endOfMonth()->toDateString();
+      return  Order::with('invoice')->whereBetween('created_at', [$firstDayOfMonth, $lastDayOfMonth])->paginate(10);
+  }
 }

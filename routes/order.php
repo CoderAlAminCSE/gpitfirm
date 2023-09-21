@@ -17,6 +17,12 @@ Route::group(['prefix' => 'dashboard/order/', 'middleware' => ['auth', 'admin']]
 });
 
 
+// Order report routes
+Route::group(['prefix' => 'dashboard/report', 'middleware' => ['auth', 'admin']], function () {
+  Route::get('/order', [OrderController::class, 'orderReport'])->name('order.report');
+});
+
+
 // Invoice related routes
 Route::group(['prefix' => 'dashboard/invoice/', 'middleware' => ['auth', 'admin']], function () {
   Route::get('index', [OrderController::class, 'invoiceIndex'])->name('invoice.index');

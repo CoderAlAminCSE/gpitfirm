@@ -74,6 +74,30 @@ class OrderController extends Controller
 
 
     /**
+     *  Order report
+     */
+    public function orderReport(Request $request, Order $order)
+    {
+        try {
+
+
+            if ($request->has('time_range') && $request->time_range != null) {
+                $timeRange = $request->get('time_range');
+                $orders = getOrdersReportBasedOnTimeRange($timeRange);
+            } else {
+                $firstDayOfMonth = Carbon::now()->startOfMonth()->toDateString();
+                $lastDayOfMonth = Carbon::now()->endOfMonth()->toDateString();
+
+                $orders = $order->with('invoice')->whereBetween('created_at', [$firstDayOfMonth, $lastDayOfMonth])->paginate(10);
+            }
+        } catch (\Exception $e) {
+            return back()->with('error', 'Error: ' . $e->getMessage());
+        }
+        return view('backend.order.report', compact('orders'));
+    }
+
+
+    /**
      * Display the order index page with searching functionality.
      */
     public function invoiceIndex(Request $request, Invoice $invoice)

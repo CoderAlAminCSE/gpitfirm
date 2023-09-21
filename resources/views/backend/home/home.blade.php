@@ -137,7 +137,7 @@
                                     <span class="text-gray-400 pt-1 fw-semibold fs-6">Total Order Amount</span>
                                     <!--end::Subtitle-->
                                 </div>
-                                {{-- <div>
+                                <div>
                                     <button
                                         class="btn btn-icon btn-color-gray-400 btn-active-color-primary justify-content-end"
                                         data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end"
@@ -153,23 +153,43 @@
                                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px py-3"
                                         data-kt-menu="true">
                                         <!--begin::Menu item-->
-                                        <div class="menu-item px-3">
-                                            <a href="#" class="menu-link px-3">Paid Details</a>
+                                        <div class="menu-item px-3"
+                                            onclick="document.getElementById('SearchForm').submit()">
+                                            <a href="#" class="menu-link px-3">Today</a>
+                                            <form id="SearchForm" action="{{ route('order.report') }}" method="get">
+                                                @csrf
+                                                <input type="hidden" name="time_range" value="today">
+                                            </form>
                                         </div>
-                                        <!--end::Menu item-->  
+                                        <!--end::Menu item-->   
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-3"
+                                            onclick="document.getElementById('SearchForm7days').submit()">
+                                            <a href="#" class="menu-link px-3">Last 7 Days</a>
+                                            <form id="SearchForm7days" action="{{ route('order.report') }}" method="get">
+                                                @csrf
+                                                <input type="hidden" name="time_range" value="last7days">
+                                            </form>
+                                        </div>
+                                        <!--end::Menu item-->   
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-3"
+                                            onclick="document.getElementById('SearchForm30days').submit()">
+                                            <a href="#" class="menu-link px-3">Last 30 Days</a>
+                                            <form id="SearchForm30days" action="{{ route('order.report') }}" method="get">
+                                                @csrf
+                                                <input type="hidden" name="time_range" value="last30days">
+                                            </form>
+                                        </div>
+                                        <!--end::Menu item-->
                                         <!--begin::Menu item-->
                                         <div class="menu-item px-3">
-                                            <a href="#" class="menu-link px-3">Pending Details</a>
-                                        </div>
-                                        <!--end::Menu item--> 
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-3">
-                                            <a href="#" class="menu-link px-3">Cancel Details</a>
+                                            <a href="#" class="menu-link px-3">Custom Range</a>
                                         </div>
                                         <!--end::Menu item-->
                                     </div>
                                     <!--end::Menu 3-->
-                                </div> --}}
+                                </div>
                             </div>
                             <!--end::Header-->
                             <!--begin::Card body-->

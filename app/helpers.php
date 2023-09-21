@@ -359,8 +359,6 @@ function getOrdersReportBasedOnTimeRange($timeRange)
       return Order::where('created_at', '>=', $last30Days)->with('invoice')->paginate(10);
 
     default:
-      $firstDayOfMonth = Carbon::now()->startOfMonth()->toDateString();
-      $lastDayOfMonth = Carbon::now()->endOfMonth()->toDateString();
-      return  Order::with('invoice')->whereBetween('created_at', [$firstDayOfMonth, $lastDayOfMonth])->paginate(10);
+      return Order::with('invoice')->latest()->paginate(10);
   }
 }

@@ -85,10 +85,7 @@ class OrderController extends Controller
                 $timeRange = $request->get('time_range');
                 $orders = getOrdersReportBasedOnTimeRange($timeRange);
             } else {
-                $firstDayOfMonth = Carbon::now()->startOfMonth()->toDateString();
-                $lastDayOfMonth = Carbon::now()->endOfMonth()->toDateString();
-
-                $orders = $order->with('invoice')->whereBetween('created_at', [$firstDayOfMonth, $lastDayOfMonth])->paginate(10);
+                $orders = $order->with('invoice')->latest()->paginate(10);
             }
         } catch (\Exception $e) {
             return back()->with('error', 'Error: ' . $e->getMessage());

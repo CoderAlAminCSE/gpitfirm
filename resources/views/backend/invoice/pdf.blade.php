@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invoice Generator</title>
+    <title>Invoice PDF</title>
 
     <!-- fontawesome -->
     <script src="https://kit.fontawesome.com/7cad351999.js" crossorigin="anonymous"></script>
@@ -85,10 +85,10 @@
     </script> --}}
 
 
-    <!-- Fonts -->
+    {{-- <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"> --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
@@ -378,19 +378,20 @@
                 class="w-[135px] block mx-auto bg-[#6600cc] text-white py-[13px] px-[40px] rounded-bl-[15px] rounded-br-[15px]">Invoice</strong>
             <div class="logo w-[120px] mx-auto mt-[40px]">
                 <a href="">
-                    <img src="{{ asset('storage/' . siteSetting('header_logo')) }}" alt="logo">
+                    <img src="https://gpitfirm.com/wp-content/uploads/2023/09/Screenshot_8-removebg-preview-1.png"
+                        alt="logo">
                 </a>
             </div>
             <div class="company_info flex justify-between mt-[40px]">
                 <div>
-                    <p class="mb-[10px]">{{ siteSetting('company_phone') ?? null }}</p>
-                    <p class="mb-[10px]">{{ siteSetting('company_email') ?? null }}</p>
-                    <p>{{ siteSetting('company_website') ?? null }}</p>
+                    <p class="mb-[10px]">{{ $company_phone }}</p>
+                    <p class="mb-[10px]">{{ $company_email }}</p>
+                    <p>{{ $company_website }}</p>
                 </div>
 
                 <div class="address-container">
                     @php
-                        $addressLines = explode(',', siteSetting('company_address') ?? '');
+                        $addressLines = explode(',', $company_address ?? '');
                     @endphp
                     @foreach ($addressLines as $line)
                         <p>{{ trim($line) }}</p>
@@ -400,16 +401,6 @@
             </div>
         </div>
     </header>
-    @if (Session::has('success'))
-        <div class="alert alert-success m-3 text-center">
-            {{ Session::get('success') }}
-        </div>
-    @endif
-    @if (Session::has('error'))
-        <div class="alert alert-danger m-3 text-center">
-            {{ Session::get('error') }}
-        </div>
-    @endif
     <!-- bill-area -->
     <div class="bill_area py-[25px]">
         <div class="rs_container bill_area_wrapper flex justify-between">
@@ -504,10 +495,6 @@
     <!-- summary -->
     <div class="summary py-[25px]">
         <div class="rs_container summary_wrapper flex justify-between items-center">
-            <a href="{{ route('customer.invoice.download', $invoice->id) }}">
-                <button class="bg-fuchsia-200 py-2 px-4 rounded-md"> <i class="fa-solid fa-print"></i> Download</button>
-            </a>
-
             <div>
                 <div class="py-3 px-10 bg-gray-200 rounded-md">
                     <span class="inline-block mr-10 text-gray-700 font-[500]">Total</span>
@@ -518,33 +505,26 @@
                     <div class="mt-4">
                         @if (env('STRIPE_PAYMENT_ACTIVE') == 'YES')
                             <div>
-                                <form action="{{ route('invoice.payment.confirm') }}" method="post">
-                                    @csrf
-                                    <input type="hidden" name="invoice_id" value="{{ $invoice->id }}">
-                                    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                        data-key="{{ config('services.stripe.key') }}" data-amount={{ $invoice->order->total_amount * 100 }}
-                                        data-name="Stripe" data-locale="auto" data-label="Pay With Stripe" data-zip-code="true"
-                                        data-currency="{{ 'USD' }}" data-gateway="stripe"></script>
-                                </form>
+                                <a href=""><button class="btn btn-success">
+                                        Pay With Stripe
+                                    </button></a>
                             </div>
                         @endif
 
                         @if (env('PAYPAL_PAYMENT_ACTIVE') == 'YES')
                             <div>
-                                <form action="{{ route('invoice.processPaypal') }}" method="get">
-                                    @csrf
-                                    <input type="hidden" name="invoice_id" value="{{ $invoice->id }}">
-                                    <input type="hidden" name="encryptedInvoice" value="{{ $encryptedInvoice }}">
-                                    <script src="https://www.paypal.com/sdk/js? client-id={{ env('PAYPAL_SANDBOX_CLIENT_ID') }}"></script>
-                                    <button class="paypal-button capitalize" type="submit">pay with paypal</button>
-                                </form>
+                                <a href=""><button class="btn btn-success">
+                                        Pay With Paypal
+                                    </button></a>
                             </div>
                         @endif
 
                         @if (env('PADDLE_PAYMENT_ACTIVE') == 'YES')
                             <div>
-                                <button class="paddle-button capitalize mt-2" id="paddle-pay-button">Pay With
-                                    Paddle</button>
+                                <a href="">
+                                    <button class="paddle-button capitalize mt-2" id="paddle-pay-button">Pay With
+                                        Paddle</button>
+                                </a>
                             </div>
                         @endif
 

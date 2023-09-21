@@ -31,6 +31,7 @@ Route::group(['prefix' => 'dashboard/invoice/', 'middleware' => ['auth', 'admin'
 
 // invoice details page for customers 
 Route::get('invoice/{encryptedInvoice}', [OrderController::class, 'invoiceShowForCustomer'])->name('customer.invoice.show');
+Route::get('invoice/download/{id}', [OrderController::class, 'invoiceDownloadForCustomer'])->name('customer.invoice.download');
 Route::post('invoice/payment/confirm', [OrderController::class, 'invoicePaymentConfirm'])->name('invoice.payment.confirm');
 
 

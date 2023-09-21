@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use PDF;
 use Carbon\Carbon;
 use Stripe\Charge;
 use Stripe\Stripe;
@@ -11,9 +12,9 @@ use App\Models\Invoice;
 use App\Models\Service;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
+use App\Mail\InvoiceReminderMail;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Mail\InvoiceReminderMail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Crypt;
@@ -364,6 +365,26 @@ class OrderController extends Controller
         } else {
             return redirect()->route('frontenc.index');
         }
+    }
+
+
+    /**
+     * Download invoice for customer.
+     */
+    public function invoiceDownloadForCustomer($id, Invoice $invoice)
+    {
+        $invoice = $invoice->with('order', 'user', 'order.items')->findOrFail($id);
+
+        $details = [
+            'company_phone' => siteSetting('company_phone'),
+            'company_website' => siteSetting('company_website'),
+            'company_name' => siteSetting('company_name'),
+            'company_email' => siteSetting('company_email'),
+            'company_address' => siteSetting('company_address'),
+            'invoice' => $invoice,
+        ];
+        $pdf = PDF::loadView('backend.invoice.pdf', $details);
+        return $pdf->download('invoice.pdf');
     }
 
 

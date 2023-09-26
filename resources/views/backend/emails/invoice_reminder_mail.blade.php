@@ -65,7 +65,7 @@
                                         <div style="margin-bottom:55px; text-align:left">
                                             <!--begin:Logo-->
                                             <div style="margin:-10px 60px 54px 60px; text-align:center;">
-                                                <a href="https://keenthemes.com" rel="noopener" target="_blank">
+                                                <a href="https://gpitfirm.com" rel="noopener" target="_blank">
                                                     <img alt="Logo"
                                                         src="https://gpitfirm.com/wp-content/uploads/2023/09/Screenshot_8-removebg-preview-1.png"
                                                         style="height: 35px" />

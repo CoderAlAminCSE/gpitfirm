@@ -11,7 +11,7 @@
 
     {{-- sujan sir's given code --}}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    {{-- <script src="https://cdn.paddle.com/paddle/paddle.js"></script>
+    <script src="https://cdn.paddle.com/paddle/paddle.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $("#paddle-pay-button").on("click", function(e) {
@@ -82,7 +82,7 @@
                 });
             });
         });
-    </script> --}}
+    </script>
 
 
     <!-- Fonts -->

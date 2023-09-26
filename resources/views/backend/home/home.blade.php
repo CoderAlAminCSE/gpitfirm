@@ -97,11 +97,11 @@
                                     {{-- <span class="fs-2hx fw-bold text-white me-2 lh-1 ls-n2">{{ invoices()->count() }}</span> --}}
                                     <!--end::Amount-->
                                     <!--begin::Subtitle-->
-                                    <span class="text-white opacity-75 pt-3 fw-semibold fs-6">Total Invoices - 10 -
+                                    <span class="text-white opacity-75 pt-3 fw-semibold fs-6">Total Invoices (10) -
                                         $120</span>
-                                    <span class="text-white opacity-75 pt-3 fw-semibold fs-6">Paid - 5 - $70</span>
-                                    <span class="text-white opacity-75 pt-3 fw-semibold fs-6">Pending - 3 - $30</span>
-                                    <span class="text-white opacity-75 pt-3 fw-semibold fs-6">Canceled - 2 - $20</span>
+                                    <span class="text-white opacity-75 pt-3 fw-semibold fs-6">Paid (5) - $70</span>
+                                    <span class="text-white opacity-75 pt-3 fw-semibold fs-6">Pending (3) - $30</span>
+                                    <span class="text-white opacity-75 pt-3 fw-semibold fs-6">Canceled (2) - $20</span>
                                     <!-- Increased top and bottom padding -->
                                     <!--end::Subtitle-->
                                 </div>
@@ -158,7 +158,7 @@
                 <div class="row g-5 gx-xl-10 mb-5 mb-xl-10">
                     <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-md-5 mb-xl-10">
                         <div class="card card-flush h-md-50 mb-5 mb-xl-10"
-                            style="min-width: 200px; min-height: 200px; background-color: #080655;">
+                            style="min-width: 200px; min-height: 200px; background-color: #FFFF;">
                             <!--begin::Header-->
                             <div class="card-header pt-5">
                                 <!--begin::Title-->
@@ -166,11 +166,11 @@
                                     <!--begin::Info-->
                                     <div class="d-flex align-items-center">
                                         <!--begin::Currency-->
-                                        <span class="fs-4 fw-semibold text-gray-400 me-1 align-self-start">$</span>
+                                        <span class="fs-4 fw-semibold text-dark me-1 align-self-start">$</span>
                                         <!--end::Currency-->
                                         <!--begin::Amount-->
                                         <span
-                                            class="fs-2hx fw-bold text-gray-400 me-2 lh-1 ls-n2">{{ number_format(orders()->sum('total_amount'), 2, '.', ',') }}</span>
+                                            class="fs-2hx fw-bold text-dark me-2 lh-1 ls-n2">{{ number_format(orders()->sum('total_amount'), 2, '.', ',') }}</span>
                                         <!--end::Amount-->
                                     </div>
                                     <!--end::Info-->
@@ -258,7 +258,7 @@
                                         <div class="text-gray-500 flex-grow-1 me-4">Total Paid</div>
                                         <!--end::Label-->
                                         <!--begin::Stats-->
-                                        <div class="fw-bolder text-gray-400 text-xxl-end">
+                                        <div class="fw-bolder text-dark text-xxl-end">
                                             ${{ number_format(totalPaidAmount(), 2, '.', ',') }}</div>
                                         <!--end::Stats-->
                                     </div>
@@ -272,7 +272,7 @@
                                         <div class="text-gray-500 flex-grow-1 me-4">Total Pending</div>
                                         <!--end::Label-->
                                         <!--begin::Stats-->
-                                        <div class="fw-bolder text-gray-400 text-xxl-end">
+                                        <div class="fw-bolder text-dark text-xxl-end">
                                             ${{ number_format(totalUnpaidAmount(), 2, '.', ',') }}</div>
                                         <!--end::Stats-->
                                     </div>
@@ -287,7 +287,7 @@
                                         <div class="text-gray-500 flex-grow-1 me-4">Total Canceled</div>
                                         <!--end::Label-->
                                         <!--begin::Stats-->
-                                        <div class="fw-bolder text-gray-400 text-xxl-end">
+                                        <div class="fw-bolder text-dark text-xxl-end">
                                             ${{ number_format(totalCanceledAmount(), 2, '.', ',') }}</div>
                                         <!--end::Stats-->
                                     </div>

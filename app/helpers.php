@@ -205,6 +205,81 @@ function invoices()
 }
 
 
+// Get total  invoices and total amount of pending invoices
+function getTotalInvoiceInfo()
+{
+  $totalInvoices = Invoice::count();
+
+  $totalInvoiceAmount = Invoice::with('order')->get()->sum(function ($invoice) {
+    return $invoice->order->total_amount;
+  });
+
+  return [
+    'totalInvoices' => $totalInvoices,
+    'totalInvoiceAmount' => $totalInvoiceAmount,
+  ];
+}
+
+// Get total paid invoices and total amount of pending invoices
+function getTotalPaidInvoiceInfo()
+{
+  $result = Invoice::with('order')
+    ->whereHas('order', function ($query) {
+      $query->where('payment_status', 1)->whereNull('canceled_at');
+    })
+    ->get();
+
+  $totalPaidInvoiceAmount = $result->sum(function ($invoice) {
+    return $invoice->order->total_amount;
+  });
+
+  return [
+    'invoiceItems' => $result,
+    'totalPaidInvoiceAmount' => $totalPaidInvoiceAmount,
+  ];
+}
+
+
+// Get total pending invoices and total amount of pending invoices
+function getTotalPendingInvoiceInfo()
+{
+  $result = Invoice::with('order')
+    ->whereHas('order', function ($query) {
+      $query->where('payment_status', 0)->whereNull('canceled_at');
+    })
+    ->get();
+
+  $totalPendingInvoiceAmount = $result->sum(function ($invoice) {
+    return $invoice->order->total_amount;
+  });
+
+  return [
+    'invoiceItems' => $result,
+    'totalPendingInvoiceAmount' => $totalPendingInvoiceAmount,
+  ];
+}
+
+
+// Get total canceled invoices and total amount of pending invoices
+function getTotalCanceledInvoiceInfo()
+{
+  $result = Invoice::with('order')
+    ->whereHas('order', function ($query) {
+      $query->where('payment_status', 0)->whereNotNull('canceled_at');
+    })
+    ->get();
+
+  $totalCanceledInvoiceAmount = $result->sum(function ($invoice) {
+    return $invoice->order->total_amount;
+  });
+
+  return [
+    'invoiceItems' => $result,
+    'totalCanceledInvoiceAmount' => $totalCanceledInvoiceAmount,
+  ];
+}
+
+
 // get value from "order" table
 function orderInfo($id)
 {

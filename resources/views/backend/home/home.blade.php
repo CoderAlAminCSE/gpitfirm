@@ -1,7 +1,7 @@
 @extends('backend.layout.master')
 @section('title', 'Dashboard')
 @section('content')
-    {{-- @dd(monthWiseTotalCanceledAmount()) --}}
+    {{-- @dd(orders()) --}}
     <div class="d-flex flex-column flex-column-fluid">
         <!--begin::Toolbar-->
         <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
@@ -27,7 +27,7 @@
         </div>
         <!--end::Toolbar-->
         <!--begin::Content-->
-        <div id="kt_app_content" class="app-content flex-column-fluid">
+        {{-- <div id="kt_app_content" class="app-content flex-column-fluid">
             <!--begin::Content container-->
             <div id="kt_app_content_container" class="app-container container-fluid">
                 <!--begin::Row-->
@@ -68,7 +68,7 @@
                                 <!--begin::Title-->
                                 <div class="card-title d-flex flex-column">
                                     <!--begin::Amount-->
-                                    {{-- <span class="fs-2hx fw-bold text-white me-2 lh-1 ls-n2">{{ orders()->count() }}</span> --}}
+                                    <span class="fs-2hx fw-bold text-white me-2 lh-1 ls-n2">{{ orders()->count() }}</span>
                                     <!--end::Amount-->
                                     <!--begin::Subtitle-->
                                     <span class="text-white opacity-75 pt-3 fw-semibold fs-6">Total Order - 10 - $120</span>
@@ -94,7 +94,7 @@
                                 <!--begin::Title-->
                                 <div class="card-title d-flex flex-column">
                                     <!--begin::Amount-->
-                                    {{-- <span class="fs-2hx fw-bold text-white me-2 lh-1 ls-n2">{{ invoices()->count() }}</span> --}}
+                                    <span class="fs-2hx fw-bold text-white me-2 lh-1 ls-n2">{{ invoices()->count() }}</span>
                                     <!--end::Amount-->
                                     <!--begin::Subtitle-->
                                     <span class="text-white opacity-75 pt-3 fw-semibold fs-6">Total Invoices (10) -
@@ -114,7 +114,7 @@
                 <!--end::Row-->
             </div>
             <!--end::Content container-->
-        </div>
+        </div> --}}
 
         <!--begin::Modal-->
         <div class="modal fade" tabindex="-1" id="kt_modal_1">
@@ -175,7 +175,7 @@
                                     </div>
                                     <!--end::Info-->
                                     <!--begin::Subtitle-->
-                                    <span class="text-gray-400 pt-1 fw-semibold fs-6">Total Order Amount</span>
+                                    <span class="text-gray-400 pt-1 fw-semibold fs-6">Total Order - {{ orders()->count() }}</span>
                                     <!--end::Subtitle-->
                                 </div>
                                 <div>
@@ -207,8 +207,7 @@
                                         <div class="menu-item px-3"
                                             onclick="document.getElementById('SearchForm7days').submit()">
                                             <a href="#" class="menu-link px-3">Last 7 Days</a>
-                                            <form id="SearchForm7days" action="{{ route('order.report') }}"
-                                                method="get">
+                                            <form id="SearchForm7days" action="{{ route('order.report') }}" method="get">
                                                 @csrf
                                                 <input type="hidden" name="time_range" value="last7days">
                                             </form>
@@ -218,8 +217,7 @@
                                         <div class="menu-item px-3"
                                             onclick="document.getElementById('SearchForm30days').submit()">
                                             <a href="#" class="menu-link px-3">Last 30 Days</a>
-                                            <form id="SearchForm30days" action="{{ route('order.report') }}"
-                                                method="get">
+                                            <form id="SearchForm30days" action="{{ route('order.report') }}" method="get">
                                                 @csrf
                                                 <input type="hidden" name="time_range" value="last30days">
                                             </form>
@@ -255,7 +253,7 @@
                                         <div class="bullet w-8px h-3px rounded-2 bg-success me-3"></div>
                                         <!--end::Bullet-->
                                         <!--begin::Label-->
-                                        <div class="text-gray-500 flex-grow-1 me-4">Total Paid</div>
+                                        <div class="text-gray-500 flex-grow-1 me-4">Paid Orders</div>
                                         <!--end::Label-->
                                         <!--begin::Stats-->
                                         <div class="fw-bolder text-dark text-xxl-end">
@@ -269,7 +267,7 @@
                                         <div class="bullet w-8px h-3px rounded-2 bg-primary me-3"></div>
                                         <!--end::Bullet-->
                                         <!--begin::Label-->
-                                        <div class="text-gray-500 flex-grow-1 me-4">Total Pending</div>
+                                        <div class="text-gray-500 flex-grow-1 me-4">Pending Orders</div>
                                         <!--end::Label-->
                                         <!--begin::Stats-->
                                         <div class="fw-bolder text-dark text-xxl-end">
@@ -284,11 +282,160 @@
                                         </div>
                                         <!--end::Bullet-->
                                         <!--begin::Label-->
-                                        <div class="text-gray-500 flex-grow-1 me-4">Total Canceled</div>
+                                        <div class="text-gray-500 flex-grow-1 me-4">Canceled Orders</div>
                                         <!--end::Label-->
                                         <!--begin::Stats-->
                                         <div class="fw-bolder text-dark text-xxl-end">
                                             ${{ number_format(totalCanceledAmount(), 2, '.', ',') }}</div>
+                                        <!--end::Stats-->
+                                    </div>
+                                    <!--end::Label-->
+                                </div>
+                                <!--end::Labels-->
+                            </div>
+                            <!--end::Card body-->
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-md-5 mb-xl-10">
+                        <div class="card card-flush h-md-50 mb-5 mb-xl-10"
+                            style="min-width: 200px; min-height: 200px; background-color: #FFFF;">
+                            <!--begin::Header-->
+                            <div class="card-header pt-5">
+                                <!--begin::Title-->
+                                <div class="card-title d-flex flex-column">
+                                    <!--begin::Info-->
+                                    <div class="d-flex align-items-center">
+                                        <!--begin::Currency-->
+                                        <span class="fs-4 fw-semibold text-dark me-1 align-self-start">$</span>
+                                        <!--end::Currency-->
+                                        <!--begin::Amount-->
+                                        <span
+                                            class="fs-2hx fw-bold text-dark me-2 lh-1 ls-n2">{{ number_format(getTotalInvoiceInfo()['totalInvoiceAmount'], 2, '.', ',') }}</span>
+                                        <!--end::Amount-->
+                                    </div>
+                                    <!--end::Info-->
+                                    <!--begin::Subtitle-->
+                                    <span class="text-gray-400 pt-1 fw-semibold fs-6">Total Invoices -
+                                        {{ getTotalInvoiceInfo()['totalInvoices'] }}</span>
+                                    <!--end::Subtitle-->
+                                </div>
+                                <div>
+                                    <button
+                                        class="btn btn-icon btn-color-gray-400 btn-active-color-primary justify-content-end"
+                                        data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end"
+                                        data-kt-menu-overflow="true">
+                                        <i class="ki-duotone ki-dots-square fs-1">
+                                            <span class="path1"></span>
+                                            <span class="path2"></span>
+                                            <span class="path3"></span>
+                                            <span class="path4"></span>
+                                        </i>
+                                    </button>
+                                    <!--begin::Menu 3-->
+                                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px py-3"
+                                        data-kt-menu="true">
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-3"
+                                            onclick="document.getElementById('AllInvoices').submit()">
+                                            <a href="#" class="menu-link px-3"> All Invoices</a>
+                                            <form id="AllInvoices" action="{{ route('invoice.index') }}" method="get">
+                                                @csrf
+                                            </form>
+                                        </div>
+
+                                        <div class="menu-item px-3"
+                                            onclick="document.getElementById('Paid Invoices').submit()">
+                                            <a href="#" class="menu-link px-3"> Paid Invoices</a>
+                                            <form id="Paid Invoices" action="{{ route('invoice.paid') }}"
+                                                method="get">
+                                                @csrf
+                                            </form>
+                                        </div>
+
+                                        <div class="menu-item px-3"
+                                            onclick="document.getElementById('PendingInvoices').submit()">
+                                            <a href="#" class="menu-link px-3"> Pending Invoices</a>
+                                            <form id="PendingInvoices" action="{{ route('invoice.pending') }}"
+                                                method="get">
+                                                @csrf
+                                            </form>
+                                        </div>
+
+                                        <div class="menu-item px-3"
+                                            onclick="document.getElementById('CanceledInvoices').submit()">
+                                            <a href="#" class="menu-link px-3"> Canceled Invoices</a>
+                                            <form id="CanceledInvoices" action="{{ route('invoice.canceled') }}"
+                                                method="get">
+                                                @csrf
+                                            </form>
+                                        </div>
+
+                                        <!--end::Menu item-->
+                                    </div>
+                                    <!--end::Menu 3-->
+                                </div>
+                            </div>
+                            <!--end::Header-->
+                            <!--begin::Card body-->
+                            <div class="card-body pt-2 pb-4 d-flex flex-wrap align-items-center">
+                                <!--begin::Chart-->
+                                <div class="d-flex flex-center me-5 pt-2">
+                                    <div id="kt_card_widget_17_chart" data-kt-size="70" data-kt-line="11">
+                                        <span></span><canvas height="10" width="10"></canvas>
+                                    </div>
+                                </div>
+                                <!--end::Chart-->
+                                <!--begin::Labels-->
+                                <div class="d-flex flex-column content-justify-center flex-row-fluid">
+                                    <!--begin::Label-->
+                                    <div class="d-flex fw-semibold align-items-center">
+                                        <!--begin::Bullet-->
+                                        <div class="bullet w-8px h-3px rounded-2 bg-success me-3"></div>
+                                        <!--end::Bullet-->
+                                        <!--begin::Label-->
+                                        <div class="text-gray-500 flex-grow-1 me-4">Paid Invoices -
+                                            {{ getTotalPaidInvoiceInfo()['invoiceItems']->count() }}</div>
+                                        <!--end::Label-->
+                                        <!--begin::Stats-->
+                                        <div class="fw-bolder text-dark text-xxl-end">
+                                            ${{ number_format(getTotalPaidInvoiceInfo()['totalPaidInvoiceAmount'], 2, '.', ',') }}
+                                        </div>
+                                        <!--end::Stats-->
+                                    </div>
+                                    <!--end::Label-->
+                                    <!--begin::Label-->
+                                    <div class="d-flex fw-semibold align-items-center my-3">
+                                        <!--begin::Bullet-->
+                                        <div class="bullet w-8px h-3px rounded-2 bg-primary me-3"></div>
+                                        <!--end::Bullet-->
+                                        <!--begin::Label-->
+                                        <div class="text-gray-500 flex-grow-1 me-4">Pending Invoices -
+                                            {{ getTotalPendingInvoiceInfo()['invoiceItems']->count() }} </div>
+                                        <!--end::Label-->
+                                        <!--begin::Stats-->
+                                        <div class="fw-bolder text-dark text-xxl-end">
+                                            $
+                                            {{ number_format(getTotalPendingInvoiceInfo()['totalPendingInvoiceAmount'], 2, '.', ',') }}
+                                        </div>
+                                        <!--end::Stats-->
+                                    </div>
+                                    <!--end::Label-->
+                                    <!--begin::Label-->
+                                    <div class="d-flex fw-semibold align-items-center">
+                                        <!--begin::Bullet-->
+                                        <div class="bullet w-8px h-3px rounded-2 me-3 bg-gray">
+                                        </div>
+                                        <!--end::Bullet-->
+                                        <!--begin::Label-->
+                                        <div class="text-gray-500 flex-grow-1 me-4">Canceled Invoices -
+                                            {{ getTotalCanceledInvoiceInfo()['invoiceItems']->count() }}</div>
+                                        <!--end::Label-->
+                                        <!--begin::Stats-->
+                                        <div class="fw-bolder text-dark text-xxl-end">
+                                            $
+                                            {{ number_format(getTotalCanceledInvoiceInfo()['totalCanceledInvoiceAmount'], 2, '.', ',') }}
+                                        </div>
                                         <!--end::Stats-->
                                     </div>
                                     <!--end::Label-->

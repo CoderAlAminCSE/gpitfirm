@@ -80,7 +80,7 @@
                                 </div>
                                 <div class="d-flex justify-content-end mr-2" data-kt-user-table-toolbar="base">
                                     <!--begin::Add user-->
-                                    <a href="{{ route('invoice.pending') }}" class="btn btn-danger">pending Invoices</a>
+                                    <a href="{{ route('invoice.pending') }}" class="btn btn-warning">pending Invoices</a>
                                     <!--end::Add user-->
                                 </div>
                                 <!--begin::Toolbar-->

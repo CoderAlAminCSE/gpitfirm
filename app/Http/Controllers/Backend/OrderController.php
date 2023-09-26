@@ -225,7 +225,7 @@ class OrderController extends Controller
     }
 
 
-/**
+    /**
      * pending invoice list.
      */
     public function invoicePending(Request $request, Invoice $invoice)
@@ -309,11 +309,25 @@ class OrderController extends Controller
 
 
     /**
+     * get input email list if available
+     */
+    public function invoiceCheckEmail(Request $request)
+    {
+        $email = $request->input('email');
+
+        // Query the database to check for matching emails
+        $matchingEmails = User::where('email', 'like', '%' . $email . '%')->pluck('email');
+
+        return response()->json(['matchingEmails' => $matchingEmails]);
+    }
+
+    /**
      * Store invoice.
      */
     public function invoiceStore(Request $request, Invoice $invoice)
     {
         try {
+            return $request->all();
             DB::beginTransaction();
 
             if ($request->existingCustomr) {

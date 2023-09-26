@@ -32,6 +32,7 @@ Route::group(['prefix' => 'dashboard/invoice/', 'middleware' => ['auth', 'admin'
   Route::get('generate', [OrderController::class, 'invoiceGenerate'])->name('invoice.generate');
   Route::post('store', [OrderController::class, 'invoiceStore'])->name('invoice.store');
   Route::get('reminder/{id}', [OrderController::class, 'invoiceReminder'])->name('invoice.reminder');
+  Route::post('check-email', [OrderController::class, 'invoiceCheckEmail'])->name('invoice.check.email');
 });
 
 

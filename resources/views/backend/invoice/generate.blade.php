@@ -15,9 +15,8 @@
                         <!--begin::Wrapper-->
                         <div class="d-flex flex-column align-items-start flex-xxl-row">
                             <!--begin::Input group-->
-                            <div class="d-flex flex-center flex-equal fw-row text-nowrap order-1 order-xxl-2 me-4"
-                                data-bs-toggle="tooltip" data-bs-trigger="hover" title="Enter invoice number">
-                                <span class="fs-2x fw-bold text-gray-800">Invoice Generate </span>
+                            <div class="d-flex flex-center flex-equal fw-row text-nowrap order-1 order-xxl-2 me-4">
+                                <span class="fs-2x fw-bold text-gray-800">Generate An Invoice</span>
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -52,12 +51,12 @@
                                         <label class="form-label required fs-6 fw-bold text-gray-700 mb-3">Bill To</label>
                                         <div class="form-check" style="margin-left: 10px;">
                                             <input class="form-check-input" type="checkbox" value="1"
-                                                name="existingCustomr" id="customerCheck" checked />
+                                                name="existingCustomr" id="customerCheck" />
                                             <label class="form-check-label" for="customerCheck">Not A Customer?</label>
                                         </div>
                                     </div>
 
-                                    <div id="existingCustomer" class="mb-5">
+                                    <div id="existingCustomer" class="mb-5 d-none">
                                         <select name="customerId" aria-label="Select a Timezone" data-control="select2"
                                             data-placeholder="Select Customer" class="form-select form-select-solid">
                                             <option value=""></option>
@@ -70,21 +69,30 @@
                                         @enderror
                                     </div>
 
-                                    <div id="customUser" class="d-none">
+                                    <div id="customUser" class="">
                                         <div class="mb-5">
                                             <input type="text" name="name" class="form-control form-control-solid"
-                                                placeholder="Name" value="{{ old('name') }}" />
+                                                placeholder="Enter name" value="{{ old('name') }}" />
                                             @error('name')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="mb-5">
-                                            <input type="email" name="email" class="form-control form-control-solid"
-                                                placeholder="Email" value="{{ old('email') }}" />
+                                            <input type="text" name="business_name"
+                                                class="form-control form-control-solid" placeholder="Business name"
+                                                value="{{ old('business_name') }}" />
+                                            @error('business_name')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-5">
+                                            <input type="email" name="email" id="emailInput"
+                                                class="form-control form-control-solid" placeholder="Enter email" />
                                             @error('email')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
+                                        <div id="emailResults"></div>
                                         <div class="mb-5">
                                             <input type="text" name="address" class="form-control form-control-solid"
                                                 placeholder="Address: ex- 3455 Geraldine Lane, New York 10013 United States"
@@ -95,7 +103,7 @@
                                         </div>
                                         <div class="mb-5">
                                             <input type="text" name="password" class="form-control form-control-solid"
-                                                placeholder="Password" />
+                                                placeholder="Enter password" />
                                             @error('password')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -295,6 +303,8 @@
         <!--end::Basic info-->
     </div>
 
+    <input type="hidden" id="invoice_check_email" value="{{ route('invoice.check.email') }}">
+
 
 @endsection
 
@@ -473,6 +483,49 @@
             });
         });
     </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#emailInput').on('input', function() {
+                const email = $(this).val();
+                var formUrl = $("#invoice_check_email").val();
+
+                // Send AJAX request to check for matching emails
+                $.ajax({
+                    url: formUrl,
+                    method: 'POST',
+                    data: {
+                        email: email,
+                        "_token": $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(response) {
+                        console.log('Response:', response);
+                        // Clear previous results
+                        $('#emailResults').empty();
+
+                        // Display the matching email results below the email input
+                        if (response && response.matchingEmails && response.matchingEmails
+                            .length > 0) {
+                            response.matchingEmails.forEach(function(email) {
+                                const resultDiv = $('<div class="emailResult"></div>');
+                                resultDiv.text(email);
+                                $('#emailResults').append(resultDiv);
+                            });
+                        }
+                    }
+                });
+            });
+
+            // Event listener for selecting an email from the results
+            $(document).on('click', '.emailResult', function() {
+                const selectedEmail = $(this).text();
+                $('#emailInput').val(selectedEmail);
+                $('#emailResults').empty(); // Clear the results
+            });
+        });
+    </script>
+
+
 
 
 @endsection

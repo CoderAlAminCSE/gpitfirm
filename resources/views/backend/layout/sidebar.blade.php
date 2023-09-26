@@ -189,7 +189,7 @@
 
                      <!--begin: Order Menu -->
                      <div data-kt-menu-trigger="click"
-                         class="menu-item here {{ strpos(Route::getCurrentRoute()->uri(), 'dashboard/order') === 0 || strpos(Route::getCurrentRoute()->uri(), 'dashboard/invoice') === 0 || strpos(Route::getCurrentRoute()->uri(), 'dashboard/report/order') === 0 ? 'show' : '' }} menu-accordion">
+                         class="menu-item here {{ strpos(Route::getCurrentRoute()->uri(), 'dashboard/order') === 0 || strpos(Route::getCurrentRoute()->uri(), 'dashboard/invoice') === 0 || strpos(Route::getCurrentRoute()->uri(), 'dashboard/pending/invoice') === 0 || strpos(Route::getCurrentRoute()->uri(), 'dashboard/paid/invoice') === 0 || strpos(Route::getCurrentRoute()->uri(), 'dashboard/canceled/invoice') === 0 || strpos(Route::getCurrentRoute()->uri(), 'dashboard/report/order') === 0 ? 'show' : '' }} menu-accordion">
                          <!--begin:Menu link-->
                          <span class="menu-link">
                              <span class="menu-icon">
@@ -214,7 +214,7 @@
                                      <span class="menu-bullet">
                                          <span class="bullet bullet-dot"></span>
                                      </span>
-                                     <span class="menu-title">Order List</span>
+                                     <span class="menu-title">All Orders</span>
                                  </a>
                                  <!--end:Menu link-->
                              </div>
@@ -232,7 +232,61 @@
                                      <span class="menu-bullet">
                                          <span class="bullet bullet-dot"></span>
                                      </span>
-                                     <span class="menu-title">Invoice List</span>
+                                     <span class="menu-title">All Invoices</span>
+                                 </a>
+                                 <!--end:Menu link-->
+                             </div>
+                             <!--end:Menu item-->
+                         </div>
+                         <!--end:Menu sub-->
+
+                         <!--begin:Menu sub-->
+                         <div class="menu-sub menu-sub-accordion">
+                             <!--begin:Menu item-->
+                             <div class="menu-item">
+                                 <!--begin:Menu link-->
+                                 <a class="menu-link {{ strpos(Route::getCurrentRoute()->uri(), 'dashboard/paid/invoice') === 0 ? 'active' : '' }}"
+                                     href="{{ route('invoice.paid') }}">
+                                     <span class="menu-bullet">
+                                         <span class="bullet bullet-dot"></span>
+                                     </span>
+                                     <span class="menu-title">Paid Invoices</span>
+                                 </a>
+                                 <!--end:Menu link-->
+                             </div>
+                             <!--end:Menu item-->
+                         </div>
+                         <!--end:Menu sub-->
+
+                         <!--begin:Menu sub-->
+                         <div class="menu-sub menu-sub-accordion">
+                             <!--begin:Menu item-->
+                             <div class="menu-item">
+                                 <!--begin:Menu link-->
+                                 <a class="menu-link {{ strpos(Route::getCurrentRoute()->uri(), 'dashboard/pending/invoice') === 0 ? 'active' : '' }}"
+                                     href="{{ route('invoice.pending') }}">
+                                     <span class="menu-bullet">
+                                         <span class="bullet bullet-dot"></span>
+                                     </span>
+                                     <span class="menu-title">Pending Invoices</span>
+                                 </a>
+                                 <!--end:Menu link-->
+                             </div>
+                             <!--end:Menu item-->
+                         </div>
+                         <!--end:Menu sub-->
+
+                         <!--begin:Menu sub-->
+                         <div class="menu-sub menu-sub-accordion">
+                             <!--begin:Menu item-->
+                             <div class="menu-item">
+                                 <!--begin:Menu link-->
+                                 <a class="menu-link {{ strpos(Route::getCurrentRoute()->uri(), 'dashboard/canceled/invoice') === 0 ? 'active' : '' }}"
+                                     href="{{ route('invoice.canceled') }}">
+                                     <span class="menu-bullet">
+                                         <span class="bullet bullet-dot"></span>
+                                     </span>
+                                     <span class="menu-title">Canceled Invoices</span>
                                  </a>
                                  <!--end:Menu link-->
                              </div>

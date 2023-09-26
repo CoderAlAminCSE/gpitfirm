@@ -68,10 +68,13 @@
                                 <!--begin::Title-->
                                 <div class="card-title d-flex flex-column">
                                     <!--begin::Amount-->
-                                    <span class="fs-2hx fw-bold text-white me-2 lh-1 ls-n2">{{ orders()->count() }}</span>
+                                    {{-- <span class="fs-2hx fw-bold text-white me-2 lh-1 ls-n2">{{ orders()->count() }}</span> --}}
                                     <!--end::Amount-->
                                     <!--begin::Subtitle-->
-                                    <span class="text-white opacity-75 pt-3 fw-semibold fs-6 mb-5">Total Order</span>
+                                    <span class="text-white opacity-75 pt-3 fw-semibold fs-6">Total Order - 10 - $120</span>
+                                    <span class="text-white opacity-75 pt-3 fw-semibold fs-6">Paid - 5 - $70</span>
+                                    <span class="text-white opacity-75 pt-3 fw-semibold fs-6">Pending - 3 - $30</span>
+                                    <span class="text-white opacity-75 pt-3 fw-semibold fs-6">Canceled - 2 - $20</span>
                                     <!-- Increased top and bottom padding -->
                                     <!--end::Subtitle-->
                                 </div>
@@ -91,10 +94,14 @@
                                 <!--begin::Title-->
                                 <div class="card-title d-flex flex-column">
                                     <!--begin::Amount-->
-                                    <span class="fs-2hx fw-bold text-white me-2 lh-1 ls-n2">{{ invoices()->count() }}</span>
+                                    {{-- <span class="fs-2hx fw-bold text-white me-2 lh-1 ls-n2">{{ invoices()->count() }}</span> --}}
                                     <!--end::Amount-->
                                     <!--begin::Subtitle-->
-                                    <span class="text-white opacity-75 pt-3 fw-semibold fs-6 mb-5">Total Invoices</span>
+                                    <span class="text-white opacity-75 pt-3 fw-semibold fs-6">Total Invoices - 10 -
+                                        $120</span>
+                                    <span class="text-white opacity-75 pt-3 fw-semibold fs-6">Paid - 5 - $70</span>
+                                    <span class="text-white opacity-75 pt-3 fw-semibold fs-6">Pending - 3 - $30</span>
+                                    <span class="text-white opacity-75 pt-3 fw-semibold fs-6">Canceled - 2 - $20</span>
                                     <!-- Increased top and bottom padding -->
                                     <!--end::Subtitle-->
                                 </div>
@@ -291,8 +298,6 @@
                             <!--end::Card body-->
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>

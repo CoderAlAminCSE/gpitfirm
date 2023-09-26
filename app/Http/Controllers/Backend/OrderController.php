@@ -225,6 +225,78 @@ class OrderController extends Controller
     }
 
 
+/**
+     * pending invoice list.
+     */
+    public function invoicePending(Request $request, Invoice $invoice)
+    {
+        try {
+            if ($request->has('search') && $request->search != null) {
+                $search =  $request->search;
+                $invoices = $invoice->where(function ($query) use ($search) {
+                    $query->where('id', 'LIKE', '%' . $search . '%')
+                        ->orWhere('invoice_number', 'LIKE', '%' . $search . '%');
+                })->paginate(10);
+            } else {
+                $invoices = $invoice->with('order')->whereHas('order', function ($query) {
+                    $query->where('payment_status', 0)->whereNull('canceled_at');
+                })->paginate(10);
+            }
+        } catch (\Exception $e) {
+            return back()->with('error', 'Error: ' . $e->getMessage());
+        }
+        return view('backend.invoice.pending', compact('invoices'));
+    }
+
+
+    /**
+     * Paid invoice list
+     */
+    public function invoicePaid(Request $request, Invoice $invoice)
+    {
+        try {
+            if ($request->has('search') && $request->search != null) {
+                $search =  $request->search;
+                $invoices = $invoice->where(function ($query) use ($search) {
+                    $query->where('id', 'LIKE', '%' . $search . '%')
+                        ->orWhere('invoice_number', 'LIKE', '%' . $search . '%');
+                })->paginate(10);
+            } else {
+                $invoices = $invoice->with('order')->whereHas('order', function ($query) {
+                    $query->where('payment_status', 1);
+                })->paginate(10);
+            }
+        } catch (\Exception $e) {
+            return back()->with('error', 'Error: ' . $e->getMessage());
+        }
+        return view('backend.invoice.paid', compact('invoices'));
+    }
+
+
+    /**
+     * Paid invoice list
+     */
+    public function invoiceCanceled(Request $request, Invoice $invoice)
+    {
+        try {
+            if ($request->has('search') && $request->search != null) {
+                $search =  $request->search;
+                $invoices = $invoice->where(function ($query) use ($search) {
+                    $query->where('id', 'LIKE', '%' . $search . '%')
+                        ->orWhere('invoice_number', 'LIKE', '%' . $search . '%');
+                })->paginate(10);
+            } else {
+                $invoices = $invoice->with('order')->whereHas('order', function ($query) {
+                    $query->where('payment_status', 0)->whereNotNull('canceled_at');
+                })->paginate(10);
+            }
+        } catch (\Exception $e) {
+            return back()->with('error', 'Error: ' . $e->getMessage());
+        }
+        return view('backend.invoice.canceled', compact('invoices'));
+    }
+
+
 
 
     /**

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('invoice_number')->unique();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('order_id');
+            $table->string('custom_order_number')->nullable();
             $table->string('link')->nullable();
             $table->string('notes')->nullable();
             $table->timestamps();

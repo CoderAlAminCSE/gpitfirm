@@ -107,6 +107,19 @@
                             </div>
 
                             <br><br><br>
+                            <div class="row gx-10 mb-5">
+                                <div class="col-lg-6">
+                                    <div class="mb-5">
+                                        <input type="text" name="custom_order_number"
+                                            class="form-control form-control-solid" placeholder="Order Number"
+                                            value="{{ old('custom_order_number') }}" />
+                                        @error('custom_order_number')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
 
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="1" name="existingService"

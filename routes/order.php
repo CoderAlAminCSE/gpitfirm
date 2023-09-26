@@ -35,6 +35,24 @@ Route::group(['prefix' => 'dashboard/invoice/', 'middleware' => ['auth', 'admin'
 });
 
 
+// Pending Invoice related routes
+Route::group(['prefix' => 'dashboard/pending/', 'middleware' => ['auth', 'admin']], function () {
+  Route::get('invoice', [OrderController::class, 'invoicePending'])->name('invoice.pending');
+});
+
+
+// Paid Invoice related routes
+Route::group(['prefix' => 'dashboard/paid/', 'middleware' => ['auth', 'admin']], function () {
+  Route::get('invoice', [OrderController::class, 'invoicePaid'])->name('invoice.paid');
+});
+
+
+// Canceled Invoice related routes
+Route::group(['prefix' => 'dashboard/canceled/', 'middleware' => ['auth', 'admin']], function () {
+  Route::get('invoice', [OrderController::class, 'invoiceCanceled'])->name('invoice.canceled');
+});
+
+
 // invoice details page for customers 
 Route::get('invoice/{encryptedInvoice}', [OrderController::class, 'invoiceShowForCustomer'])->name('customer.invoice.show');
 Route::get('invoice/download/{id}', [OrderController::class, 'invoiceDownloadForCustomer'])->name('customer.invoice.download');

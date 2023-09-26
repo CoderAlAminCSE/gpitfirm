@@ -11,8 +11,8 @@
                     <!--begin::Page title-->
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                         <!--begin::Title-->
-                        <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0"> All
-                            Invoices </h1>
+                        <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
+                            Canceled Invoices </h1>
                         <!--end::Title-->
                         <!--begin::Breadcrumb-->
                         <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -55,7 +55,7 @@
                                         <span class="path2"></span>
                                     </i>
                                 </div>
-                                <form id="SearchForm" action="{{ route('invoice.index') }}" method="get">
+                                <form id="SearchForm" action="{{ route('invoice.canceled') }}" method="get">
                                     @csrf
                                     <input type="text" data-kt-subscription-table-filter="search" name="search"
                                         value="{{ request('search') }}"
@@ -68,7 +68,11 @@
 
                             <!--begin::Card toolbar-->
                             <div class="card-toolbar">
-                                <!--begin::Toolbar-->
+                                <div class="d-flex justify-content-end mr-2" data-kt-user-table-toolbar="base">
+                                    <!--begin::Add user-->
+                                    <a href="{{ route('invoice.index') }}" class="btn btn-primary">All Invoices</a>
+                                    <!--end::Add user-->
+                                </div>
                                 <div class="d-flex justify-content-end mr-2" data-kt-user-table-toolbar="base">
                                     <!--begin::Add user-->
                                     <a href="{{ route('invoice.paid') }}" class="btn btn-success">Paid Invoices</a>
@@ -76,14 +80,10 @@
                                 </div>
                                 <div class="d-flex justify-content-end mr-2" data-kt-user-table-toolbar="base">
                                     <!--begin::Add user-->
-                                    <a href="{{ route('invoice.pending') }}" class="btn btn-warning">Pending Invoices</a>
+                                    <a href="{{ route('invoice.pending') }}" class="btn btn-danger">pending Invoices</a>
                                     <!--end::Add user-->
                                 </div>
-                                <div class="d-flex justify-content-end mr-2" data-kt-user-table-toolbar="base">
-                                    <!--begin::Add user-->
-                                    <a href="{{ route('invoice.canceled') }}" class="btn btn-danger">Canceled Invoices</a>
-                                    <!--end::Add user-->
-                                </div>
+                                <!--begin::Toolbar-->
                                 <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
                                     <!--begin::Add user-->
                                     <a href="{{ route('invoice.generate') }}" class="btn btn-primary">

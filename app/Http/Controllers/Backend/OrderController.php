@@ -316,9 +316,9 @@ class OrderController extends Controller
         $email = $request->input('email');
 
         // Query the database to check for matching emails
-        $matchingEmails = User::where('email', 'like', '%' . $email . '%')->pluck('email');
+        $user = User::where('email', 'like', '%' . $email . '%')->get();
 
-        return response()->json(['matchingEmails' => $matchingEmails]);
+        return response()->json(['user' => $user]);
     }
 
     /**

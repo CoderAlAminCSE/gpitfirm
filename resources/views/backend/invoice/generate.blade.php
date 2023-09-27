@@ -71,14 +71,18 @@
 
                                     <div id="customUser" class="">
                                         <div class="mb-5">
-                                            <input type="text" name="name" class="form-control form-control-solid"
-                                                placeholder="Enter name" value="{{ old('name') }}" />
+                                            <input type="text" name="userId" id="idInput"
+                                                class="form-control form-control-solid" />
+                                        </div>
+                                        <div class="mb-5">
+                                            <input type="text" name="name" id="nameInput"
+                                                class="form-control form-control-solid" placeholder="Enter name" />
                                             @error('name')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="mb-5">
-                                            <input type="text" name="business_name"
+                                            <input type="text" name="business_name" id="businessNameInput"
                                                 class="form-control form-control-solid" placeholder="Business name"
                                                 value="{{ old('business_name') }}" />
                                             @error('business_name')
@@ -94,16 +98,16 @@
                                         </div>
                                         <div id="emailResults"></div>
                                         <div class="mb-5">
-                                            <input type="text" name="address" class="form-control form-control-solid"
-                                                placeholder="Address: ex- 3455 Geraldine Lane, New York 10013 United States"
-                                                value="{{ old('address') }}" />
+                                            <input type="text" name="address" id="addressInput"
+                                                class="form-control form-control-solid"
+                                                placeholder="Address: ex- 3455 Geraldine Lane, New York 10013 United States" />
                                             @error('address')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="mb-5">
-                                            <input type="text" name="password" class="form-control form-control-solid"
-                                                placeholder="Enter password" />
+                                            <input type="text" name="password" id="passwordInput"
+                                                class="form-control form-control-solid" placeholder="Enter password" />
                                             @error('password')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -489,8 +493,6 @@
             $('#emailInput').on('input', function() {
                 const email = $(this).val();
                 var formUrl = $("#invoice_check_email").val();
-
-                // Send AJAX request to check for matching emails
                 $.ajax({
                     url: formUrl,
                     method: 'POST',
@@ -504,11 +506,12 @@
                         $('#emailResults').empty();
 
                         // Display the matching email results below the email input
-                        if (response && response.matchingEmails && response.matchingEmails
+                        if (response && response.user && response.user
                             .length > 0) {
-                            response.matchingEmails.forEach(function(email) {
+                            response.user.forEach(function(user) {
                                 const resultDiv = $('<div class="emailResult"></div>');
-                                resultDiv.text(email);
+                                resultDiv.text(user.email);
+                                resultDiv.data('user', user); // Store user data
                                 $('#emailResults').append(resultDiv);
                             });
                         }
@@ -518,8 +521,13 @@
 
             // Event listener for selecting an email from the results
             $(document).on('click', '.emailResult', function() {
-                const selectedEmail = $(this).text();
-                $('#emailInput').val(selectedEmail);
+                const selectedUser = $(this).data('user');
+
+                $('#idInput').val(selectedUser.id);
+                $('#emailInput').val(selectedUser.email);
+                $('#nameInput').val(selectedUser.name); // Update name field
+                $('#addressInput').val(selectedUser.address); // Update address field
+                $('#businessNameInput').val(selectedUser.business_name); // Update business_name field
                 $('#emailResults').empty(); // Clear the results
             });
         });

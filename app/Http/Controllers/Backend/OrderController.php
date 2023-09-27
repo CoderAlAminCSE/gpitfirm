@@ -327,27 +327,38 @@ class OrderController extends Controller
     public function invoiceStore(Request $request, Invoice $invoice)
     {
         try {
-            return $request->all();
+            // return $request->all();
             DB::beginTransaction();
 
-            if ($request->existingCustomr) {
-                $request->validate([
-                    'customerId' => 'required',
-                ]);
-                $user_id = $request->customerId;
+            if ($request->userId) {
+                // return "if";
+                $user = User::findOrFail($request->userId);
+                $user->name = $request->name;
+                $user->business_name = $request->business_name;
+                $user->email = $request->email;
+                $user->address = $request->address;
+                if ($request->input('password')) {
+                    $user->password = bcrypt($request->input('password'));
+                } else {
+                    $user->password = '$2y$10$2dXuJopzVDaHsxTTVl.CZexCjLpOG.Im5ncG8XV53ZAQoKlif69iS';
+                }
+                $user->save();
+                $user_id = $user->id;
             } else {
                 $request->validate([
-                    'name' => 'required',
                     'email' => 'required',
-                    'address' => 'required',
-                    'password' => 'required',
                 ]);
                 $user = new User;
                 $user->name = $request->input('name');
+                $user->business_name = $request->input('business_name');
                 $user->email = $request->input('email');
                 $user->address = $request->input('address');
                 $user->type = 'customer';
-                $user->password = bcrypt($request->input('password'));
+                if ($request->input('password')) {
+                    $user->password = bcrypt($request->input('password'));
+                } else {
+                    $user->password = '$2y$10$2dXuJopzVDaHsxTTVl.CZexCjLpOG.Im5ncG8XV53ZAQoKlif69iS';
+                }
                 $user->save();
                 $user_id = $user->id;
             }
@@ -415,6 +426,7 @@ class OrderController extends Controller
                 'invoice_number' => $formattedInvoiceNumber,
                 'user_id' => $order->user_id,
                 'order_id' => $order->id,
+                'custom_order_number' => $request->custom_order_number,
                 'link' => $encryptedInvoiceNumber,
                 'notes' => $request->input('notes'),
             ]);

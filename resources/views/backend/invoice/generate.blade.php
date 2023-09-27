@@ -71,7 +71,7 @@
 
                                     <div id="customUser" class="">
                                         <div class="mb-5">
-                                            <input type="text" name="userId" id="idInput"
+                                            <input type="hidden" name="userId" id="idInput"
                                                 class="form-control form-control-solid" />
                                         </div>
                                         <div class="mb-5">

@@ -416,13 +416,17 @@
             <div class="billed_to">
                 <p class="bg-gray-200 text-[#6600cc] py-[4px] px-[8px] inline-block rounded-md mb-4">Billed to,</p>
                 <h2 class="text-xl font-bold mb-4">{{ $invoice->user->name }}</h2>
+                <p class="mb-1">{{ $invoice->user->email }}</p>
                 <p class="mb-1">{{ $invoice->user->address }}</p>
             </div>
             <div class="invoice_num">
                 <p class="text-gray-500 mb-1">Invoice Number</p>
                 <h2 class="text-xl font-bold mb-1">{{ $invoice->invoice_number }}</h2> <br>
-                <p class="text-gray-500 mb-">Order Number</p>
-                <h2 class="text-xl font-bold mb-1">{{ $invoice->order->order_number }}</h2>
+                @if ($invoice->custom_order_number)
+                    <p class="text-gray-500 mb-">Order Number</p>
+                    <h2 class="text-xl font-bold mb-1">{{ $invoice->custom_order_number }}</h2>
+                @endif
+
             </div>
             <div class="invoice_of text-end">
                 <p class="text-gray-500 mb-4">Invoice of <span>(USD)</span></p>

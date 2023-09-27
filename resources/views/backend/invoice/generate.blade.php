@@ -509,7 +509,9 @@
                         if (response && response.user && response.user
                             .length > 0) {
                             response.user.forEach(function(user) {
-                                const resultDiv = $('<div class="emailResult"></div>');
+                                const resultDiv = $(
+                                    '<div class="emailResult list-group list-group-item list-group-item-action p-3 rounded mb-1"><a href="#" class="emailResult list-group-item list-group-item-action active border border-primary" aria-current="true"></a></div>'
+                                );
                                 resultDiv.text(user.email);
                                 resultDiv.data('user', user); // Store user data
                                 $('#emailResults').append(resultDiv);
@@ -519,16 +521,16 @@
                 });
             });
 
-            // Event listener for selecting an email from the results
+            // Event listener for selecting an user info from the results
             $(document).on('click', '.emailResult', function() {
                 const selectedUser = $(this).data('user');
 
                 $('#idInput').val(selectedUser.id);
                 $('#emailInput').val(selectedUser.email);
-                $('#nameInput').val(selectedUser.name); // Update name field
-                $('#addressInput').val(selectedUser.address); // Update address field
-                $('#businessNameInput').val(selectedUser.business_name); // Update business_name field
-                $('#emailResults').empty(); // Clear the results
+                $('#nameInput').val(selectedUser.name);
+                $('#addressInput').val(selectedUser.address);
+                $('#businessNameInput').val(selectedUser.business_name);
+                $('#emailResults').empty();
             });
         });
     </script>

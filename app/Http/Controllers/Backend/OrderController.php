@@ -331,7 +331,6 @@ class OrderController extends Controller
             DB::beginTransaction();
 
             if ($request->userId) {
-                // return "if";
                 $user = User::findOrFail($request->userId);
                 $user->name = $request->name;
                 $user->business_name = $request->business_name;
@@ -379,38 +378,46 @@ class OrderController extends Controller
             $order->save();
 
             if ($request->existingService) {
-                $totalAmount = 0;
-                foreach ($request->products as $serviceId) {
-                    $product = Service::find($serviceId);
+                if ($request->has('products') && $request->products[0] !== null) {
+                    $totalAmount = 0;
+                    foreach ($request->products as $serviceId) {
+                        $product = Service::find($serviceId);
 
-                    if ($product) {
-                        $totalAmount += $product->price;
+                        if ($product) {
+                            $totalAmount += $product->price;
+                            $orderItem = new OrderItem([
+                                'order_id' => $order->id,
+                                'service_id' => $serviceId,
+                            ]);
+                            $orderItem->save();
+                        }
+                    }
+                    $order->total_amount = $totalAmount;
+                    $order->save();
+                } else {
+                    return back()->with('error', 'Please select a service');
+                }
+            } else {
+                if ($request->has('custom_service_name') && $request->custom_service_name[0] != null) {
+                    $totalAmount = 0;
+                    foreach ($request->custom_service_name as $index => $serviceName) {
+                        $serviceDescription = $request->custom_service_description[$index];
+                        $servicePrice = $request->custom_service_price[$index];
+
                         $orderItem = new OrderItem([
                             'order_id' => $order->id,
-                            'service_id' => $serviceId,
+                            'custom_service_name' => $serviceName,
+                            'custom_service_description' => $serviceDescription,
+                            'custom_service_price' => $servicePrice,
                         ]);
                         $orderItem->save();
+                        $totalAmount += $servicePrice;
                     }
+                    $order->total_amount = $totalAmount;
+                    $order->save();
+                } else {
+                    return back()->with('error', 'Please select a service');
                 }
-                $order->total_amount = $totalAmount;
-                $order->save();
-            } else {
-                $totalAmount = 0;
-                foreach ($request->custom_service_name as $index => $serviceName) {
-                    $serviceDescription = $request->custom_service_description[$index];
-                    $servicePrice = $request->custom_service_price[$index];
-
-                    $orderItem = new OrderItem([
-                        'order_id' => $order->id,
-                        'custom_service_name' => $serviceName,
-                        'custom_service_description' => $serviceDescription,
-                        'custom_service_price' => $servicePrice,
-                    ]);
-                    $orderItem->save();
-                    $totalAmount += $servicePrice;
-                }
-                $order->total_amount = $totalAmount;
-                $order->save();
             }
 
             $latestInvoice = Invoice::latest('id')->first();

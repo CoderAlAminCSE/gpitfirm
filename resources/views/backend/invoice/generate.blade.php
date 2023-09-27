@@ -48,12 +48,12 @@
 
                                     <div class="form-check"
                                         style="display: flex; align-items: start; margin-left:0px; padding-left:0px; ">
-                                        <label class="form-label required fs-6 fw-bold text-gray-700 mb-3">Bill To</label>
-                                        <div class="form-check" style="margin-left: 10px;">
+                                        <label class="form-label required fs-6 fw-bold text-gray-700">Bill To</label>
+                                        {{-- <div class="form-check" style="margin-left: 10px;">
                                             <input class="form-check-input" type="checkbox" value="1"
                                                 name="existingCustomr" id="customerCheck" />
                                             <label class="form-check-label" for="customerCheck">Not A Customer?</label>
-                                        </div>
+                                        </div> --}}
                                     </div>
 
                                     <div id="existingCustomer" class="mb-5 d-none">
@@ -70,7 +70,7 @@
                                     </div>
 
                                     <div id="customUser" class="">
-                                        <div class="mb-5">
+                                        <div class="mb-5 d-none">
                                             <input type="hidden" name="userId" id="idInput"
                                                 class="form-control form-control-solid" />
                                         </div>

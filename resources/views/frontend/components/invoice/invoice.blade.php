@@ -416,6 +416,7 @@
             <div class="billed_to">
                 <p class="bg-gray-200 text-[#6600cc] py-[4px] px-[8px] inline-block rounded-md mb-4">Billed to,</p>
                 <h2 class="text-xl font-bold mb-4">{{ $invoice->user->name }}</h2>
+                <h2 class="text-xl font-bold mb-4">{{ $invoice->user->business_name }}</h2>
                 <p class="mb-1">{{ $invoice->user->email }}</p>
                 <p class="mb-1">{{ $invoice->user->address }}</p>
             </div>

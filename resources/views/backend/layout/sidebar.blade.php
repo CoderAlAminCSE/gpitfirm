@@ -7,9 +7,7 @@
          <!--begin::Logo image-->
          <a href="{{ route('dashboard') }}">
              <img alt="Logo" src="{{ asset('storage/' . siteSetting('header_logo')) }}"
-                 class="h-25px app-sidebar-logo-default" />
-             <img alt="Logo" src="{{ asset('storage/' . siteSetting('favicon')) }}"
-                 class="h-20px app-sidebar-logo-minimize" />
+                 class="h-40px w-150px app-sidebar-logo-default" />
          </a>
          <div id="kt_app_sidebar_toggle"
              class="app-sidebar-toggle btn btn-icon btn-shadow btn-sm btn-color-muted btn-active-color-primary h-30px w-30px position-absolute top-50 start-100 translate-middle rotate"
@@ -70,7 +68,7 @@
                                      <span class="path4"></span>
                                  </i>
                              </span>
-                             <span class="menu-title">User Management</span>
+                             <span class="menu-title">Customer Management</span>
                              <span class="menu-arrow"></span>
                          </span>
                          <!--end:Menu link-->
@@ -84,7 +82,7 @@
                                      <span class="menu-bullet">
                                          <span class="bullet bullet-dot"></span>
                                      </span>
-                                     <span class="menu-title">Users List</span>
+                                     <span class="menu-title">Customer List</span>
                                  </a>
                                  <!--end:Menu link-->
                              </div>

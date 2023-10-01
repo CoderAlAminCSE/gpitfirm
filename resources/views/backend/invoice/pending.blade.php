@@ -87,7 +87,7 @@
                                 <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
                                     <!--begin::Add user-->
                                     <a href="{{ route('invoice.generate') }}" class="btn btn-primary">
-                                        <i class="ki-duotone ki-plus fs-2"></i>Generate Invoice</a>
+                                        <i class="ki-duotone ki-plus fs-2"></i>Generate</a>
                                     <!--end::Add user-->
                                 </div>
                                 <!--end::Toolbar-->

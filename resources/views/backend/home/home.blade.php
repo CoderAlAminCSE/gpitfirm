@@ -667,7 +667,7 @@
                                     },
                                     y: {
                                         formatter: function(e) {
-                                            return "$" + e + " thousands";
+                                            return "$" + e ;
                                         },
                                     },
                                 },
@@ -798,7 +798,7 @@
                                         },
                                         y: {
                                             formatter: function(e) {
-                                                return "$" + e + " thousands";
+                                                return "$" + e ;
                                             },
                                         },
                                     },
@@ -914,7 +914,7 @@
                                                 },
                                                 y: {
                                                     formatter: function(e) {
-                                                        return "$" + e + " thousands";
+                                                        return "$" + e ;
                                                     },
                                                 },
                                             },
@@ -1041,7 +1041,7 @@
                                                 },
                                                 y: {
                                                     formatter: function(e) {
-                                                        return "$" + e + " thousands";
+                                                        return "$" + e ;
                                                     },
                                                 },
                                             },
@@ -1174,7 +1174,7 @@
                                                 },
                                                 y: {
                                                     formatter: function(e) {
-                                                        return "$" + e + " thousands";
+                                                        return "$" + e ;
                                                     },
                                                 },
                                             },
@@ -1314,7 +1314,7 @@
                                                 },
                                                 y: {
                                                     formatter: function(e) {
-                                                        return "$" + e + " thousands";
+                                                        return "$" + e ;
                                                     },
                                                 },
                                             },
@@ -1445,7 +1445,7 @@
                                                 },
                                                 y: {
                                                     formatter: function(e) {
-                                                        return "$" + e + " thousands";
+                                                        return "$" + e ;
                                                     },
                                                 },
                                             },
@@ -1548,7 +1548,7 @@
                                                 }
                                             },
                                             yaxis: {
-                                                max: 120,
+                                                max: 1000,
                                                 labels: {
                                                     style: {
                                                         colors: a,
@@ -1586,7 +1586,7 @@
                                                 },
                                                 y: {
                                                     formatter: function(e) {
-                                                        return "$" + e + " thousands";
+                                                        return "$" + e ;
                                                     },
                                                 },
                                             },
@@ -1746,7 +1746,7 @@
                                                 },
                                                 y: {
                                                     formatter: function(e) {
-                                                        return "$" + e + " thousands";
+                                                        return "$" + e ;
                                                     },
                                                 },
                                             },
@@ -1921,7 +1921,7 @@
                                                 },
                                                 y: {
                                                     formatter: function(e) {
-                                                        return "$" + e + " thousands";
+                                                        return "$" + e ;
                                                     },
                                                 },
                                             },
@@ -2071,7 +2071,7 @@
                                     },
                                     y: {
                                         formatter: function(e) {
-                                            return "$" + e + " thousands";
+                                            return "$" + e ;
                                         },
                                     },
                                     marker: {
@@ -2204,7 +2204,7 @@
                                         },
                                         y: {
                                             formatter: function(e) {
-                                                return "$" + e + " thousands";
+                                                return "$" + e ;
                                             },
                                         },
                                     },
@@ -2403,7 +2403,7 @@
                                                 },
                                                 y: {
                                                     formatter: function(e) {
-                                                        return "$" + e + " thousands";
+                                                        return "$" + e ;
                                                     },
                                                 },
                                             },
@@ -2545,7 +2545,7 @@
                                         },
                                         y: {
                                             formatter: function(e) {
-                                                return "$" + e + " thousands";
+                                                return "$" + e ;
                                             },
                                         },
                                     },
@@ -2676,7 +2676,7 @@
                                         },
                                         y: {
                                             formatter: function(e) {
-                                                return "$" + e + " thousands";
+                                                return "$" + e ;
                                             },
                                         },
                                     },
@@ -2918,7 +2918,7 @@
                                     },
                                     y: {
                                         formatter: function(e) {
-                                            return "$" + e + " thousands";
+                                            return "$" + e ;
                                         },
                                     },
                                     marker: {
@@ -3069,7 +3069,7 @@
                                         },
                                         y: {
                                             formatter: function(e) {
-                                                return "$" + e + " thousands";
+                                                return "$" + e ;
                                             },
                                         },
                                     },
@@ -3403,7 +3403,7 @@
                                     },
                                     y: {
                                         formatter: function(e) {
-                                            return "$" + e + " thousands";
+                                            return "$" + e ;
                                         },
                                     },
                                 },
@@ -3536,7 +3536,7 @@
                                             },
                                             y: {
                                                 formatter: function(e) {
-                                                    return "$" + e + " thousands";
+                                                    return "$" + e ;
                                                 },
                                             },
                                         },

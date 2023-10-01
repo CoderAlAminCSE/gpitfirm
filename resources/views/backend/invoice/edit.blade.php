@@ -50,15 +50,10 @@
 
                                     <div class="form-check"
                                         style="display: flex; align-items: start; margin-left:0px; padding-left:0px; ">
-                                        <label class="form-label required fs-6 fw-bold text-gray-700 mb-3">Bill To</label>
-                                        {{-- <div class="form-check" style="margin-left: 10px;">
-                                            <input class="form-check-input" type="checkbox" value="1"
-                                                name="existingCustomr" id="customerCheck" checked />
-                                            <label class="form-check-label" for="customerCheck">Not A Customer?</label>
-                                        </div> --}}
+                                        <label class="form-label required fs-6 fw-bold text-gray-700 ">Bill To</label>
                                     </div>
 
-                                    <div id="existingCustomer" class="mb-5">
+                                    {{-- <div id="existingCustomer" class="mb-5">
                                         <select name="customerId" aria-label="Select a Timezone" data-control="select2"
                                             data-placeholder="Select Customer" class="form-select form-select-solid">
                                             <option value=""></option>
@@ -71,40 +66,55 @@
                                         @error('customerId')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
-                                    </div>
+                                    </div> --}}
 
-                                    {{-- <div id="customUser" class="d-none">
+                                    <div id="customUser">
+                                        <div class="mb-5 d-none">
+                                            <input type="hidden" name="userId" id="updateIdInput"
+                                                class="form-control form-control-solid" />
+                                        </div>
                                         <div class="mb-5">
-                                            <input type="text" name="name" class="form-control form-control-solid"
-                                                placeholder="Name" value="{{ old('name') }}" />
+                                            <input type="text" name="name" id="updateNameInput"
+                                                class="form-control form-control-solid" placeholder="Enter name"
+                                                value="{{ $invoice->user->name }}" />
                                             @error('name')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="mb-5">
-                                            <input type="email" name="email" class="form-control form-control-solid"
-                                                placeholder="Email" value="{{ old('email') }}" />
-                                            @error('email')
+                                            <input type="text" name="business_name" id="updateBusinessNameInput"
+                                                class="form-control form-control-solid" placeholder="Business name"
+                                                value="{{ $invoice->user->business_name }}" />
+                                            @error('business_name')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="mb-5">
-                                            <input type="text" name="address" class="form-control form-control-solid"
+                                            <input type="email" name="email" id="updateEmailInput"
+                                                class="form-control form-control-solid" placeholder="Enter email"
+                                                value="{{ $invoice->user->email }}" />
+                                            @error('email')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                        <div id="updateEmailResults"></div>
+                                        <div class="mb-5">
+                                            <input type="text" name="address" id="updateAddressInput"
+                                                class="form-control form-control-solid"
                                                 placeholder="Address: ex- 3455 Geraldine Lane, New York 10013 United States"
-                                                value="{{ old('address') }}" />
+                                                value="{{ $invoice->user->address }}" />
                                             @error('address')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="mb-5">
-                                            <input type="text" name="password" class="form-control form-control-solid"
-                                                placeholder="Password" />
+                                            <input type="text" name="password" id="updatePasswordInput"
+                                                class="form-control form-control-solid" placeholder="Enter new password" />
                                             @error('password')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
-                                    </div> --}}
-
+                                    </div>
 
                                 </div>
                             </div>
@@ -124,11 +134,6 @@
                                 </div>
                             </div>
 
-                            {{-- <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="1" name="existingService"
-                                    id="customService" checked />
-                                <label class="form-check-label" for="customService">Existing Service?</label>
-                            </div> --}}
                             @if ($custom_service == 'NO')
                                 <div id="existingProduct" class="table-responsive mb-10">
                                     <table class="table g-5 gs-0 mb-0 fw-bold text-gray-700" data-kt-element="items">
@@ -318,6 +323,8 @@
         <!--end::Basic info-->
     </div>
 
+    <input type="hidden" id="update_invoice_check_email" value="{{ route('invoice.check.email') }}">
+
 
 @endsection
 
@@ -493,6 +500,54 @@
             $(document).on('click', '[data-kt-element="remove-custom-item"]', function() {
                 $(this).closest('tr').remove();
                 updateSubtotalAndTotal();
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#updateEmailInput').on('input', function() {
+                console.log('dgf');
+                const email = $(this).val();
+                var formUrl = $("#update_invoice_check_email").val();
+                $.ajax({
+                    url: formUrl,
+                    method: 'POST',
+                    data: {
+                        email: email,
+                        "_token": $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(response) {
+                        console.log('Response:', response);
+                        // Clear previous results
+                        $('#updateEmailResults').empty();
+
+                        // Display the matching email results below the email input
+                        if (response && response.user && response.user
+                            .length > 0) {
+                            response.user.forEach(function(user) {
+                                const resultDiv = $(
+                                    '<div class="updateEmailResult list-group list-group-item list-group-item-action p-3 rounded mb-1"><a href="#" class="updateEmailResult list-group-item list-group-item-action active border border-primary" aria-current="true"></a></div>'
+                                );
+                                resultDiv.text(user.email);
+                                resultDiv.data('user', user); // Store user data
+                                $('#updateEmailResults').append(resultDiv);
+                            });
+                        }
+                    }
+                });
+            });
+
+            // Event listener for selecting an user info from the results
+            $(document).on('click', '.updateEmailResult', function() {
+                const selectedUser = $(this).data('user');
+
+                $('#updateIdInput').val(selectedUser.id);
+                $('#updateEmailInput').val(selectedUser.email);
+                $('#updateNameInput').val(selectedUser.name);
+                $('#updateAddressInput').val(selectedUser.address);
+                $('#updateBusinessNameInput').val(selectedUser.business_name);
+                $('#updateEmailResults').empty();
             });
         });
     </script>

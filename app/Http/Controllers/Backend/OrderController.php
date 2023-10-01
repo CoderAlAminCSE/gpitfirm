@@ -157,18 +157,39 @@ class OrderController extends Controller
         try {
             $invoice = $invoice->findOrFail($id);
             if ($invoice) {
-
-
                 DB::beginTransaction();
+
                 $request->validate([
-                    'customerId' => 'required',
+                    'email' => 'required',
                 ]);
 
                 $updateOrder = $order->findOrFail($invoice->order_id);
-                $updateOrder->items()->delete();
-
                 if ($updateOrder) {
-                    $updateOrder->user_id = $request->customerId;
+                    $updateOrder->items()->delete();
+                    $user = User::where('email', $request->email)->first();
+
+                    if (!$user) {
+                        $request->validate([
+                            'email' => 'required',
+                        ]);
+
+                        $user = new User;
+                        $user->type = 'customer';
+                    }
+
+                    // Update user information
+                    $user->name = $request->name;
+                    $user->business_name = $request->business_name;
+                    $user->email = $request->email;
+                    $user->address = $request->address;
+
+                    // Handle password update
+                    $password = $request->input('password', null);
+                    $user->password = $password ? bcrypt($password) : '$2y$10$2dXuJopzVDaHsxTTVl.CZexCjLpOG.Im5ncG8XV53ZAQoKlif69iS';
+
+                    $user->save();
+                    $user_id = $user->id;
+                    $updateOrder->user_id = $user_id;
                     $updateOrder->save();
                 } else {
                     return redirect()->route('invoice.index')->with('Error', 'Order not found');
@@ -209,7 +230,8 @@ class OrderController extends Controller
                     $updateOrder->save();
                 }
 
-                $invoice->user_id = $request->customerId;
+                $invoice->user_id = $user_id;
+                $invoice->custom_order_number = $request->custom_order_number;
                 $invoice->notes = $request->notes;
                 $invoice->save();
 
@@ -220,7 +242,7 @@ class OrderController extends Controller
             }
         } catch (\Exception $e) {
             DB::rollBack();
-            return back()->with('error', 'Error: ' . $e->getMessage());
+            return back()->with('error', 'Something went wrong, please try again');
         }
     }
 
@@ -443,7 +465,7 @@ class OrderController extends Controller
             return redirect()->route('invoice.index')->with('success', 'Invoice generated successfully');
         } catch (\Exception $e) {
             DB::rollBack();
-            return back()->with('error', 'Error: ' . $e->getMessage());
+            return back()->with('error', 'Something went wrong, please try again');
         }
     }
 

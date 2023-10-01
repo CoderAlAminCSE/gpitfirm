@@ -122,6 +122,7 @@
                             <div class="row gx-10 mb-5">
                                 <div class="col-lg-6">
                                     <div class="mb-5">
+                                        <label class="form-label fs-6 fw-bold text-gray-700 mb-3">Order Number</label>
                                         <input type="text" name="custom_order_number"
                                             class="form-control form-control-solid" placeholder="Order Number"
                                             value="{{ old('custom_order_number') }}" />

@@ -1,7 +1,7 @@
 @extends('backend.layout.master')
 @section('title', 'Invoices Generate')
 @section('content')
-    {{-- @dd($totalPriceFormatted) --}}
+    {{-- @dd($invoice) --}}
     <div id="kt_app_content_container" class="app-container container-xxl">
         <!--begin::Basic info-->
         <div class="card mb-5 mb-xl-10">
@@ -17,8 +17,8 @@
                         <div class="d-flex flex-column align-items-start flex-xxl-row">
                             <!--begin::Input group-->
                             <div class="d-flex flex-center flex-equal fw-row text-nowrap order-1 order-xxl-2 me-4"
-                                data-bs-toggle="tooltip" data-bs-trigger="hover" title="Enter invoice number">
-                                <span class="fs-2x fw-bold text-gray-800">Invoice Update </span>
+                                data-bs-toggle="tooltip">
+                                <span class="fs-2x fw-bold text-gray-800">Update Invoice</span>
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -110,6 +110,19 @@
                             </div>
 
                             <br><br><br>
+                            <div class="row gx-10 mb-5">
+                                <div class="col-lg-6">
+                                    <div class="mb-5">
+                                        <label class="form-label fs-6 fw-bold text-gray-700 mb-3">Order Number</label>
+                                        <input type="text" name="custom_order_number"
+                                            class="form-control form-control-solid" placeholder="Order Number"
+                                            value="{{ $invoice->custom_order_number }}" />
+                                        @error('custom_order_number')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
 
                             {{-- <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="1" name="existingService"

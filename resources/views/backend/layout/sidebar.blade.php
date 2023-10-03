@@ -82,7 +82,7 @@
                                      <span class="menu-bullet">
                                          <span class="bullet bullet-dot"></span>
                                      </span>
-                                     <span class="menu-title">Customer List</span>
+                                     <span class="menu-title">All Customers</span>
                                  </a>
                                  <!--end:Menu link-->
                              </div>

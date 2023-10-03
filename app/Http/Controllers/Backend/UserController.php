@@ -44,6 +44,7 @@ class UserController extends Controller
             if ($updateUser) {
                 $updateUser->update([
                     'name' => $request->input('name'),
+                    'business_name' => $request->input('business_name'),
                     'email' => $request->input('email'),
                     'address' => $request->input('address'),
                 ]);

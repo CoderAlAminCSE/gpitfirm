@@ -11,7 +11,8 @@
                     <!--begin::Page title-->
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                         <!--begin::Title-->
-                        <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Users
+                        <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
+                            Customers
                             List</h1>
                         <!--end::Title-->
                         <!--begin::Breadcrumb-->
@@ -27,7 +28,7 @@
                             </li>
                             <!--end::Item-->
                             <!--begin::Item-->
-                            <li class="breadcrumb-item text-muted">User Management</li>
+                            <li class="breadcrumb-item text-muted">Customer Management</li>
                             <!--end::Item-->
                             <!--begin::Item-->
                             <li class="breadcrumb-item">
@@ -35,7 +36,7 @@
                             </li>
                             <!--end::Item-->
                             <!--begin::Item-->
-                            <li class="breadcrumb-item text-muted">Users</li>
+                            <li class="breadcrumb-item text-muted">All Customers</li>
                             <!--end::Item-->
                         </ul>
                         <!--end::Breadcrumb-->
@@ -119,6 +120,19 @@
                                                 @enderror
                                                 <!--end::Input-->
                                             </div>
+                                            <div class="fv-row mb-10">
+                                                <!--begin::Label-->
+                                                <label class="fw-semibold fs-6 mb-2">Business Name</label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input type="text" name="business_name" id="business_name"
+                                                    class="form-control form-control-solid mb-3 mb-lg-0"
+                                                    placeholder="Enter business name" value="" />
+                                                @error('business_name')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                                <!--end::Input-->
+                                            </div>
 
                                             <div class="fv-row mb-10">
                                                 <!--begin::Label-->
@@ -174,7 +188,8 @@
                             <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_users">
                                 <thead>
                                     <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
-                                        <th class="min-w-125px">User</th>
+                                        <th class="min-w-125px">Name</th>
+                                        <th class="min-w-125px">Email</th>
                                         <th class="min-w-125px">Role</th>
                                         <th class="min-w-125px">Address</th>
                                         <th class="text-end min-w-100px">Actions</th>
@@ -184,21 +199,9 @@
                                     @forelse ($users as $user)
                                         <tr>
                                             <td class="d-flex align-items-center">
-                                                <!--begin:: Avatar -->
-                                                <div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-                                                    <a>
-                                                        <div class="symbol-label fs-3 bg-light-danger text-danger">M</div>
-                                                    </a>
-                                                </div>
-                                                <!--end::Avatar-->
-                                                <!--begin::User details-->
-                                                <div class="d-flex flex-column">
-                                                    <a
-                                                        class="text-gray-800 text-hover-primary mb-1">{{ $user->name }}</a>
-                                                    <span>{{ $user->email }}</span>
-                                                </div>
-                                                <!--begin::User details-->
+                                                {{ $user->name }}
                                             </td>
+                                            <td>{{ $user->email }}</td>
                                             <td>{{ $user->type }}</td>
                                             <td>{{ $user->address }}</td>
                                             <td class="text-end">
@@ -216,6 +219,7 @@
                                                             data-bs-target="#kt_modal_user_update"
                                                             data-user-id="{{ $user->id }}"
                                                             data-user-name="{{ $user->name }}"
+                                                            data-user-business_name="{{ $user->business_name }}"
                                                             data-user-email="{{ $user->email }}"
                                                             data-user-address="{{ $user->address }}">Edit</a>
                                                     </div>
@@ -262,12 +266,14 @@
             $('.edit-user').click(function() {
                 var userId = $(this).data('user-id');
                 var userName = $(this).data('user-name');
+                var userBusinessName = $(this).data('user-business_name');
                 var userEmail = $(this).data('user-email');
                 var userAddress = $(this).data('user-address');
 
                 // Set the form values in the modal
                 $('#user_id').val(userId);
                 $('input[name="name"]').val(userName);
+                $('input[name="business_name"]').val(userBusinessName);
                 $('input[name="email"]').val(userEmail);
                 $('input[name="address"]').val(userAddress);
             });

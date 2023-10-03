@@ -103,8 +103,8 @@
                                     <tr class="text-center text-muted fw-bold fs-7 text-uppercase gs-0">
                                         <th class="min-w-50px">SL</th>
                                         <th class="min-w-100px">Invoice Number</th>
-                                        <th class="min-w-100px">Order Number</th>
-                                        <th class="min-w-125px">Customer</th>
+                                        <th class="min-w-125px">Name</th>
+                                        <th class="min-w-125px">Email</th>
                                         <th class="min-w-100px">Amount</th>
                                         <th class="min-w-70px">Status</th>
                                         <th class="text-end min-w-100px">Actions</th>
@@ -115,8 +115,8 @@
                                         <tr class="text-center">
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $invoice->invoice_number }}</td>
-                                            <td>{{ orderInfo($invoice->order_id)->order_number }}</td>
                                             <td>{{ userData($invoice->user_id)->name }}</td>
+                                            <td>{{ userData($invoice->user_id)->email }}</td>
                                             <td>${{ $invoice->order->total_amount }}</td>
                                             <td>
                                                 <div

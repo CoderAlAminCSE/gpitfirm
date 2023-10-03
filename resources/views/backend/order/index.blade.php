@@ -76,11 +76,11 @@
                                     <tr class="text-center text-muted fw-bold fs-7 text-uppercase gs-0">
                                         <th class="min-w-50px">SL</th>
                                         <th class="min-w-100px">Ord Number</th>
-                                        <th class="min-w-125px">Customer</th>
+                                        <th class="min-w-125px">Name</th>
+                                        <th class="min-w-125px">Email</th>
                                         <th class="min-w-100px">Amount</th>
-                                        <th class="min-w-70px">Status</th>
                                         <th class="min-w-70px">Ord Type</th>
-                                        <th class="min-w-70px">Order Date</th>
+                                        <th class="min-w-70px">Status</th>
                                         <th class="text-end min-w-100px">Actions</th>
                                     </tr>
                                 </thead>
@@ -90,7 +90,9 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $order->order_number }}</td>
                                             <td>{{ userData($order->user_id)->name }}</td>
+                                            <td>{{ userData($order->user_id)->email }}</td>
                                             <td>${{ $order->total_amount }}</td>
+                                            <td>{{ $order->order_type }}</td>
                                             <td>
                                                 <div
                                                     class="badge @if ($order->canceled_at != null) badge-light-danger
@@ -107,8 +109,6 @@
                                                     @endif
                                                 </div>
                                             </td>
-                                            <td>{{ $order->order_type }}</td>
-                                            <td>{{ $order->created_at }}</td>
                                             <td class="text-end">
                                                 <a href="#"
                                                     class="btn btn-light btn-active-light-primary btn-flex btn-center btn-sm"

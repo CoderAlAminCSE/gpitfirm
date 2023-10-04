@@ -45,7 +45,7 @@ class GeneralSettingSeeder extends Seeder
 
         $about = new GeneralSetting();
         $about->name = 'company_address';
-        $about->value = 'BD Office:  Radha Palbari, Ambaria Madhupur, Tangail, 1997, Dhaka';
+        $about->value = 'BD Office:  Radha Palbari, Ambaria Madhupur, Tangail 1997 Dhaka';
         $about->save();
 
         $about = new GeneralSetting();

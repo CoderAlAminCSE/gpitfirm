@@ -383,8 +383,9 @@
             </div>
             <div class="company_info flex justify-between mt-[40px]">
                 <div>
-                    <p class="mb-[10px]">{{ siteSetting('company_phone') ?? null }}</p>
-                    <p class="mb-[10px]">{{ siteSetting('company_email') ?? null }}</p>
+                    <p>{{ siteSetting('company_name') ?? null }}</p>
+                    <p>{{ siteSetting('company_phone') ?? null }}</p>
+                    <p>{{ siteSetting('company_email') ?? null }}</p>
                     <p>{{ siteSetting('company_website') ?? null }}</p>
                 </div>
 

@@ -136,7 +136,7 @@
         <div class="container">
             <div class="row align-items-center justify-content-between">
                 <div class="col-md-12 col-lg-12 text-center">
-                    <p class="copyright-text pb-0 mb-0">Copyright © 2022 <a href="/">GP IT FIRM LTD</a></p>
+                    <p class="copyright-text pb-0 mb-0">Copyright © 2023 <a href="/">GP IT FIRM LTD</a></p>
                 </div>
             </div>
         </div>

@@ -33,7 +33,10 @@ class OrderController extends Controller
                 $search =  $request->search;
                 $orders = $order->with('invoice')->where(function ($query) use ($search) {
                     $query->where('id', 'LIKE', '%' . $search . '%')
-                        ->orWhere('order_number', 'LIKE', '%' . $search . '%');
+                        ->orWhere('order_number', 'LIKE', '%' . $search . '%')
+                        ->orWhereHas('user', function ($userQuery) use ($search) {
+                            $userQuery->where('email', 'LIKE', '%' . $search . '%');
+                        });
                 })->paginate(10);
             } else {
                 $orders = $order->with('invoice')->latest()->paginate(10);
@@ -99,10 +102,14 @@ class OrderController extends Controller
     {
         try {
             if ($request->has('search') && $request->search != null) {
-                $search =  $request->search;
+                $search = $request->search;
+
                 $invoices = $invoice->where(function ($query) use ($search) {
                     $query->where('id', 'LIKE', '%' . $search . '%')
-                        ->orWhere('invoice_number', 'LIKE', '%' . $search . '%');
+                        ->orWhere('invoice_number', 'LIKE', '%' . $search . '%')
+                        ->orWhereHas('user', function ($userQuery) use ($search) {
+                            $userQuery->where('email', 'LIKE', '%' . $search . '%');
+                        });
                 })->paginate(10);
             } else {
                 $invoices = $invoice->with('order')->latest()->paginate(10);
@@ -257,7 +264,10 @@ class OrderController extends Controller
                 $search =  $request->search;
                 $invoices = $invoice->where(function ($query) use ($search) {
                     $query->where('id', 'LIKE', '%' . $search . '%')
-                        ->orWhere('invoice_number', 'LIKE', '%' . $search . '%');
+                        ->orWhere('invoice_number', 'LIKE', '%' . $search . '%')
+                        ->orWhereHas('user', function ($userQuery) use ($search) {
+                            $userQuery->where('email', 'LIKE', '%' . $search . '%');
+                        });
                 })->paginate(10);
             } else {
                 $invoices = $invoice->with('order')->whereHas('order', function ($query) {
@@ -281,7 +291,10 @@ class OrderController extends Controller
                 $search =  $request->search;
                 $invoices = $invoice->where(function ($query) use ($search) {
                     $query->where('id', 'LIKE', '%' . $search . '%')
-                        ->orWhere('invoice_number', 'LIKE', '%' . $search . '%');
+                        ->orWhere('invoice_number', 'LIKE', '%' . $search . '%')
+                        ->orWhereHas('user', function ($userQuery) use ($search) {
+                            $userQuery->where('email', 'LIKE', '%' . $search . '%');
+                        });
                 })->paginate(10);
             } else {
                 $invoices = $invoice->with('order')->whereHas('order', function ($query) {
@@ -305,7 +318,10 @@ class OrderController extends Controller
                 $search =  $request->search;
                 $invoices = $invoice->where(function ($query) use ($search) {
                     $query->where('id', 'LIKE', '%' . $search . '%')
-                        ->orWhere('invoice_number', 'LIKE', '%' . $search . '%');
+                        ->orWhere('invoice_number', 'LIKE', '%' . $search . '%')
+                        ->orWhereHas('user', function ($userQuery) use ($search) {
+                            $userQuery->where('email', 'LIKE', '%' . $search . '%');
+                        });
                 })->paginate(10);
             } else {
                 $invoices = $invoice->with('order')->whereHas('order', function ($query) {

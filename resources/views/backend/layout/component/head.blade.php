@@ -1,6 +1,6 @@
 <head>
     <base href="" />
-    <title>@yield('title') - GPITFIRM</title>
+    <title>@yield('title') - {{ siteSetting('company_name') ?? null }}</title>
     <meta charset="utf-8" />
 
 

@@ -2,7 +2,11 @@
 <html lang="en">
 
 <head>
-    @component('frontend/layouts.head', ['title' => 'Guest Post - GP IT Firm'])
+    @php
+        $applicationName = siteSetting('company_name') ?? null;
+        $title = $category->name . ' | ' . 'SERVICES | ' . $applicationName;
+    @endphp
+    @component('frontend/layouts.head', ['title' => $title])
     @endcomponent
 </head>
 

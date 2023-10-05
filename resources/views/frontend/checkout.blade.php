@@ -2,7 +2,11 @@
 <html lang="en">
 
 <head>
-    @component('frontend/layouts.head', ['title' => 'Checkout - GP IT Firm'])
+    @php
+        $applicationName = siteSetting('company_name') ?? null;
+        $faqTitle = 'CHECKOUT | ' . $applicationName;
+    @endphp
+    @component('frontend/layouts.head', ['title' => $faqTitle])
     @endcomponent
 
     <link rel="preconnect" href="https://fonts.googleapis.com">

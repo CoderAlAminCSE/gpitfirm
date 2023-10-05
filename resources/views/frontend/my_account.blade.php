@@ -2,7 +2,11 @@
 <html lang="en">
 
 <head>
-    @component('frontend/layouts.head', ['title' => 'My account - GP IT Firm'])
+    @php
+        $applicationName = siteSetting('company_name') ?? null;
+        $faqTitle = 'My Account | ' . $applicationName;
+    @endphp
+    @component('frontend/layouts.head', ['title' => $faqTitle])
     @endcomponent
 </head>
 
@@ -16,7 +20,7 @@
         <!-- hero-section -->
         @include('frontend/components.myAccount.hero')
 
-				@yield('account_content')
+        @yield('account_content')
 
         <!-- footer -->
         @include('frontend/layouts.footer')

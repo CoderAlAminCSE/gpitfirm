@@ -2,11 +2,16 @@
 <html lang="en">
 
 <head>
-    @component('frontend/layouts.head', ['title' => 'Refund - GP IT Firm'])
+    @php
+        $applicationName = siteSetting('company_name') ?? null;
+        $faqTitle = 'Refund | ' . $applicationName;
+    @endphp
+    @component('frontend/layouts.head', ['title' => $faqTitle])
     @endcomponent
 </head>
 
-<body class="page-template page-template-template-inner page-template-template-inner-php page page-id-186 theme-gpit-firm woocommerce-no-js">
+<body
+    class="page-template page-template-template-inner page-template-template-inner-php page page-id-186 theme-gpit-firm woocommerce-no-js">
 
     <!-- header-area -->
     @include('frontend/layouts.header')

@@ -2,7 +2,11 @@
 <html lang="en">
 
 <head>
-    @component('frontend/layouts.head', ['title' => 'Cart - GP IT Firm'])
+    @php
+        $applicationName = siteSetting('company_name') ?? null;
+        $faqTitle = 'CART | ' . $applicationName;
+    @endphp
+    @component('frontend/layouts.head', ['title' => $faqTitle])
     @endcomponent
     @paddleJS
 </head>

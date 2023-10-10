@@ -8,9 +8,9 @@
 <!-- fonts -->
 <link rel="dns-prefetch" href="http://fonts.googleapis.com/">
 <link rel="stylesheet" href="{{ asset('assets/frontend/css/vendor/wp-block-library.css') }}" type="text/css">
-<link rel="stylesheet" href="{{ asset('assets/frontend/css/vendor/woocommarce/wc-blocks-vendors-style.css') }}"
+<link rel="stylesheet" href="{{ asset('assets/frontend/css/vendor/imjol/wc-blocks-vendors-style.css') }}"
     type="text/css">
-<link rel="stylesheet" href="{{ asset('assets/frontend/css/vendor/woocommarce/wc-blocks-style8caf.css') }}"
+<link rel="stylesheet" href="{{ asset('assets/frontend/css/vendor/imjol/wc-blocks-style8caf.css') }}"
     type="text/css">
 
 <!-- classic-themes -->
@@ -22,19 +22,19 @@
 <!-- contact-form-7-css -->
 <link rel="stylesheet" href="{{ asset('assets/frontend/css/vendor/contact-form-7.css') }}" type="text/css">
 
-<!-- woocommerce-layout-css -->
-<link rel="stylesheet" href="{{ asset('assets/frontend/css/vendor/woocommarce/woocommerce-layout.css') }}"
+<!-- imjol-layout-css -->
+<link rel="stylesheet" href="{{ asset('assets/frontend/css/vendor/imjol/imjol-layout.css') }}"
     type="text/css">
 
-<!-- woocommerce-smallscreen-css -->
-<link rel="stylesheet" href="{{ asset('assets/frontend/css/vendor/woocommarce/woocommerce-smallscreen.css') }}"
+<!-- imjol-smallscreen-css -->
+<link rel="stylesheet" href="{{ asset('assets/frontend/css/vendor/imjol/imjol-smallscreen.css') }}"
     type="text/css" media="only screen and (max-width: 768px)">
 
-<!-- woocommerce-general-css -->
-<link rel="stylesheet" href="{{ asset('assets/frontend/css/vendor/woocommarce/woocommerce.css') }}" type="text/css">
+<!-- imjol-general-css -->
+<link rel="stylesheet" href="{{ asset('assets/frontend/css/vendor/imjol/imjol.css') }}" type="text/css">
 
-<!-- woocommerce-inline-css -->
-<link rel="stylesheet" href="{{ asset('assets/frontend/css/vendor/woocommarce/woocommerce-inline-css.css') }}"
+<!-- imjol-inline-css -->
+<link rel="stylesheet" href="{{ asset('assets/frontend/css/vendor/imjol/imjol-inline-css.css') }}"
     type="text/css">
 
 <!-- google-font -->
@@ -103,7 +103,7 @@
 
 <noscript>
     <style>
-        .woocommerce-product-gallery {
+        .imjol-product-gallery {
             opacity: 1 !important;
         }
     </style>

@@ -11,7 +11,7 @@
 </head>
 
 <body
-    class="product-template-default single single-product postid-116 theme-gpit-firm woocommerce woocommerce-page woocommerce-no-js">
+    class="product-template-default single single-product postid-116 theme-gpit-firm imjol imjol-page imjol-no-js">
 
     <!-- header-area -->
     @include('frontend/layouts.header')

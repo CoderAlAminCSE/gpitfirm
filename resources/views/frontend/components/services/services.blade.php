@@ -3,12 +3,12 @@
         <div class="col-md-12">
             <div id="primary" class="content-area">
                 <main id="main" class="site-main" role="main">
-                    <header class="woocommerce-products-header">
+                    <header class="imjol-products-header">
                     </header>
-                    <div class="woocommerce-notices-wrapper"></div>
-                    <p class="woocommerce-result-count">
+                    <div class="imjol-notices-wrapper"></div>
+                    <p class="imjol-result-count">
                         Showing all 6 results</p>
-                    <form class="woocommerce-ordering" method="get">
+                    <form class="imjol-ordering" method="get">
                         <select name="orderby" class="orderby" aria-label="Shop order">
                             <option value="menu_order" selected="selected">Default sorting</option>
                             <option value="popularity">Sort by popularity</option>
@@ -24,17 +24,17 @@
                             <li
                                 class="gpitfrim_product product type-product post-130 status-publish last instock product_cat-link-building has-post-thumbnail virtual sold-individually purchasable product-type-simple">
                                 <a href="{{ route('single.service.show', $service->slug) }}"
-                                    class="woocommerce-LoopProduct-link woocommerce-loop-product__link"><img
+                                    class="imjol-LoopProduct-link imjol-loop-product__link"><img
                                         width="300" height="300"
                                         src="../wp-content/uploads/2022/07/Link-Building-DA-70-300x300.png"
-                                        class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt
+                                        class="attachment-imjol_thumbnail size-imjol_thumbnail" alt
                                         decoding="async" loading="lazy"
                                         srcset="{{ !empty($service->image) ? asset('storage/' . $service->image) : ' ' }}"
                                         sizes="(max-width: 300px) 100vw, 300px" />
-                                    <h2 class="woocommerce-loop-product__title">{{ $service->name }}</h2>
+                                    <h2 class="imjol-loop-product__title">{{ $service->name }}</h2>
                                     <span class="price"><span
-                                            class="woocommerce-Price-amount amount"><bdi>{{ $service->price }}<span
-                                                    class="woocommerce-Price-currencySymbol">&#36;</span></bdi></span></span>
+                                            class="imjol-Price-amount amount"><bdi>{{ $service->price }}<span
+                                                    class="imjol-Price-currencySymbol">&#36;</span></bdi></span></span>
                                 </a><a class="button wp-element-button product_type_simple add-to-cart"
                                     data-service-id="{{ $service->id }}" data-service-name="{{ $service->name }}"
                                     data-service-price="{{ $service->price }}">Buy

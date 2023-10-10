@@ -11,29 +11,29 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="woocommerce">
-                            <nav class="woocommerce-MyAccount-navigation bottom-gap">
+                        <div class="imjol">
+                            <nav class="imjol-MyAccount-navigation bottom-gap">
                                 <ul class="nav nav-pills flex-column mb-auto">
                                     <li
-                                        class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--dashboard is-active nav-item">
+                                        class="imjol-MyAccount-navigation-link imjol-MyAccount-navigation-link--dashboard is-active nav-item">
                                         <a href="{{ route('customer.account') }}" class="nav-link">Dashboard</a>
                                     </li>
                                     <li
-                                        class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--orders nav-item">
+                                        class="imjol-MyAccount-navigation-link imjol-MyAccount-navigation-link--orders nav-item">
                                         <a href="{{ route('customer.account.order.list') }}" class="nav-link">Orders</a>
                                     </li>
                                     <li
-                                        class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--downloads nav-item">
+                                        class="imjol-MyAccount-navigation-link imjol-MyAccount-navigation-link--downloads nav-item">
                                         <a href="{{ route('customer.account.download.list') }}"
                                             class="nav-link">Downloads</a>
                                     </li>
                                     <li
-                                        class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--edit-account nav-item">
+                                        class="imjol-MyAccount-navigation-link imjol-MyAccount-navigation-link--edit-account nav-item">
                                         <a href="{{ route('customer.account.details') }}" class="nav-link">Account
                                             details</a>
                                     </li>
                                     <li
-                                        class="woocommerce-MyAccount-navigation-link woocommerce-MyAccount-navigation-link--customer-logout nav-item">
+                                        class="imjol-MyAccount-navigation-link imjol-MyAccount-navigation-link--customer-logout nav-item">
                                         <a onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();"
                                             class="nav-link">Logout</a>
@@ -46,8 +46,8 @@
                             </nav>
 
 
-                            <div class="woocommerce-MyAccount-content bottom-gap">
-                                <div class="woocommerce-notices-wrapper"></div>
+                            <div class="imjol-MyAccount-content bottom-gap">
+                                <div class="imjol-notices-wrapper"></div>
                                 <p>
                                     Hello <strong>{{ loggedInUser()->name }}</strong> (not
                                     <strong>{{ loggedInUser()->name }}</strong>? <a href="javascript:;"

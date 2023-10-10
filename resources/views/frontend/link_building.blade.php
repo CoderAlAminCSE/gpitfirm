@@ -7,7 +7,7 @@
 </head>
 
 <body
-    class="page-template page-template-template-linkbuilding page-template-template-linkbuilding-php page page-id-15 theme-gpit-firm woocommerce-no-js">
+    class="page-template page-template-template-linkbuilding page-template-template-linkbuilding-php page page-id-15 theme-gpit-firm imjol-no-js">
 
     <!-- header-area -->
     @include('frontend/layouts.header')

@@ -11,7 +11,7 @@
 </head>
 
 <body
-    class="archive post-type-archive post-type-archive-product theme-gpit-firm woocommerce-shop woocommerce woocommerce-page woocommerce-no-js">
+    class="archive post-type-archive post-type-archive-product theme-gpit-firm imjol-shop imjol imjol-page imjol-no-js">
 
     <!-- header-area -->
     @include('frontend/layouts.header')

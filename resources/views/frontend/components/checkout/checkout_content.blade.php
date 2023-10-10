@@ -1,21 +1,21 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-12">
-            <div class="woocommerce">
-                <div class="woocommerce-notices-wrapper"></div>
-                <form name="checkout" method="post" class="checkout woocommerce-checkout"
+            <div class="imjol">
+                <div class="imjol-notices-wrapper"></div>
+                <form name="checkout" method="post" class="checkout imjol-checkout"
                     action="{{ route('frontend.checkout.confirm') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="row mb-4" id="customer_details">
                         @if (Auth::check())
                             <div class="col-md-6">
-                                <div class="woocommerce-billing-fields">
+                                <div class="imjol-billing-fields">
                                     <h3>Account Info</h3>
-                                    <div class="woocommerce-billing-fields__field-wrapper">
+                                    <div class="imjol-billing-fields__field-wrapper">
                                         <p class="form-row form-group validate-required" id="account_username_field"
                                             data-priority><label for="account_username" class="control-label">
                                                 Name&nbsp;<abbr class="required" title="required">*</abbr></label><span
-                                                class="woocommerce-input-wrapper"><input type="text"
+                                                class="imjol-input-wrapper"><input type="text"
                                                     class="input-text form-control input" name="name"
                                                     id="account_username" placeholder="name"
                                                     value="{{ loggedInUser()->name }}" readonly /></span></p>
@@ -24,7 +24,7 @@
                                             id="billing_email_field" data-priority="110"><label for="billing_email"
                                                 class="control-label">Email address&nbsp;<abbr class="required"
                                                     title="required">*</abbr></label><span
-                                                class="woocommerce-input-wrapper"><input type="email"
+                                                class="imjol-input-wrapper"><input type="email"
                                                     class="input-text form-control input" name="email"
                                                     id="billing_email" placeholder value="{{ loggedInUser()->email }}"
                                                     readonly /></span>
@@ -34,14 +34,14 @@
                             </div>
                         @else
                             <div class="col-md-6">
-                                <div class="woocommerce-billing-fields">
+                                <div class="imjol-billing-fields">
                                     <h3>Account Info</h3>
-                                    <div class="woocommerce-billing-fields__field-wrapper">
+                                    <div class="imjol-billing-fields__field-wrapper">
                                         <p class="form-row form-group validate-required" id="account_username_field"
                                             data-priority>
                                             <label for="account_username" class="control-label">
                                                 Name&nbsp;<abbr class="required" title="required">*</abbr></label><span
-                                                class="woocommerce-input-wrapper"><input type="text"
+                                                class="imjol-input-wrapper"><input type="text"
                                                     class="input-text form-control input" name="name"
                                                     id="account_username" placeholder="name"
                                                     value="{{ $userInfo['name'] }}" readonly />
@@ -52,7 +52,7 @@
                                             id="billing_email_field" data-priority="110"><label for="billing_email"
                                                 class="control-label">Email&nbsp;<abbr class="required"
                                                     title="required">*</abbr></label><span
-                                                class="woocommerce-input-wrapper"><input type="email"
+                                                class="imjol-input-wrapper"><input type="email"
                                                     class="input-text form-control input" name="email"
                                                     id="billing_email" placeholder="email"
                                                     value="{{ $userInfo['email'] }}" readonly />
@@ -63,7 +63,7 @@
                                             id="billing_email_field" data-priority="110"><label for="billing_email"
                                                 class="control-label">Address&nbsp;<abbr class="required"
                                                     title="required">*</abbr></label><span
-                                                class="woocommerce-input-wrapper"><input type="text"
+                                                class="imjol-input-wrapper"><input type="text"
                                                     class="input-text form-control input" name="address"
                                                     id="billing_email" placeholder="address"
                                                     value="{{ $userInfo['address'] }}" readonly />
@@ -75,7 +75,7 @@
                                             <label for="account_password" class="control-label">
                                                 Account password&nbsp;<abbr class="required"
                                                     title="required">*</abbr></label><span
-                                                class="woocommerce-input-wrapper"><input type="text"
+                                                class="imjol-input-wrapper"><input type="text"
                                                     class="input-text form-control input" name="password"
                                                     id="account_password" value="{{ $userInfo['password'] }}"
                                                     placeholder="Password" readonly />
@@ -88,8 +88,8 @@
 
                         <div class="col-md-6">
                             <h3 id="order_review_heading">Your order</h3>
-                            <div id="order_review" class="woocommerce-checkout-review-order">
-                                <table class="shop_table woocommerce-checkout-review-order-table">
+                            <div id="order_review" class="imjol-checkout-review-order">
+                                <table class="shop_table imjol-checkout-review-order-table">
                                     <thead>
                                         <tr>
                                             <th class="product-name">Product</th>
@@ -105,7 +105,7 @@
                                                 </td>
                                                 <td class="product-total">
                                                     <span
-                                                        class="woocommerce-Price-amount amount"><bdi>${{ $service['price'] }}</bdi></span>
+                                                        class="imjol-Price-amount amount"><bdi>${{ $service['price'] }}</bdi></span>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -115,13 +115,13 @@
                                         <tr class="cart-subtotal">
                                             <th>Subtotal</th>
                                             <td><span
-                                                    class="woocommerce-Price-amount amount"><bdi>${{ number_format(session('subtotal'), 2) }}</bdi></span>
+                                                    class="imjol-Price-amount amount"><bdi>${{ number_format(session('subtotal'), 2) }}</bdi></span>
                                             </td>
                                         </tr>
                                         <tr class="order-total">
                                             <th>Total</th>
                                             <td><strong><span
-                                                        class="woocommerce-Price-amount amount"><bdi>${{ number_format(session('total'), 2) }}</bdi></span></strong>
+                                                        class="imjol-Price-amount amount"><bdi>${{ number_format(session('total'), 2) }}</bdi></span></strong>
                                             </td>
                                         </tr>
                                     </tfoot>
@@ -164,15 +164,15 @@
                         <div>
                             @if (Auth::check())
                                 <div class="col-md-6">
-                                    <div class="woocommerce-billing-fields">
+                                    <div class="imjol-billing-fields">
                                         <h3>Account Info</h3>
-                                        <div class="woocommerce-billing-fields__field-wrapper">
+                                        <div class="imjol-billing-fields__field-wrapper">
                                             <p class="form-row form-group validate-required"
                                                 id="account_username_field" data-priority><label
                                                     for="account_username" class="control-label">
                                                     Name&nbsp;<abbr class="required"
                                                         title="required">*</abbr></label><span
-                                                    class="woocommerce-input-wrapper"><input type="text"
+                                                    class="imjol-input-wrapper"><input type="text"
                                                         class="input-text form-control input" name="name"
                                                         id="account_username" placeholder="name"
                                                         value="{{ loggedInUser()->name }}" readonly /></span></p>
@@ -181,7 +181,7 @@
                                                 id="billing_email_field" data-priority="110"><label
                                                     for="billing_email" class="control-label">Email&nbsp;<abbr
                                                         class="required" title="required">*</abbr></label><span
-                                                    class="woocommerce-input-wrapper"><input type="email"
+                                                    class="imjol-input-wrapper"><input type="email"
                                                         class="input-text form-control input" name="email"
                                                         id="billing_email" placeholder
                                                         value="{{ loggedInUser()->email }}" readonly /></span>
@@ -191,15 +191,15 @@
                                 </div>
                             @else
                                 <div class="col-md-6">
-                                    <div class="woocommerce-billing-fields">
+                                    <div class="imjol-billing-fields">
                                         <h3>Account Info</h3>
-                                        <div class="woocommerce-billing-fields__field-wrapper">
+                                        <div class="imjol-billing-fields__field-wrapper">
                                             <p class="form-row form-group validate-required"
                                                 id="account_username_field" data-priority>
                                                 <label for="account_username" class="control-label">
                                                     Name&nbsp;<abbr class="required"
                                                         title="required">*</abbr></label><span
-                                                    class="woocommerce-input-wrapper"><input type="text"
+                                                    class="imjol-input-wrapper"><input type="text"
                                                         class="input-text form-control input" name="name"
                                                         id="account_username" placeholder="name"
                                                         value="{{ $userInfo['name'] }}" readonly />
@@ -210,7 +210,7 @@
                                                 id="billing_email_field" data-priority="110"><label
                                                     for="billing_email" class="control-label">Email&nbsp;<abbr
                                                         class="required" title="required">*</abbr></label><span
-                                                    class="woocommerce-input-wrapper"><input type="email"
+                                                    class="imjol-input-wrapper"><input type="email"
                                                         class="input-text form-control input" name="email"
                                                         id="billing_email" placeholder="email"
                                                         value="{{ $userInfo['email'] }}" readonly />
@@ -221,7 +221,7 @@
                                                 id="billing_email_field" data-priority="110"><label
                                                     for="billing_email" class="control-label">Email&nbsp;<abbr
                                                         class="required" title="required">*</abbr></label><span
-                                                    class="woocommerce-input-wrapper"><input type="text"
+                                                    class="imjol-input-wrapper"><input type="text"
                                                         class="input-text form-control input" name="address"
                                                         id="billing_email" placeholder="address"
                                                         value="{{ $userInfo['address'] }}" readonly />
@@ -233,7 +233,7 @@
                                                 <label for="account_password" class="control-label">
                                                     Account password&nbsp;<abbr class="required"
                                                         title="required">*</abbr></label><span
-                                                    class="woocommerce-input-wrapper"><input type="text"
+                                                    class="imjol-input-wrapper"><input type="text"
                                                         class="input-text form-control input" name="password"
                                                         id="account_password" value="{{ $userInfo['password'] }}"
                                                         placeholder="Password" readonly />

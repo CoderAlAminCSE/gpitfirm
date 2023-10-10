@@ -1,9 +1,9 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-12">
-            <div class="woocommerce">
-                <div class="woocommerce-notices-wrapper"></div>
-                <form name="checkout" method="post" class="checkout woocommerce-checkout"
+            <div class="imjol">
+                <div class="imjol-notices-wrapper"></div>
+                <form name="checkout" method="post" class="checkout imjol-checkout"
                     action="{{ route('invoice.payment.confirm') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="row mb-6" id="customer_details">
@@ -14,8 +14,8 @@
                                 <h3>Already paid</h3>
                             @endif
 
-                            <div id="order_review" class="woocommerce-checkout-review-order">
-                                <table class="shop_table woocommerce-checkout-review-order-table">
+                            <div id="order_review" class="imjol-checkout-review-order">
+                                <table class="shop_table imjol-checkout-review-order-table">
                                     <thead>
                                         <tr>
                                             <th class="product-name">Product</th>
@@ -32,7 +32,7 @@
                                                     </td>
                                                     <td class="product-total">
                                                         <span
-                                                            class="woocommerce-Price-amount amount"><bdi>${{ $service->custom_service_price }}</bdi></span>
+                                                            class="imjol-Price-amount amount"><bdi>${{ $service->custom_service_price }}</bdi></span>
                                                     </td>
                                                 </tr>
                                             @else
@@ -42,7 +42,7 @@
                                                     </td>
                                                     <td class="product-total">
                                                         <span
-                                                            class="woocommerce-Price-amount amount"><bdi>${{ serviceInfo($service->service_id)->price }}</bdi></span>
+                                                            class="imjol-Price-amount amount"><bdi>${{ serviceInfo($service->service_id)->price }}</bdi></span>
                                                     </td>
                                                 </tr>
                                             @endif
@@ -53,7 +53,7 @@
                                         <tr class="order-total">
                                             <th>Total</th>
                                             <td><strong><span
-                                                        class="woocommerce-Price-amount amount"><bdi>${{ $invoice->order->total_amount }}</bdi></span></strong>
+                                                        class="imjol-Price-amount amount"><bdi>${{ $invoice->order->total_amount }}</bdi></span></strong>
                                             </td>
                                         </tr>
                                     </tfoot>

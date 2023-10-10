@@ -6,9 +6,9 @@
 
 
                 @if (session('cart'))
-                    <div class="woocommerce">
-                        <div class="woocommerce-notices-wrapper"></div>
-                        <table class="shop_table shop_table_responsive cart woocommerce-cart-form__contents"
+                    <div class="imjol">
+                        <div class="imjol-notices-wrapper"></div>
+                        <table class="shop_table shop_table_responsive cart imjol-cart-form__contents"
                             cellspacing="0">
                             <thead>
                                 <tr>
@@ -22,7 +22,7 @@
 
                             <tbody>
                                 @foreach (session('cart') as $service)
-                                    <tr class="woocommerce-cart-form__cart-item cart_item">
+                                    <tr class="imjol-cart-form__cart-item cart_item">
                                         <td class="product-remove">
                                             <a href="" class="remove" data-service-id="{{ $service['id'] }}"
                                                 aria-label="Remove this item">×</a href="">
@@ -31,12 +31,12 @@
                                             <a href="#">{{ $service['name'] }}</a>
                                         </td>
                                         <td class="product-price" data-title="Price">
-                                            <span class="woocommerce-Price-amount amount"><bdi>${{ $service['price'] }}</bdi></span>
+                                            <span class="imjol-Price-amount amount"><bdi>${{ $service['price'] }}</bdi></span>
                                         </td>
                                         <td class="product-quantity" data-title="Quantity">
                                             {{ $service['quantity'] }} <input type="hidden" value=""> </td>
                                         <td class="product-subtotal" data-title="Subtotal">
-                                            <span class="woocommerce-Price-amount amount">
+                                            <span class="imjol-Price-amount amount">
                                                 <bdi>${{ $service['price'] }}</bdi></span>
                                         </td>
                                     </tr>
@@ -48,9 +48,9 @@
                         @include('frontend.components.cart.cart_total')
                     </div>
                 @else
-                    <div class="woocommerce">
-                        <div class="woocommerce-notices-wrapper"></div>
-                        <p class="cart-empty woocommerce-info">Your cart is currently empty.</p>
+                    <div class="imjol">
+                        <div class="imjol-notices-wrapper"></div>
+                        <p class="cart-empty imjol-info">Your cart is currently empty.</p>
                         <p class="return-to-shop">
                             <a class="button wc-backward" href="/services">
                                 Return to shop </a>

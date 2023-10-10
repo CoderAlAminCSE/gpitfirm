@@ -12,7 +12,7 @@
 </head>
 
 <body
-    class="page-template page-template-template-inner page-template-template-inner-php page page-id-80 theme-gpit-firm woocommerce-cart woocommerce-page woocommerce-no-js">
+    class="page-template page-template-template-inner page-template-template-inner-php page page-id-80 theme-gpit-firm imjol-cart imjol-page imjol-no-js">
 
     <!-- header-area -->
     @include('frontend/layouts.header')

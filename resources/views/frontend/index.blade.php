@@ -11,7 +11,7 @@
 </head>
 
 <body
-    class="home page-template page-template-template-home page-template-template-home-php page page-id-7 theme-gpit-firm woocommerce-no-js">
+    class="home page-template page-template-template-home page-template-template-home-php page page-id-7 theme-gpit-firm imjol-no-js">
 
     <!-- header-area -->
     @include('frontend/layouts.header')

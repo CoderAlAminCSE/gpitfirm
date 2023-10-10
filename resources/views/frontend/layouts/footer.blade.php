@@ -164,17 +164,17 @@
     id="jquery-blockui-js"></script>
 
 <!-- js-cookie-js -->
-<script type="text/javascript" src="{{ asset('assets/frontend/js/vendor/woocommerce/js.cookie.min.js
+<script type="text/javascript" src="{{ asset('assets/frontend/js/vendor/imjol/js.cookie.min.js
 ') }}"
     id="js-cookie-js"></script>
 
-<!-- woocommerce.min.js -->
-<script type="text/javascript" src="{{ asset('assets/frontend/js/vendor/woocommerce/woocommerce.min.js
+<!-- imjol.min.js -->
+<script type="text/javascript" src="{{ asset('assets/frontend/js/vendor/imjol/imjol.min.js
 ') }} "
-    id="woocommerce-js"></script>
+    id="imjol-js"></script>
 
 <!-- wc-cart-fragments-js -->
-<script type="text/javascript" src="{{ asset('assets/frontend/js/vendor/woocommerce/cart-fragments.min.js') }}">
+<script type="text/javascript" src="{{ asset('assets/frontend/js/vendor/imjol/cart-fragments.min.js') }}">
 </script>
 <script type="text/javascript" src="{{ asset('assets/frontend/js/typed.min.js') }}" id="typed-js-js"></script>
 <script type="text/javascript" src="{{ asset('assets/frontend/js/popper.min.js') }}" id="popper-js-js"></script>

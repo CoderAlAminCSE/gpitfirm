@@ -98,9 +98,10 @@
                          <!--begin:Menu link-->
                          <span class="menu-link">
                              <span class="menu-icon">
-                                 <i class="ki-duotone ki-abstract-28 fs-2">
+                                 <i class="ki-duotone ki-map fs-2">
                                      <span class="path1"></span>
                                      <span class="path2"></span>
+                                     <span class="path3"></span>
                                  </i>
                              </span>
                              <span class="menu-title">Services Management</span>
@@ -190,7 +191,7 @@
                          <!--begin:Menu link-->
                          <span class="menu-link">
                              <span class="menu-icon">
-                                 <i class="ki-duotone ki-element-11 fs-2">
+                                 <i class="ki-duotone ki-basket fs-2">
                                      <span class="path1"></span>
                                      <span class="path2"></span>
                                      <span class="path3"></span>
@@ -531,11 +532,9 @@
                          <!--begin:Menu link-->
                          <span class="menu-link">
                              <span class="menu-icon">
-                                 <i class="ki-duotone ki-element-11 fs-2">
+                                 <i class="ki-duotone ki-abstract-25 fs-2">
                                      <span class="path1"></span>
                                      <span class="path2"></span>
-                                     <span class="path3"></span>
-                                     <span class="path4"></span>
                                  </i>
                              </span>
                              <span class="menu-title">Sites</span>
@@ -654,11 +653,9 @@
                          <!--begin:Menu link-->
                          <span class="menu-link">
                              <span class="menu-icon">
-                                 <i class="ki-duotone ki-element-11 fs-2">
+                                 <i class="ki-duotone ki-chart fs-2">
                                      <span class="path1"></span>
                                      <span class="path2"></span>
-                                     <span class="path3"></span>
-                                     <span class="path4"></span>
                                  </i>
                              </span>
                              <span class="menu-title">Settings</span>

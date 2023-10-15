@@ -27,11 +27,9 @@
             <div class="btn btn-icon btn-custom btn-icon-muted btn-active-light btn-active-color-primary w-35px h-35px"
                 data-kt-menu-placement="bottom-end">
                 <a href="{{ url('/') }}" target="_blank">
-                    <i class="ki-duotone ki-element-11 fs-2">
+                    <i class="ki-duotone ki-bank fs-2">
                         <span class="path1"></span>
                         <span class="path2"></span>
-                        <span class="path3"></span>
-                        <span class="path4"></span>
                     </i>
                 </a>
             </div>

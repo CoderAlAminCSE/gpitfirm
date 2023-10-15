@@ -713,7 +713,7 @@
                                  </span>
                                  <!--end:Menu link-->
                                  <!--begin:Menu sub-->
-                                 <div class="menu-sub menu-sub-accordion">
+                                 {{-- <div class="menu-sub menu-sub-accordion">
                                      <!--begin:Menu item-->
                                      <div class="menu-item">
                                          <!--begin:Menu link-->
@@ -727,7 +727,7 @@
                                          <!--end:Menu link-->
                                      </div>
                                      <!--end:Menu item-->
-                                 </div>
+                                 </div> --}}
                                  <!--end:Menu sub-->
                                  <!--begin:Menu sub-->
                                  <div class="menu-sub menu-sub-accordion">

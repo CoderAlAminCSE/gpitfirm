@@ -126,6 +126,23 @@
                                                 Active
                                             </label>
                                         </div>
+
+                                        <div class="form-check" style="margin-left: 220px; margin-top: 30px;">
+                                            <input class="form-check-input" name="PAYPAL_PAYMENT_ACTIVE" type="checkbox"
+                                                value="1" id="liveOrSandbox"
+                                                {{ env('PAYPAL_MODE') == 'live' ? 'checked' : '' }} />
+                                            <label class="form-check-label" for="liveOrSand">
+                                                Mode
+                                                <span class="ms-1" data-bs-toggle="tooltip"
+                                                    title="Live mode if selected, Sandbox mode if deselected">
+                                                    <i class="ki-duotone ki-information-5 text-gray-500 fs-6">
+                                                        <span class="path1"></span>
+                                                        <span class="path2"></span>
+                                                        <span class="path3"></span>
+                                                    </i>
+                                                </span>
+                                            </label>
+                                        </div>
                                     </div>
                                     <!--end:::Tab pane-->
                                     <!--begin::Action buttons-->

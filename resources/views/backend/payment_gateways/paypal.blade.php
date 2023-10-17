@@ -61,62 +61,129 @@
                                     <div class="tab-pane fade show active" id="kt_ecommerce_settings_general"
                                         role="tabpanel">
 
-                                        <!--begin::Input group-->
-                                        <div class="row fv-row mb-7">
-                                            <div class="col-md-3 text-md-end">
-                                                <!--begin::Label-->
-                                                <label class="fs-6 fw-semibold form-label mt-3">
-                                                    <span class="required">Paypal Client ID</span>
-                                                    <span class="ms-1" data-bs-toggle="tooltip" title="Paypal Client ID">
-                                                        <i class="ki-duotone ki-information-5 text-gray-500 fs-6">
-                                                            <span class="path1"></span>
-                                                            <span class="path2"></span>
-                                                            <span class="path3"></span>
-                                                        </i>
-                                                    </span>
-                                                </label>
-                                                <!--end::Label-->
+                                        @if (env('PAYPAL_MODE') == 'sandbox')
+                                            <!--begin::Input group-->
+                                            <div class="row fv-row mb-7">
+                                                <div class="col-md-3 text-md-end">
+                                                    <!--begin::Label-->
+                                                    <label class="fs-6 fw-semibold form-label mt-3">
+                                                        <span class="required">Paypal Sandbox Client ID</span>
+                                                        <span class="ms-1" data-bs-toggle="tooltip"
+                                                            title="Paypal Sandbox Client ID">
+                                                            <i class="ki-duotone ki-information-5 text-gray-500 fs-6">
+                                                                <span class="path1"></span>
+                                                                <span class="path2"></span>
+                                                                <span class="path3"></span>
+                                                            </i>
+                                                        </span>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <!--begin::Input-->
+                                                    <input type="text" class="form-control form-control-solid"
+                                                        name="PAYPAL_SANDBOX_CLIENT_ID"
+                                                        value="{{ env('PAYPAL_SANDBOX_CLIENT_ID') ?? '' }}" />
+                                                    @error('PAYPAL_SANDBOX_CLIENT_ID')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                    <!--end::Input-->
+                                                </div>
                                             </div>
-                                            <div class="col-md-9">
-                                                <!--begin::Input-->
-                                                <input type="text" class="form-control form-control-solid"
-                                                    name="PAYPAL_SANDBOX_CLIENT_ID"
-                                                    value="{{ env('PAYPAL_SANDBOX_CLIENT_ID') ?? '' }}" />
-                                                @error('PAYPAL_SANDBOX_CLIENT_ID')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                                @enderror
-                                                <!--end::Input-->
+                                            <!--end::Input group-->
+                                            <!--begin::Input group-->
+                                            <div class="row fv-row mb-7">
+                                                <div class="col-md-3 text-md-end">
+                                                    <!--begin::Label-->
+                                                    <label class="fs-6 fw-semibold form-label mt-3">
+                                                        <span class="required">Paypal Sandbox Secret Key</span>
+                                                        <span class="ms-1" data-bs-toggle="tooltip"
+                                                            title="Paypal Sandbox Secret Key">
+                                                            <i class="ki-duotone ki-information-5 text-gray-500 fs-6">
+                                                                <span class="path1"></span>
+                                                                <span class="path2"></span>
+                                                                <span class="path3"></span>
+                                                            </i>
+                                                        </span>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <!--begin::Input-->
+                                                    <input type="text" class="form-control form-control-solid"
+                                                        name="PAYPAL_SANDBOX_CLIENT_SECRET"
+                                                        value="{{ env('PAYPAL_SANDBOX_CLIENT_SECRET') ?? '' }}" />
+                                                    @error('PAYPAL_SANDBOX_CLIENT_SECRET')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                    <!--end::Input-->
+                                                </div>
                                             </div>
-                                        </div>
-                                        <!--end::Input group-->
-                                        <!--begin::Input group-->
-                                        <div class="row fv-row mb-7">
-                                            <div class="col-md-3 text-md-end">
-                                                <!--begin::Label-->
-                                                <label class="fs-6 fw-semibold form-label mt-3">
-                                                    <span class="required">Paypal Secret Key</span>
-                                                    <span class="ms-1" data-bs-toggle="tooltip" title="Stripe Secret Key">
-                                                        <i class="ki-duotone ki-information-5 text-gray-500 fs-6">
-                                                            <span class="path1"></span>
-                                                            <span class="path2"></span>
-                                                            <span class="path3"></span>
-                                                        </i>
-                                                    </span>
-                                                </label>
-                                                <!--end::Label-->
+                                            <!--end::Input group-->
+                                        @else
+                                            <!--begin::Input group-->
+                                            <div class="row fv-row mb-7">
+                                                <div class="col-md-3 text-md-end">
+                                                    <!--begin::Label-->
+                                                    <label class="fs-6 fw-semibold form-label mt-3">
+                                                        <span class="required">Paypal Live Client ID</span>
+                                                        <span class="ms-1" data-bs-toggle="tooltip"
+                                                            title="Paypal Live Client ID">
+                                                            <i class="ki-duotone ki-information-5 text-gray-500 fs-6">
+                                                                <span class="path1"></span>
+                                                                <span class="path2"></span>
+                                                                <span class="path3"></span>
+                                                            </i>
+                                                        </span>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <!--begin::Input-->
+                                                    <input type="text" class="form-control form-control-solid"
+                                                        name="PAYPAL_LIVE_CLIENT_ID"
+                                                        value="{{ env('PAYPAL_LIVE_CLIENT_ID') ?? '' }}" />
+                                                    @error('PAYPAL_LIVE_CLIENT_ID')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                    <!--end::Input-->
+                                                </div>
                                             </div>
-                                            <div class="col-md-9">
-                                                <!--begin::Input-->
-                                                <input type="text" class="form-control form-control-solid"
-                                                    name="PAYPAL_SANDBOX_CLIENT_SECRET"
-                                                    value="{{ env('PAYPAL_SANDBOX_CLIENT_SECRET') ?? '' }}" />
-                                                @error('PAYPAL_SANDBOX_CLIENT_SECRET')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                                @enderror
-                                                <!--end::Input-->
+                                            <!--end::Input group-->
+                                            <!--begin::Input group-->
+                                            <div class="row fv-row mb-7">
+                                                <div class="col-md-3 text-md-end">
+                                                    <!--begin::Label-->
+                                                    <label class="fs-6 fw-semibold form-label mt-3">
+                                                        <span class="required">Paypal Live Secret Key</span>
+                                                        <span class="ms-1" data-bs-toggle="tooltip"
+                                                            title="Paypal Live Secret Key">
+                                                            <i class="ki-duotone ki-information-5 text-gray-500 fs-6">
+                                                                <span class="path1"></span>
+                                                                <span class="path2"></span>
+                                                                <span class="path3"></span>
+                                                            </i>
+                                                        </span>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <!--begin::Input-->
+                                                    <input type="text" class="form-control form-control-solid"
+                                                        name="PAYPAL_LIVE_CLIENT_SECRET"
+                                                        value="{{ env('PAYPAL_LIVE_CLIENT_SECRET') ?? '' }}" />
+                                                    @error('PAYPAL_LIVE_CLIENT_SECRET')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                    <!--end::Input-->
+                                                </div>
                                             </div>
-                                        </div>
-                                        <!--end::Input group-->
+                                            <!--end::Input group-->
+                                        @endif
+
+
+
+
                                         <!--end::Form-->
                                         <div class="form-check" style="margin-left: 220px; margin-top: 30px;">
                                             <input class="form-check-input" name="PAYPAL_PAYMENT_ACTIVE" type="checkbox"
@@ -128,7 +195,7 @@
                                         </div>
 
                                         <div class="form-check" style="margin-left: 220px; margin-top: 30px;">
-                                            <input class="form-check-input" name="PAYPAL_PAYMENT_ACTIVE" type="checkbox"
+                                            <input class="form-check-input" name="PAYPAL_MODE" type="checkbox"
                                                 value="1" id="liveOrSandbox"
                                                 {{ env('PAYPAL_MODE') == 'live' ? 'checked' : '' }} />
                                             <label class="form-check-label" for="liveOrSand">

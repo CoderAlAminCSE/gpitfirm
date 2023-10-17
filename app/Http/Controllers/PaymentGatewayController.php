@@ -90,7 +90,7 @@ class PaymentGatewayController extends Controller
     public function paypalUpdate(Request $request)
     {
         try {
-
+            return $request->all();
             $request->validate([
                 'PAYPAL_SANDBOX_CLIENT_ID' => 'required',
                 'PAYPAL_SANDBOX_CLIENT_SECRET' => 'required'

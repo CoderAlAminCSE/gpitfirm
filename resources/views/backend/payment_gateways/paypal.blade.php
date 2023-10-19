@@ -256,6 +256,24 @@
                         _token: '{{ csrf_token() }}'
                     },
                     success: function(response) {
+                        toastr.options = {
+                            closeButton: false,
+                            debug: false,
+                            newestOnTop: false,
+                            progressBar: false,
+                            positionClass: "toastr-top-right",
+                            preventDuplicates: false,
+                            onclick: null,
+                            showDuration: "200",
+                            hideDuration: "500",
+                            timeOut: "5000",
+                            extendedTimeOut: "1000",
+                            showEasing: "swing",
+                            hideEasing: "linear",
+                            showMethod: "fadeIn",
+                            hideMethod: "fadeOut",
+                        };
+                        toastr.success("Paypal Mode Changed Successfully");
                         location.reload();
                     },
                     error: function(error) {

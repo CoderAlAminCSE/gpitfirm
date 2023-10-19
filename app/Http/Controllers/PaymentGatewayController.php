@@ -90,17 +90,31 @@ class PaymentGatewayController extends Controller
     public function paypalUpdate(Request $request)
     {
         try {
-            return $request->all();
-            $request->validate([
-                'PAYPAL_SANDBOX_CLIENT_ID' => 'required',
-                'PAYPAL_SANDBOX_CLIENT_SECRET' => 'required'
-            ]);
+            // return $request->all();
 
-            overWriteEnvFile('PAYPAL_SANDBOX_CLIENT_ID', $request->PAYPAL_SANDBOX_CLIENT_ID);
-            overWriteEnvFile('PAYPAL_SANDBOX_CLIENT_SECRET', $request->PAYPAL_SANDBOX_CLIENT_SECRET);
+            if ($request->PAYPAL_MODE == true) {
+                $request->validate([
+                    'PAYPAL_LIVE_CLIENT_ID' => 'required',
+                    'PAYPAL_LIVE_CLIENT_SECRET' => 'required'
+                ]);
 
-            $PAYPALPAYMENT_ACTIVE_STATUS = $request->PAYPAL_PAYMENT_ACTIVE ? 'YES' : 'NO';
-            overWriteEnvFile('PAYPAL_PAYMENT_ACTIVE', $PAYPALPAYMENT_ACTIVE_STATUS);
+                overWriteEnvFile('PAYPAL_LIVE_CLIENT_ID', $request->PAYPAL_LIVE_CLIENT_ID);
+                overWriteEnvFile('PAYPAL_LIVE_CLIENT_SECRET', $request->PAYPAL_LIVE_CLIENT_SECRET);
+
+                $PAYPALPAYMENT_ACTIVE_STATUS = $request->PAYPAL_PAYMENT_ACTIVE ? 'YES' : 'NO';
+                overWriteEnvFile('PAYPAL_PAYMENT_ACTIVE', $PAYPALPAYMENT_ACTIVE_STATUS);
+            } else {
+                $request->validate([
+                    'PAYPAL_SANDBOX_CLIENT_ID' => 'required',
+                    'PAYPAL_SANDBOX_CLIENT_SECRET' => 'required'
+                ]);
+
+                overWriteEnvFile('PAYPAL_SANDBOX_CLIENT_ID', $request->PAYPAL_SANDBOX_CLIENT_ID);
+                overWriteEnvFile('PAYPAL_SANDBOX_CLIENT_SECRET', $request->PAYPAL_SANDBOX_CLIENT_SECRET);
+
+                $PAYPALPAYMENT_ACTIVE_STATUS = $request->PAYPAL_PAYMENT_ACTIVE ? 'YES' : 'NO';
+                overWriteEnvFile('PAYPAL_PAYMENT_ACTIVE', $PAYPALPAYMENT_ACTIVE_STATUS);
+            }
 
             return redirect()->route('payment.paypal.index')->with('success', 'Paypal info updated');
         } catch (\Exception $e) {

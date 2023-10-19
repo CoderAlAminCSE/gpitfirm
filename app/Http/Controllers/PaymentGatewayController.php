@@ -121,4 +121,17 @@ class PaymentGatewayController extends Controller
             return back()->with('error', 'Error: ' . $e->getMessage());
         }
     }
+
+
+    /**
+     * Update paypal moon, live or sandbox.
+     */
+    public function paypalMoodUpdate()
+    {
+        if (env('PAYPAL_MODE') == 'live') {
+            overWriteEnvFile('PAYPAL_MODE', 'sandbox');
+        } else {
+            overWriteEnvFile('PAYPAL_MODE', 'live');
+        }
+    }
 }

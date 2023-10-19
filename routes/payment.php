@@ -17,4 +17,6 @@ Route::group(['prefix' => 'dashboard/payment/settings', 'middleware' => ['auth',
 
     Route::get('/paypal', [PaymentGatewayController::class, 'paypalIndex'])->name('payment.paypal.index');
     Route::post('/paypal/update', [PaymentGatewayController::class, 'paypalUpdate'])->name('payment.paypal.update');
+
+    Route::post('/paypal/mood/update', [PaymentGatewayController::class, 'paypalMoodUpdate'])->name('payment.paypal.mood.update');
 });

@@ -199,9 +199,9 @@
                                                 value="1" id="liveOrSandbox"
                                                 {{ env('PAYPAL_MODE') == 'live' ? 'checked' : '' }} />
                                             <label class="form-check-label" for="liveOrSand">
-                                                Mode
+                                                Paypal Mode ( {{ env('PAYPAL_MODE') }} )
                                                 <span class="ms-1" data-bs-toggle="tooltip"
-                                                    title="Live mode if selected, Sandbox mode if deselected">
+                                                    title=" {{ env('PAYPAL_MODE') == 'live' ? 'PayPal is currently in Live Mode. Uncheck to switch to Sandbox Mode.' : 'PayPal is currently in Sandbox Mode. Check to switch to Live Mode.' }} ">
                                                     <i class="ki-duotone ki-information-5 text-gray-500 fs-6">
                                                         <span class="path1"></span>
                                                         <span class="path2"></span>
@@ -241,4 +241,28 @@
         </div>
         <!--end::Content wrapper-->
     </div>
+    <input type="hidden" id="paypal_mode_change_url" value="{{ route('payment.paypal.mood.update') }}">
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $('#liveOrSandbox').on('click', function() {
+                let url = $('#paypal_mode_change_url').val();
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        location.reload();
+                    },
+                    error: function(error) {
+                        console.error('Error: ', error);
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

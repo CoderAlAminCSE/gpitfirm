@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invoice Generator</title>
+    <title>Invoice</title>
 
     <!-- fontawesome -->
     <script src="https://kit.fontawesome.com/7cad351999.js" crossorigin="anonymous"></script>
@@ -308,10 +308,27 @@
 
         }
 
+        .company_info {
+            display: flex;
+            align-items: center;
+            margin-top: 40px;
+        }
+
+        .logo {
+            width: 20%;
+            /* Adjust the width as needed */
+        }
+
+        .spacer {
+            width: 50%;
+            /* Adjust the width as needed to create a blank space */
+        }
+
         .address-container {
+            width: 20%;
+            /* Adjust the width as needed */
             display: flex;
             flex-direction: column;
-            margin-bottom: 10px;
         }
 
         .paypal-button {
@@ -348,7 +365,7 @@
 
         .stripe-button-el {
             border: none !important;
-            margin-bottom: 15px !important;
+            margin-bottom: 5px !important;
             background-image: none !important;
             padding: 8px 16px !important;
             background: #38bdf8 !important;
@@ -372,33 +389,28 @@
 <body>
 
     <!-- header-area -->
-    <header class="bg-[#EDDFF9] pb-[50px]">
+    <header class="bg-[#EDDFF9] pb-[20px]">
         <div class="rs_container">
             <strong
                 class="w-[135px] block mx-auto bg-[#6600cc] text-white py-[13px] px-[40px] rounded-bl-[15px] rounded-br-[15px]">Invoice</strong>
-            <div class="logo w-[120px] mx-auto mt-[40px]">
-                <a href="">
-                    <img src="{{ asset('storage/' . siteSetting('header_logo')) }}" alt="logo">
-                </a>
-            </div>
-            <div class="company_info flex justify-between mt-[40px]">
-                <div>
+
+            <div class="company_info flex justify-between mt-[20px]">
+                <div class="logo">
+                    <a href="">
+                        <img src="{{ asset('storage/' . siteSetting('header_logo')) }}" alt="logo">
+                    </a>
+                </div>
+
+                <div class="spacer"></div>
+
+                <div class="address-container">
                     <p>{{ siteSetting('company_name') ?? null }}</p>
                     <p>{{ siteSetting('company_phone') ?? null }}</p>
                     <p>{{ siteSetting('company_email') ?? null }}</p>
                     <p>{{ siteSetting('company_website') ?? null }}</p>
                 </div>
-
-                <div class="address-container">
-                    @php
-                        $addressLines = explode(',', siteSetting('company_address') ?? '');
-                    @endphp
-                    @foreach ($addressLines as $line)
-                        <p>{{ trim($line) }}</p>
-                    @endforeach
-                </div>
-
             </div>
+
         </div>
     </header>
     @if (Session::has('success'))
@@ -415,26 +427,30 @@
     <div class="bill_area py-[25px]">
         <div class="rs_container bill_area_wrapper flex justify-between">
             <div class="billed_to">
-                <p class="bg-gray-200 text-[#6600cc] py-[4px] px-[8px] inline-block rounded-md mb-4">Billed to,</p>
-                <h2 class="text-xl font-bold mb-4">{{ $invoice->user->name }}</h2>
-                <h2 class="text-xl font-bold mb-4">{{ $invoice->user->business_name }}</h2>
-                <p class="mb-1">{{ $invoice->user->email }}</p>
-                <p class="mb-1">{{ $invoice->user->address }}</p>
+                <p class="bg-gray-200 text-[#6600cc] py-[4px] px-[8px] font-bold inline-block rounded-md mb-3">Billed
+                    to</p>
+                <p class="font-bold">{{ $invoice->user->name }}</p>
+                <p class="font-bold">{{ $invoice->user->business_name }}</p>
+                <p class="font-bold">{{ $invoice->user->email }}</p>
+                <p class="font-bold">{{ $invoice->user->address }}</p>
             </div>
-            <div class="invoice_num">
-                <p class="text-gray-500 mb-1">Invoice Number</p>
-                <h2 class="text-xl font-bold mb-1">{{ $invoice->invoice_number }}</h2> <br>
-                @if ($invoice->custom_order_number)
-                    <p class="text-gray-500 mb-">Order Number</p>
-                    <h2 class="text-xl font-bold mb-1">{{ $invoice->custom_order_number }}</h2>
-                @endif
+            <div style="margin-left: 18px;">
+                <div class="invoice_num mt-5">
+                    <p class="font-bold">Invoice Number</p>
+                    <p class="mb-1">{{ $invoice->invoice_number }}</p>
+                    @if ($invoice->custom_order_number)
+                        <p class="font-bold">Order Number</p>
+                        <p class="">{{ $invoice->custom_order_number }}</p>
+                    @endif
+                </div>
+            </div>
 
-            </div>
             <div class="invoice_of text-end">
-                <p class="text-gray-500 mb-4">Invoice of <span>(USD)</span></p>
-                <h2 class="text-[#6633cc] text-xl font-bold mb-4">${{ $invoice->order->total_amount }}</h2>
+                <p class="bg-gray-200 text-[#6600cc] py-[4px] px-[8px] font-bold inline-block rounded-md mb-3">Invoice
+                    of <span>(USD)</span></p>
+                <h2 class="font-bold mb-4">${{ $invoice->order->total_amount }}</h2>
                 <div class="invoice_status border-[1px] border-gray-500 rounded-md px-4 py-2 flex items-center gap-2">
-                    <p class="text-[14px] leading-4">Invioce <br> Status</p>
+                    <p class="font-bold leading-4">Status</p>
                     <div>
                         @if (orderInfo($invoice->order_id)->canceled_at != null)
                             <p class="unpaid  bg-red-500 py-1 px-4 text-white rounded-md">Cancaled</p>
@@ -450,55 +466,52 @@
     </div>
 
     <!-- order-details -->
-    <div class="order_details py-[25px]">
-        <div class="rs_container order_details_wrapper flex justify-between items-center">
-            <h2 class="order_details_title text-xl font-bold">Order Details</h2>
+    <div class="order_details pt-[15px]">
+        <div class="rs_container order_details_wrapper flex justify-between">
+            <p class="order_details_title font-bold">Order Details</p>
             <div class="order_details_time">
-                <p class="text-gray-500 mb-4">Invoice Date</p>
-                <h2 class="text-xl font-bold">{{ $invoice->created_at->format('d F Y') }}</h2>
+                <p class="font-bold">Invoice Date</p>
+                <p class="">{{ $invoice->created_at->format('d F Y') }}</p>
             </div>
             @if ($invoice->order->payment_status == 0 && $invoice->order->canceled_at == null)
                 <div class="order_details_time">
-                    <p class="text-gray-500 mb-4">Due Date</p>
-                    <h2 class="text-xl font-bold">{{ $invoice->created_at->format('d F Y') }}</h2>
+                    <p class="font-bold mb-1">Due Date</p>
+                    <h2 class="">{{ $invoice->created_at->format('d F Y') }}</h2>
                 </div>
             @endif
         </div>
     </div>
 
     <!-- item-details -->
-    <div class="item_details py-[25px]">
+    <div class="item_details py-[10px]">
         <div class="rs_container">
             <div class="item_details_header bg-gray-200 grid grid-cols-6">
-                <p class="col-span-5 p-3">Item Details</p>
-                <p class="p-3">Amount</p>
+                <p class="col-span-5 p-3 font-bold">Item Details</p>
+                <p class="p-3 font-bold">Amount</p>
             </div>
             @foreach ($invoice->order->items as $item)
                 @if ($item->service_id == null)
                     <div class="item_details_body grid grid-cols-6">
                         <div class="border-l-[1px] border-r-[1px] border-b-[1px] border-gray-200 col-span-5">
-                            <h2 class="border-b-[1px] border-gray-200 p-3 font-[600]">{{ $item->custom_service_name }}
+                            <h2 class="border-b-[1px] border-gray-200 p-3">{{ $item->custom_service_name }}
                             </h2>
                             <p class="p-3 font-[400]">
                                 {{ $item->custom_service_description }}
                             </p>
                         </div>
                         <div class="item_details_price border-r-[1px] border-b-[1px] border-gray-200 p-3">
-                            <span>${{ $item->custom_service_price }}</span>
+                            <p class="font-[400]">${{ $item->custom_service_price }}</p>
                         </div>
                     </div>
                 @else
                     <div class="item_details_body grid grid-cols-6">
                         <div class="border-l-[1px] border-r-[1px] border-b-[1px] border-gray-200 col-span-5">
-                            <h2 class="border-b-[1px] border-gray-200 p-3 font-[600]">
+                            <h2 class="border-b-[1px] border-gray-200 p-3">
                                 {{ serviceInfo($item->service_id)->name }}
                             </h2>
-                            {{-- <p class="p-3 font-[400]">
-                              {!! serviceInfo($item->service_id)->description !!}
-                            </p> --}}
                         </div>
                         <div class="item_details_price border-r-[1px] border-b-[1px] border-gray-200 p-3">
-                            <span>${{ serviceInfo($item->service_id)->price }}</span>
+                            <p class="font-[400]">${{ serviceInfo($item->service_id)->price }}</p>
                         </div>
                     </div>
                 @endif
@@ -508,20 +521,21 @@
     </div>
 
     <!-- summary -->
-    <div class="summary py-[25px]">
-        <div class="rs_container summary_wrapper flex justify-between items-center">
+    <div class="summary py-[10px]">
+        <div class="rs_container summary_wrapper flex justify-between items-start">
             <a href="{{ route('customer.invoice.download', $invoice->id) }}">
-                <button class="bg-fuchsia-200 py-2 px-4 rounded-md"> <i class="fa-solid fa-print"></i> Download</button>
+                <button class="bg-fuchsia-200 py-2 px-4 rounded-md font-bold"> <i class="fa-solid fa-print"></i>
+                    Download</button>
             </a>
 
             <div>
                 <div class="py-3 px-10 bg-gray-200 rounded-md">
                     <span class="inline-block mr-10 text-gray-700 font-[500]">Total</span>
-                    <strong class="text-lg">${{ $invoice->order->total_amount }}</strong>
+                    <strong class="font-bold">${{ $invoice->order->total_amount }}</strong>
 
                 </div>
                 @if ($invoice->order->payment_status == 0 && $invoice->order->canceled_at == null)
-                    <div class="mt-4">
+                    <div class="mt-3">
                         @if (env('STRIPE_PAYMENT_ACTIVE') == 'YES')
                             <div>
                                 <form action="{{ route('invoice.payment.confirm') }}" method="post">
@@ -553,26 +567,23 @@
                                     Paddle</button>
                             </div>
                         @endif
-
                     </div>
                 @endif
-
             </div>
         </div>
     </div>
 
     <!-- footer -->
-    <footer class="mb-[60px] pt-[50px]">
+    <footer class="mb-[60px] pt-[10px]">
         @if ($invoice->notes)
             <div class="rs_container">
-                <p class="font-[500] mb-1">Notes</p>
+                <p class="font-bold">Notes</p>
                 <p>{{ $invoice->notes }}</p>
             </div>
         @endif
-
         <br>
         <div class="rs_container">
-            <p class="font-[500] mb-">Terms & Conditions</p>
+            <p class="font-bold">Terms & Conditions</p>
             <p>By using our e-commerce platform, you agree to our user responsibilities, product accuracy, payment,
                 shipping, privacy,
                 and liability terms. Thank you for shopping with us.

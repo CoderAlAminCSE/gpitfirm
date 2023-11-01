@@ -487,30 +487,35 @@
         <div class="rs_container">
             <div class="item_details_header bg-gray-200 grid grid-cols-6">
                 <p class="col-span-5 p-3 font-bold">Item Details</p>
-                <p class="p-3 font-bold">Amount</p>
+                <p class="p-3 ml-4 font-bold">Amount</p>
             </div>
             @foreach ($invoice->order->items as $item)
                 @if ($item->service_id == null)
-                    <div class="item_details_body grid grid-cols-6">
-                        <div class="border-l-[1px] border-r-[1px] border-b-[1px] border-gray-200 col-span-5">
-                            <h2 class="border-b-[1px] border-gray-200 p-3">{{ $item->custom_service_name }}
-                            </h2>
-                            <p class="p-3 font-[400]">
-                                {{ $item->custom_service_description }}
-                            </p>
+                    <div
+                        class="item_details_body grid grid-cols-6 border-l-[2px] border-r-[2px] border-b-[2px] border-gray-200 col-span-5">
+                        <div class="border-l-[1px] border-r-[2px] border-b-[1px] border-gray-200 col-span-5">
+                            <div>
+                                <h2 class="border-b-[1px] border-gray-200 p-3">{{ $item->custom_service_name }}</h2>
+                                <p class="p-3 font-[400]">{{ $item->custom_service_description }}</p>
+                            </div>
                         </div>
-                        <div class="item_details_price border-r-[1px] border-b-[1px] border-gray-200 p-3">
+                        <div
+                            class="item_details_price border-r-[1px] border-b-[1px] border-gray-200 p-3 text-center flex items-center justify-center">
                             <p class="font-[400]">${{ $item->custom_service_price }}</p>
                         </div>
                     </div>
                 @else
-                    <div class="item_details_body grid grid-cols-6">
-                        <div class="border-l-[1px] border-r-[1px] border-b-[1px] border-gray-200 col-span-5">
-                            <h2 class="border-b-[1px] border-gray-200 p-3">
-                                {{ serviceInfo($item->service_id)->name }}
-                            </h2>
+                    <div
+                        class="item_details_body grid grid-cols-6 border-l-[2px] border-r-[2px] border-b-[2px] border-gray-200 col-span-5">
+                        <div class="border-l-[1px] border-r-[2px] border-b-[1px] border-gray-200 col-span-5">
+                            <div>
+                                <h2 class="p-3">
+                                    {{ serviceInfo($item->service_id)->name }}
+                                </h2>
+                            </div>
+
                         </div>
-                        <div class="item_details_price border-r-[1px] border-b-[1px] border-gray-200 p-3">
+                        <div class="item_details_price border-r-[1px] border-b-[1px] border-gray-200 p-3 text-center">
                             <p class="font-[400]">${{ serviceInfo($item->service_id)->price }}</p>
                         </div>
                     </div>
@@ -530,8 +535,8 @@
 
             <div>
                 <div class="py-3 px-10 bg-gray-200 rounded-md">
-                    <span class="inline-block mr-10 text-gray-700 font-[500]">Total</span>
-                    <strong class="font-bold">${{ $invoice->order->total_amount }}</strong>
+                    <span class="inline-block mr-10 pl-4 text-gray-700 font-[600]">Total</span>
+                    <strong class="text-gray-700 font-[600] pl-1">${{ $invoice->order->total_amount }}</strong>
 
                 </div>
                 @if ($invoice->order->payment_status == 0 && $invoice->order->canceled_at == null)

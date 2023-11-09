@@ -535,8 +535,16 @@
 
             <div>
                 <div class="py-3 px-10 bg-gray-200 rounded-md">
-                    <span class="inline-block mr-10 pl-4 text-gray-700 font-[600]">Total</span>
-                    <strong class="text-gray-700 font-[600] pl-1">${{ $invoice->order->total_amount }}</strong>
+                    @if ($invoice->order->discount)
+                        <div>
+                            <span class="inline-block mr-10 pl-4 text-gray-700 font-[600]">Discount</span>
+                            <strong class="text-gray-700 font-[600] pl-1">${{ $invoice->order->discount }}</strong>
+                        </div>
+                    @endif
+                    <div>
+                        <span class="inline-block mr-10 pl-4 text-gray-700 font-[600]">Total</span>
+                        <strong class="text-gray-700 font-[600] pl-1">${{ $invoice->order->total_amount - $invoice->order->discount }}</strong>
+                    </div>
 
                 </div>
                 @if ($invoice->order->payment_status == 0 && $invoice->order->canceled_at == null)
@@ -547,7 +555,7 @@
                                     @csrf
                                     <input type="hidden" name="invoice_id" value="{{ $invoice->id }}">
                                     <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                        data-key="{{ config('services.stripe.key') }}" data-amount={{ $invoice->order->total_amount * 100 }}
+                                        data-key="{{ config('services.stripe.key') }}" data-amount={{ ($invoice->order->total_amount - $invoice->order->discount)  * 100 }}
                                         data-name="Stripe" data-locale="auto" data-label="Pay With Stripe" data-zip-code="true"
                                         data-currency="{{ 'USD' }}" data-gateway="stripe"></script>
                                 </form>

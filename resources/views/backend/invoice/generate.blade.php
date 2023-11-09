@@ -205,6 +205,15 @@
                                                 <span data-kt-element="grand-total">0.00</span>
                                             </th>
                                         </tr>
+                                        <tr class="align-top fw-bold text-gray-700">
+                                            <th></th>
+                                            <th colspan="2" class="fs-4 ps-0">Discount</th>
+                                            <th colspan="5" class="text-end fs-4 text-nowrap">
+                                                <input type="text" name="invoice_discount"
+                                                    class="form-control form-control-solid text-end" placeholder="0.00"
+                                                    value="0" data-kt-element="invoice_discount" />
+                                            </th>
+                                        </tr>
                                     </tfoot>
                                 </table>
                             </div>
@@ -273,6 +282,15 @@
                                             <th colspan="2" class="fs-4 ps-0">Total</th>
                                             <th colspan="2" class="text-end fs-4 text-nowrap">$
                                                 <span id="customServiceTotal">0.00</span>
+                                            </th>
+                                        </tr>
+                                        <tr class="align-top fw-bold text-gray-700">
+                                            <th></th>
+                                            <th colspan="2" class="fs-4 ps-0">Discount</th>
+                                            <th colspan="5" class="text-end fs-4 text-nowrap">
+                                                <input type="text" name="custom_invoice_discount"
+                                                    class="form-control form-control-solid text-end" placeholder="0.00"
+                                                    value="0" data-kt-element="custom_invoice_discount" />
                                             </th>
                                         </tr>
                                     </tfoot>
@@ -393,6 +411,45 @@
         });
     </script>
 
+
+    <script>
+        $(document).ready(function() {
+            // Function to calculate totals
+            function calculateTotals() {
+                var subtotal = 0;
+                $('tbody [data-kt-element="item"]').each(function() {
+                    var price = parseFloat($(this).find('[data-kt-element="price"]').text());
+
+                    if (!isNaN(price)) {
+                        subtotal += price;
+                    }
+                });
+
+                // Get the discount amount from the discount field
+                var discount = parseFloat($('input[name="invoice_discount"]').val()) || 0;
+
+                // Calculate the grand total after applying the discount
+                var grandTotal = subtotal - discount;
+
+                // Update the grand total on the page
+                $('[data-kt-element="grand-total"]').text(grandTotal.toFixed(2));
+            }
+
+            // Calculate totals when the page loads
+            calculateTotals();
+
+            // Calculate totals when a product is added or removed
+            $(document).on('click', '#add-item', function() {
+                calculateTotals();
+            });
+
+            // Calculate totals when a discount amount is entered or changed
+            $('input[name="invoice_discount"]').on('input', function() {
+                calculateTotals();
+            });
+        });
+    </script>
+
     <script>
         $(document).ready(function() {
             $("#customerCheck").on("change", function() {
@@ -488,6 +545,40 @@
             });
         });
     </script>
+
+<script>
+    $(document).ready(function() {
+        function updateSubtotalAndTotal() {
+            var subtotal = 0;
+            $('input[name="custom_service_price[]"]').each(function() {
+                subtotal += parseFloat($(this).val() || 0);
+            });
+
+            var discount = parseFloat($('[data-kt-element="custom_invoice_discount"]').val()) || 0;
+
+            // Calculate the new subtotal after applying the discount
+            var newSubtotal = subtotal - discount;
+
+            $('#customServiceSubtotal').text(newSubtotal.toFixed(2));
+            $('#customServiceTotal').text(newSubtotal.toFixed(2));
+        }
+
+        // Calculate subtotal and total when the page loads
+        updateSubtotalAndTotal();
+
+        // Calculate subtotal and total when a product is added or removed
+        $(document).on('input', 'input[name="custom_service_price[]"]', function() {
+            updateSubtotalAndTotal();
+        });
+
+        // Calculate subtotal and total when the discount field is changed
+        $('[data-kt-element="custom_invoice_discount"]').on('input', function() {
+            updateSubtotalAndTotal();
+        });
+    });
+</script>
+
+
 
     <script>
         $(document).ready(function() {

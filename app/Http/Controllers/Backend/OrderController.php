@@ -413,6 +413,12 @@ class OrderController extends Controller
             $order->user_id = $user_id;
             $order->order_type = 'invoice';
             $order->payment_status = false;
+            if ($request->invoice_discount) {
+                $order->discount = $request->invoice_discount;
+            }
+            if ($request->custom_invoice_discount) {
+                $order->discount = $request->custom_invoice_discount;
+            }
             $order->save();
 
             if ($request->existingService) {
@@ -558,7 +564,7 @@ class OrderController extends Controller
         if ($invoice) {
             Stripe::setApiKey(env('STRIPE_SECRET'));
             $payment =  Charge::create([
-                'amount' => 100 * $order->total_amount,
+                'amount' => 100 * ($order->total_amount - $order->discount),
                 'currency' => 'usd',
                 'source' => $request->stripeToken,
                 "description" => "This payment is tested purpose",
@@ -576,7 +582,7 @@ class OrderController extends Controller
 
 
     /**
-     * this function make payments 
+     * this function make payments
      */
     public function processPaypal(Request $request)
     {
@@ -603,7 +609,7 @@ class OrderController extends Controller
                     0 => [
                         "amount" => [
                             "currency_code" => "USD",
-                            "value" => $invoice->order->total_amount
+                            "value" => $invoice->order->total_amount - $invoice->order->discount
                         ]
                     ]
                 ]
